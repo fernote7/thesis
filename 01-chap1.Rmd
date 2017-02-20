@@ -30,13 +30,14 @@ The first quantitative works in brownian motion come from an interest in stock p
 
 In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion.
 
-\begin{align}
-  W_{0}=0 \\
-  a = 3
-  \label{eq:wiener}
-\end{align}
+\footnotesize
 
-\@ref(eq:wiener).
+*  $W_{0}=0$ 
+*  $W$ has independent increments: $W_{t+u}-W_{t}$ is independent of $\sigma \left(W_{s}:s\leq t\right)$ for $u~\geq 0$
+* $W$ has Gaussian increments: $W_{t+u}-W_{t}$ is normally distributed with mean $0$ and variance $u$, $W_{t+u}-W_{t}\sim {\mathcal {N}}(0,u)$
+* W has continuous paths: With probability $1$, $W_{t}$ is continuous in $t$.
+\normalsize
+
 
 
 ### Itô's Lemma
