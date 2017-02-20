@@ -6,17 +6,37 @@ This is for including Chapter 1.  Notice that it's also good practice to name yo
 The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
 -->
 
+
+
 # Literature Review {#lt-review}
 
 This chapter presents the concepts of stochastic calculus, from the historic conception of how it first arose through the basic principles and applications in finance. More precisely, we address the classical Black-Scholes model and its limitations and the Heston model. This model is also well known, it introduces the concept of stochastic volatility which brings us closer to reality.
 
 ## Stochastic Calculus
 
-Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes.
+Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus, also known as, Itô calculus due to the name of it's creator, the Japanese mathematician Kiyosi Itô in the 1940s and 1950s is used for modelling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models used arise, but our focus is introducing the concepts and notations that will be further used in our work.
+
+[//]: is a generalization of the Riemann-Stieltjes integral 
 
 ### Brownian Motion
 
-The
+The Brownian motion is the name given to the irregular motion observed in the motion of pollen particles suspended in fluid resulting from particle collision with atoms or molecules. It is named after Robert Brown, the first to have observed the movement in 1828. He noted two characteristic in the pollen movement [@ubbo]:
+
+* the path of a givern particle is very irregular, having a tangent at no point
+
+* the motion of two distinct particles appear to be independent
+
+The first quantitative works in brownian motion come from an interest in stock price fluctuation by Bachelier in 1900. Albert Einstein also leaned over the subject and in 1905 derived the transition density for Brownian motion from molecular-kinectic theory of heat [@ubbo; @karatzas2012brownian].
+
+In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion.
+
+\begin{align}
+  W_{0}=0 \\
+  a = 3
+  \label{eq:wiener}
+\end{align}
+
+\@ref(eq:wiener).
 
 
 ### Itô's Lemma

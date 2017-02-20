@@ -32,6 +32,9 @@ preface: >
 bibliography: bib/thesis.bib
 # Download your specific bibliography database file and refer to it in the line above.
 csl: csl/abnt_numerico-1.0.csl
+# csl: csl/ABNT_UFPR_2011-Mendeley.csl
+# csl: csl/apa.csl
+# csl: csl/elsevier-with-titles.csl
 # Download your specific csl file and refer to it in the line above.
 lot: true
 lof: true
@@ -40,7 +43,7 @@ lof: true
 # to have a blank new line between each paragraph
 header-includes:
 # - \usepackage{tikz}
-
+- \bibliographystyle{elsarticle-num}
 ---
 
 <!--

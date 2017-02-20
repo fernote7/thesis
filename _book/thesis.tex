@@ -132,6 +132,7 @@ The preface pretty much says it all. \par  Second paragraph of abstract
 starts here.
 }
 
+	\bibliographystyle{elsarticle-num}
 % End of CII addition
 %%
 %% End Preamble
@@ -235,29 +236,56 @@ starts here.
   
   \chapter{Literature Review}\label{lt-review}
   
-  Here is a brief introduction into using \emph{R Markdown}.
-  \emph{Markdown} is a simple formatting syntax for authoring HTML, PDF,
-  and MS Word documents. \emph{R Markdown} provides the flexibility of
-  \emph{Markdown} with the implementation of \textbf{R} input and output.
-  For more details on using \emph{R Markdown} see
-  \url{http://rmarkdown.rstudio.com}.
-  
-  Be careful with your spacing in \emph{Markdown} documents. While
-  whitespace largely is ignored, it does at times give \emph{Markdown}
-  signals as to how to proceed. As a habit, try to keep everything left
-  aligned whenever possible, especially as you type a new paragraph. In
-  other words, there is no need to indent basic text in the Rmd document
-  (in fact, it might cause your text to do funny things if you do).
+  This chapter presents the concepts of stochastic calculus, from the
+  historic conception of how it first arose through the basic principles
+  and applications in finance. More precisely, we address the classical
+  Black-Scholes model and its limitations and the Heston model. This model
+  is also well known, it introduces the concept of stochastic volatility
+  which brings us closer to reality.
   
   \section{Stochastic Calculus}\label{stochastic-calculus}
   
-  This chapter presents the concepts of stochastic calculus, from the
-  historic conception of how it first arised through the basic principles
-  and applications in finance. More precisely, we address the classical
-  Black-Scholes model and its limitations and the Heston model. This model
-  is also well known, it introduces the concept of stochastic volatility.
+  Stochastic calculus arises from stochastic processes and allows the
+  creation of a theory of integration where both the integrand and
+  integrator terms are stochastic processes. Stochastic calculus, also
+  known as, Itô calculus due to the name of it's creator, the Japanese
+  mathematician Kiyosi Itô in the 1940s and 1950s is used for modelling
+  financial options and in another wide variety of fields (1). In this
+  chapter we present the historical contexts in which the tools and models
+  used arise, but our focus is introducing the concepts and notations that
+  will be further used in our work.
   
   \subsection{Brownian Motion}\label{brownian-motion}
+  
+  The Brownian motion is the name given to the irregular motion observed
+  in the motion of pollen particles suspended in fluid resulting from
+  particle collision with atoms or molecules. It is named after Robert
+  Brown, the first to have observed the movement in 1828. He noted two
+  characteristic in the pollen movement (1):
+  
+  \begin{itemize}
+  \item
+    the path of a givern particle is very irregular, having a tangent at
+    no point
+  \item
+    the motion of two distinct particles appear to be independent
+  \end{itemize}
+  
+  The first quantitative works in brownian motion come from an interest in
+  stock price fluctuation by Bachelier in 1900. Albert Einstein also
+  leaned over the subject and in 1905 derived the transition density for
+  Brownian motion from molecular-kinectic theory of heat (1,2).
+  
+  In 1923, the Wiener process was coined in honor of Norbert Wiener
+  mathematical proof of existence of the brownian motion.
+  
+  \begin{align}
+    W_{0}=0 \\
+    a = 3
+    \label{eq:wiener}
+  \end{align}
+  
+  \eqref{eq:wiener}.
   
   \subsection{Itô's Lemma}\label{itos-lemma}
   
@@ -327,11 +355,11 @@ starts here.
   
   \begin{equation}
     \mathrm{C_6H_{12}O_6  + 6O_2} \longrightarrow \mathrm{6CO_2 + 6H_2O}
-    \label{eq:reaction}
+    \label{eq:reaction22}
   \end{equation}
   
   We can reference this combustion of glucose reaction via Equation
-  \eqref{eq:reaction}.
+  \eqref{eq:reaction22}.
   
   \subsection{Other examples of
   reactions}\label{other-examples-of-reactions}
@@ -699,6 +727,14 @@ starts here.
   
   \setlength{\parindent}{-0.20in} \setlength{\leftskip}{0.20in}
   \setlength{\parskip}{8pt}
+  
+  \hypertarget{refs}{}
+  \hypertarget{ref-ubbo}{}
+  1 WIERSEMA, U.F. \textbf{Brownian motion calculus}. 2008.
+  
+  \hypertarget{ref-karatzas2012brownian}{}
+  2 KARATZAS, I.; SHREVE, S. \textbf{Brownian motion and stochastic
+  calculus}. 2012.
 
 
   % Index?
