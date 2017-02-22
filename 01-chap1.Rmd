@@ -28,16 +28,20 @@ The Brownian motion is the name given to the irregular motion observed in the mo
 
 The first quantitative works in brownian motion come from an interest in stock price fluctuation by Bachelier in 1900. Albert Einstein also leaned over the subject and in 1905 derived the transition density for Brownian motion from molecular-kinectic theory of heat [@ubbo; @karatzas2012brownian].
 
-In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion.
+In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion and stating its properties as follows [@helgadottir2016option]:
 
-\footnotesize
 
-*  $W_{0}=0$ 
-*  $W$ has independent increments: $W_{t+u}-W_{t}$ is independent of $\sigma \left(W_{s}:s\leq t\right)$ for $u~\geq 0$
-* $W$ has Gaussian increments: $W_{t+u}-W_{t}$ is normally distributed with mean $0$ and variance $u$, $W_{t+u}-W_{t}\sim {\mathcal {N}}(0,u)$
-* W has continuous paths: With probability $1$, $W_{t}$ is continuous in $t$.
-\normalsize
+*  $W_{0}=0$
 
+* The change in $W$, given by $\Delta W = W_{t+1}-W_{t}$, is normally distributed with mean Wero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
+
+* If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
+
+* The process is continuous, meaning that there are no jumps in the process.
+
+* The process is a Markov process. This means that the conditional expectation of $W_{t+1}$ given its entire history is equal to the conditional expectation of $W_{t+1}$ given today's information. This can be written as: $E[W_{t+1}|W_1, ..., W_t] = E[W_{t+1}|W_t]$.
+
+* Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$.
 
 
 ### Itô's Lemma

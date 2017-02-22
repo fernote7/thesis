@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.2.9)  20 FEB 2017 00:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.2.9)  20 FEB 2017 22:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1073,20 +1073,12 @@ LaTeX Font Info:    Try loading font information for TS1+lmr on input line 224.
 
 (/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 243.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 243.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 243.
-pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
-been already used, duplicate ignored
+)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.245     \(
-            W\) has independent increments: \(W_{t+u}-W_{t}\) is independent of
-[3]
+l.243     T
+           he change in \(W\), given by \(\Delta W = W_{t+1}-W_{t}\), is [3]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1097,7 +1089,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.274   \chapter
+l.288   \chapter
                 {Mathematics and Science}\label{math-sci} [4]
 Chapter 3.
 [5
@@ -1115,40 +1107,42 @@ Chapter 5.
 [11] [12
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 298.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 316.
 [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 298.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 316.
 (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 298.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 298.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 316.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 316.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 16E73B2C12778907B8C6786762ADD74D;936.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 298.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 316.
  ) 
 Here is how much of TeX's memory you used:
- 10960 strings out of 494892
- 166005 string characters out of 6179480
- 278972 words of memory out of 5000000
- 13937 multiletter control sequences out of 15000+600000
- 65321 words of font info for 87 fonts, out of 8000000 for 9000
+ 10902 strings out of 494892
+ 165118 string characters out of 6179480
+ 279972 words of memory out of 5000000
+ 13889 multiletter control sequences out of 15000+600000
+ 46836 words of font info for 68 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 39i,11n,45p,252b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texli
+ 39i,11n,45p,252b,397s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texli
 ve/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/f
 onts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
-lm/lm-rm.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr
-/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/share/texlive/
+lm/lm-mathex.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/
+usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texlive/
 texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-lm/lmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/lm/lmro12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/l
-m/lmsy10.pfb>
-Output written on thesis.pdf (31 pages, 178658 bytes).
+s/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/l
+m/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmro12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/lm/lmsy6.pfb>
+Output written on thesis.pdf (31 pages, 159152 bytes).
 PDF statistics:
- 276 PDF objects out of 1000 (max. 8388607)
- 231 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
- 12401 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 284 PDF objects out of 1000 (max. 8388607)
+ 237 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 8305 words of extra memory for PDF output out of 10000 (max. 10000000)
 
