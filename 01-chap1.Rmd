@@ -44,7 +44,81 @@ In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical p
 * Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$.
 
 
+
+
+
+
 ### Itô's Lemma
+
+Let $X_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans2012introduction; @steele2012stochastic]:
+
+\begin{align}
+X_t = X_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
+\end{align}
+
+\noindent
+for some $\mu_t$, $\sigma_t$ and $t \in [0,T]$. This equation is often rewritten in its differential stochastic form:
+
+\begin{align}
+dX_t = \mu_t dt + \sigma_t dW_t 
+\end{align}
+
+\noindent
+for $0 \leq t \leq T$.
+
+#### Theorem
+
+
+Assume that $X_t$ has a stochastic differential given by:
+
+\begin{align}
+dX_t = \mu_t dt + \sigma_t dW_t 
+\end{align}
+
+\noindent
+for $\mu_t$, $\sigma_t$ and $t \in [0,T]$. Assume $u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}$ is continuous and that $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$, $\frac{\partial^2 u}{\partial x^2}$ exist and are continuous.
+
+$$ Y_t := u(X_t, t) $$
+\noindent
+Then Y has the following stochastic differential:
+
+\begin{align} 
+\label{eq:ito}
+\begin{split}
+    dY_t &= \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x} dX_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 dt  \\[10pt] 
+    &= \left( \frac{\partial u}{\partial t} + \mu_t \frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 \right) dt + \sigma_t \frac{\partial u}{\partial x} dW_t
+\end{split}
+\end{align}
+
+\noindent 
+where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( X_t, t \right)$ .
+
+Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(X_t, t)$ [@tong2012option; @evans2012introduction]. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the \@ref(tab:box-calc)  multiplication table [@ubbo].
+
+```{r box-calc, echo=FALSE, message=FALSE, results='asis'}
+mat <- matrix(c(0, 0, 0, "$dt$"), nrow = 2, ncol = 2)
+rownames(mat) <- c("$dt$", "$dW_t$")
+colnames(mat) <- c("$dt$", "$dW_t$")
+#align(mat) <- c("|c","c","c|")
+#print(mat, sanitize.text.function = function(x) {x})
+knitr::kable(mat, caption = 'Box calculus', 
+             longtable = TRUE, booktabs = TRUE, escape = FALSE)
+```
+
+
+the \@ref(tab:foo2)  multiplication table.
+
+
+
+
+
+\@ref(fig:bar)
+
+```{r bar}
+par(mar = c(4, 4, 0.1, 0.1))
+plot(pressure, pch = 19, type = "b")
+```
+
 
 
 ## Black-Scholes Model
