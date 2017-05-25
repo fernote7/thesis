@@ -33,14 +33,14 @@ The Brownian motion is the name given to the irregular motion observed in the mo
 
 * the motion of two distinct particles appear to be independent
 
-The first quantitative works in brownian motion come from an interest in stock price fluctuation by Bachelier in 1900. Albert Einstein also leaned over the subject and in 1905 derived the transition density for Brownian motion from molecular-kinectic theory of heat [@ubbo; @karatzas2012brownian].
+The first quantitative works in brownian motion come from an interest in stock price fluctuation by Bachelier in 1900. Albert Einstein also leaned over the subject and in 1905 derived the transition density for Brownian motion from molecular-kinetic theory of heat [@ubbo; @karatzas2012brownian].
 
 In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion and stating its properties as follows [@helgadottir2016option]:
 
 
 *  $W_{0}=0$
 
-* The change in $W$, given by $\Delta W = W_{t+1}-W_{t}$, is normally distributed with mean Wero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
+* The change in $W$, given by $\Delta W = W_{t+1}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
 
 * If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
 
@@ -62,14 +62,14 @@ In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical p
 Let $X_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans2012introduction; @steele2012stochastic]:
 
 \begin{align}
-X_t = X_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
+S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
 \end{align}
 
 \noindent
 for some $\mu_t$, $\sigma_t$ and $t \in [0,T]$. This equation is often rewritten in its differential stochastic form:
 
 \begin{align}
-dX_t = \mu_t dt + \sigma_t dW_t 
+dS_t = \mu_t dt + \sigma_t dW_t 
 \end{align}
 
 \noindent
@@ -78,31 +78,31 @@ for $0 \leq t \leq T$.
 #### Theorem
 
 
-Assume that $X_t$ has a stochastic differential given by:
+Assume that $S_t$ has a stochastic differential given by:
 
 \begin{align}
-dX_t = \mu_t dt + \sigma_t dW_t 
+dS_t = \mu_t dt + \sigma_t dW_t 
 \end{align}
 
 \noindent
 for $\mu_t$, $\sigma_t$ and $t \in [0,T]$. Assume $u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}$ is continuous and that $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$, $\frac{\partial^2 u}{\partial x^2}$ exist and are continuous.
 
-$$Y_t := u(X_t, t)$$
+$$Y_t := u(S_t, t)$$
 \noindent
 Then Y has the following stochastic differential:
 
 \begin{align} 
 \label{eq:ito}
 \begin{split}
-    dY_t &= \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x} dX_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 dt  \\[10pt] 
+    dY_t &= \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x} dS_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 dt  \\[10pt] 
     &= \left( \frac{\partial u}{\partial t} + \mu_t \frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 \right) dt + \sigma_t \frac{\partial u}{\partial x} dW_t
 \end{split}
 \end{align}
 
 \noindent 
-where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( X_t, t \right)$ .
+where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( S_t, t \right)$ .
 
-Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(X_t, t)$ [@tong2012option; @evans2012introduction]. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the     \@ref(tab:box-calc)  multiplication table [@ubbo].
+Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(S_t, t)$ [@tong2012option; @evans2012introduction]. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the     \@ref(tab:box-calc)  multiplication table [@ubbo].
 
 ```{r box-calc, echo=FALSE, message=FALSE, results='asis'}
 mat <- matrix(c(0, 0, 0, "$dt$"), nrow = 2, ncol = 2)
@@ -125,7 +125,7 @@ knitr::kable(mat, caption = 'Box calculus', align = c('l','r', 'r'),
 
 ## Black-Scholes Model
 
-The Black-Scholes model arises from the need to price european options in the derivative markets. Derivatives are financial instruments traded in the market, stock exchange or over-the-counter (OTC) market, whose values depend on the values of an underlying asset. [@yang2013valuing; @salomao2011precificaccao; @black1973pricing]
+The Black-Scholes (B-S) model arises from the need to price european options in the derivative markets. Derivatives are financial instruments traded in the market, stock exchange or over-the-counter (OTC) market, whose values depend on the values of an underlying asset. [@yang2013valuing; @salomao2011precificaccao; @black1973pricing]
 
 * A call option is a derivative that gives its bearer the right, but not the obligation, to purchase a specific asset by a fixed price before or on a given date. 
 
@@ -133,7 +133,7 @@ The Black-Scholes model arises from the need to price european options in the de
 
 The trading price of the option is called the option *premium* and the asset from which the option derives is called the *underlying asset*. This asset may be the interest rate, exchange rates, stock exchanges rates, commodities or stocks. The fixed price in contract in which the underlying asset might to be bought or sold is the *strick price*. The option expiration date is called the *maturity*. [@salomao2011precificaccao; @black1973pricing]
 
-There are two major different option types: the European and the American. The difference between these two is that the bearer of the first may excercise it only at the end of its life, at its maturity while the latter can be excercised at any given time until its maturity. [@black1973pricing; @merton1973theory]
+There are two major different option types: the European and the American. The difference between these two is that the bearer of the first may exercise it only at the end of its life, at its maturity while the latter can be exercised at any given time until its maturity. [@black1973pricing; @merton1973theory]
 
 
 ### The model
@@ -171,17 +171,95 @@ dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
 Where $dW_t$ is a Wiener process [@black1973pricing; @nmof], $r$ is the risk free rate and $q$ is the dividend yield\footnote{$r$ and $q$ are assumed to be constant.} and $t$ denotes the current point in time. 
 
 
+Although the Black-Scholes is very popular and the *de facto* standard in the market there are implications to the B-S model assumptions that affect the results and that are unrealistic. The main assumption that does not hold up is the deterministic (constant) volatility, that can more accurately be described as a stochastic process since we observe that small moves usually are followed by small moves and large moves by large moves.   [@yang2013valuing; @helgadottir2016option]
 
-<!-- ''' [@yang2013valuing] -->
-<!-- Although Black-Scholes equation is still widespread used in the market, much evidence has shown that -->
-<!-- the assumption of fixed volatility is not suitable for actual data. we -->
-<!-- consider the volatility following a stochastic process rather than a constant during the life of a call option. -->
-<!-- ''' -->
+Other assumptions that are critical to the B-S model and are not always observed in practice refer to the asset's continuity through time (no jumps), being allowed to perform continuous hedge without transactions costs and normal (Gaussian) returns.
+
+Most models focus on the volatility problem because transaction costs often translate to rises in volatility and fat-tails (abnormal) returns can be simulated by stochastic volatility and market or volatility jumps.
 
 
-### Limitations
 
-## Heston Model
+
+<!-- Out of all the parameters that the call price depends on in the Black Scholes -->
+<!-- model, the volatility is the only one that is unobservable, but we can let the -->
+<!-- market of liquid derivatives decide which volatility has to be plugged in the -->
+<!-- model. The calibrated σ* is the one that fits best the model prices to the observed -->
+<!-- market prices, by minimizing the sum of square errors: -->
+<!-- σ ∗ = arg q 	min -->
+<!-- 2,o -->
+<!-- C mn S " , K 2 , σ, T o − C p S", K 2 , T o -->
+<!-- . -->
+<!-- Knowing S, K, T, r, q and the quoted option call value it is possible to extract the -->
+<!-- implied volatility. -->
+
+
+
+
+<!-- [@tong2012option] -->
+<!-- Using Black-Scholes option pricing model, the price of a call option is the function of -->
+<!-- the spot (current) price S(0), interest rate r, the strike K, the constant volatility σ -->
+<!-- and the maturity T . Except for the volatility σ, all the other variables are observable. -->
+<!-- Since the quoted option price C obs is observable, using the Black-Scholes formula we -->
+<!-- can therefore calculate or imply the volatility that is consistent with the quoted his- -->
+<!-- torical option prices and observed variables. We can therefore define implied volatility -->
+<!-- σimpl by -->
+<!-- C BS (0; r, K, T, σimpl , S(0)) = C obs -->
+<!-- where C BS is the option price calculated by the Black-Scholes formula (equation -->
+<!-- (3.3.9)). Implied volatility surfaces are graphs plotting σimpl for each call option’s -->
+<!-- strike K and expiration T . Theoretically, options whose underlying is governed by -->
+<!-- the geometric Brownian motion should have a flat implied volatility surface, since -->
+<!-- volatility is a constant. -->
+
+
+<!-- [@yang2013valuing] -->
+<!-- Volatility is a measure for variation of price of a stock over time. Stochastic volatility is described as -->
+<!-- processes in which the return variation dynamics include an unobservable shock that cannot be predicted -->
+<!-- using current available information. Stochastic volatility models, which let the volatility follow Brownian -->
+<!-- motion, make the option price much better adapted to the realities of the market. -->
+
+
+## Stochastic Volatility models
+
+Introducing stochastic volatility to models brings complexity, but enables modeling some features observed in reality that are crucial like the randomic market volatility effects, skewness (market returns are more realistically modeled) and volatility smile. This kind of model is applied highly succesfully in foreign exchange and credit markets.
+
+
+ **TODO:** Introduce CIR model
+
+### Heston Model
+
+Heston model solves the deterministic volatility problems introducing the following equations, which represents the dynamics of the stock price and the variance processes under the risk-neutral measure [@broadie2006exact]:
+
+
+\begin{align}
+\label{eq:heston}
+\begin{split}
+dS_t &= \mu_t S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+\end{split}
+\end{align}
+
+
+
+### Other models
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- * Model -->
 

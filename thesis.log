@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.2.9)  2 MAR 2017 00:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.2.9)  24 MAY 2017 21:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1057,88 +1057,134 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.193   \chapter
+l.192   \chapter
                 {Literature Review}\label{lt-review} [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.193   \chapter
+l.192   \chapter
                 {Literature Review}\label{lt-review} [2
 
 ]
 Chapter 2.
-pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 223.
+
+(/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.242     T
+           he change in \(W\), given by \(\Delta W = W_{t+1}-W_{t}\), is [3]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.195   \chapter
-                {Models}\label{models} [3]pdfTeX warning (ext4): destination wi
-th the same identifier (name{page.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.195   \chapter
-                {Models}\label{models} [4
+l.311   \begin{align}
+                      [4] [5]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 393.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 393.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 393.
+[6] [7] [8
 
 ]
 Chapter 3.
-[5] [6
-
-]
-Chapter 4.
-[7] [8
-
-]
-Chapter 5.
-[9] [10
-
-]
-Appendix A.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 207.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 469.
 
 (/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-
-LaTeX Warning: Reference `ref-labels' on page 11 undefined on input line 212.
-
-[11] [12
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 479.
+[9]
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 516
+.
+(/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [10
 
 ]
-Appendix B.
+Chapter 4.
+[11
+
+] [12
+
+]
+Chapter 5.
 [13] [14
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 223.
-[15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 223.
+Appendix A.
+
+LaTeX Warning: Reference `ref-labels' on page 15 undefined on input line 573.
+
+[15] [16]
+Appendix B.
+[17
+
+] [18
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 665.
+[19
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 665.
 (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 223.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 223.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 665.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 665.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: BD80EE35CC69BF5C1AB0D68C67BC32A9;543.
+(rerunfilecheck)             Checksum: 46A11368BFB16C8DC42BED4FA0263642;1067.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 223.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 665.
  ) 
 Here is how much of TeX's memory you used:
- 10845 strings out of 494892
- 164017 string characters out of 6179480
- 277684 words of memory out of 5000000
- 13876 multiletter control sequences out of 15000+600000
- 30055 words of font info for 45 fonts, out of 8000000 for 9000
+ 11146 strings out of 494892
+ 168574 string characters out of 6179480
+ 286320 words of memory out of 5000000
+ 14032 multiletter control sequences out of 15000+600000
+ 75747 words of font info for 115 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 39i,6n,45p,252b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/lm/lmtt12.pfb>
-Output written on thesis.pdf (33 pages, 87333 bytes).
+ 39i,15n,49p,415b,397s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texl
+ive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/font
+s/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/
+lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr
+/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm
+/lmro12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/lm/lmtk10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (37 pages, 329198 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
- 45 named destinations out of 1000 (max. 500000)
- 4161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 404 PDF objects out of 1000 (max. 8388607)
+ 341 compressed objects within 4 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 14473 words of extra memory for PDF output out of 17280 (max. 10000000)
 
