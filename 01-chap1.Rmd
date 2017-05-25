@@ -224,6 +224,22 @@ Introducing stochastic volatility to models brings complexity, but enables model
 
 
  **TODO:** Introduce CIR model
+ 
+ ### Cox-Ingersoll-Ross (CIR) model
+ 
+ The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that describes the interest rate movements driven by one source of market risk. The dynamics are described as follows:
+ 
+\begin{align}
+\label{eq:cir}
+dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+\end{align} 
+
+\noindent
+Where, $V_t$ is the variance described by parameters $k$ - the speed of mean reversion, $\theta$ - the long-run mean variance and $\sigma$ - the volatility of the variance process.
+
+This model was widely used to describe the dynamics of the short rate interest because it has some fundamental features like intuitive parametrization, nonnegativity and pricing formulas. 
+Furthermore, this equation - and this is the reason we present this model - constitutes one of the two equations of the Heston model. 
+
 
 ### Heston Model
 
