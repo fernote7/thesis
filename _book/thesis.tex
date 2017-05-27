@@ -416,7 +416,9 @@ starts here.
   more realistically modeled) and volatility smile. This kind of model is
   applied highly succesfully in foreign exchange and credit markets.
   
-  \textbf{TODO:} Introduce CIR model \#\#\# Cox-Ingersoll-Ross (CIR) model
+  \textbf{TODO:} Introduce CIR model
+  
+  \#\#\# Cox-Ingersoll-Ross (CIR) model
   
   The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
   describes the interest rate movements driven by one source of market
@@ -426,7 +428,15 @@ starts here.
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{align}
   \noindent
-  Where, \(V_t\)
+  Where, \(V_t\) is the variance described by parameters \(k\) - the speed
+  of mean reversion, \(\theta\) - the long-run mean variance and
+  \(\sigma\) - the volatility of the variance process.
+  
+  This model was widely used to describe the dynamics of the short rate
+  interest because it has some fundamental features like intuitive
+  parametrization, nonnegativity and pricing formulas. Furthermore, this
+  equation and - this is the reason we present this model here -
+  constitutes one of the two equations of the Heston model.
   
   \subsection{Heston Model}\label{heston-model}
   
@@ -437,10 +447,15 @@ starts here.
   \begin{align}
   \label{eq:heston}
   \begin{split}
-  dS_t &= \mu_t S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+  dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{split}
   \end{align}
+  The second equation, as previously stated, is the CIR model equation.
+  The first equation describes the asset price process. \(\mu\) is the
+  asset's rate of return, \(dB_t\) and \(dW_t\) are two correlated wiener
+  processes with correlation coefficient of \(\rho\).
+  
   \subsection{Other models}\label{other-models}
   
   \chapter{Models}\label{models}
