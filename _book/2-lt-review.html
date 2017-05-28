@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
+
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="" />
+  
+  
+  
+
+<meta name="author" content="Fernando O. Teixeira">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="3-models.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-lt-review.html"><a href="2-lt-review.html"><i class="fa fa-check"></i><b>2</b> Literature Review</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-lt-review.html"><a href="2-lt-review.html#stochastic-calculus"><i class="fa fa-check"></i><b>2.1</b> Stochastic Calculus</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-lt-review.html"><a href="2-lt-review.html#brownian-motion"><i class="fa fa-check"></i><b>2.1.1</b> Brownian Motion</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-lt-review.html"><a href="2-lt-review.html#todo"><i class="fa fa-check"></i><b>2.1.2</b> TODO</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-lt-review.html"><a href="2-lt-review.html#itos-lemma"><i class="fa fa-check"></i><b>2.1.3</b> Itô’s Lemma</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-lt-review.html"><a href="2-lt-review.html#black-scholes-model"><i class="fa fa-check"></i><b>2.2</b> Black-Scholes Model</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-lt-review.html"><a href="2-lt-review.html#the-model"><i class="fa fa-check"></i><b>2.2.1</b> The model</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-lt-review.html"><a href="2-lt-review.html#stochastic-volatility-models"><i class="fa fa-check"></i><b>2.3</b> Stochastic Volatility models</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-lt-review.html"><a href="2-lt-review.html#heston-model"><i class="fa fa-check"></i><b>2.3.1</b> Heston Model</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-lt-review.html"><a href="2-lt-review.html#other-models"><i class="fa fa-check"></i><b>2.3.2</b> Other models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-models.html"><a href="3-models.html"><i class="fa fa-check"></i><b>3</b> Models</a></li>
+<li class="chapter" data-level="4" data-path="4-results.html"><a href="4-results.html"><i class="fa fa-check"></i><b>4</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="5-conclusion.html"><a href="5-conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-the-first-appendix.html"><a href="A-the-first-appendix.html"><i class="fa fa-check"></i><b>A</b> The First Appendix</a></li>
+<li class="chapter" data-level="B" data-path="B-the-second-appendix-for-fun.html"><a href="B-the-second-appendix-for-fun.html"><i class="fa fa-check"></i><b>B</b> The Second Appendix, for Fun</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lt-review" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Literature Review</h1>
+<p>This chapter presents the concepts of stochastic calculus, from the historic conception of how it first arose through the basic principles and applications in finance. More precisely, we address the classical Black-Scholes model and its limitations and the Heston model. This model is also well known, it introduces the concept of stochastic volatility which brings us closer to reality.</p>
+<div id="stochastic-calculus" class="section level2">
+<h2><span class="header-section-number">2.1</span> Stochastic Calculus</h2>
+<p>Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus, also known as, Itô calculus due to the name of it’s creator, the Japanese mathematician Kiyosi Itô in the 1940s and 1950s is used for modelling financial options and in another wide variety of fields <span class="citation">[1]</span>. In this chapter we present the historical contexts in which the tools and models used arise, but our focus is introducing the concepts and notations that will be further used in our work.</p>
+<div id="brownian-motion" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Brownian Motion</h3>
+<p>The Brownian motion is the name given to the irregular motion observed in the motion of pollen particles suspended in fluid resulting from particle collision with atoms or molecules. It is named after Robert Brown, the first to have observed the movement in 1828. He noted two characteristic in the pollen movement <span class="citation">[1]</span>:</p>
+<ul>
+<li><p>the path of a given particle is very irregular, having a tangent at no point</p></li>
+<li><p>the motion of two distinct particles appear to be independent</p></li>
+</ul>
+<p>The first quantitative works in brownian motion come from an interest in stock price fluctuation by Bachelier in 1900. Albert Einstein also leaned over the subject and in 1905 derived the transition density for Brownian motion from molecular-kinetic theory of heat <span class="citation">[1,2]</span>.</p>
+<p>In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion and stating its properties as follows <span class="citation">[3]</span>:</p>
+<ul>
+<li><p><span class="math inline">\(W_{0}=0\)</span></p></li>
+<li><p>The change in <span class="math inline">\(W\)</span>, given by <span class="math inline">\(\Delta W = W_{t+1}-W_{t}\)</span>, is normally distributed with mean zero and standard deviation <span class="math inline">\(\sqrt{\Delta t}\)</span>, meaning that <span class="math inline">\(\Delta W = \epsilon\sqrt{\Delta t}\)</span>, where <span class="math inline">\(\epsilon\)</span> is <span class="math inline">\(N(0,1)\)</span>.</p></li>
+<li><p>If the increment <span class="math inline">\(\Delta t_1\)</span> does not overlap with the time increment <span class="math inline">\(\Delta t_2\)</span>, then <span class="math inline">\(\Delta W_1\)</span> and <span class="math inline">\(\Delta W_2\)</span> are independent.</p></li>
+<li><p>The process is continuous, meaning that there are no jumps in the process.</p></li>
+<li><p>The process is a Markov process. This means that the conditional expectation of <span class="math inline">\(W_{t+1}\)</span> given its entire history is equal to the conditional expectation of <span class="math inline">\(W_{t+1}\)</span> given today’s information. This can be written as: <span class="math inline">\(E[W_{t+1}|W_1, ..., W_t] = E[W_{t+1}|W_t]\)</span>.</p></li>
+<li><p>Consider the time interval <span class="math inline">\([0,t]\)</span> with <span class="math inline">\(n\)</span> equally spaced intervals given by <span class="math inline">\(t_i = \frac{it}{n}\)</span>. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as <span class="math inline">\(n\)</span> increases. The quadratic variation is given by <span class="math inline">\(\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t\)</span>, meaning that when <span class="math inline">\(n\)</span> increases it stays constant at <span class="math inline">\(t\)</span>.</p></li>
+</ul>
+</div>
+<div id="todo" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> TODO</h3>
+<p><strong>Describe Arithmetic and Geometric brownian motions</strong></p>
+</div>
+<div id="itos-lemma" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Itô’s Lemma</h3>
+<p>Let <span class="math inline">\(X_{t}\)</span> be a real-valued stochastic process that satisfies <span class="citation">[4–6]</span>:</p>
+<span class="math display">\[\begin{align}
+S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
+\end{align}\]</span>
+<p>for some <span class="math inline">\(\mu_t\)</span>, <span class="math inline">\(\sigma_t\)</span> and <span class="math inline">\(t \in [0,T]\)</span>. This equation is often rewritten in its differential stochastic form:</p>
+<span class="math display">\[\begin{align}
+dS_t = \mu_t dt + \sigma_t dW_t 
+\end{align}\]</span>
+<p>for <span class="math inline">\(0 \leq t \leq T\)</span>.</p>
+<div id="theorem" class="section level4">
+<h4><span class="header-section-number">2.1.3.1</span> Theorem</h4>
+<p>Assume that <span class="math inline">\(S_t\)</span> has a stochastic differential given by:</p>
+<span class="math display">\[\begin{align}
+dS_t = \mu_t dt + \sigma_t dW_t 
+\end{align}\]</span>
+<p>for <span class="math inline">\(\mu_t\)</span>, <span class="math inline">\(\sigma_t\)</span> and <span class="math inline">\(t \in [0,T]\)</span>. Assume <span class="math inline">\(u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}\)</span> is continuous and that <span class="math inline">\(\frac{\partial u}{\partial t}\)</span>, <span class="math inline">\(\frac{\partial u}{\partial x}\)</span>, <span class="math inline">\(\frac{\partial^2 u}{\partial x^2}\)</span> exist and are continuous.</p>
+<p><span class="math display">\[Y_t := u(S_t, t)\]</span> Then Y has the following stochastic differential:</p>
+<span class="math display">\[\begin{align} 
+\label{eq:ito}
+\begin{split}
+    dY_t &amp;= \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x} dS_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 dt  \\[10pt] 
+    &amp;= \left( \frac{\partial u}{\partial t} + \mu_t \frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 \right) dt + \sigma_t \frac{\partial u}{\partial x} dW_t
+\end{split}
+\end{align}\]</span>
+<p> where the argument of <span class="math inline">\(u\)</span>, <span class="math inline">\(\frac{\partial u}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial^2 u}{\partial x^2}\)</span> above is <span class="math inline">\(\left( S_t, t \right)\)</span> .</p>
+<p>Equation <a href="#eq:ito">(<strong>??</strong>)</a> is the stochastic equivalent to the chain rule, also known as Itô’s formula or Itô’s chain rule. The proof to this theorem is based on the Taylor expansion of the function <span class="math inline">\(f(S_t, t)\)</span> <span class="citation">[4,5]</span>. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the <a href="2-lt-review.html#tab:box-calc">2.1</a> multiplication table <span class="citation">[1]</span>.</p>
+<table>
+<caption><span id="tab:box-calc">Table 2.1: </span>Box calculus</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left"><span class="math inline">\(dt\)</span></th>
+<th align="right"><span class="math inline">\(dW_t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(dt\)</span></td>
+<td align="left">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(dW_t\)</span></td>
+<td align="left">0</td>
+<td align="right"><span class="math inline">\(dt\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="black-scholes-model" class="section level2">
+<h2><span class="header-section-number">2.2</span> Black-Scholes Model</h2>
+<p>The Black-Scholes (B-S) model arises from the need to price european options in the derivative markets. Derivatives are financial instruments traded in the market, stock exchange or over-the-counter (OTC) market, whose values depend on the values of an underlying asset. <span class="citation">[7–9]</span></p>
+<ul>
+<li><p>A call option is a derivative that gives its bearer the right, but not the obligation, to purchase a specific asset by a fixed price before or on a given date.</p></li>
+<li><p>A put option is a derivative that gives its bearer the right, but not the obligation, to sell a specific asset by a fixed price before or on a given date.</p></li>
+</ul>
+<p>The trading price of the option is called the option <em>premium</em> and the asset from which the option derives is called the <em>underlying asset</em>. This asset may be the interest rate, exchange rates, stock exchanges rates, commodities or stocks. The fixed price in contract in which the underlying asset might to be bought or sold is the <em>strick price</em>. The option expiration date is called the <em>maturity</em>. <span class="citation">[8,9]</span></p>
+<p>There are two major different option types: the European and the American. The difference between these two is that the bearer of the first may exercise it only at the end of its life, at its maturity while the latter can be exercised at any given time until its maturity. <span class="citation">[9,10]</span></p>
+<div id="the-model" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> The model</h3>
+<p>The Black-Scholes model that provides analytical solution to the price of a European call at time <span class="math inline">\(t\)</span> can be described as follows<span class="citation">[3,7,9]</span>:</p>
+<span class="math display">\[\begin{align}
+C(S_{t},t)&amp;=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
+d_{1}&amp;={\frac {1}{\sigma {\sqrt {T-t}}}}\left[\ln \left({\frac {S_{t}}{K}}\right)+\left(r+{\frac {\sigma ^{2}}{2}}\right)(T-t)\right]\\[10pt]
+d_{2}&amp;=d_{1}-\sigma {\sqrt {T-t}}
+\end{align}\]</span>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(S_{t}\)</span> is the spot price of the underlying asset at time <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(r\)</span> is the risk free rate (generally an annual rate)</li>
+<li><span class="math inline">\(\sigma\)</span> is the volatility of returns of the underlying asset </li>
+<li><span class="math inline">\(N(\cdot )\)</span> is the cumulative distribution function of the standard Gaussian distribution</li>
+<li><span class="math inline">\(K\)</span> is the strike price</li>
+<li><span class="math inline">\(T-t\)</span> is the time to maturity</li>
+</ul>
+<p>Also, the stock price path is a Geometric Brownian Motion and is under the risk-neutral measure with the following dynamics <span class="citation">[3,11]</span>:</p>
+<span class="math display">\[\begin{align}
+dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
+\end{align}\]</span>
+<p>Where <span class="math inline">\(dW_t\)</span> is a Wiener process <span class="citation">[9,11]</span>, <span class="math inline">\(r\)</span> is the risk free rate and <span class="math inline">\(q\)</span> is the dividend yield and <span class="math inline">\(t\)</span> denotes the current point in time.</p>
+<p>Although the Black-Scholes is very popular and the <em>de facto</em> standard in the market there are implications to the B-S model assumptions that affect the results and that are unrealistic. The main assumption that does not hold up is the deterministic (constant) volatility, that can more accurately be described as a stochastic process since we observe that small moves usually are followed by small moves and large moves by large moves. <span class="citation">[3,7]</span></p>
+<p>Other assumptions that are critical to the B-S model and are not always observed in practice refer to the asset’s continuity through time (no jumps), being allowed to perform continuous hedge without transactions costs and normal (Gaussian) returns.</p>
+<p>Most models focus on the volatility problem because transaction costs often translate to rises in volatility and fat-tails (abnormal) returns can be simulated by stochastic volatility and market or volatility jumps.</p>
+<!-- Out of all the parameters that the call price depends on in the Black Scholes -->
+<!-- model, the volatility is the only one that is unobservable, but we can let the -->
+<!-- market of liquid derivatives decide which volatility has to be plugged in the -->
+<!-- model. The calibrated σ* is the one that fits best the model prices to the observed -->
+<!-- market prices, by minimizing the sum of square errors: -->
+<!-- σ ∗ = arg q    min -->
+<!-- 2,o -->
+<!-- C mn S " , K 2 , σ, T o − C p S", K 2 , T o -->
+<!-- . -->
+<!-- Knowing S, K, T, r, q and the quoted option call value it is possible to extract the -->
+<!-- implied volatility. -->
+<!-- [@tong2012option] -->
+<!-- Using Black-Scholes option pricing model, the price of a call option is the function of -->
+<!-- the spot (current) price S(0), interest rate r, the strike K, the constant volatility σ -->
+<!-- and the maturity T . Except for the volatility σ, all the other variables are observable. -->
+<!-- Since the quoted option price C obs is observable, using the Black-Scholes formula we -->
+<!-- can therefore calculate or imply the volatility that is consistent with the quoted his- -->
+<!-- torical option prices and observed variables. We can therefore define implied volatility -->
+<!-- σimpl by -->
+<!-- C BS (0; r, K, T, σimpl , S(0)) = C obs -->
+<!-- where C BS is the option price calculated by the Black-Scholes formula (equation -->
+<!-- (3.3.9)). Implied volatility surfaces are graphs plotting σimpl for each call option’s -->
+<!-- strike K and expiration T . Theoretically, options whose underlying is governed by -->
+<!-- the geometric Brownian motion should have a flat implied volatility surface, since -->
+<!-- volatility is a constant. -->
+<!-- [@yang2013valuing] -->
+<!-- Volatility is a measure for variation of price of a stock over time. Stochastic volatility is described as -->
+<!-- processes in which the return variation dynamics include an unobservable shock that cannot be predicted -->
+<!-- using current available information. Stochastic volatility models, which let the volatility follow Brownian -->
+<!-- motion, make the option price much better adapted to the realities of the market. -->
+</div>
+</div>
+<div id="stochastic-volatility-models" class="section level2">
+<h2><span class="header-section-number">2.3</span> Stochastic Volatility models</h2>
+<p>Introducing stochastic volatility to models brings complexity, but enables modeling some features observed in reality that are crucial like the randomic market volatility effects, skewness (market returns are more realistically modeled) and volatility smile. This kind of model is applied highly succesfully in foreign exchange and credit markets.</p>
+<p><strong>TODO:</strong> Introduce CIR model</p>
+<p>### Cox-Ingersoll-Ross (CIR) model</p>
+<p>The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that describes the interest rate movements driven by one source of market risk. The dynamics are described as follows:</p>
+<span class="math display">\[\begin{align}
+\label{eq:cir}
+dV_t &amp;= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+\end{align}\]</span>
+<p>Where, <span class="math inline">\(V_t\)</span> is the variance described by parameters <span class="math inline">\(k\)</span> - the speed of mean reversion, <span class="math inline">\(\theta\)</span> - the long-run mean variance and <span class="math inline">\(\sigma\)</span> - the volatility of the variance process.</p>
+<p>This model was widely used to describe the dynamics of the short rate interest because it has some fundamental features like intuitive parametrization, nonnegativity and pricing formulas. Furthermore, this equation and - this is the reason we present this model here - constitutes one of the two equations of the Heston model.</p>
+<div id="heston-model" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Heston Model</h3>
+<p>Heston model solves the deterministic volatility problems introducing the following equations, which represents the dynamics of the stock price and the variance processes under the risk-neutral measure <span class="citation">[12]</span>:</p>
+<span class="math display">\[\begin{align}
+\label{eq:heston}
+\begin{split}
+dS_t &amp;= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+dV_t &amp;= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+\end{split}
+\end{align}\]</span>
+<p>The second equation, as previously stated, is the CIR model equation. The first equation describes the asset price process. <span class="math inline">\(\mu\)</span> is the asset’s rate of return, <span class="math inline">\(dB_t\)</span> and <span class="math inline">\(dW_t\)</span> are two correlated wiener processes with correlation coefficient of <span class="math inline">\(\rho\)</span>.</p>
+</div>
+<div id="other-models" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Other models</h3>
+<!-- * Model -->
+<!-- It's easy to create a list.  It can be unordered like -->
+<!-- * Item 1 -->
+<!-- * Item 2 -->
+<!-- or it can be ordered like -->
+<!-- 1. Item 1 -->
+<!-- 4. Item 2 -->
+<!-- Notice that I intentionally mislabeled Item 2 as number 4.  _Markdown_ automatically figures this out!  You can put any numbers in the list and it will create the list.  Check it out below. -->
+<!-- To create a sublist, just indent the values a bit (at least four spaces or a tab).  (Here's one case where indentation is key!) -->
+<!-- 1. Item 1 -->
+<!-- 1. Item 2 -->
+<!-- 1. Item 3 -->
+<!--     - Item 3a -->
+<!--     - Item 3b -->
+<!-- ## Line breaks -->
+<!-- Make sure to add white space between lines if you'd like to start a new paragraph.  Look at what happens below in the outputted document if you don't: -->
+<!-- Here is the first sentence.  Here is another sentence.  Here is the last sentence to end the paragraph. -->
+<!-- This should be a new paragraph. -->
+<!-- *Now for the correct way:* -->
+<!-- Here is the first sentence.  Here is another sentence.  Here is the last sentence to end the paragraph. -->
+<!-- This should be a new paragraph. -->
+<!-- ## R chunks -->
+<!-- When you click the **Knit** button above a document will be generated that includes both content as well as the output of any embedded **R** code chunks within the document. You can embed an **R** code chunk like this (`cars` is a built-in **R** dataset): -->
+<!-- ```{r cars} -->
+<!-- summary(cars) -->
+<!-- ``` -->
+<!-- ## Inline code -->
+<!-- If you'd like to put the results of your analysis directly into your discussion, add inline code like this: -->
+<!-- > The `cos` of $2 \pi$ is 1. -->
+<!-- Another example would be the direct calculation of the standard deviation: -->
+<!-- > The standard deviation of `speed` in `cars` is 5.2876444. -->
+<!-- One last neat feature is the use of the `ifelse` conditional statement which can be used to output text depending on the result of an **R** calculation: -->
+<!-- > The standard deviation is less than 6. -->
+<!-- Note the use of `>` here, which signifies a quotation environment that will be indented. -->
+<!-- As you see with `$2 \pi$` above, mathematics can be added by surrounding the mathematical text with dollar signs.  More examples of this are in [Mathematics and Science] if you uncomment the code in [Math]. -->
+<!-- ## Including plots -->
+<!-- You can also embed plots.  For example, here is a way to use the base **R** graphics package to produce a plot using the built-in `pressure` dataset: -->
+<!-- ```{r pressure, echo=FALSE, cache=TRUE} -->
+<!-- plot(pressure) -->
+<!-- ``` -->
+<!-- Note that the `echo=FALSE` parameter was added to the code chunk to prevent printing of the **R** code that generated the plot.  There are plenty of other ways to add chunk options.  More information is available at <http://yihui.name/knitr/options/>. -->
+<!-- Another useful chunk option is the setting of `cache=TRUE` as you see here.  If document rendering becomes time consuming due to long computations or plots that are expensive to generate you can use knitr caching to improve performance.  Later in this file, you'll see a way to reference plots created in **R** or external figures. -->
+<!-- ## Loading and exploring data -->
+<!-- Included in this template is a file called `flights.csv`.  This file includes a subset of the larger dataset of information about all flights that departed from Seattle and Portland in 2014.  More information about this dataset and its **R** package is available at <http://github.com/ismayc/pnwflights14>.  This subset includes only Portland flights and only rows that were complete with no missing values.  Merges were also done with the `airports` and `airlines` data sets in the `pnwflights14` package to get more descriptive airport and airline names. -->
+<!-- We can load in this data set using the following command: -->
+<!-- ```{r load_data} -->
+<!-- flights <- read.csv("data/flights.csv") -->
+<!-- ``` -->
+<!-- The data is now stored in the data frame called `flights` in **R**.  To get a better feel for the variables included in this dataset we can use a variety of functions.  Here we can see the dimensions (rows by columns) and also the names of the columns. -->
+<!-- ```{r str} -->
+<!-- dim(flights) -->
+<!-- names(flights) -->
+<!-- ``` -->
+<!-- Another good idea is to take a look at the dataset in table form.  With this dataset having more than 50,000 rows, we won't explicitly show the results of the command here.  I recommend you enter the command into the Console **_after_** you have run the **R** chunks above to load the data into **R**. -->
+<!-- ```{r view_flights, eval=FALSE} -->
+<!-- View(flights) -->
+<!-- ``` -->
+<!-- While not required, it is highly recommended you use the `dplyr` package to manipulate and summarize your data set as needed.  It uses a syntax that is easy to understand using chaining operations.  Below I've created a few examples of using `dplyr` to get information about the Portland flights in 2014.  You will also see the use of the `ggplot2` package, which produces beautiful, high-quality academic visuals. -->
+<!-- We begin by checking to ensure that needed packages are installed and then we load them into our current working environment: -->
+<!-- ```{r load_pkgs, message=FALSE} -->
+<!-- # List of packages required for this analysis -->
+<!-- pkg <- c("dplyr", "ggplot2", "knitr", "bookdown", "devtools") -->
+<!-- # Check if packages are not installed and assign the -->
+<!-- # names of the packages not installed to the variable new.pkg -->
+<!-- new.pkg <- pkg[!(pkg %in% installed.packages())] -->
+<!-- # If there are any packages in the list that aren't installed, -->
+<!-- # install them -->
+<!-- if (length(new.pkg)) -->
+<!--   install.packages(new.pkg, repos = "http://cran.rstudio.com") -->
+<!-- # Load packages (thesisdown will load all of the packages as well) -->
+<!-- library(thesisdown) -->
+<!-- ``` -->
+<!-- \clearpage -->
+<!-- The example we show here does the following: -->
+<!-- - Selects only the `carrier_name` and `arr_delay` from the `flights` dataset and then assigns this subset to a new variable called `flights2`. -->
+<!-- - Using `flights2`, we determine the largest arrival delay for each of the carriers. -->
+<!-- ```{r max_delays} -->
+<!-- flights2 <- flights %>% -->
+<!--   select(carrier_name, arr_delay) -->
+<!-- max_delays <- flights2 %>% -->
+<!--   group_by(carrier_name) %>% -->
+<!--   summarize(max_arr_delay = max(arr_delay, na.rm = TRUE)) -->
+<!-- ``` -->
+<!-- A useful function in the `knitr` package for making nice tables in _R Markdown_ is called `kable`.  It is much easier to use than manually entering values into a table by copying and pasting values into Excel or LaTeX.  This again goes to show how nice reproducible documents can be! (Note the use of `results="asis"`, which will produce the table instead of the code to create the table.)  The `caption.short` argument is used to include a shorter title to appear in the List of Tables. -->
+<!-- ```{r maxdelays, results="asis"} -->
+<!-- kable(max_delays, -->
+<!--       col.names = c("Airline", "Max Arrival Delay"), -->
+<!--       caption = "Maximum Delays by Airline", -->
+<!--       caption.short = "Max Delays by Airline", -->
+<!--       longtable = TRUE, -->
+<!--       booktabs = TRUE) -->
+<!-- ``` -->
+<!-- The last two options make the table a little easier-to-read. -->
+<!-- We can further look into the properties of the largest value here for American Airlines Inc.  To do so, we can isolate the row corresponding to the arrival delay of 1539 minutes for American in our original `flights` dataset. -->
+<!-- ```{r max_props} -->
+<!-- flights %>% filter(arr_delay == 1539, -->
+<!--                   carrier_name == "American Airlines Inc.") %>% -->
+<!--   select(-c(month, day, carrier, dest_name, hour, -->
+<!--             minute, carrier_name, arr_delay)) -->
+<!-- ``` -->
+<!-- We see that the flight occurred on March 3rd and departed a little after 2 PM on its way to Dallas/Fort Worth.  Lastly, we show how we can visualize the arrival delay of all departing flights from Portland on March 3rd against time of departure. -->
+<!-- ```{r march3plot, fig.height=3, fig.width=6} -->
+<!-- flights %>% filter(month == 3, day == 3) %>% -->
+<!--   ggplot(aes(x = dep_time, y = arr_delay)) + geom_point() -->
+<!-- ``` -->
+<!-- ## Additional resources -->
+<!-- - _Markdown_ Cheatsheet - <https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet> -->
+<!-- - _R Markdown_ Reference Guide - <https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf> -->
+<!-- - Introduction to `dplyr` - <https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html> -->
+<!-- - `ggplot2` Documentation - <http://docs.ggplot2.org/current/> -->
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

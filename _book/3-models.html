@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="B-the-second-appendix-for-fun.html">
-
+<link rel="prev" href="2-lt-review.html">
+<link rel="next" href="4-results.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -141,66 +141,79 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-<!--
-To remove the indentation of the first entry.
--->
-<p></p>
-<!--
-To create a hanging indent and spacing between entries.  These three lines may need to be removed for styles that don't require the hanging indent.
--->
-<p>  </p>
-<!--
-This is just for testing with more citations for the bibliography at the end.  Add other entries into the list here if you'd like them to appear in the bibliography even if they weren't explicitly cited in the document.
--->
+<div id="models" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Models</h1>
+<!-- Required to number equations in HTML files -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Call &lt;-<span class="st"> </span>function(S,X,tau,r,q,sigma){
+  
+  <span class="co"># S = spot</span>
+  <span class="co"># X = strike</span>
+  <span class="co"># tau = time to maturity</span>
+  <span class="co"># r = riskfree rate</span>
+  <span class="co"># q = dividend yield</span>
+  <span class="co"># sigma = standard deviation</span>
+  
+  d1 =<span class="st"> </span>(<span class="kw">log</span>(S/X) +<span class="st"> </span>(r -<span class="st"> </span>q +<span class="st"> </span>sigma^<span class="dv">2</span>/<span class="dv">2</span>) *<span class="st"> </span>tau) /<span class="st"> </span>(<span class="kw">sqrt</span>(sigma^<span class="dv">2</span> *<span class="st"> </span>tau))
+  d2 =<span class="st"> </span>d1 -<span class="st"> </span><span class="kw">sqrt</span>(sigma^<span class="dv">2</span> *<span class="st"> </span>tau)
+  c0 =<span class="st"> </span>S *<span class="st"> </span><span class="kw">exp</span>(-q *<span class="st"> </span>tau) *<span class="st"> </span><span class="kw">pnorm</span>(d1,<span class="dv">0</span>,<span class="dv">1</span>) -
+<span class="st">       </span>X *<span class="st"> </span><span class="kw">exp</span>(-r *<span class="st"> </span>tau) *<span class="st"> </span><span class="kw">pnorm</span>(d2,<span class="dv">0</span>,<span class="dv">1</span>)
 
-<div id="refs" class="references">
-<div>
-<p>[1] U.F. Wiersema, Brownian motion calculus, John Wiley &amp; Sons, 2008.</p>
-</div>
-<div>
-<p>[2] I. Karatzas, S. Shreve, Brownian motion and stochastic calculus, Springer Science &amp; Business Media, 2012.</p>
-</div>
-<div>
-<p>[3] A.D. Helgadóttir, L. Ionescu, Option pricing within the heston model, (2016).</p>
-</div>
-<div>
-<p>[4] Z. Tong, Option pricing with long memory stochastic volatility models, PhD thesis, Université d’Ottawa/University of Ottawa, 2012.</p>
-</div>
-<div>
-<p>[5] L.C. Evans, An introduction to stochastic differential equations, American Mathematical Soc., 2012.</p>
-</div>
-<div>
-<p>[6] J.M. Steele, Stochastic calculus and financial applications, Springer Science &amp; Business Media, 2012.</p>
-</div>
-<div>
-<p>[7] Y. Yang, Valuing a european option with the heston model, (2013).</p>
-</div>
-<div>
-<p>[8] M. de F. Salomão, Precificação de opções financeiras: Um estudo sobre os modelos de black scholes e garch, (2011).</p>
-</div>
-<div>
-<p>[9] F. Black, M. Scholes, The pricing of options and corporate liabilities, Journal of Political Economy. 81 (1973) 637–654.</p>
-</div>
-<div>
-<p>[10] R.C. Merton, Theory of rational option pricing, The Bell Journal of Economics and Management Science. (1973) 141–183.</p>
-</div>
-<div>
-<p>[11] M. Gilli, D. Maringer, E. Schumann, Numerical methods and optimization in finance, Academic Press, Waltham, MA, USA, 2011. <a href="http://nmof.net" class="uri">http://nmof.net</a>.</p>
-</div>
-<div>
-<p>[12] M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility and other affine jump diffusion processes, Operations Research. 54 (2006) 217–231.</p>
-</div>
-</div>
+  <span class="kw">return</span>(c0)
+}</code></pre></div>
+<p></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">euler_call &lt;-<span class="st"> </span>function(X0, mu, sigma, <span class="dt">Dt =</span> <span class="fl">0.1</span>, <span class="dt">t=</span><span class="dv">0</span>, <span class="dt">T=</span><span class="dv">1</span>, 
+                       <span class="dt">N =</span> <span class="dv">1000</span>, <span class="dt">K =</span> <span class="dv">0</span>, <span class="dt">plt=</span><span class="ot">FALSE</span>){
+  X0 =<span class="st"> </span><span class="kw">rep</span>(X0,N)                     <span class="co"># initial values</span>
+  lines =<span class="st"> </span><span class="kw">floor</span>((T-t)/Dt +<span class="st"> </span><span class="dv">1</span>)       
+  w =<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow=</span>lines, <span class="dt">ncol =</span> N)  <span class="co"># matrix with N columns</span>
+  n =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span>(Dt+t), <span class="dt">to=</span>T, <span class="dt">by=</span>Dt)  <span class="co"># steps</span>
+  w[<span class="dv">1</span>,] =<span class="st"> </span>X0                         
+  l2 =<span class="st"> </span>lines<span class="dv">-1</span>                      
+  bw =<span class="st"> </span><span class="kw">sqrt</span>(Dt)*<span class="kw">rnorm</span>(N*l2,<span class="dv">0</span>,<span class="dv">1</span>)      <span class="co"># random gaussian numbers</span>
+  bw =<span class="st"> </span><span class="kw">matrix</span>(bw, <span class="dt">nrow =</span> l2, 
+              <span class="dt">ncol =</span> N)              
+  for (i in <span class="kw">seq_along</span>(n)){
+      w[i<span class="dv">+1</span>,] =<span class="st"> </span>w[i,] +<span class="st"> </span>mu *w[i,] *Dt +<span class="st"> </span>sigma *<span class="st"> </span>w[i,] *<span class="st"> </span>bw[i,]
+  }
+  Result =<span class="st"> </span>w[lines,] -<span class="st"> </span>K
+  Result[Result &lt;=<span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="dv">0</span>
+  call =<span class="st"> </span><span class="kw">exp</span>(-mu*T)*<span class="kw">mean</span>(Result)
+  if (plt ==<span class="st"> </span><span class="ot">TRUE</span>){
+      <span class="kw">matplot</span>(w, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="kw">min</span>(w),<span class="kw">max</span>(w)), <span class="dt">axes=</span>F, 
+              <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">pch =</span> <span class="dv">20</span> , <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)
+      <span class="kw">grid</span>()
+      if (N &lt;=<span class="st"> </span><span class="dv">10</span> &amp;&amp;<span class="st"> </span>lines &lt;=<span class="st"> </span><span class="dv">6</span>){
+          for (i in <span class="kw">seq_along</span>(w[<span class="dv">1</span>,])){
+              <span class="kw">points</span>(w[,i], <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">pch=</span><span class="dv">20</span>)
+          }
+      }
+      if (K !=<span class="st"> </span><span class="dv">0</span>){
+          <span class="kw">abline</span>(<span class="dt">h=</span>K, <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)
+      }
+      <span class="kw">box</span>()
+      <span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="dt">at=</span> <span class="kw">seq</span>(<span class="dv">1</span>,lines,lines<span class="dv">-1</span>), 
+           <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&#39;0&#39;</span>, <span class="kw">as.character</span>(lines<span class="dv">-1</span>)))
+      <span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">las =</span> <span class="dv">1</span>)
+  }
+  res =<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;realizations&#39;</span> =<span class="st"> </span><span class="kw">as.data.frame</span>(w), 
+               <span class="st">&#39;mean&#39;</span> =<span class="st"> </span><span class="kw">mean</span>(w[lines,]),
+               <span class="st">&#39;solution&#39;</span> =<span class="st"> </span>w[lines,], <span class="st">&#39;eurocall&#39;</span> =<span class="st"> </span>call)
+  <span class="kw">return</span>(<span class="kw">invisible</span>(res))
+}</code></pre></div>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="B-the-second-appendix-for-fun.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="2-lt-review.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -43,7 +43,7 @@ lof: true
 # to have a blank new line between each paragraph
 header-includes:
 # - \usepackage{tikz}
-- \bibliographystyle{elsarticle-num}
+# - \bibliographystyle{elsarticle-num}
 ---
 
 <!--
