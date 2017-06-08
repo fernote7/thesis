@@ -259,6 +259,18 @@ dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 The second equation, as previously stated, is the CIR model equation. The first equation describes the asset price process. $\mu$ is the asset's rate of return,  $dB_t$ and $dW_t$ are two correlated wiener processes with correlation coefficient of $\rho$.
 
 
+
+
+### Correlated Brownian Motions
+
+Let $W^1$ and $W^2$ be two *independent* Brownian motions. Let $-1 \leq \rho \leq 1$ be a given number. For $0 \leq t \leq T$ define a new process
+
+\begin{align}
+\label{eq:corr_brow}
+Z_t = \rho W^1_t sqrt(1-\rho^2)W^2_t
+\end{align}
+
+
 ### Other models
 
 
