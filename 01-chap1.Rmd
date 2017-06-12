@@ -51,6 +51,18 @@ In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical p
 * Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$.
 
 
+### Correlated Brownian Motions
+
+Two independent brownian motions that are correlated can describe a new process $Z_t$. Let $W^1$ and $W^2$ be these two *independent* Brownian motions and let $-1 \leq \rho \leq 1$ be a given number. For $0 \leq t \leq T$ define the new process $Z_t$ as [@ubbo]:
+
+\begin{align}
+\label{eq:corr_brow}
+Z_t = \rho W^1_t sqrt(1-\rho^2)W^2_t
+\end{align}
+
+\noindent
+This equation is a linear combination of independent normals at each timestep $t$, so $Z_t$ is normally distributed. It is proven that $Z$ is a Brownian motion and that $Z$ and $W^1_t$ are correlated [@ubbo, pp. 514].
+
 ### TODO
 
 **Describe Arithmetic and Geometric brownian motions**
@@ -243,7 +255,7 @@ Furthermore, this equation and - this is the reason we present this model here -
 
 ### Heston Model
 
-Heston model solves the deterministic volatility problems introducing the following equations, which represents the dynamics of the stock price and the variance processes under the risk-neutral measure [@broadie2006exact]:
+Heston model solves the deterministic volatility problems introducing the following equations, which represents the dynamics of the stock price and the variance processes under the risk-neutral measure [@gilli_numerical_2011]:
 
 
 \begin{align}
@@ -259,16 +271,19 @@ dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 The second equation, as previously stated, is the CIR model equation. The first equation describes the asset price process. $\mu$ is the asset's rate of return,  $dB_t$ and $dW_t$ are two correlated wiener processes with correlation coefficient of $\rho$.
 
 
-
-
-### Correlated Brownian Motions
-
-Let $W^1$ and $W^2$ be two *independent* Brownian motions. Let $-1 \leq \rho \leq 1$ be a given number. For $0 \leq t \leq T$ define a new process
+<!-- **TODO:MODEL REWRITTEN HERE** -->
 
 \begin{align}
-\label{eq:corr_brow}
-Z_t = \rho W^1_t sqrt(1-\rho^2)W^2_t
+\label{eq:heston2}
+\begin{split}
+dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+\end{split}
 \end{align}
+
+[@broadie2006exact]
+
+
 
 
 ### Other models
