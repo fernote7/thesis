@@ -255,20 +255,20 @@ Furthermore, this equation and - this is the reason we present this model here -
 
 ### Heston Model
 
-Heston model solves the deterministic volatility problems introducing the following equations, which represents the dynamics of the stock price and the variance processes under the risk-neutral measure [@gilli_numerical_2011]:
+Heston model solves the deterministic volatility problems introducing the following equations, which represents the dynamics of the stock price and the variance processes under the risk-neutral measure [@gilli_numerical_2011; @heston1993closed]:
 
 
 \begin{align}
 \label{eq:heston}
 \begin{split}
-dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
-dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^1_t \\
+dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dW^2_t
 \end{split}
 \end{align}
 
 
 
-The second equation, as previously stated, is the CIR model equation. The first equation describes the asset price process. $\mu$ is the asset's rate of return,  $dB_t$ and $dW_t$ are two correlated wiener processes with correlation coefficient of $\rho$.
+The second equation, as previously described, is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW^1_t$ and $dW^2_t$ are two correlated wiener processes with correlation coefficient of $\rho$.
 
 
 <!-- **TODO:MODEL REWRITTEN HERE** -->
