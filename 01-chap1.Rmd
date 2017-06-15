@@ -57,7 +57,7 @@ Two independent brownian motions that are correlated can describe a new process 
 
 \begin{align}
 \label{eq:corr_brow}
-Z_t = \rho W^1_t sqrt(1-\rho^2)W^2_t
+Z_t = \rho W^1_t + \sqrt{1-\rho^2}W^2_t
 \end{align}
 
 \noindent
@@ -67,6 +67,24 @@ This equation is a linear combination of independent normals at each timestep $t
 
 **Describe Arithmetic and Geometric brownian motions**
 
+
+### Arithmetic Brownian Motion
+
+The arithmetic brownian motion is defined in literature as being a random process (S) defined as follows [@ubbo]:
+
+\begin{align}
+dS_t = \mu dt + \sigma dB_t
+\end{align}
+
+\center or in integral form:
+
+\begin{align}
+\int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
+\end{align}
+
+
+\noindent
+Where, $\mu$ and $\sigma$ are known and constant with $\sigma > 0$. In this process, both the drift $\mu$ and the diffusion $\sigma$ coefficient are constant. The expected value of this process is the sum of the initial value and the drift times the elapsed period ($S_0 + \mu T$). The variance is described by $\sigma^2 T$
 
 
 ### Itô's Lemma
@@ -261,17 +279,14 @@ Heston model solves the deterministic volatility problems introducing the follow
 \begin{align}
 \label{eq:heston}
 \begin{split}
-dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^1_t \\
-dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dW^2_t
+dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
+dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 \end{split}
 \end{align}
 
 
 
-The second equation, as previously described, is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW^1_t$ and $dW^2_t$ are two correlated wiener processes with correlation coefficient of $\rho$.
-
-
-<!-- **TODO:MODEL REWRITTEN HERE** -->
+The second equation, as previously described, is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW^1_t$ and $dW^2_t$ are two correlated wiener processes with correlation coefficient of $\rho$. Because, of the model specifications and what we presentend in [@ 2.1.2 Correlated Brownian motion], we can rewrite the first equation as in Broadie and Kaya [@broadie2006exact]:
 
 \begin{align}
 \label{eq:heston2}
@@ -281,7 +296,7 @@ dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 \end{split}
 \end{align}
 
-[@broadie2006exact]
+
 
 
 

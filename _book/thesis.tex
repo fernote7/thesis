@@ -271,7 +271,7 @@ starts here.
   
   \begin{align}
   \label{eq:corr_brow}
-  Z_t = \rho W^1_t sqrt(1-\rho^2)W^2_t
+  Z_t = \rho W^1_t + \sqrt{1-\rho^2}W^2_t
   \end{align}
   
   \noindent
@@ -283,6 +283,30 @@ starts here.
   \subsection{TODO}\label{todo}
   
   \textbf{Describe Arithmetic and Geometric brownian motions}
+  
+  \subsection{Arithmetic Brownian
+  Motion}\label{arithmetic-brownian-motion}
+  
+  The arithmetic brownian motion is defined in literature as being a
+  random process (S) defined as follows {[}1{]}:
+  
+  \begin{align}
+  dS_t = \mu dt + \sigma dB_t
+  \end{align}
+  
+  \center or in integral form:
+  
+  \begin{align}
+  \int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
+  \end{align}
+  
+  \noindent
+  Where, \(\mu\) and \(\sigma\) are known and constant with
+  \(\sigma > 0\). In this process, both the drift \(\mu\) and the
+  diffusion \(\sigma\) coefficient are constant. The expected value of
+  this process is the sum of the initial value and the drift times the
+  elapsed period (\(S_0 + \mu T\)). The variance is described by
+  \(\sigma^2 T\)
   
   \subsection{Itô's Lemma}\label{itos-lemma}
   
@@ -487,20 +511,23 @@ starts here.
   Heston model solves the deterministic volatility problems introducing
   the following equations, which represents the dynamics of the stock
   price and the variance processes under the risk-neutral measure
-  {[}12{]}:
+  {[}12,13{]}:
   
   \begin{align}
   \label{eq:heston}
   \begin{split}
-  dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+  dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{split}
   \end{align}
   
-  The second equation, as previously stated, is the CIR model equation.
-  The first equation describes the asset price process. \(\mu\) is the
-  asset's rate of return, \(dB_t\) and \(dW_t\) are two correlated wiener
-  processes with correlation coefficient of \(\rho\).
+  The second equation, as previously described, is the CIR model equation.
+  The first equation states the asset price process. \(\mu\) is the
+  asset's rate of return, \(dW^1_t\) and \(dW^2_t\) are two correlated
+  wiener processes with correlation coefficient of \(\rho\). Because, of
+  the model specifications and what we presentend in {[}@ 2.1.2 Correlated
+  Brownian motion{]}, we can rewrite the first equation as in Broadie and
+  Kaya {[}14{]}:
   
   \begin{align}
   \label{eq:heston2}
@@ -509,8 +536,6 @@ starts here.
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{split}
   \end{align}
-  
-  {[}13{]}
   
   \subsection{Other models}\label{other-models}
   
@@ -574,11 +599,15 @@ starts here.
   
   \hypertarget{ref-gilli_numerical_2011}{}
   {[}12{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
-  optimization in finance, Academic Press, Waltham, MA, USA, 2011.
-  \url{http://nmof.net}.
+  optimization in finance, Academic Press, 2011.
+  
+  \hypertarget{ref-heston1993closed}{}
+  {[}13{]} S.L. Heston, A closed-form solution for options with stochastic
+  volatility with applications to bond and currency options, Review of
+  Financial Studies. 6 (1993) 327--343.
   
   \hypertarget{ref-broadie2006exact}{}
-  {[}13{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
+  {[}14{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
   and other affine jump diffusion processes, Operations Research. 54
   (2006) 217--231.
 
