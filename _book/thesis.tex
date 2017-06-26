@@ -280,7 +280,7 @@ starts here.
   \begin{align}
   dS_t = \mu dt + \sigma dB_t
   \end{align}
-  \center or in integral form:
+  \begin{center}or in integral form:\end{center}
   \begin{align}
   \int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
   \end{align}
@@ -448,34 +448,37 @@ starts here.
   more realistically modeled) and volatility smile. This kind of model is
   applied highly succesfully in foreign exchange and credit markets.
   
-  \textbf{TODO:} Introduce CIR model
-  
   \#\#\# Cox-Ingersoll-Ross (CIR) model
   
   The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
   describes the interest rate movements driven by one source of market
-  risk. The dynamics are described as follows:
+  risk. The dynamics are described as follows{[}{[}12{]};
+  heston1993closed{]}:
   \begin{align}
   \label{eq:cir}
-  dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+  dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
   \end{align}
   \noindent
-  Where, \(V_t\) is the variance described by parameters \(k\) - the speed
-  of mean reversion, \(\theta\) - the long-run mean variance and
-  \(\sigma\) - the volatility of the variance process.
+  Where, \(r_t\) is the short rate interest described by parameters \(k\)
+  - the speed of mean reversion, \(\theta\) - the long-run mean variance
+  and \(\sigma\) - the volatility of the variance process.
   
-  This model was widely used to describe the dynamics of the short rate
-  interest because it has some fundamental features like intuitive
-  parametrization, nonnegativity and pricing formulas. Furthermore, this
-  equation and - this is the reason we present this model here -
-  constitutes one of the two equations of the Heston model.
+  This model has been widely used to describe the dynamics of the short
+  rate interest because it has some fundamental features like intuitive
+  parametrization, nonnegativity and pricing formulas. Besides, it takes
+  account of anticipations, risk aversion, investment alternatives and
+  preferences about consumption timing and allows for detailed predictions
+  about how changes in a wide range of underlying variables affect the
+  term structure{[}12{]}. Furthermore, this equation constitutes one of
+  the two Heston model equations with the volatility taking the short rate
+  interest place.
   
   \subsection{Heston Model}\label{heston-model}
   
   Heston model solves the deterministic volatility problems introducing
   the following equations, which represents the dynamics of the stock
   price and the variance processes under the risk-neutral measure
-  {[}12,13{]}:
+  {[}13,14{]}:
   \begin{align}
   \label{eq:heston}
   \begin{split}
@@ -487,9 +490,8 @@ starts here.
   The first equation states the asset price process. \(\mu\) is the
   asset's rate of return, \(dW^1_t\) and \(dW^2_t\) are two correlated
   wiener processes with correlation coefficient of \(\rho\). Because, of
-  the model specifications and what we presentend in \ref{corr} {[}@ 2.1.2
-  Correlated Brownian motion{]}, we can rewrite the first equation as in
-  Broadie and Kaya {[}14{]}:
+  the model specifications and what we presentend in section \ref{corr},
+  we can rewrite the first equation as in Broadie and Kaya {[}15{]}:
   \begin{align}
   \label{eq:heston2}
   \begin{split}
@@ -557,17 +559,22 @@ starts here.
   optimization in finance, Academic Press, Waltham, MA, USA, 2011.
   \url{http://nmof.net}.
   
+  \hypertarget{ref-cox1985theory}{}
+  {[}12{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
+  structure of interest rates, Econometrica: Journal of the Econometric
+  Society. (1985) 385--407.
+  
   \hypertarget{ref-gilli_numerical_2011}{}
-  {[}12{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
+  {[}13{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
   optimization in finance, Academic Press, 2011.
   
   \hypertarget{ref-heston1993closed}{}
-  {[}13{]} S.L. Heston, A closed-form solution for options with stochastic
+  {[}14{]} S.L. Heston, A closed-form solution for options with stochastic
   volatility with applications to bond and currency options, Review of
   Financial Studies. 6 (1993) 327--343.
   
   \hypertarget{ref-broadie2006exact}{}
-  {[}14{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
+  {[}15{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
   and other affine jump diffusion processes, Operations Research. 54
   (2006) 217--231.
 

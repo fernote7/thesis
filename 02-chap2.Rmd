@@ -8,6 +8,7 @@ MathJax.Hub.Config({
 </script>
 
 
+## Teste
 
 ```{r call, eval=FALSE}
 Call <- function(S,X,tau,r,q,sigma){

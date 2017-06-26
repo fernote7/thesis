@@ -76,7 +76,7 @@ The arithmetic brownian motion is defined in literature as being a random proces
 dS_t = \mu dt + \sigma dB_t
 \end{align}
 
-\center or in integral form:
+\begin{center}or in integral form:\end{center}
 
 \begin{align}
 \int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
@@ -253,7 +253,7 @@ Most models focus on the volatility problem because transaction costs often tran
 Introducing stochastic volatility to models brings complexity, but enables modeling some features observed in reality that are crucial like the randomic market volatility effects, skewness (market returns are more realistically modeled) and volatility smile. This kind of model is applied highly succesfully in foreign exchange and credit markets.
 
 
- **TODO:** Introduce CIR model
+
  
  ### Cox-Ingersoll-Ross (CIR) model
  
