@@ -51,7 +51,7 @@ In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical p
 * Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$.
 
 
-### Correlated Brownian Motions
+### Correlated Brownian Motions {#corr}
 
 Two independent brownian motions that are correlated can describe a new process $Z_t$. Let $W^1$ and $W^2$ be these two *independent* Brownian motions and let $-1 \leq \rho \leq 1$ be a given number. For $0 \leq t \leq T$ define the new process $Z_t$ as [@ubbo]:
 
@@ -257,18 +257,18 @@ Introducing stochastic volatility to models brings complexity, but enables model
  
  ### Cox-Ingersoll-Ross (CIR) model
  
- The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that describes the interest rate movements driven by one source of market risk. The dynamics are described as follows:
+ The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that describes the interest rate movements driven by one source of market risk. The dynamics are described as follows[@cox1985theory; heston1993closed]:
  
 \begin{align}
 \label{eq:cir}
-dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
 \end{align} 
 
 \noindent
-Where, $V_t$ is the variance described by parameters $k$ - the speed of mean reversion, $\theta$ - the long-run mean variance and $\sigma$ - the volatility of the variance process.
+Where, $r_t$ is the short rate interest described by parameters $k$ - the speed of mean reversion, $\theta$ - the long-run mean variance and $\sigma$ - the volatility of the variance process.
 
-This model was widely used to describe the dynamics of the short rate interest because it has some fundamental features like intuitive parametrization, nonnegativity and pricing formulas. 
-Furthermore, this equation and - this is the reason we present this model here - constitutes one of the two equations of the Heston model. 
+This model has been widely used to describe the dynamics of the short rate interest because it has some fundamental features like intuitive parametrization, nonnegativity and pricing formulas. Besides, it takes account of anticipations, risk aversion, investment alternatives and preferences about consumption timing and allows for detailed predictions about how changes in a wide range of underlying variables affect the term structure[@cox1985theory].
+Furthermore, this equation constitutes one of the two Heston model equations with the volatility taking the short rate interest place.
 
 
 ### Heston Model
@@ -286,7 +286,7 @@ dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 
 
 
-The second equation, as previously described, is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW^1_t$ and $dW^2_t$ are two correlated wiener processes with correlation coefficient of $\rho$. Because, of the model specifications and what we presentend in [@ 2.1.2 Correlated Brownian motion], we can rewrite the first equation as in Broadie and Kaya [@broadie2006exact]:
+The second equation, as previously described, is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW^1_t$ and $dW^2_t$ are two correlated wiener processes with correlation coefficient of $\rho$. Because, of the model specifications and what we presentend in section \@ref(corr), we can rewrite the first equation as in Broadie and Kaya [@broadie2006exact]:
 
 \begin{align}
 \label{eq:heston2}
