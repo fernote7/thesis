@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.13)  26 JUN 2017 16:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.13)  28 JUN 2017 16:25
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1243,15 +1243,18 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.294 
-       [4] [5]
+l.298   \end{align}
+                    [4] [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[6]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 400.
+(Font)              <10> on input line 415.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 400.
+(Font)              <7> on input line 415.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 400.
-[6] [7] [8]
+(Font)              <5> on input line 415.
+[7] [8]
 Chapter 3.
 [9
 
@@ -1270,31 +1273,31 @@ Chapter 6.
 [15] [16
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 560.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 582.
 
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1l
 mtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 584.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 606.
 [17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 584.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 606.
 (thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 584.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 584.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 606.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 606.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: A4087D01CC1B671A604B27C0BC8F5222;1238.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 584.
+(rerunfilecheck)             Checksum: EF361BC0DA60361DD8170FCC0C430B23;1338.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 606.
  ) 
 Here is how much of TeX's memory you used:
- 11127 strings out of 493333
- 173817 string characters out of 3124935
- 291947 words of memory out of 3000000
- 14237 multiletter control sequences out of 15000+200000
- 75035 words of font info for 115 fonts, out of 3000000 for 9000
+ 11136 strings out of 493333
+ 173993 string characters out of 3124935
+ 293022 words of memory out of 3000000
+ 14239 multiletter control sequences out of 15000+200000
+ 75126 words of font info for 116 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,15n,49p,254b,443s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,15n,49p,254b,435s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips
 /lm/lm-ec.enc}{C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/enc/dvips/lm/lm-mathit.enc}{C:/Users/fernando.teixeira/AppData/Local/Program
@@ -1324,9 +1327,9 @@ ndo.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb>
 c/lm/lmsy8.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fo
 nts/type1/public/lm/lmtt12.pfb><C:/Users/fernando.teixeira/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (33 pages, 311532 bytes).
+Output written on thesis.pdf (33 pages, 313235 bytes).
 PDF statistics:
- 383 PDF objects out of 1000 (max. 8388607)
- 89 named destinations out of 1000 (max. 500000)
- 14481 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 393 PDF objects out of 1000 (max. 8388607)
+ 94 named destinations out of 1000 (max. 500000)
+ 14489 words of extra memory for PDF output out of 17280 (max. 10000000)
 

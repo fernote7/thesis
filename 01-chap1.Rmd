@@ -63,9 +63,7 @@ Z_t = \rho W^1_t + \sqrt{1-\rho^2}W^2_t
 \noindent
 This equation is a linear combination of independent normals at each timestep $t$, so $Z_t$ is normally distributed. It is proven that $Z$ is a Brownian motion and that $Z$ and $W^1_t$ are correlated [@ubbo, pp. 514].
 
-### TODO
 
-**Describe Arithmetic and Geometric brownian motions**
 
 
 ### Arithmetic Brownian Motion
@@ -85,6 +83,26 @@ dS_t = \mu dt + \sigma dB_t
 
 \noindent
 Where, $\mu$ and $\sigma$ are known and constant with $\sigma > 0$. In this process, both the drift $\mu$ and the diffusion $\sigma$ coefficient are constant. The expected value of this process is the sum of the initial value and the drift times the elapsed period ($S_0 + \mu T$). The variance is described by $\sigma^2 T$
+
+
+### Geometric Brownian Motion
+
+A stochastic process $S_t$ is a geometric brownian motion if its solution is described by the solution of the following stochastic differential equation [@tong2012option; @tsay2005analysis].
+
+\begin{align}
+dS_t = \mu S_t dt + \sigma S_t dW_t
+\end{align}
+
+\noindent
+for given constants $\mu \in {\rm I\!R}$ and $\sigma > 0$. Also, the assumed initial value is positive, $S_0 >0$.
+
+This process is used quite often in finance to model the dynamics of some assets becaus of its properties. It has independent multiplicative increments and its solution is presented below[@iacus2009simulation]:
+
+
+\begin{align}
+S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
+\end{align}
+
 
 
 ### Itô's Lemma
@@ -255,9 +273,9 @@ Introducing stochastic volatility to models brings complexity, but enables model
 
 
  
- ### Cox-Ingersoll-Ross (CIR) model
+### Cox-Ingersoll-Ross model
  
- The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that describes the interest rate movements driven by one source of market risk. The dynamics are described as follows[@cox1985theory; heston1993closed]:
+ The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that describes the interest rate movements driven by one source of market risk. The dynamics are described as follows[@cox1985theory; @heston1993closed]:
  
 \begin{align}
 \label{eq:cir}
