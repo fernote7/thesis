@@ -44,6 +44,7 @@ lof: true
 header-includes:
 # - \usepackage{tikz}
 # - \bibliographystyle{elsarticle-num}
+- \usepackage{amsthm}
 ---
 
 <!--

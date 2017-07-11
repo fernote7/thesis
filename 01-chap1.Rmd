@@ -53,15 +53,15 @@ In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical p
 
 ### Correlated Brownian Motions {#corr}
 
-Two independent brownian motions that are correlated can describe a new process $Z_t$. Let $W^1$ and $W^2$ be these two *independent* Brownian motions and let $-1 \leq \rho \leq 1$ be a given number. For $0 \leq t \leq T$ define the new process $Z_t$ as [@ubbo]:
+Two independent brownian motions that are correlated can describe a new process $Z_t$. Let $W_1$ and $W_2$ be these two *independent* Brownian motions and let $-1 \leq \rho \leq 1$ be a given number. For $0 \leq t \leq T$ define the new process $Z_t$ as [@ubbo]:
 
 \begin{align}
 \label{eq:corr_brow}
-Z_t = \rho W^1_t + \sqrt{1-\rho^2}W^2_t
+Z_t = \rho W_{1,t} + \sqrt{1-\rho^2}W_{2,t}
 \end{align}
 
 \noindent
-This equation is a linear combination of independent normals at each timestep $t$, so $Z_t$ is normally distributed. It is proven that $Z$ is a Brownian motion and that $Z$ and $W^1_t$ are correlated [@ubbo, pp. 514].
+This equation is a linear combination of independent normals at each timestep $t$, so $Z_t$ is normally distributed. It is proven that $Z$ is a Brownian motion and that $Z$ and $W_{1,t}$ are correlated [@ubbo, pp. 514].
 
 
 
@@ -105,7 +105,7 @@ S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\
 
 
 
-### Itô's Lemma
+### Itô's Calculus
 
 Let $X_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans2012introduction; @steele2012stochastic]:
 
@@ -123,9 +123,7 @@ dS_t = \mu_t dt + \sigma_t dW_t
 \noindent
 for $0 \leq t \leq T$.
 
-#### Theorem
-
-
+\begin{theorem}[Itô's Lemma]
 Assume that $S_t$ has a stochastic differential given by:
 
 \begin{align}
@@ -149,6 +147,34 @@ Then Y has the following stochastic differential:
 
 \noindent 
 where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( S_t, t \right)$ .
+\end{theorem}
+
+
+#### Derivação
+
+\begin{align}
+dS_t = \mu S_t dt + \sqrt{V_t} S_t dB_t
+\end{align}
+
+If $S$ were deterministic, $dS_t/S_t$ would be the derivative of $ln(S_t)$ with respect to $S$. This suggests to find an expression for the stochastic differential of $ln(S_t)$, a function of the single random variable $S_t$.
+
+\begin{footnotesize}
+\begin{align}
+dln(S) &= \frac{dln(S)}{dS} dS + \frac{1}{2} \frac{d^2ln(S)}{dS^2}(dS)^2 \\
+dln(S) &= \frac{1}{S} (\mu S dt + \sqrt{V} S dB) + \frac{1}{2}\frac{-1}{S^2}\sqrt{V}^2 S^2 dt \\
+dln(S) &= \left( \mu -  \frac{1}{2} V \right) dt + \sqrt{V} dB \\
+\int_{0}^{T}{dln(S_t)} &= \int_{0}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{0}^{T}{\sqrt{V_t}dB_t} \\
+ln \left( \frac{S_T}{S_0} \right) &= \mu (T-0) - \frac{1}{2}\int_{0}^{T}{V_t dt} \int_{0}^{T}{\sqrt{V_t} dB_  t} \\
+S_t &= S_0 \times \exp \left( \mu T - \frac{1}{2} \int_{0}^{T}{V_t dt} + \rho \int_{0}^{T}{\sqrt{V_t}dB_{1,t}}+ \sqrt{1 - \rho^2} \int_{0}^{T}{\sqrt{V_t}dB_{2,t}} \right)
+\end{align}
+\end{footnotesize}
+
+
+
+
+
+
+
 
 Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(S_t, t)$ [@tong2012option; @evans2012introduction]. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the     \@ref(tab:box-calc)  multiplication table [@ubbo].
 
@@ -304,7 +330,7 @@ dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 
 
 
-The second equation, as previously described, is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW^1_t$ and $dW^2_t$ are two correlated wiener processes with correlation coefficient of $\rho$. Because, of the model specifications and what we presentend in section \@ref(corr), we can rewrite the first equation as in Broadie and Kaya [@broadie2006exact]:
+The second equation, as previously described, is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t,1}$ and $dW_{t,2}$ are two correlated wiener processes with correlation coefficient of $\rho$. Because, of the model specifications and what we presentend in section \@ref(corr), we can rewrite the first equation as in Broadie and Kaya [@broadie2006exact]:
 
 \begin{align}
 \label{eq:heston2}

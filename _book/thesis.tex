@@ -131,6 +131,7 @@ The preface pretty much says it all. \par  Second paragraph of abstract
 starts here.
 }
 
+	\usepackage{amsthm}
 % End of CII addition
 %%
 %% End Preamble
@@ -155,9 +156,11 @@ starts here.
   
   \frontmatter % this stuff will be roman-numbered
   \pagestyle{empty} % this removes page numbers from the frontmatter
+
       \begin{acknowledgements}
       I want to thank a few people.
     \end{acknowledgements}
+  
   
       \hypersetup{linkcolor=black}
     \setcounter{tocdepth}{2}
@@ -166,13 +169,16 @@ starts here.
       \listoftables
   
       \listoffigures
+  
       \begin{abstract}
       The preface pretty much says it all. \par  Second paragraph of abstract
       starts here.
     \end{abstract}
+  
       \begin{dedication}
       You can have a dedication here if you wish.
     \end{dedication}
+  
   \mainmatter % here the regular arabic numbering starts
   \pagestyle{fancyplain} % turns page numbering back on
 
@@ -207,6 +213,7 @@ starts here.
   particle collision with atoms or molecules. It is named after Robert
   Brown, the first to have observed the movement in 1828. He noted two
   characteristic in the pollen movement {[}1{]}:
+  
   \begin{itemize}
   \item
     the path of a given particle is very irregular, having a tangent at no
@@ -214,6 +221,7 @@ starts here.
   \item
     the motion of two distinct particles appear to be independent
   \end{itemize}
+  
   The first quantitative works in brownian motion come from an interest in
   stock price fluctuation by Bachelier in 1900. Albert Einstein also
   leaned over the subject and in 1905 derived the transition density for
@@ -222,6 +230,7 @@ starts here.
   In 1923, the Wiener process was coined in honor of Norbert Wiener
   mathematical proof of existence of the brownian motion and stating its
   properties as follows {[}3{]}:
+  
   \begin{itemize}
   \item
     \(W_{0}=0\)
@@ -252,20 +261,23 @@ starts here.
     \(\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t\), meaning
     that when \(n\) increases it stays constant at \(t\).
   \end{itemize}
+  
   \subsection{Correlated Brownian Motions}\label{corr}
   
   Two independent brownian motions that are correlated can describe a new
-  process \(Z_t\). Let \(W^1\) and \(W^2\) be these two \emph{independent}
+  process \(Z_t\). Let \(W_1\) and \(W_2\) be these two \emph{independent}
   Brownian motions and let \(-1 \leq \rho \leq 1\) be a given number. For
   \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}1{]}:
+  
   \begin{align}
   \label{eq:corr_brow}
-  Z_t = \rho W^1_t + \sqrt{1-\rho^2}W^2_t
+  Z_t = \rho W_{1,t} + \sqrt{1-\rho^2}W_{2,t}
   \end{align}
+  
   \noindent
   This equation is a linear combination of independent normals at each
   timestep \(t\), so \(Z_t\) is normally distributed. It is proven that
-  \(Z\) is a Brownian motion and that \(Z\) and \(W^1_t\) are correlated
+  \(Z\) is a Brownian motion and that \(Z\) and \(W_{1,t}\) are correlated
   {[}1{]}.
   
   \subsection{Arithmetic Brownian
@@ -273,13 +285,17 @@ starts here.
   
   The arithmetic brownian motion is defined in literature as being a
   random process (S) defined as follows {[}1{]}:
+  
   \begin{align}
   dS_t = \mu dt + \sigma dB_t
   \end{align}
+  
   \begin{center}or in integral form:\end{center}
+  
   \begin{align}
   \int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
   \end{align}
+  
   \noindent
   Where, \(\mu\) and \(\sigma\) are known and constant with
   \(\sigma > 0\). In this process, both the drift \(\mu\) and the
@@ -293,9 +309,11 @@ starts here.
   A stochastic process \(S_t\) is a geometric brownian motion if its
   solution is described by the solution of the following stochastic
   differential equation {[}4,5{]}.
+  
   \begin{align}
   dS_t = \mu S_t dt + \sigma S_t dW_t
   \end{align}
+  
   \noindent
   for given constants \(\mu \in {\rm I\!R}\) and \(\sigma > 0\). Also, the
   assumed initial value is positive, \(S_0 >0\).
@@ -303,40 +321,45 @@ starts here.
   This process is used quite often in finance to model the dynamics of
   some assets becaus of its properties. It has independent multiplicative
   increments and its solution is presented below{[}6{]}:
+  
   \begin{align}
   S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
   \end{align}
-  \subsection{Itô's Lemma}\label{itos-lemma}
+  
+  \subsection{Itô's Calculus}\label{itos-calculus}
   
   Let \(X_{t}\) be a real-valued stochastic process that satisfies
   {[}4,7,8{]}:
+  
   \begin{align}
   S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
   \end{align}
+  
   \noindent
   for some \(\mu_t\), \(\sigma_t\) and \(t \in [0,T]\). This equation is
   often rewritten in its differential stochastic form:
+  
   \begin{align}
   dS_t = \mu_t dt + \sigma_t dW_t 
   \end{align}
+  
   \noindent
   for \(0 \leq t \leq T\).
   
-  \subsubsection{Theorem}\label{theorem}
+  \begin{theorem}[Itô's Lemma]
+  Assume that $S_t$ has a stochastic differential given by:
   
-  Assume that \(S_t\) has a stochastic differential given by:
   \begin{align}
   dS_t = \mu_t dt + \sigma_t dW_t 
   \end{align}
-  \noindent
-  for \(\mu_t\), \(\sigma_t\) and \(t \in [0,T]\). Assume
-  \(u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}\) is continuous and
-  that \(\frac{\partial u}{\partial t}\),
-  \(\frac{\partial u}{\partial x}\), \(\frac{\partial^2 u}{\partial x^2}\)
-  exist and are continuous.
   
-  \[Y_t := u(S_t, t)\] \noindent
+  \noindent
+  for $\mu_t$, $\sigma_t$ and $t \in [0,T]$. Assume $u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}$ is continuous and that $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$, $\frac{\partial^2 u}{\partial x^2}$ exist and are continuous.
+  
+  $$Y_t := u(S_t, t)$$
+  \noindent
   Then Y has the following stochastic differential:
+  
   \begin{align} 
   \label{eq:ito}
   \begin{split}
@@ -344,10 +367,32 @@ starts here.
       &= \left( \frac{\partial u}{\partial t} + \mu_t \frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 \right) dt + \sigma_t \frac{\partial u}{\partial x} dW_t
   \end{split}
   \end{align}
-  \noindent  where the argument of \(u\),
-  \(\frac{\partial u}{\partial x}\) and
-  \(\frac{\partial^2 u}{\partial x^2}\) above is \(\left( S_t, t \right)\)
-  .
+  
+  \noindent 
+  where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( S_t, t \right)$ .
+  \end{theorem}
+  
+  \subsubsection{Derivação}\label{derivacao}
+  
+  \begin{align}
+  dS_t = \mu S_t dt + \sqrt{V_t} S_t dB_t
+  \end{align}
+  
+  If \(S\) were deterministic, \(dS_t/S_t\) would be the derivative of
+  \(ln(S_t)\) with respect to \(S\). This suggests to find an expression
+  for the stochastic differential of \(ln(S_t)\), a function of the single
+  random variable \(S_t\).
+  
+  \begin{footnotesize}
+  \begin{align}
+  dln(S) &= \frac{dln(S)}{dS} dS + \frac{1}{2} \frac{d^2ln(S)}{dS^2}(dS)^2 \\
+  dln(S) &= \frac{1}{S} (\mu S dt + \sqrt{V} S dB) + \frac{1}{2}\frac{-1}{S^2}\sqrt{V}^2 S^2 dt \\
+  dln(S) &= \left( \mu -  \frac{1}{2} V \right) dt + \sqrt{V} dB \\
+  \int_{0}^{T}{dln(S_t)} &= \int_{0}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{0}^{T}{\sqrt{V_t}dB_t} \\
+  ln \left( \frac{S_T}{S_0} \right) &= \mu (T-0) - \frac{1}{2}\int_{0}^{T}{V_t dt} \int_{0}^{T}{\sqrt{V_t} dB_  t} \\
+  S_t &= S_0 \times \exp \left( \mu T - \frac{1}{2} \int_{0}^{T}{V_t dt} + \rho \int_{0}^{T}{\sqrt{V_t}dB_{1,t}}+ \sqrt{1 - \rho^2} \int_{0}^{T}{\sqrt{V_t}dB_{2,t}} \right)
+  \end{align}
+  \end{footnotesize}
   
   Equation \eqref{eq:ito} is the stochastic equivalent to the chain rule,
   also known as Itô's formula or Itô's chain rule. The proof to this
@@ -355,6 +400,7 @@ starts here.
   {[}4,7{]}. For practical uses you should write out a second-order Taylor
   expansion for the function to be analyzed and apply the
   \ref{tab:box-calc} multiplication table {[}1{]}.
+  
   \begin{longtable}[t]{llr}
   \caption{\label{tab:box-calc}Box calculus}\\
   \toprule
@@ -364,12 +410,14 @@ starts here.
   $dW_t$ & 0 & $dt$\\
   \bottomrule
   \end{longtable}
+  
   \section{Black-Scholes Model}\label{black-scholes-model}
   
   The Black-Scholes (B-S) model arises from the need to price european
   options in the derivative markets. Derivatives are financial instruments
   traded in the market, stock exchange or over-the-counter (OTC) market,
   whose values depend on the values of an underlying asset. {[}9--11{]}
+  
   \begin{itemize}
   \item
     A call option is a derivative that gives its bearer the right, but not
@@ -380,6 +428,7 @@ starts here.
     the obligation, to sell a specific asset by a fixed price before or on
     a given date.
   \end{itemize}
+  
   The trading price of the option is called the option \emph{premium} and
   the asset from which the option derives is called the \emph{underlying
   asset}. This asset may be the interest rate, exchange rates, stock
@@ -399,13 +448,16 @@ starts here.
   The Black-Scholes model that provides analytical solution to the price
   of a European call at time \(t\) can be described as
   follows{[}3,9,11{]}:
+  
   \begin{align}
   C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
   d_{1}&={\frac {1}{\sigma {\sqrt {T-t}}}}\left[\ln \left({\frac {S_{t}}{K}}\right)+\left(r+{\frac {\sigma ^{2}}{2}}\right)(T-t)\right]\\[10pt]
   d_{2}&=d_{1}-\sigma {\sqrt {T-t}}
   \end{align}
+  
   \noindent
   Where:
+  
   \begin{itemize}
   \tightlist
   \item
@@ -424,12 +476,15 @@ starts here.
   \item
     \(T-t\) is the time to maturity
   \end{itemize}
+  
   \noindent
   Also, the stock price path is a Geometric Brownian Motion and is under
   the risk-neutral measure with the following dynamics {[}3,13{]}:
+  
   \begin{align}
   dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
   \end{align}
+  
   \noindent
   Where \(dW_t\) is a Wiener process {[}11,13{]}, \(r\) is the risk free
   rate and \(q\) is the dividend
@@ -468,10 +523,12 @@ starts here.
   The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
   describes the interest rate movements driven by one source of market
   risk. The dynamics are described as follows{[}14,15{]}:
+  
   \begin{align}
   \label{eq:cir}
   dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
   \end{align}
+  
   \noindent
   Where, \(r_t\) is the short rate interest described by parameters \(k\)
   - the speed of mean reversion, \(\theta\) - the long-run mean variance
@@ -493,6 +550,7 @@ starts here.
   the following equations, which represents the dynamics of the stock
   price and the variance processes under the risk-neutral measure
   {[}15,16{]}:
+  
   \begin{align}
   \label{eq:heston}
   \begin{split}
@@ -500,12 +558,14 @@ starts here.
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{split}
   \end{align}
+  
   The second equation, as previously described, is the CIR model equation.
   The first equation states the asset price process. \(\mu\) is the
-  asset's rate of return, \(dW^1_t\) and \(dW^2_t\) are two correlated
+  asset's rate of return, \(dW_{t,1}\) and \(dW_{t,2}\) are two correlated
   wiener processes with correlation coefficient of \(\rho\). Because, of
   the model specifications and what we presentend in section \ref{corr},
   we can rewrite the first equation as in Broadie and Kaya {[}17{]}:
+  
   \begin{align}
   \label{eq:heston2}
   \begin{split}
@@ -513,6 +573,7 @@ starts here.
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{split}
   \end{align}
+  
   \subsection{Other models}\label{other-models}
   
   \chapter{Models}\label{models}
@@ -604,3 +665,4 @@ starts here.
   % Index?
 
 \end{document}
+
