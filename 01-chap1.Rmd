@@ -158,16 +158,20 @@ dS_t = \mu S_t dt + \sqrt{V_t} S_t dB_t
 
 If $S$ were deterministic, $dS_t/S_t$ would be the derivative of $ln(S_t)$ with respect to $S$. This suggests to find an expression for the stochastic differential of $ln(S_t)$, a function of the single random variable $S_t$.
 
-\begin{footnotesize}
+\begin{scriptsize}
 \begin{align}
+df(t,S) &= \cancelto{0}{\frac{\partial f}{\partial t}dt}  + \frac{\partial f}{\partial S} dS + \cancelto{0}{\frac{1}{2} \frac{\partial^2 f}{\partial t^2} (dt)^2} + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2  + \cancelto{0}{\frac{\partial^2 f}{\partial t \partial S} dt dS} \\
+f(t,S) &= ln(S) \\
 dln(S) &= \frac{dln(S)}{dS} dS + \frac{1}{2} \frac{d^2ln(S)}{dS^2}(dS)^2 \\
 dln(S) &= \frac{1}{S} (\mu S dt + \sqrt{V} S dB) + \frac{1}{2}\frac{-1}{S^2}\sqrt{V}^2 S^2 dt \\
 dln(S) &= \left( \mu -  \frac{1}{2} V \right) dt + \sqrt{V} dB \\
-\int_{0}^{T}{dln(S_t)} &= \int_{0}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{0}^{T}{\sqrt{V_t}dB_t} \\
-ln \left( \frac{S_T}{S_0} \right) &= \mu (T-0) - \frac{1}{2}\int_{0}^{T}{V_t dt} \int_{0}^{T}{\sqrt{V_t} dB_  t} \\
-S_t &= S_0 \times \exp \left( \mu T - \frac{1}{2} \int_{0}^{T}{V_t dt} + \rho \int_{0}^{T}{\sqrt{V_t}dB_{1,t}}+ \sqrt{1 - \rho^2} \int_{0}^{T}{\sqrt{V_t}dB_{2,t}} \right)
+\int_{u}^{T}{dln(S)} &= \int_{u}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{u}^{T}{\sqrt{V_t}dB_t} \\
+ln(S_t) - ln(S_u) &= \int_{u}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{u}^{T}{\sqrt{V_t}dB_t} \\
+ln \left( \frac{S_t}{S_u} \right) &= \mu (t-u) - \frac{1}{2}\int_{u}^{T}{V_t dt} + \int_{u}^{T}{\sqrt{V_t} dB_t} \\
+ln \left( \frac{S_t}{S_u} \right) &= \mu (t-u) - \frac{1}{2}\int_{u}^{T}{V_t dt} + \int_{u}^{T}{\sqrt{V_t} \left(\rho dB_{1,s} + \sqrt{1-\rho^2} dB_{1,s} \right)} \\
+S_t &= S_u \times \exp \left( \mu (t-u) - \frac{1}{2} \int_{u}^{T}{V_t dt} + \rho \int_{u}^{T}{\sqrt{V_t}dB_{1,t}}+ \sqrt{1 - \rho^2} \int_{u}^{T}{\sqrt{V_t}dB_{2,t}} \right)
 \end{align}
-\end{footnotesize}
+\end{scriptsize}
 
 
 

@@ -45,6 +45,7 @@ header-includes:
 # - \usepackage{tikz}
 # - \bibliographystyle{elsarticle-num}
 - \usepackage{amsthm}
+- \usepackage{cancel}
 ---
 
 <!--
