@@ -150,6 +150,7 @@ where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2
 \end{theorem}
 
 
+
 #### Derivação
 
 \begin{align}
@@ -172,8 +173,6 @@ ln \left( \frac{S_t}{S_u} \right) &= \mu (t-u) - \frac{1}{2}\int_{u}^{T}{V_t dt}
 S_t &= S_u \times \exp \left( \mu (t-u) - \frac{1}{2} \int_{u}^{T}{V_t dt} + \rho \int_{u}^{T}{\sqrt{V_t}dB_{1,t}}+ \sqrt{1 - \rho^2} \int_{u}^{T}{\sqrt{V_t}dB_{2,t}} \right)
 \end{align}
 \end{scriptsize}
-
-
 
 
 
