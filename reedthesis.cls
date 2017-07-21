@@ -302,7 +302,7 @@
     A Thesis \\
     Presented to \\
     \@thedivisionof \ \@division \\
-   Fundação Getulio Vargas
+   Getulio Vargas Foundation
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil

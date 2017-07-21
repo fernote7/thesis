@@ -194,7 +194,7 @@ knitr::kable(mat, caption = 'Box calculus', align = c('l','r', 'r'),
 
 
 
-
+## Stochastic Differential Equations (SDE's)
 
 
 
@@ -255,6 +255,7 @@ Other assumptions that are critical to the B-S model and are not always observed
 Most models focus on the volatility problem because transaction costs often translate to rises in volatility and fat-tails (abnormal) returns can be simulated by stochastic volatility and market or volatility jumps.
 
 
+### Limitations
 
 
 <!-- Out of all the parameters that the call price depends on in the Black Scholes -->
@@ -298,6 +299,10 @@ Most models focus on the volatility problem because transaction costs often tran
 ## Stochastic Volatility models
 
 Introducing stochastic volatility to models brings complexity, but enables modeling some features observed in reality that are crucial like the randomic market volatility effects, skewness (market returns are more realistically modeled) and volatility smile. This kind of model is applied highly succesfully in foreign exchange and credit markets.
+
+
+
+### Other models (PRESENT MODELS PREVIOUSLY USED)
 
 
 
@@ -348,7 +353,7 @@ dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 
 
 
-### Other models
+
 
 
 

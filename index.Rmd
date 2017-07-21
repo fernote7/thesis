@@ -1,12 +1,11 @@
 ---
 author: 'Fernando O. Teixeira'
-date: 'May 2017'
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 division: 'Applied Mathematics'
 advisor: 'Hugo de la Cruz'
-#altadvisor: 'Your Other Advisor'
-# Delete line 6 if you only have one advisor
+# altadvisor: 'Your Other Advisor'
 department: 'Mathematics'
-title: '\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model and extensions}}'
+title: '\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 

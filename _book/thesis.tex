@@ -70,10 +70,10 @@
 
 
 % To pass between YAML and LaTeX the dollar signs are added by CII
-\title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model and extensions}}}
+\title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{May 2017}
+\date{julho 21, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo de la Cruz}
 %If you have two advisors for some reason, you can use the following
@@ -380,6 +380,9 @@ starts here.
   $dW_t$ & 0 & $dt$\\
   \bottomrule
   \end{longtable}
+  \section{Stochastic Differential Equations
+  (SDE's)}\label{stochastic-differential-equations-sdes}
+  
   \section{Black-Scholes Model}\label{black-scholes-model}
   
   The Black-Scholes (B-S) model arises from the need to price european
@@ -470,6 +473,8 @@ starts here.
   can be simulated by stochastic volatility and market or volatility
   jumps.
   
+  \subsection{Limitations}\label{limitations}
+  
   \section{Stochastic Volatility
   models}\label{stochastic-volatility-models}
   
@@ -478,6 +483,9 @@ starts here.
   the randomic market volatility effects, skewness (market returns are
   more realistically modeled) and volatility smile. This kind of model is
   applied highly succesfully in foreign exchange and credit markets.
+  
+  \subsection{Other models (PRESENT MODELS PREVIOUSLY
+  USED)}\label{other-models-present-models-previously-used}
   
   \subsection{Cox-Ingersoll-Ross model}\label{cox-ingersoll-ross-model}
   
@@ -529,9 +537,8 @@ starts here.
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{split}
   \end{align}
-  \subsection{Other models}\label{other-models}
-  
-  \chapter{Models}\label{models}
+  \chapter{The Heston Model
+  Implementations}\label{the-heston-model-implementations}
   
   \section{Teste}\label{teste}
   \begin{Shaded}

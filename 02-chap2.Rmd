@@ -1,4 +1,16 @@
-# Models
+# The Heston Model Implementation
+
+## Characteristic Function
+
+## Euler Scheme - Full Truncation
+
+## Karl Jaeckel
+
+## Exact Algorithm 
+
+<!-- Broadie Kaya -->
+
+
 
 <!-- Required to number equations in HTML files -->
 <script type="text/x-mathjax-config">
