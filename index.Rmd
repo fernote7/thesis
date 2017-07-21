@@ -45,6 +45,7 @@ header-includes:
 # - \bibliographystyle{elsarticle-num}
 - \usepackage{amsthm}
 - \usepackage{cancel}
+- \graphicspath{ {figure/} }
 ---
 
 <!--
@@ -81,3 +82,5 @@ on chapters.
 
 # Introduction {#intro}
 
+<!-- \includegraphics[width=3cm, height=4cm]{reed} -->
+<!-- \includegraphics[scale=1.5]{reed} -->

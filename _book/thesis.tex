@@ -133,6 +133,7 @@ starts here.
 
 	\usepackage{amsthm}
 	\usepackage{cancel}
+	\graphicspath{ {figure/} }
 % End of CII addition
 %%
 %% End Preamble
@@ -543,7 +544,7 @@ starts here.
   \section{Teste}\label{teste}
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{Call <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(S,X,tau,r,q,sigma)\{}
+  \NormalTok{Call <-}\StringTok{ }\NormalTok{function(S,X,tau,r,q,sigma)\{}
     
     \CommentTok{# S = spot}
     \CommentTok{# X = strike}
@@ -552,10 +553,10 @@ starts here.
     \CommentTok{# q = dividend yield}
     \CommentTok{# sigma = standard deviation}
     
-  \NormalTok{  d1 =}\StringTok{ }\NormalTok{(}\KeywordTok{log}\NormalTok{(S}\OperatorTok{/}\NormalTok{X) }\OperatorTok{+}\StringTok{ }\NormalTok{(r }\OperatorTok{-}\StringTok{ }\NormalTok{q }\OperatorTok{+}\StringTok{ }\NormalTok{sigma}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{tau) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{tau))}
-  \NormalTok{  d2 =}\StringTok{ }\NormalTok{d1 }\OperatorTok{-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{tau)}
-  \NormalTok{  c0 =}\StringTok{ }\NormalTok{S }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{q }\OperatorTok{*}\StringTok{ }\NormalTok{tau) }\OperatorTok{*}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(d1,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{) }\OperatorTok{-}
-  \StringTok{       }\NormalTok{X }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r }\OperatorTok{*}\StringTok{ }\NormalTok{tau) }\OperatorTok{*}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(d2,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+    \NormalTok{d1 =}\StringTok{ }\NormalTok{(}\KeywordTok{log}\NormalTok{(S/X) +}\StringTok{ }\NormalTok{(r -}\StringTok{ }\NormalTok{q +}\StringTok{ }\NormalTok{sigma^}\DecValTok{2}\NormalTok{/}\DecValTok{2}\NormalTok{) *}\StringTok{ }\NormalTok{tau) /}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(sigma^}\DecValTok{2} \NormalTok{*}\StringTok{ }\NormalTok{tau))}
+    \NormalTok{d2 =}\StringTok{ }\NormalTok{d1 -}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(sigma^}\DecValTok{2} \NormalTok{*}\StringTok{ }\NormalTok{tau)}
+    \NormalTok{c0 =}\StringTok{ }\NormalTok{S *}\StringTok{ }\KeywordTok{exp}\NormalTok{(-q *}\StringTok{ }\NormalTok{tau) *}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(d1,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{) -}
+  \StringTok{       }\NormalTok{X *}\StringTok{ }\KeywordTok{exp}\NormalTok{(-r *}\StringTok{ }\NormalTok{tau) *}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(d2,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
   
     \KeywordTok{return}\NormalTok{(c0)}
   \NormalTok{\}}
@@ -564,43 +565,43 @@ starts here.
   \clearpage
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{euler_call <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(X0, mu, sigma, }\DataTypeTok{Dt =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{t=}\DecValTok{0}\NormalTok{, }\DataTypeTok{T=}\DecValTok{1}\NormalTok{, }
+  \NormalTok{euler_call <-}\StringTok{ }\NormalTok{function(X0, mu, sigma, }\DataTypeTok{Dt =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{t=}\DecValTok{0}\NormalTok{, }\DataTypeTok{T=}\DecValTok{1}\NormalTok{, }
                          \DataTypeTok{N =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{K =} \DecValTok{0}\NormalTok{, }\DataTypeTok{plt=}\OtherTok{FALSE}\NormalTok{)\{}
-  \NormalTok{  X0 =}\StringTok{ }\KeywordTok{rep}\NormalTok{(X0,N)                     }\CommentTok{# initial values}
-  \NormalTok{  lines =}\StringTok{ }\KeywordTok{floor}\NormalTok{((T}\OperatorTok{-}\NormalTok{t)}\OperatorTok{/}\NormalTok{Dt }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)       }
-  \NormalTok{  w =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{nrow=}\NormalTok{lines, }\DataTypeTok{ncol =}\NormalTok{ N)  }\CommentTok{# matrix with N columns}
-  \NormalTok{  n =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\NormalTok{(Dt}\OperatorTok{+}\NormalTok{t), }\DataTypeTok{to=}\NormalTok{T, }\DataTypeTok{by=}\NormalTok{Dt)  }\CommentTok{# steps}
-  \NormalTok{  w[}\DecValTok{1}\NormalTok{,] =}\StringTok{ }\NormalTok{X0                         }
-  \NormalTok{  l2 =}\StringTok{ }\NormalTok{lines}\OperatorTok{-}\DecValTok{1}                      
-  \NormalTok{  bw =}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Dt)}\OperatorTok{*}\KeywordTok{rnorm}\NormalTok{(N}\OperatorTok{*}\NormalTok{l2,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)      }\CommentTok{# random gaussian numbers}
-  \NormalTok{  bw =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(bw, }\DataTypeTok{nrow =}\NormalTok{ l2, }
-                \DataTypeTok{ncol =}\NormalTok{ N)              }
-    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{seq_along}\NormalTok{(n))\{}
-  \NormalTok{      w[i}\OperatorTok{+}\DecValTok{1}\NormalTok{,] =}\StringTok{ }\NormalTok{w[i,] }\OperatorTok{+}\StringTok{ }\NormalTok{mu }\OperatorTok{*}\NormalTok{w[i,] }\OperatorTok{*}\NormalTok{Dt }\OperatorTok{+}\StringTok{ }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }\NormalTok{w[i,] }\OperatorTok{*}\StringTok{ }\NormalTok{bw[i,]}
-  \NormalTok{  \}}
-  \NormalTok{  Result =}\StringTok{ }\NormalTok{w[lines,] }\OperatorTok{-}\StringTok{ }\NormalTok{K}
-  \NormalTok{  Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-  \NormalTok{  call =}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{mu}\OperatorTok{*}\NormalTok{T)}\OperatorTok{*}\KeywordTok{mean}\NormalTok{(Result)}
-    \ControlFlowTok{if}\NormalTok{ (plt }\OperatorTok{==}\StringTok{ }\OtherTok{TRUE}\NormalTok{)\{}
+    \NormalTok{X0 =}\StringTok{ }\KeywordTok{rep}\NormalTok{(X0,N)                     }\CommentTok{# initial values}
+    \NormalTok{lines =}\StringTok{ }\KeywordTok{floor}\NormalTok{((T-t)/Dt +}\StringTok{ }\DecValTok{1}\NormalTok{)       }
+    \NormalTok{w =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{nrow=}\NormalTok{lines, }\DataTypeTok{ncol =} \NormalTok{N)  }\CommentTok{# matrix with N columns}
+    \NormalTok{n =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\NormalTok{(Dt+t), }\DataTypeTok{to=}\NormalTok{T, }\DataTypeTok{by=}\NormalTok{Dt)  }\CommentTok{# steps}
+    \NormalTok{w[}\DecValTok{1}\NormalTok{,] =}\StringTok{ }\NormalTok{X0                         }
+    \NormalTok{l2 =}\StringTok{ }\NormalTok{lines}\DecValTok{-1}                      
+    \NormalTok{bw =}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Dt)*}\KeywordTok{rnorm}\NormalTok{(N*l2,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)      }\CommentTok{# random gaussian numbers}
+    \NormalTok{bw =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(bw, }\DataTypeTok{nrow =} \NormalTok{l2, }
+                \DataTypeTok{ncol =} \NormalTok{N)              }
+    \NormalTok{for (i in }\KeywordTok{seq_along}\NormalTok{(n))\{}
+        \NormalTok{w[i}\DecValTok{+1}\NormalTok{,] =}\StringTok{ }\NormalTok{w[i,] +}\StringTok{ }\NormalTok{mu *w[i,] *Dt +}\StringTok{ }\NormalTok{sigma *}\StringTok{ }\NormalTok{w[i,] *}\StringTok{ }\NormalTok{bw[i,]}
+    \NormalTok{\}}
+    \NormalTok{Result =}\StringTok{ }\NormalTok{w[lines,] -}\StringTok{ }\NormalTok{K}
+    \NormalTok{Result[Result <=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
+    \NormalTok{call =}\StringTok{ }\KeywordTok{exp}\NormalTok{(-mu*T)*}\KeywordTok{mean}\NormalTok{(Result)}
+    \NormalTok{if (plt ==}\StringTok{ }\OtherTok{TRUE}\NormalTok{)\{}
         \KeywordTok{matplot}\NormalTok{(w, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\KeywordTok{min}\NormalTok{(w),}\KeywordTok{max}\NormalTok{(w)), }\DataTypeTok{axes=}\NormalTok{F, }
-                \DataTypeTok{lty=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20}\NormalTok{ , }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{)}
+                \DataTypeTok{lty=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20} \NormalTok{, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{)}
         \KeywordTok{grid}\NormalTok{()}
-        \ControlFlowTok{if}\NormalTok{ (N }\OperatorTok{<=}\StringTok{ }\DecValTok{10} \OperatorTok{&&}\StringTok{ }\NormalTok{lines }\OperatorTok{<=}\StringTok{ }\DecValTok{6}\NormalTok{)\{}
-            \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{seq_along}\NormalTok{(w[}\DecValTok{1}\NormalTok{,]))\{}
+        \NormalTok{if (N <=}\StringTok{ }\DecValTok{10} \NormalTok{&&}\StringTok{ }\NormalTok{lines <=}\StringTok{ }\DecValTok{6}\NormalTok{)\{}
+            \NormalTok{for (i in }\KeywordTok{seq_along}\NormalTok{(w[}\DecValTok{1}\NormalTok{,]))\{}
                 \KeywordTok{points}\NormalTok{(w[,i], }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{)}
-  \NormalTok{          \}}
-  \NormalTok{      \}}
-        \ControlFlowTok{if}\NormalTok{ (K }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
+            \NormalTok{\}}
+        \NormalTok{\}}
+        \NormalTok{if (K !=}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
             \KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\NormalTok{K, }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
-  \NormalTok{      \}}
+        \NormalTok{\}}
         \KeywordTok{box}\NormalTok{()}
-        \KeywordTok{axis}\NormalTok{(}\DataTypeTok{side =} \DecValTok{1}\NormalTok{, }\DataTypeTok{at=} \KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,lines,lines}\OperatorTok{-}\DecValTok{1}\NormalTok{), }
-             \DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\StringTok{'0'}\NormalTok{, }\KeywordTok{as.character}\NormalTok{(lines}\OperatorTok{-}\DecValTok{1}\NormalTok{)))}
+        \KeywordTok{axis}\NormalTok{(}\DataTypeTok{side =} \DecValTok{1}\NormalTok{, }\DataTypeTok{at=} \KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,lines,lines}\DecValTok{-1}\NormalTok{), }
+             \DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\StringTok{'0'}\NormalTok{, }\KeywordTok{as.character}\NormalTok{(lines}\DecValTok{-1}\NormalTok{)))}
         \KeywordTok{axis}\NormalTok{(}\DataTypeTok{side =} \DecValTok{2}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
-  \NormalTok{  \}}
-  \NormalTok{  res =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'realizations'}\NormalTok{ =}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(w), }
-                 \StringTok{'mean'}\NormalTok{ =}\StringTok{ }\KeywordTok{mean}\NormalTok{(w[lines,]),}
-                 \StringTok{'solution'}\NormalTok{ =}\StringTok{ }\NormalTok{w[lines,], }\StringTok{'eurocall'}\NormalTok{ =}\StringTok{ }\NormalTok{call)}
+    \NormalTok{\}}
+    \NormalTok{res =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'realizations'} \NormalTok{=}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(w), }
+                 \StringTok{'mean'} \NormalTok{=}\StringTok{ }\KeywordTok{mean}\NormalTok{(w[lines,]),}
+                 \StringTok{'solution'} \NormalTok{=}\StringTok{ }\NormalTok{w[lines,], }\StringTok{'eurocall'} \NormalTok{=}\StringTok{ }\NormalTok{call)}
     \KeywordTok{return}\NormalTok{(}\KeywordTok{invisible}\NormalTok{(res))}
   \NormalTok{\}}
   \end{Highlighting}
@@ -634,10 +635,10 @@ starts here.
   \CommentTok{# This chunk ensures that the thesisdown package is}
   \CommentTok{# installed and loaded. This thesisdown package includes}
   \CommentTok{# the template files for the thesis.}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(devtools))}
+  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(devtools))}
     \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(thesisdown))}
-  \NormalTok{  devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
+  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(thesisdown))}
+    \NormalTok{devtools::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
   \KeywordTok{library}\NormalTok{(thesisdown)}
   \end{Highlighting}
   \end{Shaded}
@@ -648,18 +649,18 @@ starts here.
   \CommentTok{# installed and loaded. This thesisdown package includes}
   \CommentTok{# the template files for the thesis and also two functions}
   \CommentTok{# used for labeling and referencing}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(devtools))}
+  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(devtools))}
     \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(dplyr))}
+  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(dplyr))}
       \KeywordTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(ggplot2))}
+  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(ggplot2))}
       \KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(ggplot2))}
+  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(ggplot2))}
       \KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(thesisdown))\{}
+  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(thesisdown))\{}
     \KeywordTok{library}\NormalTok{(devtools)}
-  \NormalTok{  devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
-  \NormalTok{  \}}
+    \NormalTok{devtools::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
+    \NormalTok{\}}
   \KeywordTok{library}\NormalTok{(thesisdown)}
   \NormalTok{flights <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/flights.csv"}\NormalTok{)}
   \end{Highlighting}
