@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.2.9)  23 JUL 2017 22:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.2.9)  23 JUL 2017 23:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -876,35 +876,42 @@ Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 Package caption Info: rotating package is loaded.
 ) (/usr/share/texlive/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
-) (./thesis.aux)
+)
+\c@theorem=\count128
+\c@lemma=\count129
+\c@definition=\count130
+\c@corollary=\count131
+\c@proposition=\count132
+\c@example=\count133
+(./thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 142.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 154.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 142.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 154.
 (/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \microtypecontext on input line 142.
+LaTeX Info: Redefining \microtypecontext on input line 154.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -919,16 +926,16 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 ) (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count128
+\scratchcounter=\count134
 \scratchdimen=\dimen144
 \scratchbox=\box36
-\nofMPsegments=\count129
-\nofMParguments=\count130
+\nofMPsegments=\count135
+\nofMParguments=\count136
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count131
+\MPscratchCnt=\count137
 \MPscratchDim=\dimen145
-\MPnumerator=\count132
-\makeMPintoPDFobject=\count133
+\MPnumerator=\count138
+\makeMPintoPDFobject=\count139
 \everyMPtoPDFconversion=\toks34
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -946,60 +953,60 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box37
-Package hyperref Info: Link coloring OFF on input line 142.
+Package hyperref Info: Link coloring OFF on input line 154.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count134
+\c@section@level=\count140
 )
-LaTeX Info: Redefining \ref on input line 142.
-LaTeX Info: Redefining \pageref on input line 142.
-LaTeX Info: Redefining \nameref on input line 142.
+LaTeX Info: Redefining \ref on input line 154.
+LaTeX Info: Redefining \pageref on input line 154.
+LaTeX Info: Redefining \nameref on input line 154.
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write4
 \openout4 = `thesis.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 146.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 158.
 
 (/usr/share/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 146.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 158.
 
 (/usr/share/texlive/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 146
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 158
 .
 (/usr/share/texlive/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 146
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 158
 .
 (/usr/share/texlive/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 146.
+(Font)              <12> on input line 158.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 146.
+(Font)              <8> on input line 158.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 146.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 146.
+(Font)              <6> on input line 158.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 158.
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 146.
+LaTeX Font Info:    Try loading font information for U+msa on input line 158.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 146.
+LaTeX Font Info:    Try loading font information for U+msb on input line 158.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1049,100 +1056,153 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.173   \chapter
+l.184   \chapter
                 {Literature Review}\label{lt-review} [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.173   \chapter
+l.184   \chapter
                 {Literature Review}\label{lt-review} [2
 
 ]
 Chapter 2.
-pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
-been already used, duplicate ignored
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 214.
+
+(/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.175   \chapter
-                {The Heston Model [3]pdfTeX warning (ext4): destination with th
-e same identifier (name{page.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.175   \chapter
-                {The Heston Model [4
-
-]
-Chapter 3.
-[5]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 236.
-
-(/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 246.
+l.231     T
+           he change in \(W\), given by \(\Delta W = W_{t+1}-W_{t}\), is [3]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6] [7
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.300   \end{align}
+                    [4]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 356.
+[5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] [8
+[6]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 435.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 435.
+[7] [8] [9] [10
+
+]
+Chapter 3.
+[11]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 608.
+
+(/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 612.
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 643
+.
+(/usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[13] [14] [15]
+Underfull \vbox (badness 10000) detected at line 809
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 809
+ []
+
+[16] [17] [18
 
 ]
 Chapter 4.
-[9] [10
+[19
+
+] [20
 
 ]
 Chapter 5.
-[11] [12
+[21] [22
 
 ]
-Chapter 6.
-[13] [14
+Appendix A.
+
+LaTeX Warning: Reference `ref-labels' on page 23 undefined on input line 854.
+
+[23] [24]
+Appendix B.
+[25
+
+] [26
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 295.
-[15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[27
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 979.
+[28]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 979.
 (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 295.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 979.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 979.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: B2166A706675A7272C525BA835808026;795.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
+(rerunfilecheck)             Checksum: 14A2602BB191E0636331E9C49612B82D;1812.
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 979.
  ) 
 Here is how much of TeX's memory you used:
- 10886 strings out of 494892
- 164789 string characters out of 6179480
- 284021 words of memory out of 5000000
- 13882 multiletter control sequences out of 15000+600000
- 46497 words of font info for 60 fonts, out of 8000000 for 9000
+ 11278 strings out of 494892
+ 170519 string characters out of 6179480
+ 297789 words of memory out of 5000000
+ 14084 multiletter control sequences out of 15000+600000
+ 80171 words of font info for 130 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 39i,18n,45p,415b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texli
-ve/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texlive/texmf-dist/f
-onts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
-lm/lm-mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</
-usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/lm/lmro12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/lm/lmtti10.pfb>
-Output written on thesis.pdf (31 pages, 217839 bytes).
+ 39i,18n,49p,395b,397s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texl
+ive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/font
+s/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/
+lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr
+/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm
+/lmro12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/lm/lmtk10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (44 pages, 372262 bytes).
 PDF statistics:
- 286 PDF objects out of 1000 (max. 8388607)
- 237 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
- 6241 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 529 PDF objects out of 1000 (max. 8388607)
+ 457 compressed objects within 5 object streams
+ 133 named destinations out of 1000 (max. 500000)
+ 14545 words of extra memory for PDF output out of 17280 (max. 10000000)
 
