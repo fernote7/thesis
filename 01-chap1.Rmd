@@ -151,7 +151,7 @@ where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2
 
 
 
-#### Derivação
+#### Getting to the Formula
 
 \begin{align}
 dS_t = \mu S_t dt + \sqrt{V_t} S_t dB_t
