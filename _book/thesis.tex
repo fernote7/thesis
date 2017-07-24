@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{julho 21, 2017}
+\date{julho 23, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo de la Cruz}
 %If you have two advisors for some reason, you can use the following
@@ -139,18 +139,6 @@ starts here.
 %% End Preamble
 %%
 %
-
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}[section]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{proposition}{Proposition}[section]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[section]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
 \begin{document}
 
 % Everything below added by CII
@@ -179,367 +167,69 @@ starts here.
   \mainmatter % here the regular arabic numbering starts
   \pagestyle{fancyplain} % turns page numbering back on
 
-  \chapter{Introduction}\label{intro}
+  \chapter{\texorpdfstring{altadvisor: `Your Other
+  Advisor'}{altadvisor: Your Other Advisor}}\label{altadvisor-your-other-advisor}
   
   \chapter{Literature Review}\label{lt-review}
   
-  This chapter presents the concepts of stochastic calculus, from the
-  historic conception of how it first arose through the basic principles
-  and applications in finance. More precisely, we address the classical
-  Black-Scholes model and its limitations and the Heston model. This model
-  is also well known, it introduces the concept of stochastic volatility
-  which brings us closer to reality.
-  
-  \section{Stochastic Calculus}\label{stochastic-calculus}
-  
-  Stochastic calculus arises from stochastic processes and allows the
-  creation of a theory of integration where both the integrand and
-  integrator terms are stochastic processes. Stochastic calculus, also
-  known as, Itô calculus due to the name of it's creator, the Japanese
-  mathematician Kiyosi Itô in the 1940s and 1950s is used for modelling
-  financial options and in another wide variety of fields {[}1{]}. In this
-  chapter we present the historical contexts in which the tools and models
-  used arise, but our focus is introducing the concepts and notations that
-  will be further used in our work.
-  
-  \subsection{Brownian Motion}\label{brownian-motion}
-  
-  The Brownian motion is the name given to the irregular motion observed
-  in the motion of pollen particles suspended in fluid resulting from
-  particle collision with atoms or molecules. It is named after Robert
-  Brown, the first to have observed the movement in 1828. He noted two
-  characteristic in the pollen movement {[}1{]}:
-  \begin{itemize}
-  \item
-    the path of a given particle is very irregular, having a tangent at no
-    point
-  \item
-    the motion of two distinct particles appear to be independent
-  \end{itemize}
-  The first quantitative works in brownian motion come from an interest in
-  stock price fluctuation by Bachelier in 1900. Albert Einstein also
-  leaned over the subject and in 1905 derived the transition density for
-  Brownian motion from molecular-kinetic theory of heat {[}1,2{]}.
-  
-  In 1923, the Wiener process was coined in honor of Norbert Wiener
-  mathematical proof of existence of the brownian motion and stating its
-  properties as follows {[}3{]}:
-  \begin{itemize}
-  \item
-    \(W_{0}=0\)
-  \item
-    The change in \(W\), given by \(\Delta W = W_{t+1}-W_{t}\), is
-    normally distributed with mean zero and standard deviation
-    \(\sqrt{\Delta t}\), meaning that
-    \(\Delta W = \epsilon\sqrt{\Delta t}\), where \(\epsilon\) is
-    \(N(0,1)\).
-  \item
-    If the increment \(\Delta t_1\) does not overlap with the time
-    increment \(\Delta t_2\), then \(\Delta W_1\) and \(\Delta W_2\) are
-    independent.
-  \item
-    The process is continuous, meaning that there are no jumps in the
-    process.
-  \item
-    The process is a Markov process. This means that the conditional
-    expectation of \(W_{t+1}\) given its entire history is equal to the
-    conditional expectation of \(W_{t+1}\) given today's information. This
-    can be written as: \(E[W_{t+1}|W_1, ..., W_t] = E[W_{t+1}|W_t]\).
-  \item
-    Consider the time interval \([0,t]\) with \(n\) equally spaced
-    intervals given by \(t_i = \frac{it}{n}\). Then the paths of the
-    Brownian motion have unbounded variation, this means that they are not
-    differentiable and go towards infinity as \(n\) increases. The
-    quadratic variation is given by
-    \(\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t\), meaning
-    that when \(n\) increases it stays constant at \(t\).
-  \end{itemize}
-  \subsection{Correlated Brownian Motions}\label{corr}
-  
-  Two independent brownian motions that are correlated can describe a new
-  process \(Z_t\). Let \(W_1\) and \(W_2\) be these two \emph{independent}
-  Brownian motions and let \(-1 \leq \rho \leq 1\) be a given number. For
-  \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}1{]}:
-  \begin{align}
-  \label{eq:corr_brow}
-  Z_t = \rho W_{1,t} + \sqrt{1-\rho^2}W_{2,t}
-  \end{align}
-  \noindent
-  This equation is a linear combination of independent normals at each
-  timestep \(t\), so \(Z_t\) is normally distributed. It is proven that
-  \(Z\) is a Brownian motion and that \(Z\) and \(W_{1,t}\) are correlated
-  {[}1{]}.
-  
-  \subsection{Arithmetic Brownian
-  Motion}\label{arithmetic-brownian-motion}
-  
-  The arithmetic brownian motion is defined in literature as being a
-  random process (S) defined as follows {[}1{]}:
-  \begin{align}
-  dS_t = \mu dt + \sigma dB_t
-  \end{align}
-  \begin{center}or in integral form:\end{center}
-  \begin{align}
-  \int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
-  \end{align}
-  \noindent
-  Where, \(\mu\) and \(\sigma\) are known and constant with
-  \(\sigma > 0\). In this process, both the drift \(\mu\) and the
-  diffusion \(\sigma\) coefficient are constant. The expected value of
-  this process is the sum of the initial value and the drift times the
-  elapsed period (\(S_0 + \mu T\)). The variance is described by
-  \(\sigma^2 T\)
-  
-  \subsection{Geometric Brownian Motion}\label{geometric-brownian-motion}
-  
-  A stochastic process \(S_t\) is a geometric brownian motion if its
-  solution is described by the solution of the following stochastic
-  differential equation {[}4,5{]}.
-  \begin{align}
-  dS_t = \mu S_t dt + \sigma S_t dW_t
-  \end{align}
-  \noindent
-  for given constants \(\mu \in {\rm I\!R}\) and \(\sigma > 0\). Also, the
-  assumed initial value is positive, \(S_0 >0\).
-  
-  This process is used quite often in finance to model the dynamics of
-  some assets becaus of its properties. It has independent multiplicative
-  increments and its solution is presented below{[}6{]}:
-  \begin{align}
-  S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
-  \end{align}
-  \subsection{Itô's Calculus}\label{itos-calculus}
-  
-  Let \(X_{t}\) be a real-valued stochastic process that satisfies
-  {[}4,7,8{]}:
-  \begin{align}
-  S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
-  \end{align}
-  \noindent
-  for some \(\mu_t\), \(\sigma_t\) and \(t \in [0,T]\). This equation is
-  often rewritten in its differential stochastic form:
-  \begin{align}
-  dS_t = \mu_t dt + \sigma_t dW_t 
-  \end{align}
-  \noindent
-  for \(0 \leq t \leq T\).
-  \begin{theorem}[Itô's Lemma]
-  Assume that $S_t$ has a stochastic differential given by:
-  \begin{align}
-  dS_t = \mu_t dt + \sigma_t dW_t 
-  \end{align}
-  \noindent
-  for $\mu_t$, $\sigma_t$ and $t \in [0,T]$. Assume $u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}$ is continuous and that $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$, $\frac{\partial^2 u}{\partial x^2}$ exist and are continuous.
-  
-  $$Y_t := u(S_t, t)$$
-  \noindent
-  Then Y has the following stochastic differential:
-  \begin{align} 
-  \label{eq:ito}
-  \begin{split}
-      dY_t &= \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x} dS_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 dt  \\[10pt] 
-      &= \left( \frac{\partial u}{\partial t} + \mu_t \frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 \right) dt + \sigma_t \frac{\partial u}{\partial x} dW_t
-  \end{split}
-  \end{align}
-  \noindent 
-  where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( S_t, t \right)$ .
-  \end{theorem}
-  \subsubsection{Derivação}\label{derivacao}
-  \begin{align}
-  dS_t = \mu S_t dt + \sqrt{V_t} S_t dB_t
-  \end{align}
-  If \(S\) were deterministic, \(dS_t/S_t\) would be the derivative of
-  \(ln(S_t)\) with respect to \(S\). This suggests to find an expression
-  for the stochastic differential of \(ln(S_t)\), a function of the single
-  random variable \(S_t\).
-  \begin{scriptsize}
-  \begin{align}
-  df(t,S) &= \cancelto{0}{\frac{\partial f}{\partial t}dt}  + \frac{\partial f}{\partial S} dS + \cancelto{0}{\frac{1}{2} \frac{\partial^2 f}{\partial t^2} (dt)^2} + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2  + \cancelto{0}{\frac{\partial^2 f}{\partial t \partial S} dt dS} \\
-  f(t,S) &= ln(S) \\
-  dln(S) &= \frac{dln(S)}{dS} dS + \frac{1}{2} \frac{d^2ln(S)}{dS^2}(dS)^2 \\
-  dln(S) &= \frac{1}{S} (\mu S dt + \sqrt{V} S dB) + \frac{1}{2}\frac{-1}{S^2}\sqrt{V}^2 S^2 dt \\
-  dln(S) &= \left( \mu -  \frac{1}{2} V \right) dt + \sqrt{V} dB \\
-  \int_{u}^{T}{dln(S)} &= \int_{u}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{u}^{T}{\sqrt{V_t}dB_t} \\
-  ln(S_t) - ln(S_u) &= \int_{u}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{u}^{T}{\sqrt{V_t}dB_t} \\
-  ln \left( \frac{S_t}{S_u} \right) &= \mu (t-u) - \frac{1}{2}\int_{u}^{T}{V_t dt} + \int_{u}^{T}{\sqrt{V_t} dB_t} \\
-  ln \left( \frac{S_t}{S_u} \right) &= \mu (t-u) - \frac{1}{2}\int_{u}^{T}{V_t dt} + \int_{u}^{T}{\sqrt{V_t} \left(\rho dB_{1,s} + \sqrt{1-\rho^2} dB_{1,s} \right)} \\
-  S_t &= S_u \times \exp \left( \mu (t-u) - \frac{1}{2} \int_{u}^{T}{V_t dt} + \rho \int_{u}^{T}{\sqrt{V_t}dB_{1,t}}+ \sqrt{1 - \rho^2} \int_{u}^{T}{\sqrt{V_t}dB_{2,t}} \right)
-  \end{align}
-  \end{scriptsize}
-  Equation \eqref{eq:ito} is the stochastic equivalent to the chain rule,
-  also known as Itô's formula or Itô's chain rule. The proof to this
-  theorem is based on the Taylor expansion of the function \(f(S_t, t)\)
-  {[}4,7{]}. For practical uses you should write out a second-order Taylor
-  expansion for the function to be analyzed and apply the
-  \ref{tab:box-calc} multiplication table {[}1{]}.
-  \begin{longtable}[t]{llr}
-  \caption{\label{tab:box-calc}Box calculus}\\
-  \toprule
-    & $dt$ & $dW_t$\\
-  \midrule
-  $dt$ & 0 & 0\\
-  $dW_t$ & 0 & $dt$\\
-  \bottomrule
-  \end{longtable}
-  \section{Stochastic Differential Equations
-  (SDE's)}\label{stochastic-differential-equations-sdes}
-  
-  \section{Black-Scholes Model}\label{black-scholes-model}
-  
-  The Black-Scholes (B-S) model arises from the need to price european
-  options in the derivative markets. Derivatives are financial instruments
-  traded in the market, stock exchange or over-the-counter (OTC) market,
-  whose values depend on the values of an underlying asset. {[}9--11{]}
-  \begin{itemize}
-  \item
-    A call option is a derivative that gives its bearer the right, but not
-    the obligation, to purchase a specific asset by a fixed price before
-    or on a given date.
-  \item
-    A put option is a derivative that gives its bearer the right, but not
-    the obligation, to sell a specific asset by a fixed price before or on
-    a given date.
-  \end{itemize}
-  The trading price of the option is called the option \emph{premium} and
-  the asset from which the option derives is called the \emph{underlying
-  asset}. This asset may be the interest rate, exchange rates, stock
-  exchanges rates, commodities or stocks. The fixed price in contract in
-  which the underlying asset might to be bought or sold is the
-  \emph{strick price}. The option expiration date is called the
-  \emph{maturity}. {[}10,11{]}
-  
-  There are two major different option types: the European and the
-  American. The difference between these two is that the bearer of the
-  first may exercise it only at the end of its life, at its maturity while
-  the latter can be exercised at any given time until its maturity.
-  {[}11,12{]}
-  
-  \subsection{The model}\label{the-model}
-  
-  The Black-Scholes model that provides analytical solution to the price
-  of a European call at time \(t\) can be described as
-  follows{[}3,9,11{]}:
-  \begin{align}
-  C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
-  d_{1}&={\frac {1}{\sigma {\sqrt {T-t}}}}\left[\ln \left({\frac {S_{t}}{K}}\right)+\left(r+{\frac {\sigma ^{2}}{2}}\right)(T-t)\right]\\[10pt]
-  d_{2}&=d_{1}-\sigma {\sqrt {T-t}}
-  \end{align}
-  \noindent
-  Where:
-  \begin{itemize}
-  \tightlist
-  \item
-    \(S_{t}\) is the spot price of the underlying asset at time \(t\)
-  \item
-    \(r\) is the risk free rate (generally an annual
-    rate)\footnote{Assumed to be constant. \label{teste}}
-  \item
-    \(\sigma\) is the volatility of returns of the underlying asset
-    \footnote{See footnote 1.}
-  \item
-    \(N(\cdot )\) is the cumulative distribution function of the standard
-    Gaussian distribution
-  \item
-    \(K\) is the strike price
-  \item
-    \(T-t\) is the time to maturity
-  \end{itemize}
-  \noindent
-  Also, the stock price path is a Geometric Brownian Motion and is under
-  the risk-neutral measure with the following dynamics {[}3,13{]}:
-  \begin{align}
-  dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
-  \end{align}
-  \noindent
-  Where \(dW_t\) is a Wiener process {[}11,13{]}, \(r\) is the risk free
-  rate and \(q\) is the dividend
-  yield\footnote{$r$ and $q$ are assumed to be constant.} and \(t\)
-  denotes the current point in time.
-  
-  Although the Black-Scholes is very popular and the \emph{de facto}
-  standard in the market there are implications to the B-S model
-  assumptions that affect the results and that are unrealistic. The main
-  assumption that does not hold up is the deterministic (constant)
-  volatility, that can more accurately be described as a stochastic
-  process since we observe that small moves usually are followed by small
-  moves and large moves by large moves. {[}3,9{]}
-  
-  Other assumptions that are critical to the B-S model and are not always
-  observed in practice refer to the asset's continuity through time (no
-  jumps), being allowed to perform continuous hedge without transactions
-  costs and normal (Gaussian) returns.
-  
-  Most models focus on the volatility problem because transaction costs
-  often translate to rises in volatility and fat-tails (abnormal) returns
-  can be simulated by stochastic volatility and market or volatility
-  jumps.
-  
-  \subsection{Limitations}\label{limitations}
-  
-  \section{Stochastic Volatility
-  models}\label{stochastic-volatility-models}
-  
-  Introducing stochastic volatility to models brings complexity, but
-  enables modeling some features observed in reality that are crucial like
-  the randomic market volatility effects, skewness (market returns are
-  more realistically modeled) and volatility smile. This kind of model is
-  applied highly succesfully in foreign exchange and credit markets.
-  
-  \subsection{Other models (PRESENT MODELS PREVIOUSLY
-  USED)}\label{other-models-present-models-previously-used}
-  
-  \subsection{Cox-Ingersoll-Ross model}\label{cox-ingersoll-ross-model}
-  
-  The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
-  describes the interest rate movements driven by one source of market
-  risk. The dynamics are described as follows{[}14,15{]}:
-  \begin{align}
-  \label{eq:cir}
-  dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
-  \end{align}
-  \noindent
-  Where, \(r_t\) is the short rate interest described by parameters \(k\)
-  - the speed of mean reversion, \(\theta\) - the long-run mean variance
-  and \(\sigma\) - the volatility of the variance process.
-  
-  This model has been widely used to describe the dynamics of the short
-  rate interest because it has some fundamental features like intuitive
-  parametrization, nonnegativity and pricing formulas. Besides, it takes
-  account of anticipations, risk aversion, investment alternatives and
-  preferences about consumption timing and allows for detailed predictions
-  about how changes in a wide range of underlying variables affect the
-  term structure{[}14{]}. Furthermore, this equation constitutes one of
-  the two Heston model equations with the volatility taking the short rate
-  interest place.
-  
-  \subsection{Heston Model}\label{heston-model}
-  
-  Heston model solves the deterministic volatility problems introducing
-  the following equations, which represents the dynamics of the stock
-  price and the variance processes under the risk-neutral measure
-  {[}15,16{]}:
-  \begin{align}
-  \label{eq:heston}
-  \begin{split}
-  dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
-  dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
-  \end{split}
-  \end{align}
-  The second equation, as previously described, is the CIR model equation.
-  The first equation states the asset price process. \(\mu\) is the
-  asset's rate of return, \(dW_{t,1}\) and \(dW_{t,2}\) are two correlated
-  wiener processes with correlation coefficient of \(\rho\). Because, of
-  the model specifications and what we presentend in section \ref{corr},
-  we can rewrite the first equation as in Broadie and Kaya {[}17{]}:
-  \begin{align}
-  \label{eq:heston2}
-  \begin{split}
-  dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
-  dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
-  \end{split}
-  \end{align}
   \chapter{The Heston Model
-  Implementations}\label{the-heston-model-implementations}
+  Implementation}\label{the-heston-model-implementation}
+  
+  \section{Characteristic Function}\label{characteristic-function}
+  
+  The Heston model characteristic function is firstly presented in the
+  1993 Steven Heston's paper {[}1{]} and is described below {[}2{]}:
+  \begin{align}
+  f(S_t, V_t, t) = e^{A(T-t)+B(T-t)S_t + C(T-t)V_t + i \phi S_t}
+  \end{align}
+  If we let \(\tau = T-t\), then the explicit form of the Heston
+  characteristic function is:
+  \begin{align*}
+  f(i \phi) &= e^{A(\tau)+B(\tau)S_t + C(\tau)V_t + i \phi S_t} \\
+  A(\tau) &= r i \phi \tau + \frac{k \theta}{\sigma^2} \left[ - (\rho \sigma i \phi - k - M) \tau - 2 \ln\left(\frac{1-N e^{M \tau}}{1-N}\right) \right] \\
+  B(\tau) &= 0 \\
+  C(\tau) &= \frac{(e^{M \tau}-1)(\rho \sigma i \phi - k - M)}{\sigma^2 (1-N e^{M \tau})} \\
+  \text{Where:} & \\
+  M &= \sqrt{(\rho \sigma i \phi - k)^2 + \sigma^2 (i \phi + \phi^2)} \\
+  N &= \frac{\rho \sigma i \phi - k - M}{\rho \sigma i \phi - k + M} \\
+  \end{align*}
+  This function is the driving force behind the following formula, that
+  calculates the fair valur of a European call option at time \(t\), given
+  a strike price \(K\), that expires at time \(T\) {[}2{]}:
+  \begin{align} 
+  \label{eq:cfheston}
+  \begin{split}
+  C = & \frac{1}{2} S(t) + \frac{e^{-r(T-t)}}{\pi}\int_{0}^{\infty}{\Re \left[ \frac{K^{-i \phi} f(i \phi + 1)}{i \phi} \right] d\phi} \\
+  & -Ke^{-r(T-t)}\left( \frac{1}{2} + \frac{1}{\pi} \int_{0}^{\infty}{\Re \left[ \frac{K^{-i \phi} f(i \phi)}{i \phi} \right]}  d\phi \right)
+  \end{split}
+  \end{align}
+  \section{Euler Scheme - Full
+  Truncation}\label{euler-scheme---full-truncation}
+  
+  We present here the Euler Scheme - Full Truncation algorithm {[}3{]}
+  along with some insights on how it was implemented in the R programming
+  language {[}4{]}. The Euler discretization brings approximation paths to
+  stock prices and variance processes. If we set
+  \(t_0 = 0 < t_1 < \dots < t_M = T\) as partitions of a time interval of
+  \(M\) equal segments of lenght \(\delta t\), we have the following
+  discretization for the stock price:
+  \begin{align}
+  S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
+  \end{align}
+  \noindent
+  And for the variance process:
+  \begin{align}
+  V_{t+1} = V_t + k (\theta - V_t) + \sigma \sqrt{V_t} Z_v
+  \end{align}
+  \noindent
+  \(Z_s\) being a standard normal random variable, i.e. \(N~(0,1)\), we
+  set \(Z_t\) and \(Z_v\) as two independent standard normal random
+  variables and \(Z_s\) and \(Z_v\) having correlation \(\rho\). This
+  means we can write \(Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t\)
+  
+  \section{Karl Jaeckel}\label{karl-jaeckel}
+  
+  \section{Exact Algorithm}\label{exact-algorithm}
   
   \section{Teste}\label{teste}
   \begin{Shaded}
@@ -565,191 +255,39 @@ starts here.
   \clearpage
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{euler_call <-}\StringTok{ }\NormalTok{function(X0, mu, sigma, }\DataTypeTok{Dt =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{t=}\DecValTok{0}\NormalTok{, }\DataTypeTok{T=}\DecValTok{1}\NormalTok{, }
-                         \DataTypeTok{N =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{K =} \DecValTok{0}\NormalTok{, }\DataTypeTok{plt=}\OtherTok{FALSE}\NormalTok{)\{}
-    \NormalTok{X0 =}\StringTok{ }\KeywordTok{rep}\NormalTok{(X0,N)                     }\CommentTok{# initial values}
-    \NormalTok{lines =}\StringTok{ }\KeywordTok{floor}\NormalTok{((T-t)/Dt +}\StringTok{ }\DecValTok{1}\NormalTok{)       }
-    \NormalTok{w =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{nrow=}\NormalTok{lines, }\DataTypeTok{ncol =} \NormalTok{N)  }\CommentTok{# matrix with N columns}
-    \NormalTok{n =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\NormalTok{(Dt+t), }\DataTypeTok{to=}\NormalTok{T, }\DataTypeTok{by=}\NormalTok{Dt)  }\CommentTok{# steps}
-    \NormalTok{w[}\DecValTok{1}\NormalTok{,] =}\StringTok{ }\NormalTok{X0                         }
-    \NormalTok{l2 =}\StringTok{ }\NormalTok{lines}\DecValTok{-1}                      
-    \NormalTok{bw =}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Dt)*}\KeywordTok{rnorm}\NormalTok{(N*l2,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)      }\CommentTok{# random gaussian numbers}
-    \NormalTok{bw =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(bw, }\DataTypeTok{nrow =} \NormalTok{l2, }
-                \DataTypeTok{ncol =} \NormalTok{N)              }
-    \NormalTok{for (i in }\KeywordTok{seq_along}\NormalTok{(n))\{}
-        \NormalTok{w[i}\DecValTok{+1}\NormalTok{,] =}\StringTok{ }\NormalTok{w[i,] +}\StringTok{ }\NormalTok{mu *w[i,] *Dt +}\StringTok{ }\NormalTok{sigma *}\StringTok{ }\NormalTok{w[i,] *}\StringTok{ }\NormalTok{bw[i,]}
-    \NormalTok{\}}
-    \NormalTok{Result =}\StringTok{ }\NormalTok{w[lines,] -}\StringTok{ }\NormalTok{K}
-    \NormalTok{Result[Result <=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-    \NormalTok{call =}\StringTok{ }\KeywordTok{exp}\NormalTok{(-mu*T)*}\KeywordTok{mean}\NormalTok{(Result)}
-    \NormalTok{if (plt ==}\StringTok{ }\OtherTok{TRUE}\NormalTok{)\{}
-        \KeywordTok{matplot}\NormalTok{(w, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\KeywordTok{min}\NormalTok{(w),}\KeywordTok{max}\NormalTok{(w)), }\DataTypeTok{axes=}\NormalTok{F, }
-                \DataTypeTok{lty=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{20} \NormalTok{, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{)}
-        \KeywordTok{grid}\NormalTok{()}
-        \NormalTok{if (N <=}\StringTok{ }\DecValTok{10} \NormalTok{&&}\StringTok{ }\NormalTok{lines <=}\StringTok{ }\DecValTok{6}\NormalTok{)\{}
-            \NormalTok{for (i in }\KeywordTok{seq_along}\NormalTok{(w[}\DecValTok{1}\NormalTok{,]))\{}
-                \KeywordTok{points}\NormalTok{(w[,i], }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{)}
-            \NormalTok{\}}
-        \NormalTok{\}}
-        \NormalTok{if (K !=}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
-            \KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\NormalTok{K, }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
-        \NormalTok{\}}
-        \KeywordTok{box}\NormalTok{()}
-        \KeywordTok{axis}\NormalTok{(}\DataTypeTok{side =} \DecValTok{1}\NormalTok{, }\DataTypeTok{at=} \KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,lines,lines}\DecValTok{-1}\NormalTok{), }
-             \DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\StringTok{'0'}\NormalTok{, }\KeywordTok{as.character}\NormalTok{(lines}\DecValTok{-1}\NormalTok{)))}
-        \KeywordTok{axis}\NormalTok{(}\DataTypeTok{side =} \DecValTok{2}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{)}
-    \NormalTok{\}}
-    \NormalTok{res =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'realizations'} \NormalTok{=}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(w), }
-                 \StringTok{'mean'} \NormalTok{=}\StringTok{ }\KeywordTok{mean}\NormalTok{(w[lines,]),}
-                 \StringTok{'solution'} \NormalTok{=}\StringTok{ }\NormalTok{w[lines,], }\StringTok{'eurocall'} \NormalTok{=}\StringTok{ }\NormalTok{call)}
-    \KeywordTok{return}\NormalTok{(}\KeywordTok{invisible}\NormalTok{(res))}
-  \NormalTok{\}}
+  \KeywordTok{setwd}\NormalTok{(}\StringTok{"../rnmethods"}\NormalTok{)}
+  \KeywordTok{source}\NormalTok{(}\StringTok{"../rnmethods/R/euler_heston.R"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \chapter{Results}\label{results}
+  \chapter{This chunk ensures that the thesisdown package
+  is}\label{this-chunk-ensures-that-the-thesisdown-package-is}
   
   \chapter{Conclusion}\label{conclusion}
   
-  If we don't want Conclusion to have a chapter number next to it, we can
-  add the \texttt{\{-\}} attribute.
-  
-  \textbf{More info}
-  
-  And here's some other random info: the first paragraph after a chapter
-  title or section head \emph{shouldn't be} indented, because indents are
-  to tell the reader that you're starting a new paragraph. Since that's
-  obvious after a chapter or section title, proper typesetting doesn't add
-  an indent there.
-  
-  \appendix
-  
   \chapter{The First Appendix}\label{the-first-appendix}
-  
-  This first appendix includes all of the R chunks of code that were
-  hidden throughout the document (using the \texttt{include\ =\ FALSE}
-  chunk tag) to help with readibility and/or setup.
-  
-  \textbf{In the main Rmd file}
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \CommentTok{# This chunk ensures that the thesisdown package is}
-  \CommentTok{# installed and loaded. This thesisdown package includes}
-  \CommentTok{# the template files for the thesis.}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(devtools))}
-    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(thesisdown))}
-    \NormalTok{devtools::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
-  \KeywordTok{library}\NormalTok{(thesisdown)}
-  \end{Highlighting}
-  \end{Shaded}
-  \textbf{In Chapter \ref{ref-labels}:}
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \CommentTok{# This chunk ensures that the thesisdown package is}
-  \CommentTok{# installed and loaded. This thesisdown package includes}
-  \CommentTok{# the template files for the thesis and also two functions}
-  \CommentTok{# used for labeling and referencing}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(devtools))}
-    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(dplyr))}
-      \KeywordTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(ggplot2))}
-      \KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(ggplot2))}
-      \KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(thesisdown))\{}
-    \KeywordTok{library}\NormalTok{(devtools)}
-    \NormalTok{devtools::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
-    \NormalTok{\}}
-  \KeywordTok{library}\NormalTok{(thesisdown)}
-  \NormalTok{flights <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/flights.csv"}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
-  \chapter{The Second Appendix, for
-  Fun}\label{the-second-appendix-for-fun}
-  
-  \backmatter
   
   \chapter*{References}\label{references}
   \addcontentsline{toc}{chapter}{References}
   
-  \noindent
-  
-  \setlength{\parindent}{-0.20in} \setlength{\leftskip}{0.20in}
-  \setlength{\parskip}{8pt}
-  
   \hypertarget{refs}{}
-  \hypertarget{ref-ubbo}{}
-  {[}1{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
-  2008.
-  
-  \hypertarget{ref-karatzas2012brownian}{}
-  {[}2{]} I. Karatzas, S. Shreve, Brownian motion and stochastic calculus,
-  Springer Science \& Business Media, 2012.
-  
-  \hypertarget{ref-helgadottir2016option}{}
-  {[}3{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
-  model, (2016).
-  
-  \hypertarget{ref-tong2012option}{}
-  {[}4{]} Z. Tong, Option pricing with long memory stochastic volatility
-  models, PhD thesis, Université d'Ottawa/University of Ottawa, 2012.
-  
-  \hypertarget{ref-tsay2005analysis}{}
-  {[}5{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
-  Sons, 2005.
-  
-  \hypertarget{ref-iacus2009simulation}{}
-  {[}6{]} S.M. Iacus, Simulation and inference for stochastic differential
-  equations: With r examples, Springer Science \& Business Media, 2009.
-  
-  \hypertarget{ref-evans2012introduction}{}
-  {[}7{]} L.C. Evans, An introduction to stochastic differential
-  equations, American Mathematical Soc., 2012.
-  
-  \hypertarget{ref-steele2012stochastic}{}
-  {[}8{]} J.M. Steele, Stochastic calculus and financial applications,
-  Springer Science \& Business Media, 2012.
-  
-  \hypertarget{ref-yang2013valuing}{}
-  {[}9{]} Y. Yang, Valuing a european option with the heston model,
-  (2013).
-  
-  \hypertarget{ref-salomao2011precificaccao}{}
-  {[}10{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
-  sobre os modelos de black scholes e garch, (2011).
-  
-  \hypertarget{ref-black1973pricing}{}
-  {[}11{]} F. Black, M. Scholes, The pricing of options and corporate
-  liabilities, Journal of Political Economy. 81 (1973) 637--654.
-  
-  \hypertarget{ref-merton1973theory}{}
-  {[}12{]} R.C. Merton, Theory of rational option pricing, The Bell
-  Journal of Economics and Management Science. (1973) 141--183.
-  
-  \hypertarget{ref-nmof}{}
-  {[}13{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
-  optimization in finance, Academic Press, Waltham, MA, USA, 2011.
-  \url{http://nmof.net}.
-  
-  \hypertarget{ref-cox1985theory}{}
-  {[}14{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
-  structure of interest rates, Econometrica: Journal of the Econometric
-  Society. (1985) 385--407.
-  
   \hypertarget{ref-heston1993closed}{}
-  {[}15{]} S.L. Heston, A closed-form solution for options with stochastic
+  {[}1{]} S.L. Heston, A closed-form solution for options with stochastic
   volatility with applications to bond and currency options, Review of
   Financial Studies. 6 (1993) 327--343.
   
-  \hypertarget{ref-gilli_numerical_2011}{}
-  {[}16{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
-  optimization in finance, Academic Press, 2011.
+  \hypertarget{ref-dunn2014estimating}{}
+  {[}2{]} R. Dunn, P. Hauser, T. Seibold, H. Gong, Estimating option
+  prices with heston's stochastic volatility model, (2014).
   
   \hypertarget{ref-broadie2006exact}{}
-  {[}17{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
+  {[}3{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
   and other affine jump diffusion processes, Operations Research. 54
   (2006) 217--231.
+  
+  \hypertarget{ref-rlang}{}
+  {[}4{]} R Core Team, R: A language and environment for statistical
+  computing, R Foundation for Statistical Computing, Vienna, Austria,
+  2017. \url{https://www.R-project.org/}.
 
 
   % Index?

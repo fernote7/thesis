@@ -1,8 +1,63 @@
 # The Heston Model Implementation
 
+```{r results, echo=FALSE, message=FALSE, results='asis', eval=FALSE}
+source("/home/fteixeira/Documents/thesis/r_code/results.r")
+```
+
+
 ## Characteristic Function
 
+The Heston model characteristic function is firstly presented in the 1993 Steven Heston's paper [-@heston1993closed] and is described below [@dunn2014estimating]:
+
+\begin{align}
+f(S_t, V_t, t) = e^{A(T-t)+B(T-t)S_t + C(T-t)V_t + i \phi S_t}
+\end{align}
+
+If we let $\tau = T-t$, then the explicit form of the Heston characteristic function is:
+
+\begin{align*}
+f(i \phi) &= e^{A(\tau)+B(\tau)S_t + C(\tau)V_t + i \phi S_t} \\
+A(\tau) &= r i \phi \tau + \frac{k \theta}{\sigma^2} \left[ - (\rho \sigma i \phi - k - M) \tau - 2 \ln\left(\frac{1-N e^{M \tau}}{1-N}\right) \right] \\
+B(\tau) &= 0 \\
+C(\tau) &= \frac{(e^{M \tau}-1)(\rho \sigma i \phi - k - M)}{\sigma^2 (1-N e^{M \tau})} \\
+\text{Where:} & \\
+M &= \sqrt{(\rho \sigma i \phi - k)^2 + \sigma^2 (i \phi + \phi^2)} \\
+N &= \frac{\rho \sigma i \phi - k - M}{\rho \sigma i \phi - k + M} \\
+\end{align*}
+
+This function is the driving force behind the following formula, that calculates the fair valur of a European call option at time $t$, given a strike price $K$, that expires at time $T$ [@dunn2014estimating]:
+
+\begin{align} 
+\label{eq:cfheston}
+\begin{split}
+C = & \frac{1}{2} S(t) + \frac{e^{-r(T-t)}}{\pi}\int_{0}^{\infty}{\Re \left[ \frac{K^{-i \phi} f(i \phi + 1)}{i \phi} \right] d\phi} \\
+& -Ke^{-r(T-t)}\left( \frac{1}{2} + \frac{1}{\pi} \int_{0}^{\infty}{\Re \left[ \frac{K^{-i \phi} f(i \phi)}{i \phi} \right]}  d\phi \right)
+\end{split}
+\end{align}
+
+
+
+
 ## Euler Scheme - Full Truncation
+
+We present here the Euler Scheme - Full Truncation algorithm [@broadie2006exact, dunn2014estimating, andersen2007efficient] along with some insights on how it was implemented in the R programming language [@rlang]. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of lenght $\delta t$, we have the following discretization for the stock price:
+
+\begin{align}
+S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
+\end{align}
+
+\noindent
+And for the variance process:
+
+\begin{align}
+V_{t+1} = V_t + k (\theta - V_t) + \sigma \sqrt{V_t} Z_v
+\end{align}
+
+\noindent
+$Z_s$ being a standard normal random variable, i.e. $N~(0,1)$, we set $Z_t$ and $Z_v$ as two independent standard normal random variables and $Z_s$ and $Z_v$ having correlation $\rho$. This means we can write $Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t$
+
+
+
 
 ## Karl Jaeckel
 
@@ -44,45 +99,7 @@ Call <- function(S,X,tau,r,q,sigma){
 \clearpage
 
 ```{r euler_call, eval=FALSE}
-
-euler_call <- function(X0, mu, sigma, Dt = 0.1, t=0, T=1, 
-                       N = 1000, K = 0, plt=FALSE){
-  X0 = rep(X0,N)                     # initial values
-  lines = floor((T-t)/Dt + 1)       
-  w = matrix(nrow=lines, ncol = N)  # matrix with N columns
-  n = seq(from=(Dt+t), to=T, by=Dt)  # steps
-  w[1,] = X0                         
-  l2 = lines-1                      
-  bw = sqrt(Dt)*rnorm(N*l2,0,1)      # random gaussian numbers
-  bw = matrix(bw, nrow = l2, 
-              ncol = N)              
-  for (i in seq_along(n)){
-      w[i+1,] = w[i,] + mu *w[i,] *Dt + sigma * w[i,] * bw[i,]
-  }
-  Result = w[lines,] - K
-  Result[Result <= 0] = 0
-  call = exp(-mu*T)*mean(Result)
-  if (plt == TRUE){
-      matplot(w, ylim = c(min(w),max(w)), axes=F, 
-              lty=1, pch = 20 , type="l")
-      grid()
-      if (N <= 10 && lines <= 6){
-          for (i in seq_along(w[1,])){
-              points(w[,i], col='red', pch=20)
-          }
-      }
-      if (K != 0){
-          abline(h=K, col='red', lwd = 3)
-      }
-      box()
-      axis(side = 1, at= seq(1,lines,lines-1), 
-           labels=c('0', as.character(lines-1)))
-      axis(side = 2, las = 1)
-  }
-  res = list('realizations' = as.data.frame(w), 
-               'mean' = mean(w[lines,]),
-               'solution' = w[lines,], 'eurocall' = call)
-  return(invisible(res))
-}
+setwd("../rnmethods")
+source("../rnmethods/R/euler_heston.R")
 
 ```
