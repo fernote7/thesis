@@ -88,4 +88,4 @@ on chapters.
 
 Options are derivatives that give their bearers the rights to buy or sell a specific asset in a future date and with a predetermined price. They are, by design, affected by small variations in the underlying assets' components, for example, the variance. 
 
-The Black-Scholes model, once the standard way of option pricing was replaced by stochastic process theories in modern financial analysis. 
+The Black-Scholes model, once the standard way of option pricing was replaced by stochastic process theories in modern financial analysis. These are now prevalent
