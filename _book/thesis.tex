@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{julho 29, 2017}
+\date{julho 31, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo de la Cruz}
 %If you have two advisors for some reason, you can use the following
@@ -181,6 +181,22 @@ starts here.
 
   \chapter{Introduction}\label{intro}
   
+  The french mathematician Louis Bachelier was the trail-blazer that
+  brought Brownian motion, previously restricted to the field of botanics
+  where it was firstly observed, to the financial framework. He modeled
+  the stock prices as a brownian motion with drift. Later in time, Black
+  and Scholes {[}1{]} improved on Bachelier's work designing a model based
+  on the geometric brownian motion, a more realistic approach.
+  
+  Options are derivatives that give their bearers the rights to buy or
+  sell a specific asset in a future date and with a predetermined price.
+  They are, by design, affected by small variations in the underlying
+  assets' components, for example, the variance.
+  
+  The Black-Scholes model, once the standard way of option pricing, was
+  replaced by stochastic process theories in modern financial analysis.
+  These are now prevalent in the academic and real-trading markets.
+  
   \chapter{Literature Review}\label{lt-review}
   
   This chapter presents the concepts of stochastic calculus, from the
@@ -197,7 +213,7 @@ starts here.
   integrator terms are stochastic processes. Stochastic calculus, also
   known as, Itô calculus due to the name of it's creator, the Japanese
   mathematician Kiyosi Itô in the 1940s and 1950s is used for modelling
-  financial options and in another wide variety of fields {[}1{]}. In this
+  financial options and in another wide variety of fields {[}2{]}. In this
   chapter we present the historical contexts in which the tools and models
   used arise, but our focus is introducing the concepts and notations that
   will be further used in our work.
@@ -208,7 +224,7 @@ starts here.
   in the motion of pollen particles suspended in fluid resulting from
   particle collision with atoms or molecules. It is named after Robert
   Brown, the first to have observed the movement in 1828. He noted two
-  characteristic in the pollen movement {[}1{]}:
+  characteristic in the pollen movement {[}2{]}:
   \begin{itemize}
   \item
     the path of a given particle is very irregular, having a tangent at no
@@ -219,11 +235,11 @@ starts here.
   The first quantitative works in brownian motion come from an interest in
   stock price fluctuation by Bachelier in 1900. Albert Einstein also
   leaned over the subject and in 1905 derived the transition density for
-  Brownian motion from molecular-kinetic theory of heat {[}1,2{]}.
+  Brownian motion from molecular-kinetic theory of heat {[}2,3{]}.
   
   In 1923, the Wiener process was coined in honor of Norbert Wiener
   mathematical proof of existence of the brownian motion and stating its
-  properties as follows {[}3{]}:
+  properties as follows {[}4{]}:
   \begin{itemize}
   \item
     \(W_{0}=0\)
@@ -259,7 +275,7 @@ starts here.
   Two independent brownian motions that are correlated can describe a new
   process \(Z_t\). Let \(W_1\) and \(W_2\) be these two \emph{independent}
   Brownian motions and let \(-1 \leq \rho \leq 1\) be a given number. For
-  \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}1{]}:
+  \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}2{]}:
   \begin{align}
   \label{eq:corr_brow}
   Z_t = \rho W_{1,t} + \sqrt{1-\rho^2}W_{2,t}
@@ -268,13 +284,13 @@ starts here.
   This equation is a linear combination of independent normals at each
   timestep \(t\), so \(Z_t\) is normally distributed. It is proven that
   \(Z\) is a Brownian motion and that \(Z\) and \(W_{1,t}\) are correlated
-  {[}1{]}.
+  {[}2{]}.
   
   \subsection{Arithmetic Brownian
   Motion}\label{arithmetic-brownian-motion}
   
   The arithmetic brownian motion is defined in literature as being a
-  random process (S) defined as follows {[}1{]}:
+  random process (S) defined as follows {[}2{]}:
   \begin{align}
   dS_t = \mu dt + \sigma dB_t
   \end{align}
@@ -294,7 +310,7 @@ starts here.
   
   A stochastic process \(S_t\) is a geometric brownian motion if its
   solution is described by the solution of the following stochastic
-  differential equation {[}4,5{]}.
+  differential equation {[}5,6{]}.
   \begin{align}
   dS_t = \mu S_t dt + \sigma S_t dW_t
   \end{align}
@@ -304,14 +320,14 @@ starts here.
   
   This process is used quite often in finance to model the dynamics of
   some assets becaus of its properties. It has independent multiplicative
-  increments and its solution is presented below{[}6{]}:
+  increments and its solution is presented below{[}7{]}:
   \begin{align}
   S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
   \end{align}
   \subsection{Itô's Calculus}\label{itos-calculus}
   
   Let \(X_{t}\) be a real-valued stochastic process that satisfies
-  {[}4,7,8{]}:
+  {[}5,8,9{]}:
   \begin{align}
   S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
   \end{align}
@@ -369,9 +385,9 @@ starts here.
   Equation \eqref{eq:ito} is the stochastic equivalent to the chain rule,
   also known as Itô's formula or Itô's chain rule. The proof to this
   theorem is based on the Taylor expansion of the function \(f(S_t, t)\)
-  {[}4,7{]}. For practical uses you should write out a second-order Taylor
+  {[}5,8{]}. For practical uses you should write out a second-order Taylor
   expansion for the function to be analyzed and apply the
-  \ref{tab:box-calc} multiplication table {[}1{]}.
+  \ref{tab:box-calc} multiplication table {[}2{]}.
   \begin{longtable}[t]{llr}
   \caption{\label{tab:box-calc}Box calculus}\\
   \toprule
@@ -389,7 +405,7 @@ starts here.
   The Black-Scholes (B-S) model arises from the need to price european
   options in the derivative markets. Derivatives are financial instruments
   traded in the market, stock exchange or over-the-counter (OTC) market,
-  whose values depend on the values of an underlying asset. {[}9--11{]}
+  whose values depend on the values of an underlying asset. {[}1,10,11{]}
   \begin{itemize}
   \item
     A call option is a derivative that gives its bearer the right, but not
@@ -406,19 +422,19 @@ starts here.
   exchanges rates, commodities or stocks. The fixed price in contract in
   which the underlying asset might to be bought or sold is the
   \emph{strick price}. The option expiration date is called the
-  \emph{maturity}. {[}10,11{]}
+  \emph{maturity}. {[}1,11{]}
   
   There are two major different option types: the European and the
   American. The difference between these two is that the bearer of the
   first may exercise it only at the end of its life, at its maturity while
   the latter can be exercised at any given time until its maturity.
-  {[}11,12{]}
+  {[}1,12{]}
   
   \subsection{The model}\label{the-model}
   
   The Black-Scholes model that provides analytical solution to the price
   of a European call at time \(t\) can be described as
-  follows{[}3,9,11{]}:
+  follows{[}1,4,10{]}:
   \begin{align}
   C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
   d_{1}&={\frac {1}{\sigma {\sqrt {T-t}}}}\left[\ln \left({\frac {S_{t}}{K}}\right)+\left(r+{\frac {\sigma ^{2}}{2}}\right)(T-t)\right]\\[10pt]
@@ -446,12 +462,12 @@ starts here.
   \end{itemize}
   \noindent
   Also, the stock price path is a Geometric Brownian Motion and is under
-  the risk-neutral measure with the following dynamics {[}3,13{]}:
+  the risk-neutral measure with the following dynamics {[}4,13{]}:
   \begin{align}
   dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
   \end{align}
   \noindent
-  Where \(dW_t\) is a Wiener process {[}11,13{]}, \(r\) is the risk free
+  Where \(dW_t\) is a Wiener process {[}1,13{]}, \(r\) is the risk free
   rate and \(q\) is the dividend
   yield\footnote{$r$ and $q$ are assumed to be constant.} and \(t\)
   denotes the current point in time.
@@ -462,7 +478,7 @@ starts here.
   assumption that does not hold up is the deterministic (constant)
   volatility, that can more accurately be described as a stochastic
   process since we observe that small moves usually are followed by small
-  moves and large moves by large moves. {[}3,9{]}
+  moves and large moves by large moves. {[}4,10{]}
   
   Other assumptions that are critical to the B-S model and are not always
   observed in practice refer to the asset's continuity through time (no
@@ -606,61 +622,61 @@ starts here.
   Where we use the notation \(V_{t}^{+} = \max(V_{t}, 0)\).
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{hestoneuler <-}\StringTok{ }\NormalTok{function(S, X, r, v, theta, rho, k, sigma, }\DataTypeTok{t =} \DecValTok{0}\NormalTok{, }
+  \NormalTok{hestoneuler <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(S, X, r, v, theta, rho, k, sigma, }\DataTypeTok{t =} \DecValTok{0}\NormalTok{, }
                           \DataTypeTok{dt =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{tau =} \DecValTok{1}\NormalTok{, N, }\DataTypeTok{sensibility =} \DecValTok{15}\NormalTok{)\{}
   
       \KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
   
-      \NormalTok{if(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(tau-t)/}\DecValTok{1000}\NormalTok{\}}
+      \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(tau}\OperatorTok{-}\NormalTok{t)}\OperatorTok{/}\DecValTok{1000}\NormalTok{\}}
   
-      \NormalTok{ST <-}\StringTok{ }\OtherTok{NULL}
-      \NormalTok{aux <-}\StringTok{ }\OtherTok{NULL}
-      \NormalTok{sqrt_dt <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt)}
+  \NormalTok{    ST <-}\StringTok{ }\OtherTok{NULL}
+  \NormalTok{    aux <-}\StringTok{ }\OtherTok{NULL}
+  \NormalTok{    sqrt_dt <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt)}
   
-      \NormalTok{for(i in }\KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
           \CommentTok{# browser()}
-          \NormalTok{Zv <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
-          \NormalTok{Zt <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
-          \NormalTok{Zs <-}\StringTok{ }\NormalTok{rho *}\StringTok{ }\NormalTok{Zv +}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1} \NormalTok{-}\StringTok{ }\NormalTok{(rho^}\DecValTok{2}\NormalTok{)) *}\StringTok{ }\NormalTok{Zt)}
+  \NormalTok{        Zv <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
+  \NormalTok{        Zt <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
+  \NormalTok{        Zs <-}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{Zv }\OperatorTok{+}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{(rho}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{Zt)}
   
           \CommentTok{# v[v <= 0] = 0}
   
-          \NormalTok{aux <-}\StringTok{ }\NormalTok{v}
-          \NormalTok{aux[v <}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-          \NormalTok{sqrt_aux <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(aux)}
-          \NormalTok{S <-}\StringTok{ }\NormalTok{S *}\StringTok{ }\NormalTok{(}\DecValTok{1} \NormalTok{+}\StringTok{ }\NormalTok{r *}\StringTok{ }\NormalTok{dt +}\StringTok{ }\NormalTok{sqrt_aux *}\StringTok{ }\NormalTok{Zs *}\StringTok{ }\NormalTok{sqrt_dt)}
-          \NormalTok{S[S <=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
+  \NormalTok{        aux <-}\StringTok{ }\NormalTok{v}
+  \NormalTok{        aux[v }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+  \NormalTok{        sqrt_aux <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(aux)}
+  \NormalTok{        S <-}\StringTok{ }\NormalTok{S }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{r }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{+}\StringTok{ }\NormalTok{sqrt_aux }\OperatorTok{*}\StringTok{ }\NormalTok{Zs }\OperatorTok{*}\StringTok{ }\NormalTok{sqrt_dt)}
+  \NormalTok{        S[S }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
   
-          \NormalTok{v <-}\StringTok{ }\NormalTok{v +}\StringTok{ }\NormalTok{k *}\StringTok{ }\NormalTok{dt *}\StringTok{ }\NormalTok{(theta -}\StringTok{ }\NormalTok{aux) +}\StringTok{ }
-  \StringTok{          }\NormalTok{sigma *}\StringTok{ }\NormalTok{sqrt_aux *}\StringTok{ }\NormalTok{Zv *}\StringTok{ }\NormalTok{sqrt_dt}
+  \NormalTok{        v <-}\StringTok{ }\NormalTok{v }\OperatorTok{+}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{*}\StringTok{ }\NormalTok{(theta }\OperatorTok{-}\StringTok{ }\NormalTok{aux) }\OperatorTok{+}\StringTok{ }
+  \StringTok{          }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }\NormalTok{sqrt_aux }\OperatorTok{*}\StringTok{ }\NormalTok{Zv }\OperatorTok{*}\StringTok{ }\NormalTok{sqrt_dt}
   
-          \NormalTok{ST <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(ST,S)}
-      \NormalTok{\}}
+  \NormalTok{        ST <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(ST,S)}
+  \NormalTok{    \}}
   
       \KeywordTok{rm}\NormalTok{(aux, v, Zv, Zt, Zs, S)}
   
-      \NormalTok{ST <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(ST, }\DataTypeTok{ncol=}\NormalTok{N)}
+  \NormalTok{    ST <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(ST, }\DataTypeTok{ncol=}\NormalTok{N)}
       \CommentTok{# matplot(graf, type = 'l')}
       \CommentTok{# abline(h=X, lwd=2, col='red')}
-      \NormalTok{media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+  \NormalTok{    media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
   
-      \NormalTok{for (j in (X-sensibility):(X+sensibility))\{}
+      \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ (X}\OperatorTok{-}\NormalTok{sensibility)}\OperatorTok{:}\NormalTok{(X}\OperatorTok{+}\NormalTok{sensibility))\{}
   
-          \NormalTok{Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] -}\StringTok{ }\NormalTok{j}
-          \NormalTok{Result[Result <=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-          \NormalTok{media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
+  \NormalTok{        Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] }\OperatorTok{-}\StringTok{ }\NormalTok{j}
+  \NormalTok{        Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+  \NormalTok{        media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
   
-      \NormalTok{\}}
+  \NormalTok{    \}}
   
-      \NormalTok{media <-}\StringTok{ }\NormalTok{media *}\StringTok{ }\KeywordTok{exp}\NormalTok{(-r*tau)}
+  \NormalTok{    media <-}\StringTok{ }\NormalTok{media }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}
       \CommentTok{# plot(media, ylab = "Call price", xlab = "Strike price")}
   
-      \NormalTok{Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] -}\StringTok{ }\NormalTok{X}
-      \NormalTok{Result[Result <=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-      \NormalTok{call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(-r*tau)*Result)}
+  \NormalTok{    Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] }\OperatorTok{-}\StringTok{ }\NormalTok{X}
+  \NormalTok{    Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
+  \NormalTok{    call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}\OperatorTok{*}\NormalTok{Result)}
   
-      \NormalTok{lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'} \NormalTok{=}\StringTok{ }\NormalTok{call, }\StringTok{'Result'} \NormalTok{=}\StringTok{ }\NormalTok{Result, }
-                   \StringTok{'Spot'} \NormalTok{=}\StringTok{ }\NormalTok{ST, }\StringTok{'sensib'} \NormalTok{=}\StringTok{ }\NormalTok{media)}
+  \NormalTok{    lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'}\NormalTok{ =}\StringTok{ }\NormalTok{call, }\StringTok{'Result'}\NormalTok{ =}\StringTok{ }\NormalTok{Result, }
+                   \StringTok{'Spot'}\NormalTok{ =}\StringTok{ }\NormalTok{ST, }\StringTok{'sensib'}\NormalTok{ =}\StringTok{ }\NormalTok{media)}
       \KeywordTok{return}\NormalTok{(lista)}
   \NormalTok{\}}
   \end{Highlighting}
@@ -668,79 +684,79 @@ starts here.
   \section{Karl-Jackel}\label{karl-jackel}
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{Hestoncallkj <-}\StringTok{ }\NormalTok{function(S, X, r, q, v, theta, rho, k, sigma, }
+  \NormalTok{Hestoncallkj <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(S, X, r, q, v, theta, rho, k, sigma, }
                            \DataTypeTok{t =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dt =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{tau =} \DecValTok{1}\NormalTok{, N, }
                            \DataTypeTok{sensibility =} \DecValTok{15}\NormalTok{)\{}
   
-      \NormalTok{if(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(T-t)/}\DecValTok{1000}\NormalTok{\}}
+      \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(T}\OperatorTok{-}\NormalTok{t)}\OperatorTok{/}\DecValTok{1000}\NormalTok{\}}
   
-      \NormalTok{v <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(v,N)}
-      \NormalTok{theta<-}\StringTok{ }\KeywordTok{rep}\NormalTok{(theta,N)}
-      \NormalTok{graf <-}\StringTok{ }\OtherTok{NULL}
-      \NormalTok{S <-}\StringTok{ }\KeywordTok{log}\NormalTok{(S)}
+  \NormalTok{    v <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(v,N)}
+  \NormalTok{    theta<-}\StringTok{ }\KeywordTok{rep}\NormalTok{(theta,N)}
+  \NormalTok{    graf <-}\StringTok{ }\OtherTok{NULL}
+  \NormalTok{    S <-}\StringTok{ }\KeywordTok{log}\NormalTok{(S)}
   
-      \NormalTok{for(i in }\KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
        \CommentTok{# browser()}
-      \NormalTok{Zv <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
-      \NormalTok{Zt <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
-      \NormalTok{Zs <-}\StringTok{ }\NormalTok{rho *}\StringTok{ }\NormalTok{Zv +}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1} \NormalTok{-}\StringTok{ }\NormalTok{rho^}\DecValTok{2}\NormalTok{) *}\StringTok{ }\NormalTok{Zt}
+  \NormalTok{    Zv <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
+  \NormalTok{    Zt <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
+  \NormalTok{    Zs <-}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{Zv }\OperatorTok{+}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{rho}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{Zt}
   
-      \NormalTok{vt <-}\StringTok{ }\NormalTok{(v +}\StringTok{ }\NormalTok{k *}\StringTok{ }\NormalTok{theta *}\StringTok{ }\NormalTok{dt +}\StringTok{ }\NormalTok{sigma *}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(v) *}\StringTok{ }\NormalTok{Zv *}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt) +}
-  \StringTok{              }\NormalTok{(}\DecValTok{1}\NormalTok{/}\DecValTok{4}\NormalTok{) *}\StringTok{ }\NormalTok{sigma^}\DecValTok{2} \NormalTok{*}\StringTok{ }\NormalTok{dt *}\StringTok{ }\NormalTok{((Zv)^}\DecValTok{2} \NormalTok{-}\StringTok{ }\DecValTok{1}\NormalTok{))/(}\DecValTok{1} \NormalTok{+}\StringTok{ }\NormalTok{k *}\StringTok{ }\NormalTok{dt)}
+  \NormalTok{    vt <-}\StringTok{ }\NormalTok{(v }\OperatorTok{+}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{theta }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{+}\StringTok{ }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(v) }\OperatorTok{*}\StringTok{ }\NormalTok{Zv }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt) }\OperatorTok{+}
+  \StringTok{              }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{sigma}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{*}\StringTok{ }\NormalTok{((Zv)}\OperatorTok{^}\DecValTok{2} \OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{))}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{dt)}
   
       \CommentTok{# print(vt)}
   
       \CommentTok{# if(!length(vt[vt <= 0]) == 0 & length(vt[vt <= 0]) >= 1)\{}
       \CommentTok{#     # browser()}
-      \NormalTok{vt[vt <=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\NormalTok{v[vt <=}\StringTok{ }\DecValTok{0}\NormalTok{] +}\StringTok{ }\NormalTok{k *}\StringTok{ }\NormalTok{dt *}\StringTok{ }\NormalTok{(theta[vt <=}\StringTok{ }\DecValTok{0}\NormalTok{] -}\StringTok{ }
-  \StringTok{                    }\KeywordTok{pmax}\NormalTok{(v[vt <=}\StringTok{ }\DecValTok{0}\NormalTok{],}\DecValTok{0}\NormalTok{)) +}\StringTok{ }\NormalTok{sigma *}\StringTok{ }
-  \StringTok{                    }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v[vt <=}\StringTok{ }\DecValTok{0}\NormalTok{],}\DecValTok{0}\NormalTok{)) *}\StringTok{ }\NormalTok{Zv[vt <=}\StringTok{ }\DecValTok{0}\NormalTok{] *}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt)}
-      \NormalTok{v <-}\StringTok{ }\NormalTok{vt}
-      \NormalTok{v[v<=}\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+  \NormalTok{    vt[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\NormalTok{v[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{*}\StringTok{ }\NormalTok{(theta[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] }\OperatorTok{-}\StringTok{ }
+  \StringTok{                    }\KeywordTok{pmax}\NormalTok{(v[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{],}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }
+  \StringTok{                    }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{],}\DecValTok{0}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{Zv[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt)}
+  \NormalTok{    v <-}\StringTok{ }\NormalTok{vt}
+  \NormalTok{    v[v}\OperatorTok{<=}\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
   
       \CommentTok{# \}}
   
-      \NormalTok{S <-}\StringTok{ }\NormalTok{S +}\StringTok{ }\NormalTok{(r -}\StringTok{ }\NormalTok{(v+vt)/}\DecValTok{4}\NormalTok{) *}\StringTok{ }\NormalTok{dt +}\StringTok{ }\NormalTok{rho *}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v,}\DecValTok{0}\NormalTok{)) *}\StringTok{ }
-  \StringTok{          }\NormalTok{Zv *}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt) +}
-  \StringTok{          }\NormalTok{(}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{) *}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v,}\DecValTok{0}\NormalTok{)) +}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(vt,}\DecValTok{0}\NormalTok{))) *}\StringTok{ }
-  \StringTok{          }\NormalTok{(Zs +}\StringTok{ }\NormalTok{rho *}\StringTok{ }\NormalTok{Zv) *}\StringTok{ }
-  \StringTok{          }\KeywordTok{sqrt}\NormalTok{(dt) +}
-  \StringTok{          }\NormalTok{((rho *}\StringTok{ }\NormalTok{sigma *}\StringTok{ }\NormalTok{dt)/}\DecValTok{2}\NormalTok{) *}\StringTok{ }\NormalTok{((Zv)^}\DecValTok{2} \NormalTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
+  \NormalTok{    S <-}\StringTok{ }\NormalTok{S }\OperatorTok{+}\StringTok{ }\NormalTok{(r }\OperatorTok{-}\StringTok{ }\NormalTok{(v}\OperatorTok{+}\NormalTok{vt)}\OperatorTok{/}\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{+}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v,}\DecValTok{0}\NormalTok{)) }\OperatorTok{*}\StringTok{ }
+  \StringTok{          }\NormalTok{Zv }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt) }\OperatorTok{+}
+  \StringTok{          }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(vt,}\DecValTok{0}\NormalTok{))) }\OperatorTok{*}\StringTok{ }
+  \StringTok{          }\NormalTok{(Zs }\OperatorTok{+}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{Zv) }\OperatorTok{*}\StringTok{ }
+  \StringTok{          }\KeywordTok{sqrt}\NormalTok{(dt) }\OperatorTok{+}
+  \StringTok{          }\NormalTok{((rho }\OperatorTok{*}\StringTok{ }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }\NormalTok{dt)}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{((Zv)}\OperatorTok{^}\DecValTok{2} \OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
   
-      \NormalTok{S[S <=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-      \NormalTok{graf <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(graf,S)}
+  \NormalTok{    S[S }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
+  \NormalTok{    graf <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(graf,S)}
   
-      \NormalTok{\}}
+  \NormalTok{    \}}
   
        \CommentTok{# browser()}
   
-      \NormalTok{graf <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(graf, }\DataTypeTok{ncol=}\NormalTok{N)}
-      \NormalTok{ST <-}\StringTok{ }\NormalTok{graf}
+  \NormalTok{    graf <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(graf, }\DataTypeTok{ncol=}\NormalTok{N)}
+  \NormalTok{    ST <-}\StringTok{ }\NormalTok{graf}
       \CommentTok{# matplot(graf, type = 'l')}
       \CommentTok{# abline(h=log(X), lwd=2, col='red')}
   
-      \NormalTok{media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+  \NormalTok{    media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
   
       \CommentTok{# browser()}
   
-      \NormalTok{for (j in (X-sensibility):(X+sensibility))\{}
+      \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ (X}\OperatorTok{-}\NormalTok{sensibility)}\OperatorTok{:}\NormalTok{(X}\OperatorTok{+}\NormalTok{sensibility))\{}
   
-          \NormalTok{Result <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(ST[}\KeywordTok{nrow}\NormalTok{(ST),]) -}\StringTok{ }\NormalTok{j}
-          \NormalTok{Result[Result <=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-          \NormalTok{media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
+  \NormalTok{        Result <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(ST[}\KeywordTok{nrow}\NormalTok{(ST),]) }\OperatorTok{-}\StringTok{ }\NormalTok{j}
+  \NormalTok{        Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+  \NormalTok{        media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
   
-      \NormalTok{\}}
+  \NormalTok{    \}}
   
-      \NormalTok{media <-}\StringTok{ }\NormalTok{media *}\StringTok{ }\KeywordTok{exp}\NormalTok{(-r*tau)}
+  \NormalTok{    media <-}\StringTok{ }\NormalTok{media }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}
   
       \CommentTok{# browser()}
   
-      \NormalTok{Result <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(ST[}\KeywordTok{nrow}\NormalTok{(ST),]) -}\StringTok{ }\NormalTok{X}
-      \NormalTok{Result[Result <=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-      \NormalTok{call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(-r*tau)*Result)}
+  \NormalTok{    Result <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(ST[}\KeywordTok{nrow}\NormalTok{(ST),]) }\OperatorTok{-}\StringTok{ }\NormalTok{X}
+  \NormalTok{    Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
+  \NormalTok{    call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}\OperatorTok{*}\NormalTok{Result)}
   
-      \NormalTok{lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'} \NormalTok{=}\StringTok{ }\NormalTok{call, }\StringTok{'Result'} \NormalTok{=}\StringTok{ }\NormalTok{Result, }
-                   \StringTok{'Spot'} \NormalTok{=}\StringTok{ }\NormalTok{graf, }\StringTok{'sensib'} \NormalTok{=}\StringTok{ }\NormalTok{media)}
+  \NormalTok{    lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'}\NormalTok{ =}\StringTok{ }\NormalTok{call, }\StringTok{'Result'}\NormalTok{ =}\StringTok{ }\NormalTok{Result, }
+                   \StringTok{'Spot'}\NormalTok{ =}\StringTok{ }\NormalTok{graf, }\StringTok{'sensib'}\NormalTok{ =}\StringTok{ }\NormalTok{media)}
       \KeywordTok{return}\NormalTok{(lista)}
   
   \NormalTok{\}}
@@ -749,60 +765,60 @@ starts here.
   \section{Exact Algorithm}\label{exact-algorithm}
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{hestonea <-}\StringTok{ }\NormalTok{function(S, X, r, v, theta, rho, k, sigma, }\DataTypeTok{t =} \DecValTok{0}\NormalTok{, }
+  \NormalTok{hestonea <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(S, X, r, v, theta, rho, k, sigma, }\DataTypeTok{t =} \DecValTok{0}\NormalTok{, }
                        \DataTypeTok{dt =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{tau =} \DecValTok{1}\NormalTok{, N, }\DataTypeTok{sensibility =} \DecValTok{15}\NormalTok{)\{}
   
-      \NormalTok{if(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(tau-t)/}\DecValTok{1000}\NormalTok{\}}
+      \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(tau}\OperatorTok{-}\NormalTok{t)}\OperatorTok{/}\DecValTok{1000}\NormalTok{\}}
   
-      \NormalTok{ST <-}\StringTok{ }\OtherTok{NULL}
+  \NormalTok{    ST <-}\StringTok{ }\OtherTok{NULL}
   
-      \NormalTok{d <-}\StringTok{ }\NormalTok{(}\DecValTok{4} \NormalTok{*}\StringTok{ }\NormalTok{k *}\StringTok{ }\NormalTok{theta)/(sigma)^}\DecValTok{2}
-      \NormalTok{c0 <-}\StringTok{ }\NormalTok{(sigma^}\DecValTok{2} \NormalTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \NormalTok{-}\StringTok{ }\KeywordTok{exp}\NormalTok{(-k*dt)))/(}\DecValTok{4}\NormalTok{*k)}
+  \NormalTok{    d <-}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{*}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{theta)}\OperatorTok{/}\NormalTok{(sigma)}\OperatorTok{^}\DecValTok{2}
+  \NormalTok{    c0 <-}\StringTok{ }\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{k}\OperatorTok{*}\NormalTok{dt)))}\OperatorTok{/}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\NormalTok{k)}
   
       \CommentTok{# browser()}
   
-      \NormalTok{for(i in }\KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
   
           \CommentTok{# sampling V}
-          \NormalTok{lambda <-}\StringTok{ }\NormalTok{(}\DecValTok{4}\NormalTok{*k*}\KeywordTok{exp}\NormalTok{(-k*dt)*v)/(sigma^}\DecValTok{2} \NormalTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1}\NormalTok{-}\KeywordTok{exp}\NormalTok{(-k*dt)))}
-          \NormalTok{vt <-}\StringTok{ }\NormalTok{c0 *}\StringTok{ }\KeywordTok{rchisq}\NormalTok{(}\DataTypeTok{n =} \NormalTok{N, }\DataTypeTok{df =} \NormalTok{d, }\DataTypeTok{ncp =} \NormalTok{lambda)}
+  \NormalTok{        lambda <-}\StringTok{ }\NormalTok{(}\DecValTok{4}\OperatorTok{*}\NormalTok{k}\OperatorTok{*}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{k}\OperatorTok{*}\NormalTok{dt)}\OperatorTok{*}\NormalTok{v)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{-}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{k}\OperatorTok{*}\NormalTok{dt)))}
+  \NormalTok{        vt <-}\StringTok{ }\NormalTok{c0 }\OperatorTok{*}\StringTok{ }\KeywordTok{rchisq}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ N, }\DataTypeTok{df =}\NormalTok{ d, }\DataTypeTok{ncp =}\NormalTok{ lambda)}
   
           \CommentTok{# Sampling int\{V\}}
-          \NormalTok{int_v <-}\StringTok{ }\NormalTok{dt *}\StringTok{ }\NormalTok{((}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{) *}\StringTok{ }\NormalTok{v +}\StringTok{ }\NormalTok{(}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{) *}\StringTok{ }\NormalTok{vt)}
+  \NormalTok{        int_v <-}\StringTok{ }\NormalTok{dt }\OperatorTok{*}\StringTok{ }\NormalTok{((}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{v }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{vt)}
   
           \CommentTok{# Sampling int\{v\}dw}
-          \NormalTok{int_vdw <-}\StringTok{ }\NormalTok{(}\DecValTok{1}\NormalTok{/sigma) *}\StringTok{ }\NormalTok{(vt -}\StringTok{ }\NormalTok{v -}\StringTok{ }\NormalTok{k *}\StringTok{ }\NormalTok{theta *}\StringTok{ }\NormalTok{dt +}\StringTok{ }\NormalTok{k  *}\StringTok{ }\NormalTok{int_v)}
+  \NormalTok{        int_vdw <-}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{sigma) }\OperatorTok{*}\StringTok{ }\NormalTok{(vt }\OperatorTok{-}\StringTok{ }\NormalTok{v }\OperatorTok{-}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{theta }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{+}\StringTok{ }\NormalTok{k  }\OperatorTok{*}\StringTok{ }\NormalTok{int_v)}
   
           \CommentTok{# Sampling S}
-          \NormalTok{m <-}\StringTok{ }\KeywordTok{log}\NormalTok{(S) +}\StringTok{ }\NormalTok{(r *}\StringTok{ }\NormalTok{dt -}\StringTok{ }\NormalTok{(}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{) *}\StringTok{ }\NormalTok{int_v +}\StringTok{ }\NormalTok{rho *}\StringTok{ }\NormalTok{int_vdw)}
-          \NormalTok{std <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{((}\DecValTok{1} \NormalTok{-}\StringTok{ }\NormalTok{rho^}\DecValTok{2}\NormalTok{)) *}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(int_v)}
-          \NormalTok{S <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(m +}\StringTok{ }\NormalTok{std *}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N))}
-          \NormalTok{v <-}\StringTok{ }\NormalTok{vt}
-          \NormalTok{ST <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(ST,S)}
-      \NormalTok{\}}
+  \NormalTok{        m <-}\StringTok{ }\KeywordTok{log}\NormalTok{(S) }\OperatorTok{+}\StringTok{ }\NormalTok{(r }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{-}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{int_v }\OperatorTok{+}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{int_vdw)}
+  \NormalTok{        std <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{((}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{rho}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(int_v)}
+  \NormalTok{        S <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(m }\OperatorTok{+}\StringTok{ }\NormalTok{std }\OperatorTok{*}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N))}
+  \NormalTok{        v <-}\StringTok{ }\NormalTok{vt}
+  \NormalTok{        ST <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(ST,S)}
+  \NormalTok{    \}}
   
-      \NormalTok{ST <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(ST, }\DataTypeTok{ncol=}\NormalTok{N)}
+  \NormalTok{    ST <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(ST, }\DataTypeTok{ncol=}\NormalTok{N)}
       \CommentTok{# matplot(graf, type = 'l')}
       \CommentTok{# abline(h=X, lwd=2, col='red')}
-      \NormalTok{media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+  \NormalTok{    media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
   
-      \NormalTok{for (j in (X-sensibility):(X+sensibility))\{}
+      \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ (X}\OperatorTok{-}\NormalTok{sensibility)}\OperatorTok{:}\NormalTok{(X}\OperatorTok{+}\NormalTok{sensibility))\{}
   
-          \NormalTok{Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] -}\StringTok{ }\NormalTok{j}
-          \NormalTok{Result[Result <=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-          \NormalTok{media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
+  \NormalTok{        Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] }\OperatorTok{-}\StringTok{ }\NormalTok{j}
+  \NormalTok{        Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+  \NormalTok{        media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
   
-      \NormalTok{\}}
+  \NormalTok{    \}}
   
-      \NormalTok{media <-}\StringTok{ }\NormalTok{media *}\StringTok{ }\KeywordTok{exp}\NormalTok{(-r*tau)}
+  \NormalTok{    media <-}\StringTok{ }\NormalTok{media }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}
       \CommentTok{# plot(media, ylab = "Call price", xlab = "Strike price")}
   
-      \NormalTok{Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] -}\StringTok{ }\NormalTok{X}
-      \NormalTok{Result[Result <=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-      \NormalTok{call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(-r*tau)*Result)}
+  \NormalTok{    Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] }\OperatorTok{-}\StringTok{ }\NormalTok{X}
+  \NormalTok{    Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
+  \NormalTok{    call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}\OperatorTok{*}\NormalTok{Result)}
   
-      \NormalTok{lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'} \NormalTok{=}\StringTok{ }\NormalTok{call, }\StringTok{'Result'} \NormalTok{=}\StringTok{ }\NormalTok{Result, }
-                   \StringTok{'Spot'} \NormalTok{=}\StringTok{ }\NormalTok{ST, }\StringTok{'sensib'} \NormalTok{=}\StringTok{ }\NormalTok{media)}
+  \NormalTok{    lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'}\NormalTok{ =}\StringTok{ }\NormalTok{call, }\StringTok{'Result'}\NormalTok{ =}\StringTok{ }\NormalTok{Result, }
+                   \StringTok{'Spot'}\NormalTok{ =}\StringTok{ }\NormalTok{ST, }\StringTok{'sensib'}\NormalTok{ =}\StringTok{ }\NormalTok{media)}
       \KeywordTok{return}\NormalTok{(lista)}
   \NormalTok{\}}
   \end{Highlighting}
@@ -844,10 +860,10 @@ starts here.
   \CommentTok{# This chunk ensures that the thesisdown package is}
   \CommentTok{# installed and loaded. This thesisdown package includes}
   \CommentTok{# the template files for the thesis.}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(devtools))}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(devtools))}
     \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(thesisdown))}
-    \NormalTok{devtools::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(thesisdown))}
+  \NormalTok{  devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
   \KeywordTok{library}\NormalTok{(thesisdown)}
   \end{Highlighting}
   \end{Shaded}
@@ -858,18 +874,18 @@ starts here.
   \CommentTok{# installed and loaded. This thesisdown package includes}
   \CommentTok{# the template files for the thesis and also two functions}
   \CommentTok{# used for labeling and referencing}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(devtools))}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(devtools))}
     \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(dplyr))}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(dplyr))}
       \KeywordTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(ggplot2))}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(ggplot2))}
       \KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(ggplot2))}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(ggplot2))}
       \KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \NormalTok{if(!}\KeywordTok{require}\NormalTok{(thesisdown))\{}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(thesisdown))\{}
     \KeywordTok{library}\NormalTok{(devtools)}
-    \NormalTok{devtools::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
-    \NormalTok{\}}
+  \NormalTok{  devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
+  \NormalTok{  \}}
   \KeywordTok{library}\NormalTok{(thesisdown)}
   \NormalTok{flights <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/flights.csv"}\NormalTok{)}
   \end{Highlighting}
@@ -888,49 +904,49 @@ starts here.
   \setlength{\parskip}{8pt}
   
   \hypertarget{refs}{}
+  \hypertarget{ref-black1973pricing}{}
+  {[}1{]} F. Black, M. Scholes, The pricing of options and corporate
+  liabilities, Journal of Political Economy. 81 (1973) 637--654.
+  
   \hypertarget{ref-ubbo}{}
-  {[}1{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
+  {[}2{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
   2008.
   
   \hypertarget{ref-karatzas2012brownian}{}
-  {[}2{]} I. Karatzas, S. Shreve, Brownian motion and stochastic calculus,
+  {[}3{]} I. Karatzas, S. Shreve, Brownian motion and stochastic calculus,
   Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-helgadottir2016option}{}
-  {[}3{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
+  {[}4{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
   model, (2016).
   
   \hypertarget{ref-tong2012option}{}
-  {[}4{]} Z. Tong, Option pricing with long memory stochastic volatility
+  {[}5{]} Z. Tong, Option pricing with long memory stochastic volatility
   models, PhD thesis, Université d'Ottawa/University of Ottawa, 2012.
   
   \hypertarget{ref-tsay2005analysis}{}
-  {[}5{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
+  {[}6{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
   Sons, 2005.
   
   \hypertarget{ref-iacus2009simulation}{}
-  {[}6{]} S.M. Iacus, Simulation and inference for stochastic differential
+  {[}7{]} S.M. Iacus, Simulation and inference for stochastic differential
   equations: With r examples, Springer Science \& Business Media, 2009.
   
   \hypertarget{ref-evans2012introduction}{}
-  {[}7{]} L.C. Evans, An introduction to stochastic differential
+  {[}8{]} L.C. Evans, An introduction to stochastic differential
   equations, American Mathematical Soc., 2012.
   
   \hypertarget{ref-steele2012stochastic}{}
-  {[}8{]} J.M. Steele, Stochastic calculus and financial applications,
+  {[}9{]} J.M. Steele, Stochastic calculus and financial applications,
   Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-yang2013valuing}{}
-  {[}9{]} Y. Yang, Valuing a european option with the heston model,
+  {[}10{]} Y. Yang, Valuing a european option with the heston model,
   (2013).
   
   \hypertarget{ref-salomao2011precificaccao}{}
-  {[}10{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
+  {[}11{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
   sobre os modelos de black scholes e garch, (2011).
-  
-  \hypertarget{ref-black1973pricing}{}
-  {[}11{]} F. Black, M. Scholes, The pricing of options and corporate
-  liabilities, Journal of Political Economy. 81 (1973) 637--654.
   
   \hypertarget{ref-merton1973theory}{}
   {[}12{]} R.C. Merton, Theory of rational option pricing, The Bell

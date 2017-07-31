@@ -182,7 +182,7 @@ S_t &= S_u \times \exp \left( \mu (t-u) - \frac{1}{2} \int_{u}^{T}{V_t dt} + \rh
 Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(S_t, t)$ [@tong2012option; @evans2012introduction]. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the     \@ref(tab:box-calc)  multiplication table [@ubbo].
 
 ```{r box-calc, echo=FALSE, message=FALSE, results='asis'}
-source("/home/fteixeira/Documents/thesis/r_code/box.r")
+source("./r_code/box.r")
 ```
 
 
