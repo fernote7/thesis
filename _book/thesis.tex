@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{julho 31, 2017}
+\date{agosto 02, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo de la Cruz}
 %If you have two advisors for some reason, you can use the following
@@ -184,18 +184,39 @@ starts here.
   The french mathematician Louis Bachelier was the trail-blazer that
   brought Brownian motion, previously restricted to the field of botanics
   where it was firstly observed, to the financial framework. He modeled
-  the stock prices as a brownian motion with drift. Later in time, Black
-  and Scholes {[}1{]} improved on Bachelier's work designing a model based
-  on the geometric brownian motion, a more realistic approach.
+  the stock prices as a brownian motion with drift. In 1973, Black and
+  Scholes {[}1{]} designed a model based on the geometric brownian motion
+  to price options.
   
   Options are derivatives that give their bearers the rights to buy or
   sell a specific asset in a future date and with a predetermined price.
   They are, by design, affected by small variations in the underlying
   assets' components, for example, the variance.
   
-  The Black-Scholes model, once the standard way of option pricing, was
-  replaced by stochastic process theories in modern financial analysis.
-  These are now prevalent in the academic and real-trading markets.
+  The Black-Scholes model was once the standard way of option pricing, but
+  was replaced by more modern models that are now prevalent. One of the
+  main drawbacks of the Black-Scholes model is the strong assumption that
+  the stock returns' volatility is constant. Thus, the implied model's
+  volatility results in a flat surface when plotted against the option's
+  strike price and maturity. Real world implied volatility varies with the
+  strike price and maturity, forming what is called the `volatility
+  smile'.
+  
+  The Heston model is an extension of the Black-Scholes model that tackles
+  this volatility issue replacing the constant volatility with a
+  stochastic process. There are many models that stochastically model
+  volatility, but the Heston has valuable characteristics suach as
+  presenting an analytical solution to the option pricing and also having
+  a computationally simple implementation when compared to more
+  sophisticated competitors.
+  
+  This thesis is divided into five chapters, the first being this
+  introduction. Following, we have a literature review that mainly
+  addresses stochastic calculus, the Black-Scholes models and the Heston
+  model. Thereafter we present the different Heston model known
+  implementations and the implementation improvement we experiment.
+  Chapter 4 brings the results of what was introduced in the previous
+  chapter for different model calibrations.
   
   \chapter{Literature Review}\label{lt-review}
   

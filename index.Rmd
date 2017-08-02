@@ -90,12 +90,9 @@ The french mathematician Louis Bachelier was the trail-blazer that brought Brown
 
 Options are derivatives that give their bearers the rights to buy or sell a specific asset in a future date and with a predetermined price. They are, by design, affected by small variations in the underlying assets' components, for example, the variance. 
 
-The Black-Scholes model was once the standard way of option pricing, but was replaced by stochastic process theories in modern financial analysis. These are now prevalent in the academic and real-trading markets. Some of the major disadvantages to the Black-Scholes model that led to its gradual replacement are that the distribution of logarithmic returns is normal and the stock returns' volatility is assumed to be constant. Thus, the implied model's volatility results in a flat surface when plotted against the option's strike price. Real world implied volatility varies with the strike price and forms what is called the 'volatility smile'.
+The Black-Scholes model was once the standard way of option pricing, but was replaced by more modern models that are now prevalent. One of the main drawbacks of the Black-Scholes model is the strong assumption that the stock returns' volatility is constant. Thus, the implied model's volatility results in a flat surface when plotted against the option's strike price and maturity. Real world implied volatility varies with the strike price and maturity, forming what is called the 'volatility smile'.
 
+The Heston model is an extension of the Black-Scholes model that tackles this volatility issue replacing the constant volatility with a stochastic process. There are many models that stochastically model volatility, but the Heston has valuable characteristics suach as presenting an analytical solution to the option pricing and also having a computationally simple implementation when compared to more sophisticated competitors.
 
-
-#
-
-The Heston model presents an analytical solution to the option pricing problem and is computationally simple when compared to other more sophisticated competitors also using stochastic variance.
 
 This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston  model known implementations and the implementation improvement we experiment. Chapter 4 brings the results of what was introduced in the previous chapter for different model calibrations.
