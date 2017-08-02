@@ -130,7 +130,13 @@ hestoneuler <- function(S, X, r, v, theta, rho, k, sigma, t = 0,
 ```
 
 
-## Karl-Jackel
+## Kahl-Jackel
+
+
+
+
+
+
 
 
 ```{r callkj, eval=FALSE}
