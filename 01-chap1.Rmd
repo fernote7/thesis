@@ -17,13 +17,34 @@ The {#rmd-basics} text after the chapter declaration will allow us to link throu
 
 # Literature Review {#lt-review}
 
-This chapter presents the concepts of stochastic calculus, from the historic conception of how it first arose through the basic principles and applications in finance. More precisely, we address the classical Black-Scholes model and its limitations and the Heston model. This model is also well known, it introduces the concept of stochastic volatility which brings us closer to reality.
+This chapter presents the concepts of stochastic calculus, from the historic conception of how it first arose through the basic principles and applications in finance. We address with more care the classical Black-Scholes model and its limitations and the Heston model. This model is also well known, it brings the concept of stochastic volatility in it, which brings its results closer to reality.
 
 ## Stochastic Calculus
 
-Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus was created by the Japanese mathematician Kiyosi Itô~\footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.} in the 1940s and 1950s and is used for modelling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models used arise, but our focus is introducing the concepts and notations that will be further used in our work.
+Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus was created by the Japanese mathematician Kiyosi Itô \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.} in the 1940s and 1950s and is used for modelling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models used arise, but our focus is introducing the concepts and notations that will be further used in our work.
 
 [//]: is a generalization of the Riemann-Stieltjes integral 
+
+
+### The Stochastic differential equation - SDE
+
+
+At first, before introducing stochastic differential equation, it is helpful to start with ordinary differential equation. Let $x(t) = x_t$ denote the population at time $t$ so that the change in the population at time $t$ is given by the following deterministic differential equation:
+
+\begin{align}
+dx_t &= f(t, x_t)dt \\
+x(0) &= x_0 \nonumber
+\end{align}
+
+We now add a ``noise'' to this equation:
+
+\begin{align}
+dx_t &= \underbrace{f(t, x_t)}_\text{drift}dt + \underbrace{g(t, x_t)}_\text{diffusion}dW_t \\
+x(0) &= x_0 \nonumber
+\end{align}
+
+This ``noise''  $dW_t$ is a Wiener process (which will be clarified below) and $X_0$ is ou initial value. The solution to this class of SDE is often referred as a *diffusion process*. These processes generally have a continuous paths.
+
 
 ### Brownian Motion
 
@@ -51,7 +72,7 @@ In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical p
 * Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. \@ref(fig:wiener)
 
 
-```{r wiener, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='A Wiener trajectory path example'}
+```{r wiener, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='A Wiener process trajectory path example'}
 source("./r_code/wiener.R")
 ```
 

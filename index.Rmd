@@ -43,7 +43,7 @@ lof: true
 header-includes:
 # - \usepackage{tikz}
 # - \bibliographystyle{elsarticle-num}
-- \usepackage{amsthm}
+- \usepackage{mathtools}
 - \usepackage{cancel}
 - \graphicspath{ {figure/} }
 ---
