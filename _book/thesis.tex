@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{agosto 02, 2017}
+\date{agosto 04, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo de la Cruz}
 %If you have two advisors for some reason, you can use the following
@@ -391,10 +391,11 @@ starts here.
   single random variable \(S_t\).
   \begin{scriptsize}
   \begin{align}
-  df(t,S) &= \cancelto{0}{\frac{\partial f}{\partial t}dt}  + \frac{\partial f}{\partial S} dS + \cancelto{0}{\frac{1}{2} \frac{\partial^2 f}{\partial t^2} (dt)^2} + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2  + \cancelto{0}{\frac{\partial^2 f}{\partial t \partial S} dt dS} \\
   f(t,S) &= \ln(S) \\
+  df(t,S) &= \cancelto{0}{\frac{\partial f}{\partial t}dt}  + \frac{\partial f}{\partial S} dS + \cancelto{0}{\frac{1}{2} \frac{\partial^2 f}{\partial t^2} (dt)^2} + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2  + \cancelto{0}{\frac{\partial^2 f}{\partial t \partial S} dt dS} \\
   d\ln(S) &= \frac{d\ln(S)}{dS} dS + \frac{1}{2} \frac{d^2\ln(S)}{dS^2}(dS)^2 \\
-  d\ln(S) &= \frac{1}{S} (\mu S dt + \sqrt{V} S dB) + \frac{1}{2}\frac{-1}{S^2}\sqrt{V}^2 S^2 dt \\
+  (dS)^2 &= \int_{0}^{t}{\left(\sqrt{V} \times S \right)^2} ds = V S^2 dt \\
+  d\ln(S) &= \frac{1}{S} (\mu S dt + \sqrt{V} S dB) + \frac{1}{2}\frac{-1}{S^2} V S^2 dt \\
   d\ln(S) &= \left( \mu -  \frac{1}{2} V \right) dt + \sqrt{V} dB \\
   \int_{u}^{T}{d\ln(S)} &= \int_{u}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{u}^{T}{\sqrt{V_t}dB_t} \\
   \ln(S_t) - \ln(S_u) &= \int_{u}^{T}{\left( \mu - \frac{1}{2} V_t \right) dt} + \int_{u}^{T}{\sqrt{V_t}dB_t} \\
@@ -702,7 +703,7 @@ starts here.
   \NormalTok{\}}
   \end{Highlighting}
   \end{Shaded}
-  \section{Karl-Jackel}\label{karl-jackel}
+  \section{Kahl-Jackel}\label{kahl-jackel}
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{Hestoncallkj <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(S, X, r, q, v, theta, rho, k, sigma, }
