@@ -43,10 +43,10 @@ dx_t &= \underbrace{f(t, x_t)}_\text{drift}dt + \underbrace{g(t, x_t)}_\text{dif
 x(0) &= x_0 \nonumber
 \end{align}
 
-This ``noise''  $dW_t$ is a Wiener process (which will be clarified below) and $X_0$ is ou initial value. The solution to this class of SDE is often referred as a *diffusion process*. These processes generally have a continuous paths.
+This ``noise''  $dW_t$ is a Wiener process (which will be clarified below) and $X_0$ is ou initial value. The solution to this class of SDE is often referred as a *diffusion process*. These processes generally have a continuous paths [@maiometodo].
 
 
-### Brownian Motion
+### Brownian Motion and Wiener process
 
 The Brownian motion is the name given to the irregular motion observed in the motion of pollen particles suspended in fluid resulting from particle collision with atoms or molecules. It is named after Robert Brown, the first to have observed the movement in 1828. He noted two characteristic in the pollen movement [@ubbo]:
 
