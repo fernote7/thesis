@@ -149,6 +149,8 @@ S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\
 
 ### Itô's Calculus
 
+[//] @ito1951; @ito1962; @rosenthal
+
 Let $X_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans; @steele2012stochastic]:
 
 \begin{align}
