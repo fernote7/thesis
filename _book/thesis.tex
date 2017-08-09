@@ -73,9 +73,9 @@
 \title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{agosto 09, 2017}
+\date{Aug 09, 2017}
 \division{Applied Mathematics}
-\advisor{Hugo de la Cruz}
+\advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
 % Uncommented out by CII
 % End of CII addition
@@ -217,7 +217,7 @@ starts here.
   x(0) &= x_0 \nonumber
   \end{align}
   We now add a ``noise'' to this equation:
-  \begin{align}
+  \begin{align} \label{sde1}
   dx_t &= \underbrace{f(t, x_t)}_\text{drift}dt + \underbrace{g(t, x_t)}_\text{diffusion}dW_t \\
   x(0) &= x_0 \nonumber
   \end{align}
@@ -229,7 +229,7 @@ starts here.
   process}. These processes generally have a continuous paths {[}2{]}. We
   must carefully define what the term \emph{random}, means and the best
   way to begin doing so is to precisely define a probability space:
-  \begin{definition} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
+  \begin{definition}{(Probability Space)} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
   \end{definition}
   \subsection{Brownian Motion}\label{brownian-motion}
   
@@ -254,7 +254,7 @@ starts here.
   mathematical proof of existence of the brownian motion and stating its
   properties. We start by defining what is a probability space
   {[}4,5{]}.\footnote{More can be found on {[}4--6{]}.}
-  \begin{definition} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties
+  \begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties
   \begin{itemize}
     \item  $W_{0}=0$
     
@@ -294,8 +294,7 @@ starts here.
   \(Z\) is a Brownian motion and that \(Z\) and \(W_{1,t}\) are correlated
   {[}1{]}.
   
-  \subsection{Arithmetic Brownian
-  Motion}\label{arithmetic-brownian-motion}
+  \subsubsection{Arithmetic Brownian Motion}\label{abm}
   
   The arithmetic brownian motion is defined in literature as being a
   random process (S) defined as follows {[}1{]}:
@@ -314,7 +313,7 @@ starts here.
   elapsed period (\(S_0 + \mu T\)). The variance is described by
   \(\sigma^2 T\)
   
-  \subsection{Geometric Brownian Motion}\label{geometric-brownian-motion}
+  \subsubsection{Geometric Brownian Motion}\label{gbm}
   
   A stochastic process \(S_t\) is a geometric brownian motion if its
   solution is described by the solution of the following stochastic
@@ -332,13 +331,15 @@ starts here.
   \begin{align}
   S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
   \end{align}
-  \subsection{Itô's Calculus}\label{itos-calculus}
+  \subsection{Itô's Integral}\label{itos-integral}
   
-  \href{is\%20a\%20generalization\%20of\%20the\%20Riemann-Stieltjes\%20integral}{//}
-  {[}10{]}; {[}11{]};
-  
-  Let \(X_{t}\) be a real-valued stochastic process that satisfies
-  {[}5,7,12{]}:
+  Formally, the SDE presented in equation\textasciitilde{}\ref{sde1} only
+  exists because we can rewrite it in the form:
+  \begin{align} \label{sde1}
+  x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
+  \end{align}
+  Let \(S_{t}\) be a real-valued stochastic process that satisfies
+  {[}5--7,10--12{]}:
   \begin{align}
   S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
   \end{align}
@@ -409,8 +410,7 @@ starts here.
   $dW_t$ & 0 & $dt$\\
   \bottomrule
   \end{longtable}
-  \section{Stochastic Differential Equations
-  (SDE's)}\label{stochastic-differential-equations-sdes}
+  \subsection{Itô's Chain Rule}\label{itos-chain-rule}
   
   \section{Black-Scholes Model}\label{black-scholes-model}
   
@@ -617,17 +617,17 @@ starts here.
   {[}9{]} S.M. Iacus, Simulation and inference for stochastic differential
   equations: With r examples, Springer Science \& Business Media, 2009.
   
+  \hypertarget{ref-steele2012stochastic}{}
+  {[}10{]} J.M. Steele, Stochastic calculus and financial applications,
+  Springer Science \& Business Media, 2012.
+  
   \hypertarget{ref-ito1951}{}
-  {[}10{]} K. Itō, On stochastic differential equations, American
+  {[}11{]} K. Itō, On stochastic differential equations, American
   Mathematical Soc., 1951.
   
   \hypertarget{ref-ito1962}{}
-  {[}11{]} K. Itô, The brownian motion and tensor fields on riemannian
+  {[}12{]} K. Itô, The brownian motion and tensor fields on riemannian
   manifold, Proc. Int. Congr. Math., Stockholm. 2 (1962).
-  
-  \hypertarget{ref-steele2012stochastic}{}
-  {[}12{]} J.M. Steele, Stochastic calculus and financial applications,
-  Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-yang2013valuing}{}
   {[}13{]} Y. Yang, Valuing a european option with the heston model,

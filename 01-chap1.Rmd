@@ -19,11 +19,13 @@ The {#rmd-basics} text after the chapter declaration will allow us to link throu
 
 This chapter presents the concepts of stochastic calculus, from the historic conception of how it first arose through the basic principles and applications in finance. We address with more care the classical Black-Scholes model and its limitations and the Heston model. This model is also well known, it brings the concept of stochastic volatility in it, which brings its results closer to reality.
 
+
+[//]: is a generalization of the Riemann-Stieltjes integral 
+
+
 ## Stochastic Calculus
 
 Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus was created by the Japanese mathematician Kiyosi Itô \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.} in the 1940s and 1950s and is used for modeling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models used arise, but our focus is introducing the concepts and notations that will be further used in our work.
-
-[//]: is a generalization of the Riemann-Stieltjes integral 
 
 
 ### The Stochastic differential equation - SDE
@@ -38,7 +40,7 @@ x(0) &= x_0 \nonumber
 
 We now add a ``noise'' to this equation:
 
-\begin{align}
+\begin{align} \label{sde1}
 dx_t &= \underbrace{f(t, x_t)}_\text{drift}dt + \underbrace{g(t, x_t)}_\text{diffusion}dW_t \\
 x(0) &= x_0 \nonumber
 \end{align}
@@ -47,9 +49,8 @@ This ``noise''  $dW_t$ is a *random* Wiener process time derivative (which will 
 
 The solution to this class of SDE is often referred as a *diffusion process*. These processes generally have a continuous paths [@maiometodo]. We must carefully define what the term *random*, means and the best way to begin doing so is to precisely define a probability space:
 
-\begin{definition} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
+\begin{definition}{(Probability Space)} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
 \end{definition}
-
 
 ### Brownian Motion
 
@@ -66,7 +67,7 @@ The first quantitative works in brownian motion come from an interest in stock p
 In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion and stating its properties. We start by defining what is a probability space [@helgadottir2016option; @evans] ^[More can be found on [@helgadottir2016option; @evans; @rosenthal].].
 
 
-\begin{definition} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties
+\begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties
 
 \begin{itemize}
   \item  $W_{0}=0$
@@ -108,50 +109,18 @@ This equation is a linear combination of independent normals at each timestep $t
 
 
 
-### Arithmetic Brownian Motion
 
-The arithmetic brownian motion is defined in literature as being a random process (S) defined as follows [@ubbo]:
+### Itô's Integral
 
-\begin{align}
-dS_t = \mu dt + \sigma dB_t
-\end{align}
 
-\begin{center}or in integral form:\end{center}
+Formally, the SDE  presented in equation \ref{sde1} only exists because we can rewrite it in the form:
 
-\begin{align}
-\int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
+\begin{align} \label{sde1}
+x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
 \end{align}
 
 
-\noindent
-Where, $\mu$ and $\sigma$ are known and constant with $\sigma > 0$. In this process, both the drift $\mu$ and the diffusion $\sigma$ coefficient are constant. The expected value of this process is the sum of the initial value and the drift times the elapsed period ($S_0 + \mu T$). The variance is described by $\sigma^2 T$
-
-
-### Geometric Brownian Motion
-
-A stochastic process $S_t$ is a geometric brownian motion if its solution is described by the solution of the following stochastic differential equation [@tong2012option; @tsay2005analysis].
-
-\begin{align}
-dS_t = \mu S_t dt + \sigma S_t dW_t
-\end{align}
-
-\noindent
-for given constants $\mu \in {\rm I\!R}$ and $\sigma > 0$. Also, the assumed initial value is positive, $S_0 >0$.
-
-This process is used quite often in finance to model the dynamics of some assets becaus of its properties. It has independent multiplicative increments and its solution is presented below[@iacus2009simulation]:
-
-
-\begin{align}
-S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
-\end{align}
-
-
-
-### Itô's Calculus
-
-[//] @ito1951; @ito1962; @rosenthal
-
-Let $X_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans; @steele2012stochastic]:
+Let $S_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans; @steele2012stochastic; @ito1951; @ito1962; @rosenthal]:
 
 \begin{align}
 S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
@@ -233,13 +202,62 @@ source("./r_code/box.r")
 
 
 
-## Stochastic Differential Equations (SDE's)
 
 
 
+
+
+### Itô's Chain Rule
 
 
 ## Black-Scholes Model
+
+Before introducing the Black-Schole model
+
+#### Arithmetic Brownian Motion {#abm}
+
+The arithmetic brownian motion is defined in literature as being a random process (S) defined as follows [@ubbo]:
+
+\begin{align}
+dS_t = \mu dt + \sigma dB_t
+\end{align}
+
+\begin{center}or in integral form:\end{center}
+
+\begin{align}
+\int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
+\end{align}
+
+
+\noindent
+Where, $\mu$ and $\sigma$ are known and constant with $\sigma > 0$. In this process, both the drift $\mu$ and the diffusion $\sigma$ coefficient are constant. The expected value of this process is the sum of the initial value and the drift times the elapsed period ($S_0 + \mu T$). The variance is described by $\sigma^2 T$
+
+
+#### Geometric Brownian Motion {#gbm}
+
+A stochastic process $S_t$ is a geometric brownian motion if its solution is described by the solution of the following stochastic differential equation [@tong2012option; @tsay2005analysis].
+
+\begin{align}
+dS_t = \mu S_t dt + \sigma S_t dW_t
+\end{align}
+
+\noindent
+for given constants $\mu \in {\rm I\!R}$ and $\sigma > 0$. Also, the assumed initial value is positive, $S_0 >0$.
+
+This process is used quite often in finance to model the dynamics of some assets becaus of its properties. It has independent multiplicative increments and its solution is presented below[@iacus2009simulation]:
+
+
+\begin{align}
+S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
+\end{align}
+
+
+
+
+
+
+
+
 
 The Black-Scholes (B-S) model arises from the need to price european options in the derivative markets. Derivatives are financial instruments traded in the market, stock exchange or over-the-counter (OTC) market, whose values depend on the values of an underlying asset. [@yang2013valuing; @salomao2011precificaccao; @black1973pricing]
 
@@ -250,6 +268,7 @@ The Black-Scholes (B-S) model arises from the need to price european options in 
 The trading price of the option is called the option *premium* and the asset from which the option derives is called the *underlying asset*. This asset may be the interest rate, exchange rates, stock exchanges rates, commodities or stocks. The fixed price in contract in which the underlying asset might to be bought or sold is the *strick price*. The option expiration date is called the *maturity*. [@salomao2011precificaccao; @black1973pricing]
 
 There are two major different option types: the European and the American. The difference between these two is that the bearer of the first may exercise it only at the end of its life, at its maturity while the latter can be exercised at any given time until its maturity. [@black1973pricing; @merton1973theory]
+
 
 
 ### The model
