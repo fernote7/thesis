@@ -21,7 +21,7 @@ This chapter presents the concepts of stochastic calculus, from the historic con
 
 ## Stochastic Calculus
 
-Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus was created by the Japanese mathematician Kiyosi Itô \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.} in the 1940s and 1950s and is used for modelling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models used arise, but our focus is introducing the concepts and notations that will be further used in our work.
+Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus was created by the Japanese mathematician Kiyosi Itô \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.} in the 1940s and 1950s and is used for modeling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models used arise, but our focus is introducing the concepts and notations that will be further used in our work.
 
 [//]: is a generalization of the Riemann-Stieltjes integral 
 
@@ -43,10 +43,15 @@ dx_t &= \underbrace{f(t, x_t)}_\text{drift}dt + \underbrace{g(t, x_t)}_\text{dif
 x(0) &= x_0 \nonumber
 \end{align}
 
-This ``noise''  $dW_t$ is a Wiener process (which will be clarified below) and $X_0$ is ou initial value. The solution to this class of SDE is often referred as a *diffusion process*. These processes generally have a continuous paths [@maiometodo].
+This ``noise''  $dW_t$ is a *random* Wiener process time derivative (which will be clarified below) and $X_0$ is ou initial value. 
+
+The solution to this class of SDE is often referred as a *diffusion process*. These processes generally have a continuous paths [@maiometodo]. We must carefully define what the term *random*, means and the best way to begin doing so is to precisely define a probability space:
+
+\begin{definition} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
+\end{definition}
 
 
-### Brownian Motion and Wiener process
+### Brownian Motion
 
 The Brownian motion is the name given to the irregular motion observed in the motion of pollen particles suspended in fluid resulting from particle collision with atoms or molecules. It is named after Robert Brown, the first to have observed the movement in 1828. He noted two characteristic in the pollen movement [@ubbo]:
 
@@ -56,29 +61,39 @@ The Brownian motion is the name given to the irregular motion observed in the mo
 
 The first quantitative works in brownian motion come from an interest in stock price fluctuation by Bachelier in 1900. Albert Einstein also leaned over the subject and in 1905 derived the transition density for Brownian motion from molecular-kinetic theory of heat [@ubbo; @karatzas2012brownian].
 
-In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion and stating its properties as follows [@helgadottir2016option]:
 
 
-*  $W_{0}=0$
-
-* The change in $W$, given by $\Delta W = W_{t+1}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
-
-* If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
-
-* The process is continuous, meaning that there are no jumps in the process.
-
-* The process is a Markov process. This means that the conditional expectation of $W_{t+1}$ given its entire history is equal to the conditional expectation of $W_{t+1}$ given today's information. This can be written as: $E[W_{t+1}|W_1, ..., W_t] = E[W_{t+1}|W_t]$.
-
-* Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. \@ref(fig:wiener)
+In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion and stating its properties. We start by defining what is a probability space [@helgadottir2016option; @evans] ^[More can be found on [@helgadottir2016option; @evans; @rosenthal].].
 
 
-```{r wiener, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='A Wiener process trajectory path example'}
+\begin{definition} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties
+
+\begin{itemize}
+  \item  $W_{0}=0$
+  
+  \item The change in $W$, given by $\Delta W = W_{t+1}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
+  
+  \item If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
+  
+  \item The process is continuous, meaning that there are no jumps in the process.
+  
+  \item The process is a Markov process. This means that the conditional expectation of $W_{t+1}$ given its entire history is equal to the conditional expectation of $W_{t+1}$ given today's information. This can be written as: $E[W_{t+1}|W_1, ..., W_t] = E[W_{t+1}|W_t]$.
+  
+  \item Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. 
+
+\end{itemize}
+\end{definition}
+
+<!-- \ref{wiener} -->
+<!-- \@ref(fig:wiener) -->
+
+```{r wiener, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='A Wiener process trajectory path example \\label{wiener}'}
 source("./r_code/wiener.R")
 ```
 
 
 
-### Correlated Brownian Motions {#corr}
+#### Correlated Brownian Motions {#corr}
 
 Two independent brownian motions that are correlated can describe a new process $Z_t$. Let $W_1$ and $W_2$ be these two *independent* Brownian motions and let $-1 \leq \rho \leq 1$ be a given number. For $0 \leq t \leq T$ define the new process $Z_t$ as [@ubbo]:
 
@@ -134,7 +149,7 @@ S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\
 
 ### Itô's Calculus
 
-Let $X_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans2012introduction; @steele2012stochastic]:
+Let $X_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans; @steele2012stochastic]:
 
 \begin{align}
 S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
@@ -207,7 +222,7 @@ S_t &= S_u \times \exp \left( \mu (t-u) - \frac{1}{2} \int_{u}^{T}{V_t dt} + \rh
 
 
 
-Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(S_t, t)$ [@tong2012option; @evans2012introduction]. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the     \@ref(tab:box-calc)  multiplication table [@ubbo].
+Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(S_t, t)$ [@tong2012option; @evans]. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the     \@ref(tab:box-calc)  multiplication table [@ubbo].
 
 ```{r box-calc, echo=FALSE, message=FALSE, results='asis'}
 source("./r_code/box.r")
