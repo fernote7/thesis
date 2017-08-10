@@ -219,7 +219,7 @@ starts here.
   \end{align}
   We now add a ``noise'' to this equation:
   \begin{align} \label{sde1}
-  dx_t &= \underbrace{f(t, x_t)}_\text{drift}dt + \underbrace{g(t, x_t)}_\text{diffusion}dW_t \\
+  dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} + \overbrace{\underbrace{g(t, x_t)}_\text{diffusion}dW_t}^\text{stochastic} \\
   x(0) &= x_0 \nonumber
   \end{align}
   This ``noise'' \(dW_t\) is a \emph{random} Wiener process time
@@ -227,9 +227,9 @@ starts here.
   value.
   
   The solution to this class of SDE is often referred as a \emph{diffusion
-  process}. These processes generally have a continuous paths {[}2{]}. We
-  must carefully define what the term \emph{random}, means and the best
-  way to begin doing so is to precisely define a probability space:
+  process}. These processes generally have a continuous paths. We must
+  carefully define what the term \emph{random}, means and the best way to
+  begin doing so is to precisely define a probability space:
   \begin{definition}{(Probability Space)} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
   \end{definition}
   \subsection{Brownian Motion}\label{brownian-motion}
@@ -249,12 +249,12 @@ starts here.
   The first quantitative works in brownian motion come from an interest in
   stock price fluctuation by Bachelier in 1900. Albert Einstein also
   leaned over the subject and in 1905 derived the transition density for
-  Brownian motion from molecular-kinetic theory of heat {[}1,3{]}.
+  Brownian motion from molecular-kinetic theory of heat {[}1,2{]}.
   
   In 1923, the Wiener process was coined in honor of Norbert Wiener
   mathematical proof of existence of the brownian motion and stating its
   properties. We start by defining what is a probability space
-  {[}4,5{]}.\footnote{More can be found on {[}4--6{]}.}
+  {[}3,4{]}.\footnote{More can be found on {[}3--5{]}.}
   \begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties
   \begin{itemize}
     \item  $W_{0}=0$
@@ -298,26 +298,30 @@ starts here.
   \subsection{Itô's Integral}\label{itos-integral}
   
   Formally, the SDE presented in equation \ref{sde1} only exists because
-  we can rewrite it in the form:
+  we can rewrite it in the form {[}4--9{]}:
   \begin{align} \label{sde1}
   x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
   \end{align}
-  Let \(S_{t}\) be a real-valued stochastic process that satisfies
-  {[}5--10{]}:
-  \begin{align}
-  S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
-  \end{align}
   \noindent
-  for some \(\mu_t\), \(\sigma_t\) and \(t \in [0,T]\). This equation is
-  often rewritten in its differential stochastic form:
-  \begin{align}
-  dS_t = \mu_t dt + \sigma_t dW_t 
-  \end{align}
-  \noindent
-  for \(0 \leq t \leq T\).
+  for some \(f(s, x_s)\), \(g(s, x_s)\) and \(s \in [0,t]\).
   
-  ESCREVER MAIS
-  \begin{theorem}[Itô's Lemma]
+  The Itô integral can, as the Riemann integral, be approximated by a
+  finite sum. Also, it has a definition as a certain limit. Itô's lemma
+  \ref{itolemma} plays the same role as the fundamental theorem of
+  calculus in allowing to evaluate integrals. Itô's lemma has an extra
+  term not present in the conventional calculus theorem that is due to the
+  non-smoothness characteristics of Brownian motion paths. If we write
+  \begin{align}
+  Y_{\Delta t}(t) = \sum_{t_k < t}{g(t_k)\Delta W_k}
+  \end{align}
+  \noindent
+  with the usual notions \(t_k = k\Delta t\), and
+  \(\Delta W_k = W(t_{k+1})-W(t_k))\). If the limit exists, then the Ito
+  integral is:
+  \begin{align}
+  Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
+  \end{align}
+  \begin{theorem}[Itô's Lemma] \label{itolemma}
   Assume that $S_t$ has a stochastic differential given by:
   \begin{align}
   dS_t = \mu_t dt + \sigma_t dW_t 
@@ -341,7 +345,7 @@ starts here.
   Equation \eqref{eq:ito} is the stochastic equivalent to the chain rule,
   also known as Itô's formula or Itô's chain rule. The proof to this
   theorem is based on the Taylor expansion of the function \(f(S_t, t)\)
-  {[}5,7{]}. For practical uses you should write out a second-order Taylor
+  {[}4,6{]}. For practical uses you should write out a second-order Taylor
   expansion for the function to be analyzed and apply the
   \ref{tab:box-calc} multiplication table {[}1{]}.
   \begin{longtable}[t]{llr}
@@ -358,7 +362,8 @@ starts here.
   Let $f$, $g$ $\in$ $\mathcal{V}$ and let $0 \leq t_0 < u < T$. Then
   \begin{enumerate}[label=(\roman*)]
     \item $\int_{t_0}^{T}{f dB_t} = \int_{t_0}^{u}{f dB_t} + \int_{u}^{T}{f dB_t}$
-    \item $\int_{t_0}^{T}{(cf + g) dB_t} = c \times \int_{t_0}^{T}{f dB_t} + \int_{t_0}^{T}{g dB_t}$
+    \item $\int_{t_0}^{T}{(cf + g) dB_t} = c  \int_{t_0}^{T}{f dB_t} + \int_{t_0}^{T}{g dB_t}$
+    \item $\mathbb{E}\left[ \int_{t_0}^{T}{fdB_t}\right] = 0 $
     \item $\mathbb {E} \left[\left(\int_{0}^{t}H_{s}\,dB_{s}\right)^{2}\right]=\mathbb {E} \left[\int _{0}^{t}H_{s}^{2}\,ds\right]$ (Isometry)
   \end{enumerate}
   \end{theorem}
@@ -389,7 +394,7 @@ starts here.
   
   A stochastic process \(S_t\) is a geometric brownian motion if its
   solution is described by the solution of the following stochastic
-  differential equation {[}7,11{]}.
+  differential equation {[}6,10{]}.
   \begin{align}
   dS_t = \mu S_t dt + \sigma S_t dW_t
   \end{align}
@@ -399,14 +404,14 @@ starts here.
   
   This process is used quite often in finance to model the dynamics of
   some assets becaus of its properties. It has independent multiplicative
-  increments and its solution is presented below{[}12{]}:
+  increments and its solution is presented below{[}11{]}:
   \begin{align}
   S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
   \end{align}
   The Black-Scholes (B-S) model arises from the need to price european
   options in the derivative markets. Derivatives are financial instruments
   traded in the market, stock exchange or over-the-counter (OTC) market,
-  whose values depend on the values of an underlying asset. {[}13--15{]}
+  whose values depend on the values of an underlying asset. {[}12--14{]}
   \begin{itemize}
   \item
     A call option is a derivative that gives its bearer the right, but not
@@ -423,19 +428,19 @@ starts here.
   exchanges rates, commodities or stocks. The fixed price in contract in
   which the underlying asset might to be bought or sold is the
   \emph{strick price}. The option expiration date is called the
-  \emph{maturity}. {[}14,15{]}
+  \emph{maturity}. {[}13,14{]}
   
   There are two major different option types: the European and the
   American. The difference between these two is that the bearer of the
   first may exercise it only at the end of its life, at its maturity while
   the latter can be exercised at any given time until its maturity.
-  {[}15,16{]}
+  {[}14,15{]}
   
   \subsection{The model}\label{the-model}
   
   The Black-Scholes model that provides analytical solution to the price
   of a European call at time \(t\) can be described as
-  follows{[}4,13,15{]}:
+  follows{[}3,12,14{]}:
   \begin{align}
   C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
   d_{1}&={\frac {1}{\sigma {\sqrt {T-t}}}}\left[\ln \left({\frac {S_{t}}{K}}\right)+\left(r+{\frac {\sigma ^{2}}{2}}\right)(T-t)\right]\\[10pt]
@@ -463,12 +468,12 @@ starts here.
   \end{itemize}
   \noindent
   Also, the stock price path is a Geometric Brownian Motion and is under
-  the risk-neutral measure with the following dynamics {[}4,17{]}:
+  the risk-neutral measure with the following dynamics {[}3,16{]}:
   \begin{align}
   dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
   \end{align}
   \noindent
-  Where \(dW_t\) is a Wiener process {[}15,17{]}, \(r\) is the risk free
+  Where \(dW_t\) is a Wiener process {[}14,16{]}, \(r\) is the risk free
   rate and \(q\) is the dividend
   yield\footnote{$r$ and $q$ are assumed to be constant.} and \(t\)
   denotes the current point in time.
@@ -479,7 +484,7 @@ starts here.
   assumption that does not hold up is the deterministic (constant)
   volatility, that can more accurately be described as a stochastic
   process since we observe that small moves usually are followed by small
-  moves and large moves by large moves. {[}4,13{]}
+  moves and large moves by large moves. {[}3,12{]}
   
   Other assumptions that are critical to the B-S model and are not always
   observed in practice refer to the asset's continuity through time (no
@@ -511,7 +516,7 @@ starts here.
   
   The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
   describes the interest rate movements driven by one source of market
-  risk. The dynamics are described as follows{[}18,19{]}:
+  risk. The dynamics are described as follows{[}17,18{]}:
   \begin{align}
   \label{eq:cir}
   dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
@@ -527,7 +532,7 @@ starts here.
   account of anticipations, risk aversion, investment alternatives and
   preferences about consumption timing and allows for detailed predictions
   about how changes in a wide range of underlying variables affect the
-  term structure{[}18{]}. Furthermore, this equation constitutes one of
+  term structure{[}17{]}. Furthermore, this equation constitutes one of
   the two Heston model equations with the volatility taking the short rate
   interest place.
   
@@ -536,7 +541,7 @@ starts here.
   Heston model solves the deterministic volatility problems introducing
   the following equations, which represents the dynamics of the stock
   price and the variance processes under the risk-neutral measure
-  {[}19,20{]}:
+  {[}18,19{]}:
   \begin{align}
   \label{eq:heston}
   \begin{split}
@@ -549,7 +554,7 @@ starts here.
   asset's rate of return, \(dW_{t,1}\) and \(dW_{t,2}\) are two correlated
   wiener processes with correlation coefficient of \(\rho\). Because, of
   the model specifications and what we presentend in section \ref{corr},
-  we can rewrite the first equation as in Broadie and Kaya {[}21{]}:
+  we can rewrite the first equation as in Broadie and Kaya {[}20{]}:
   \begin{align}
   \label{eq:heston2}
   \begin{split}
@@ -585,89 +590,84 @@ starts here.
   {[}1{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
   2008.
   
-  \hypertarget{ref-maiometodo}{}
-  {[}2{]} P.A. de Maio, others, Um método de linearização local com passo
-  adaptativo para solução numérica de equações diferenciais estocásticas
-  com ruído aditivo, PhD thesis, n.d.
-  
   \hypertarget{ref-karatzas2012brownian}{}
-  {[}3{]} I. Karatzas, S. Shreve, Brownian motion and stochastic calculus,
+  {[}2{]} I. Karatzas, S. Shreve, Brownian motion and stochastic calculus,
   Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-helgadottir2016option}{}
-  {[}4{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
+  {[}3{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
   model, (2016).
   
   \hypertarget{ref-evans}{}
-  {[}5{]} L.C. Evans, An introduction to stochastic differential
+  {[}4{]} L.C. Evans, An introduction to stochastic differential
   equations, American Mathematical Soc., 2012.
   
   \hypertarget{ref-rosenthal}{}
-  {[}6{]} J.S. Rosenthal, A first look at rigorous probability theory,
+  {[}5{]} J.S. Rosenthal, A first look at rigorous probability theory,
   World Scientific Publishing Co Inc, 2006.
   
   \hypertarget{ref-tong2012option}{}
-  {[}7{]} Z. Tong, Option pricing with long memory stochastic volatility
+  {[}6{]} Z. Tong, Option pricing with long memory stochastic volatility
   models, PhD thesis, Université d'Ottawa/University of Ottawa, 2012.
   
   \hypertarget{ref-steele2012stochastic}{}
-  {[}8{]} J.M. Steele, Stochastic calculus and financial applications,
+  {[}7{]} J.M. Steele, Stochastic calculus and financial applications,
   Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-ito1951}{}
-  {[}9{]} K. Itō, On stochastic differential equations, American
+  {[}8{]} K. Itō, On stochastic differential equations, American
   Mathematical Soc., 1951.
   
   \hypertarget{ref-ito1962}{}
-  {[}10{]} K. Itô, The brownian motion and tensor fields on riemannian
+  {[}9{]} K. Itô, The brownian motion and tensor fields on riemannian
   manifold, Proc. Int. Congr. Math., Stockholm. 2 (1962).
   
   \hypertarget{ref-tsay2005analysis}{}
-  {[}11{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
+  {[}10{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
   Sons, 2005.
   
   \hypertarget{ref-iacus2009simulation}{}
-  {[}12{]} S.M. Iacus, Simulation and inference for stochastic
+  {[}11{]} S.M. Iacus, Simulation and inference for stochastic
   differential equations: With r examples, Springer Science \& Business
   Media, 2009.
   
   \hypertarget{ref-yang2013valuing}{}
-  {[}13{]} Y. Yang, Valuing a european option with the heston model,
+  {[}12{]} Y. Yang, Valuing a european option with the heston model,
   (2013).
   
   \hypertarget{ref-salomao2011precificaccao}{}
-  {[}14{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
+  {[}13{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
   sobre os modelos de black scholes e garch, (2011).
   
   \hypertarget{ref-black1973pricing}{}
-  {[}15{]} F. Black, M. Scholes, The pricing of options and corporate
+  {[}14{]} F. Black, M. Scholes, The pricing of options and corporate
   liabilities, Journal of Political Economy. 81 (1973) 637--654.
   
   \hypertarget{ref-merton1973theory}{}
-  {[}16{]} R.C. Merton, Theory of rational option pricing, The Bell
+  {[}15{]} R.C. Merton, Theory of rational option pricing, The Bell
   Journal of Economics and Management Science. (1973) 141--183.
   
   \hypertarget{ref-nmof}{}
-  {[}17{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
+  {[}16{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
   optimization in finance, Academic Press, Waltham, MA, USA, 2011.
   \url{http://nmof.net}.
   
   \hypertarget{ref-cox1985theory}{}
-  {[}18{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
+  {[}17{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
   structure of interest rates, Econometrica: Journal of the Econometric
   Society. (1985) 385--407.
   
   \hypertarget{ref-heston1993closed}{}
-  {[}19{]} S.L. Heston, A closed-form solution for options with stochastic
+  {[}18{]} S.L. Heston, A closed-form solution for options with stochastic
   volatility with applications to bond and currency options, Review of
   Financial Studies. 6 (1993) 327--343.
   
   \hypertarget{ref-gilli_numerical_2011}{}
-  {[}20{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
+  {[}19{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
   optimization in finance, Academic Press, 2011.
   
   \hypertarget{ref-broadie2006exact}{}
-  {[}21{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
+  {[}20{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
   and other affine jump diffusion processes, Operations Research. 54
   (2006) 217--231.
 

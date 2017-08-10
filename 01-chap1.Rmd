@@ -41,7 +41,7 @@ x(0) &= x_0 \nonumber
 We now add a ``noise'' to this equation:
 
 \begin{align} \label{sde1}
-dx_t &= \underbrace{f(t, x_t)}_\text{drift}dt + \underbrace{g(t, x_t)}_\text{diffusion}dW_t \\
+dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} + \overbrace{\underbrace{g(t, x_t)}_\text{diffusion}dW_t}^\text{stochastic} \\
 x(0) &= x_0 \nonumber
 \end{align}
 
@@ -113,35 +113,51 @@ This equation is a linear combination of independent normals at each timestep $t
 ### Itô's Integral
 
 
-Formally, the SDE  presented in equation \ref{sde1} only exists because we can rewrite it in the form:
+Formally, the SDE  presented in equation \ref{sde1} only exists because we can rewrite it in the form [@tong2012option; @evans; @steele2012stochastic; @ito1951; @ito1962; @rosenthal]:
 
 \begin{align} \label{sde1}
 x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
 \end{align}
 
 
-Let $S_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans; @steele2012stochastic; @ito1951; @ito1962; @rosenthal]:
-
-\begin{align}
-S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t
-\end{align}
-
 \noindent
-for some $\mu_t$, $\sigma_t$ and $t \in [0,T]$. This equation is often rewritten in its differential stochastic form:
+for some $f(s, x_s)$, $g(s, x_s)$ and $s \in [0,t]$.
 
-\begin{align}
-dS_t = \mu_t dt + \sigma_t dW_t 
-\end{align}
 
-\noindent
-for $0 \leq t \leq T$.
+<!-- Let $S_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans; @steele2012stochastic; @ito1951; @ito1962; @rosenthal]: -->
+
+<!-- \begin{align} -->
+<!-- S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t -->
+<!-- \end{align} -->
+
+<!-- \noindent -->
+<!-- for some $\mu_t$, $\sigma_t$ and $t \in [0,T]$. This equation is often rewritten in its differential stochastic form: -->
+
+<!-- \begin{align} -->
+<!-- dS_t = \mu_t dt + \sigma_t dW_t  -->
+<!-- \end{align} -->
+
+<!-- \noindent -->
+<!-- for $0 \leq t \leq T$. -->
 
 #####################
 
 
+The Itô integral can, as the Riemann integral, be approximated by a finite sum. Also, it has a definition as a certain limit. Itô's lemma \@ref(itolemma) plays the same role as the fundamental theorem of calculus in allowing to evaluate integrals. Itô's lemma has an extra term not present in the conventional calculus theorem that is due to the non-smoothness characteristics of Brownian motion paths. If we write 
+
+\begin{align}
+Y_{\Delta t}(t) = \sum_{t_k < t}{g(t_k)\Delta W_k}
+\end{align}
+
+\noindent
+with the usual notions $t_k = k\Delta t$, and $\Delta W_k = W(t_{k+1})-W(t_k))$. If the limit
+exists, then the Ito integral is:
+
+\begin{align}
+Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
+\end{align}
 
 
-ESCREVER MAIS
 
 
 
@@ -150,7 +166,7 @@ ESCREVER MAIS
 #####################
 
 
-\begin{theorem}[Itô's Lemma]
+\begin{theorem}[Itô's Lemma] \label{itolemma}
 Assume that $S_t$ has a stochastic differential given by:
 
 \begin{align}
@@ -191,6 +207,7 @@ Let $f$, $g$ $\in$ $\mathcal{V}$ and let $0 \leq t_0 < u < T$. Then
 \begin{enumerate}[label=(\roman*)]
   \item $\int_{t_0}^{T}{f dB_t} = \int_{t_0}^{u}{f dB_t} + \int_{u}^{T}{f dB_t}$
   \item $\int_{t_0}^{T}{(cf + g) dB_t} = c  \int_{t_0}^{T}{f dB_t} + \int_{t_0}^{T}{g dB_t}$
+  \item $\mathbb{E}\left[ \int_{t_0}^{T}{fdB_t}\right] = 0 $
   \item $\mathbb {E} \left[\left(\int_{0}^{t}H_{s}\,dB_{s}\right)^{2}\right]=\mathbb {E} \left[\int _{0}^{t}H_{s}^{2}\,ds\right]$ (Isometry)
 \end{enumerate}
 
