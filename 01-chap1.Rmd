@@ -45,9 +45,9 @@ dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} +
 x(0) &= x_0 \nonumber
 \end{align}
 
-This ``noise''  $dW_t$ is a *random* Wiener process time derivative (which will be clarified below) and $X_0$ is ou initial value. 
+This ``noise''  $dW_t$ is a *random* Wiener process time derivative (which will be clarified below) and $X_0$ is our initial value. 
 
-The solution to this class of SDE is often referred as a *diffusion process*. These processes generally have a continuous paths. We must carefully define what the term *random*, means and the best way to begin doing so is to precisely define a probability space:
+The $g(t, x_t)$ part of the SDE is often referred as a *diffusion process*. These processes generally have a continuous paths. Before moving on, we must carefully define what the term *random*, means and the best way to begin doing so is to precisely define a probability space:
 
 \begin{definition}{(Probability Space)} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
 \end{definition}
@@ -64,10 +64,10 @@ The first quantitative works in brownian motion come from an interest in stock p
 
 
 
-In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion and stating its properties. We start by defining what is a probability space [@helgadottir2016option; @evans] ^[More can be found on [@helgadottir2016option; @evans; @rosenthal].].
+In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the brownian motion and stating its properties ^[More can be found on [@helgadottir2016option; @evans; @rosenthal].].
 
 
-\begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties
+\begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties:
 
 \begin{itemize}
   \item  $W_{0}=0$
@@ -143,10 +143,10 @@ for some $f(s, x_s)$, $g(s, x_s)$ and $s \in [0,t]$.
 #####################
 
 
-The Itô integral can, as the Riemann integral, be approximated by a finite sum. Also, it has a definition as a certain limit. Itô's lemma \@ref(itolemma) plays the same role as the fundamental theorem of calculus in allowing to evaluate integrals. Itô's lemma has an extra term not present in the conventional calculus theorem that is due to the non-smoothness characteristics of Brownian motion paths. If we write 
+The Itô integral can, as the Riemann integral, be approximated by a finite sum. Also, it has a definition as a certain limit. Itô's lemma \@ref(itolemma) plays the same role as the fundamental theorem of calculus in allowing to evaluate integrals. It is the formal definition and presents an extra term not encountered in the conventional calculus theorem that is due to the non-smoothness characteristics of Brownian motion paths. It is possible, though, to define the integral in a less rigorous way: 
 
 \begin{align}
-Y_{\Delta t}(t) = \sum_{t_k < t}{g(t_k)\Delta W_k}
+Y_{\Delta t}(t) \approx \sum_{t_k < t}{g(t_k)\Delta W_k}
 \end{align}
 
 \noindent
@@ -158,7 +158,7 @@ Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
 \end{align}
 
 
-
+It is essential that the *forward difference* is used rather than the backward difference, which would be **wrong**.
 
 
 
@@ -220,7 +220,66 @@ Let $f$, $g$ $\in$ $\mathcal{V}$ and let $0 \leq t_0 < u < T$. Then
 
 ## Black-Scholes Model
 
+### Basics
+
+
 Before introducing the Black-Schole model...
+
+----------------------------------------------
+
+
+The Black-Scholes (B-S) model arises from the need to price european options in the derivative markets. Derivatives are financial instruments traded in the market, stock exchange or over-the-counter (OTC) market, whose values depend on the values of an underlying asset. [@yang2013valuing; @salomao2011precificaccao; @black1973pricing]
+
+* A call option is a derivative that gives its bearer the right, but not the obligation, to purchase a specific asset by a fixed price before or on a given date. 
+
+* A put option is a derivative that gives its bearer the right, but not the obligation, to sell a specific asset by a fixed price before or on a given date.
+
+The trading price of the option is called the option *premium* and the asset from which the option derives is called the *underlying asset*. This asset may be the interest rate, exchange rates, stock exchanges rates, commodities or stocks. The fixed price in contract in which the underlying asset might to be bought or sold is the *strick price*. The option expiration date is called the *maturity*. [@salomao2011precificaccao; @black1973pricing]
+
+There are two major different option types: the European and the American. The difference between these two is that the bearer of the first may exercise it only at the end of its life, at its maturity while the latter can be exercised at any given time until its maturity. [@black1973pricing; @merton1973theory]
+
+
+\begin{definition}{(Implicit volatility)} 
+Given all the option's parameters in a precification model and its market price, the option's volatility is called the *implicit volatility*.
+\end{definition}
+
+
+
+\begin{definition}{(Intrinsic value)} 
+The intrinsic value of a call is the difference between the underlying asset price and the strike price. The put's intrinsic value operates the other way around, being the difference between the strike and the underling asset prices.
+\end{definition}
+
+
+
+
+
+
+###########
+
+
+
+Defini¸c˜ao 2.1.5 (Volatilidade Impl´ıcita) A volatilidade de uma op¸c˜ao
+dados os demais parˆametros do modelo de precifica¸c˜ao e seu pre¸co de mercado
+´e denominada volatilidade impl´ıcita.
+
+Defini¸c˜ao 2.1.7 (Valor Intr´ınseco) Para uma call, o valor intr´ınseco ´e
+a diferen¸ca entre o pre¸co do ativo subjacente e o do strike. Para uma put,
+o valor intr´ınseco ´e a diferen¸ca entre o strike e o pre¸co do ativo subjacente.
+Formalmente:
+
+###########
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Arithmetic Brownian Motion {#abm}
 
@@ -267,15 +326,6 @@ S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\
 
 
 
-The Black-Scholes (B-S) model arises from the need to price european options in the derivative markets. Derivatives are financial instruments traded in the market, stock exchange or over-the-counter (OTC) market, whose values depend on the values of an underlying asset. [@yang2013valuing; @salomao2011precificaccao; @black1973pricing]
-
-* A call option is a derivative that gives its bearer the right, but not the obligation, to purchase a specific asset by a fixed price before or on a given date. 
-
-* A put option is a derivative that gives its bearer the right, but not the obligation, to sell a specific asset by a fixed price before or on a given date.
-
-The trading price of the option is called the option *premium* and the asset from which the option derives is called the *underlying asset*. This asset may be the interest rate, exchange rates, stock exchanges rates, commodities or stocks. The fixed price in contract in which the underlying asset might to be bought or sold is the *strick price*. The option expiration date is called the *maturity*. [@salomao2011precificaccao; @black1973pricing]
-
-There are two major different option types: the European and the American. The difference between these two is that the bearer of the first may exercise it only at the end of its life, at its maturity while the latter can be exercised at any given time until its maturity. [@black1973pricing; @merton1973theory]
 
 
 
