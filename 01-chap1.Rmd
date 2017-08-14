@@ -206,9 +206,10 @@ Let $f$, $g$ $\in$ $\mathcal{V}$ and let $0 \leq t_0 < u < T$. Then
 
 \begin{enumerate}[label=(\roman*)]
   \item $\int_{t_0}^{T}{f dB_t} = \int_{t_0}^{u}{f dB_t} + \int_{u}^{T}{f dB_t}$
-  \item $\int_{t_0}^{T}{(cf + g) dB_t} = c  \int_{t_0}^{T}{f dB_t} + \int_{t_0}^{T}{g dB_t}$
+  \item $\int_{t_0}^{T}{(\alpha f + \beta g) dB_t} = \alpha  \int_{t_0}^{T}{f dB_t} + \int_{t_0}^{T}{ \beta g dB_t}$
   \item $\mathbb{E}\left[ \int_{t_0}^{T}{fdB_t}\right] = 0 $
   \item $\mathbb {E} \left[\left(\int_{0}^{t}H_{s}\,dB_{s}\right)^{2}\right]=\mathbb {E} \left[\int _{0}^{t}H_{s}^{2}\,ds\right]$ (Isometry)
+  \item $ \mathbb {E}\left[ \int_{t_0}^{T}{f dB_t \mid \mathcal{F}_{s}} \right] = \int_{t_0}^{s}{f dB_t}, \,\,\,\,\,\,\,\,\,\,\,\,\,\, for \,\, s < T.$  (Martingale\footnote{A martingale is a stochastic process with certain characteristics. The main one is that the expected value in time $t+1$ for $X$ is the $X$ value in $t$. This means there are no winning strategies when we are dealing with martingales (unlike when we play poker, for example). A Wiener process is a martingale.})
 \end{enumerate}
 
 \end{theorem}
@@ -252,22 +253,6 @@ The intrinsic value of a call is the difference between the underlying asset pri
 
 
 
-
-
-###########
-
-
-
-Defini¸c˜ao 2.1.5 (Volatilidade Impl´ıcita) A volatilidade de uma op¸c˜ao
-dados os demais parˆametros do modelo de precifica¸c˜ao e seu pre¸co de mercado
-´e denominada volatilidade impl´ıcita.
-
-Defini¸c˜ao 2.1.7 (Valor Intr´ınseco) Para uma call, o valor intr´ınseco ´e
-a diferen¸ca entre o pre¸co do ativo subjacente e o do strike. Para uma put,
-o valor intr´ınseco ´e a diferen¸ca entre o strike e o pre¸co do ativo subjacente.
-Formalmente:
-
-###########
 
 
 
