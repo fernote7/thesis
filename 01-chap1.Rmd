@@ -225,12 +225,7 @@ Let $f$, $g$ $\in$ $\mathcal{V}$ and let $0 \leq t_0 < u < T$. Then
 ### Basics
 
 
-Before introducing the Black-Schole model...
-
-----------------------------------------------
-
-
-The Black-Scholes (B-S) model arises from the need to price european options in the derivative markets. Derivatives are financial instruments traded in the market, stock exchange or over-the-counter (OTC) market, whose values depend on the values of an underlying asset. [@yang2013valuing; @salomao2011precificaccao; @black1973pricing]
+The Black-Scholes (B-S) model arises from the need to price european options in the derivative markets. Derivatives are financial instruments traded in the market, stock exchange or over-the-counter (OTC) market, whose values depend on the values of an underlying asset. [@black1973pricing; @yang2013valuing; @salomao2011precificaccao]
 
 * A call option is a derivative that gives its bearer the right, but not the obligation, to purchase a specific asset by a fixed price before or on a given date. 
 
@@ -267,28 +262,12 @@ The intrinsic value of a call is the difference between the underlying asset pri
 
 
 
-#### Arithmetic Brownian Motion {#abm}
 
-The arithmetic brownian motion is defined in literature as being a random process (S) defined as follows [@ubbo]:
-
-\begin{align}
-dS_t = \mu dt + \sigma dB_t
-\end{align}
-
-\begin{center}or in integral form:\end{center}
-
-\begin{align}
-\int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
-\end{align}
-
-
-\noindent
-Where, $\mu$ and $\sigma$ are known and constant with $\sigma > 0$. In this process, both the drift $\mu$ and the diffusion $\sigma$ coefficient are constant. The expected value of this process is the sum of the initial value and the drift times the elapsed period ($S_0 + \mu T$). The variance is described by $\sigma^2 T$
 
 
 #### Geometric Brownian Motion {#gbm}
 
-A stochastic process $S_t$ is a geometric brownian motion if its solution is described by the solution of the following stochastic differential equation [@tong2012option; @tsay2005analysis].
+A stochastic process $S_t$ is a geometric brownian motion ^[There is an arithmetic brownian motion, whose equation is: $dS_t = \mu dt + \sigma dB_t$. More information can be obatined about this process looking at [@ubbo].] if its solution is described by the solution of the following stochastic differential equation [@ubbo; @tong2012option; @tsay2005analysis].
 
 \begin{align}
 dS_t = \mu S_t dt + \sigma S_t dW_t
@@ -297,7 +276,7 @@ dS_t = \mu S_t dt + \sigma S_t dW_t
 \noindent
 for given constants $\mu \in {\rm I\!R}$ and $\sigma > 0$. Also, the assumed initial value is positive, $S_0 >0$.
 
-This process is used quite often in finance to model the dynamics of some assets becaus of its properties. It has independent multiplicative increments and its solution is presented below[@iacus2009simulation]:
+This process is used quite often in finance to model the dynamics of some assets becaus of its properties. It has independent multiplicative increments and is the procee used to price options in the Black-Scholes model [@iacus2009simulation]:
 
 
 \begin{align}
@@ -317,7 +296,7 @@ S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\
 
 ### The model
 
-The Black-Scholes model that provides analytical solution to the price of a European call at time $t$ can be described as follows[@yang2013valuing; @black1973pricing; @helgadottir2016option]:
+The Black-Scholes model that provides analytical solution to the price of a European call at time $t$ can be described as follows [@yang2013valuing; @black1973pricing; @helgadottir2016option]:
 
 \begin{align}
 C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
@@ -340,7 +319,7 @@ Where:
 
 
 \noindent
-Also, the stock price path is a Geometric Brownian Motion and is under the risk-neutral measure with the following dynamics [@helgadottir2016option; @nmof]: 
+Also, the stock price path is a Geometric Brownian Motion as previously stated, and is under the risk-neutral measure with the following dynamics [@helgadottir2016option; @nmof]: 
 
 \begin{align}
 dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
@@ -350,15 +329,17 @@ dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
 Where $dW_t$ is a Wiener process [@black1973pricing; @nmof], $r$ is the risk free rate and $q$ is the dividend yield\footnote{$r$ and $q$ are assumed to be constant.} and $t$ denotes the current point in time. 
 
 
+
+
+
+### Limitations
+
+
 Although the Black-Scholes is very popular and the *de facto* standard in the market there are implications to the B-S model assumptions that affect the results and that are unrealistic. The main assumption that does not hold up is the deterministic (constant) volatility, that can more accurately be described as a stochastic process since we observe that small moves usually are followed by small moves and large moves by large moves.   [@yang2013valuing; @helgadottir2016option]
 
 Other assumptions that are critical to the B-S model and are not always observed in practice refer to the asset's continuity through time (no jumps), being allowed to perform continuous hedge without transactions costs and normal (Gaussian) returns.
 
 Most models focus on the volatility problem because transaction costs often translate to rises in volatility and fat-tails (abnormal) returns can be simulated by stochastic volatility and market or volatility jumps.
-
-
-### Limitations
-
 
 <!-- Out of all the parameters that the call price depends on in the Black Scholes -->
 <!-- model, the volatility is the only one that is unobservable, but we can let the -->
@@ -404,12 +385,7 @@ Introducing stochastic volatility to models brings complexity, but enables model
 
 
 
-### Other models (PRESENT MODELS PREVIOUSLY USED)
-
-Langevin? OU?
-
- 
-### Cox-Ingersoll-Ross model
+### Cox-Ingersoll-Ross model {#cir}
  
  The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that describes the interest rate movements driven by one source of market risk. The dynamics are described as follows[@cox1985theory; @heston1993closed]:
  
@@ -440,7 +416,7 @@ dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 
 
 
-The second equation, as previously described, is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t,1}$ and $dW_{t,2}$ are two correlated wiener processes with correlation coefficient of $\rho$. Because, of the model specifications and what we presentend in section \@ref(corr), we can rewrite the first equation as in Broadie and Kaya [@broadie2006exact]:
+The second equation, as described in Section \@ref(cir), is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t,1}$ and $dW_{t,2}$ are two correlated wiener processes with correlation coefficient of $\rho$. Because, of the model specifications and what we presentend in section \@ref(corr), we can rewrite the first equation as in Broadie and Kaya [@broadie2006exact]:
 
 \begin{align}
 \label{eq:heston2}
@@ -449,6 +425,37 @@ dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_
 dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 \end{split}
 \end{align}
+
+
+
+### Other Models
+
+#### Ornstein-Uhlenbeck
+
+
+The Ornstein-Uhlenbeck is the earliest recorded SDE. Named after Leonard Ornstein and George Eugene Uhlenbeck, it is a stochastic process that describes the acceleration of a pollen particle in a liquid subject to bombardments by molecules [@ubbo]. As we can observe in equation \@ref(ou_eq), $x_t$ represents the one dimension velocity of the particle, thus $dx_t$ is the *change* in velocity, in other words, its acceleration. The $- \theta x_t$ component slows down the acceleration and is to be understood as frictional force. Besides, we add a noise $W_t$ with intensity $\sigma$ that models the random bombardment by the molecules. 
+
+\begin{align} \label{ou_eq}
+&d x_t = - \theta x_t dt + \sigma d W_t \\
+\end{align}
+
+With $\theta$ and $\sigma$ being positive constants. Expressing in terms of $x_t$ we get:
+
+
+\begin{align}
+x_t = e^{-\theta t} \times \left[ x_0  + \sigma \int_{t=0}^{T} e^{\theta t} d W_s \right] \,.
+\end{align}
+
+#### Langevin
+
+The Langevin equation describes a system that consists of the molecular bombardment of a speck of dust on a water surface. We know that the intensity of the bombardement does not depend on the state variables [@kloeden1992]. 
+
+\begin{align}
+m \frac{dv}{dt} = -\zeta v + \delta F (t) 
+\end{align}
+
+$m$ is the mass of the particle, $v$ it's velocity, $-\zeta v$ is the frictional force, which is proportional to the velocity, and $\delta F (t)$ is a *fluctuating* force (random) to the frictional force.
+
 
 
 

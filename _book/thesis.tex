@@ -180,62 +180,8 @@ starts here.
   \mainmatter % here the regular arabic numbering starts
   \pagestyle{fancyplain} % turns page numbering back on
 
-  \chapter{Introduction}\label{intro}
-  
-  The french mathematician Louis Bachelier was the trail-blazer that
-  brought Brownian motion, previously restricted to the field of botanics
-  where it was firstly observed, to the financial framework. He modeled
-  the stock prices as a brownian motion with drift. In 1973, Black and
-  Scholes {[}1{]} designed a model based on the geometric brownian motion
-  to price options.
-  
-  Options are derivatives that give their bearers the rights to buy or
-  sell a specific asset in a future date and with a predetermined price.
-  They are, by design, affected by small variations in the underlying
-  assets' components, for example, the variance.
-  
-  The Black-Scholes model was once the standard way of option pricing, but
-  was replaced by more modern models that are now prevalent. One of the
-  main drawbacks of the Black-Scholes model is the strong assumption that
-  the stock returns' volatility is constant. Thus, the implied model's
-  volatility results in a flat surface when plotted against the option's
-  strike price and maturity. Real world implied volatility varies with the
-  strike price and maturity, forming what is called the `volatility
-  smile'.
-  
-  The Heston model is an extension of the Black-Scholes model that tackles
-  this volatility issue replacing the constant volatility with a
-  stochastic process. There are many models that stochastically model
-  volatility, but the Heston has valuable characteristics suach as
-  presenting an analytical solution to the option pricing and also having
-  a computationally simple implementation when compared to more
-  sophisticated competitors.
-  
-  This thesis is divided into five chapters, the first being this
-  introduction. Following, we have a literature review that mainly
-  addresses stochastic calculus, the Black-Scholes models and the Heston
-  model. Thereafter we present the different Heston model known
-  implementations and the implementation improvement we experiment.
-  Chapter 4 brings the results of what was introduced in the previous
-  chapter for different model calibrations.
-  
-  {[}2{]} Another technique of particular relevance when the random
-  effects can be considered as external to some reasonably well-understood
-  deterministic system replaces input parameters in a deterministic model
-  by random processes; the resulting random model characterizes the sample
-  path structure of the solution process. An example which has had wide
-  application in engineering consists of adding a noise term to the right
-  side of a deterministic differential equation. The first such model was
-  formu- lated by Langevin in 1908 to describe the velocity of a particle
-  moving in a random force field. Random equations of this type can be
-  interpreted as stochastic differential equations, following Ito's basic
-  work in the early 1940s. Solutions of such equations represent Markov
-  diffusion processes, the prototype of which is the Brownian motion (or
-  Wiener) process. The the- ory of stochastic differential equations set
-  down by Ito, and independently established in the Soviet Union by
-  Gihman, together with the previous mathematical work of Wiener and Levy
-  on Brownian motion has provided the basic tools making this more
-  ambitious approach of constructing sample paths feasible.
+  \chapter{\texorpdfstring{altadvisor: `Your Other
+  Advisor'}{altadvisor: Your Other Advisor}}\label{altadvisor-your-other-advisor}
   
   \chapter{Literature Review}\label{lt-review}
   
@@ -254,7 +200,7 @@ starts here.
   created by the Japanese mathematician Kiyosi Itô
   \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}
   in the 1940s and 1950s and is used for modeling financial options and in
-  another wide variety of fields {[}3{]}. In this chapter we present the
+  another wide variety of fields {[}1{]}. In this chapter we present the
   historical contexts in which the tools and models used arise, but our
   focus is introducing the concepts and notations that will be further
   used in our work.
@@ -293,7 +239,7 @@ starts here.
   in the motion of pollen particles suspended in fluid resulting from
   particle collision with atoms or molecules. It is named after Robert
   Brown, the first to have observed the movement in 1828. He noted two
-  characteristic in the pollen movement {[}3{]}:
+  characteristic in the pollen movement {[}1{]}:
   \begin{itemize}
   \item
     the path of a given particle is very irregular, having a tangent at no
@@ -304,11 +250,11 @@ starts here.
   The first quantitative works in brownian motion come from an interest in
   stock price fluctuation by Bachelier in 1900. Albert Einstein also
   leaned over the subject and in 1905 derived the transition density for
-  Brownian motion from molecular-kinetic theory of heat {[}3,4{]}.
+  Brownian motion from molecular-kinetic theory of heat {[}1,2{]}.
   
   In 1923, the Wiener process was coined in honor of Norbert Wiener
   mathematical proof of existence of the brownian motion and stating its
-  properties.\footnote{More can be found on {[}5--7{]}.}
+  properties.\footnote{More can be found on {[}3--5{]}.}
   \begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties:
   \begin{itemize}
     \item  $W_{0}=0$
@@ -338,7 +284,7 @@ starts here.
   Two independent brownian motions that are correlated can describe a new
   process \(Z_t\). Let \(W_1\) and \(W_2\) be these two \emph{independent}
   Brownian motions and let \(-1 \leq \rho \leq 1\) be a given number. For
-  \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}3{]}:
+  \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}1{]}:
   \begin{align}
   \label{eq:corr_brow}
   Z_t = \rho W_{1,t} + \sqrt{1-\rho^2}W_{2,t}
@@ -347,12 +293,12 @@ starts here.
   This equation is a linear combination of independent normals at each
   timestep \(t\), so \(Z_t\) is normally distributed. It is proven that
   \(Z\) is a Brownian motion and that \(Z\) and \(W_{1,t}\) are correlated
-  {[}3{]}.
+  {[}1{]}.
   
   \subsection{Itô's Integral}\label{itos-integral}
   
   Formally, the SDE presented in equation \ref{sde1} only exists because
-  we can rewrite it in the form {[}6--11{]}:
+  we can rewrite it in the form {[}4--9{]}:
   \begin{align} \label{sde1}
   x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
   \end{align}
@@ -403,9 +349,9 @@ starts here.
   Equation \eqref{eq:ito} is the stochastic equivalent to the chain rule,
   also known as Itô's formula or Itô's chain rule. The proof to this
   theorem is based on the Taylor expansion of the function \(f(S_t, t)\)
-  {[}6,8{]}. For practical uses you should write out a second-order Taylor
+  {[}4,6{]}. For practical uses you should write out a second-order Taylor
   expansion for the function to be analyzed and apply the
-  \ref{tab:box-calc} multiplication table {[}3{]}.
+  \ref{tab:box-calc} multiplication table {[}1{]}.
   \begin{longtable}[t]{llr}
   \caption{\label{tab:box-calc}Box calculus}\\
   \toprule
@@ -430,13 +376,10 @@ starts here.
   
   \subsection{Basics}\label{basics}
   
-  Before introducing the Black-Schole model\ldots{}
-  \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
-  
   The Black-Scholes (B-S) model arises from the need to price european
   options in the derivative markets. Derivatives are financial instruments
   traded in the market, stock exchange or over-the-counter (OTC) market,
-  whose values depend on the values of an underlying asset. {[}1,12,13{]}
+  whose values depend on the values of an underlying asset. {[}10--12{]}
   \begin{itemize}
   \item
     A call option is a derivative that gives its bearer the right, but not
@@ -453,43 +396,27 @@ starts here.
   exchanges rates, commodities or stocks. The fixed price in contract in
   which the underlying asset might to be bought or sold is the
   \emph{strick price}. The option expiration date is called the
-  \emph{maturity}. {[}1,13{]}
+  \emph{maturity}. {[}10,12{]}
   
   There are two major different option types: the European and the
   American. The difference between these two is that the bearer of the
   first may exercise it only at the end of its life, at its maturity while
   the latter can be exercised at any given time until its maturity.
-  {[}1,14{]}
+  {[}10,13{]}
   \begin{definition}{(Implicit volatility)} 
   Given all the option's parameters in a precification model and its market price, the option's volatility is called the *implicit volatility*.
   \end{definition}
   \begin{definition}{(Intrinsic value)} 
   The intrinsic value of a call is the difference between the underlying asset price and the strike price. The put's intrinsic value operates the other way around, being the difference between the strike and the underling asset prices.
   \end{definition}
-  \subsubsection{Arithmetic Brownian Motion}\label{abm}
-  
-  The arithmetic brownian motion is defined in literature as being a
-  random process (S) defined as follows {[}3{]}:
-  \begin{align}
-  dS_t = \mu dt + \sigma dB_t
-  \end{align}
-  \begin{center}or in integral form:\end{center}
-  \begin{align}
-  \int_{t=0}^{T} dS_t = \int_{t=0}^{T}{\mu dt} + \int_{t=0}^{T}{\sigma dB_t}
-  \end{align}
-  \noindent
-  Where, \(\mu\) and \(\sigma\) are known and constant with
-  \(\sigma > 0\). In this process, both the drift \(\mu\) and the
-  diffusion \(\sigma\) coefficient are constant. The expected value of
-  this process is the sum of the initial value and the drift times the
-  elapsed period (\(S_0 + \mu T\)). The variance is described by
-  \(\sigma^2 T\)
-  
   \subsubsection{Geometric Brownian Motion}\label{gbm}
   
-  A stochastic process \(S_t\) is a geometric brownian motion if its
-  solution is described by the solution of the following stochastic
-  differential equation {[}8,15{]}.
+  A stochastic process \(S_t\) is a geometric brownian motion\footnote{There
+    is an arithmetic brownian motion, whose equation is:
+    \(dS_t = \mu dt + \sigma dB_t\). More information can be obatined
+    about this process looking at {[}1{]}.} if its solution is described
+  by the solution of the following stochastic differential equation
+  {[}1,6,14{]}.
   \begin{align}
   dS_t = \mu S_t dt + \sigma S_t dW_t
   \end{align}
@@ -499,15 +426,16 @@ starts here.
   
   This process is used quite often in finance to model the dynamics of
   some assets becaus of its properties. It has independent multiplicative
-  increments and its solution is presented below{[}16{]}:
+  increments and is the procee used to price options in the Black-Scholes
+  model {[}15{]}:
   \begin{align}
   S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
   \end{align}
   \subsection{The model}\label{the-model}
   
   The Black-Scholes model that provides analytical solution to the price
-  of a European call at time \(t\) can be described as
-  follows{[}1,5,12{]}:
+  of a European call at time \(t\) can be described as follows
+  {[}3,10,11{]}:
   \begin{align}
   C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
   d_{1}&={\frac {1}{\sigma {\sqrt {T-t}}}}\left[\ln \left({\frac {S_{t}}{K}}\right)+\left(r+{\frac {\sigma ^{2}}{2}}\right)(T-t)\right]\\[10pt]
@@ -534,16 +462,19 @@ starts here.
     \(T-t\) is the time to maturity
   \end{itemize}
   \noindent
-  Also, the stock price path is a Geometric Brownian Motion and is under
-  the risk-neutral measure with the following dynamics {[}5,17{]}:
+  Also, the stock price path is a Geometric Brownian Motion as previously
+  stated, and is under the risk-neutral measure with the following
+  dynamics {[}3,16{]}:
   \begin{align}
   dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
   \end{align}
   \noindent
-  Where \(dW_t\) is a Wiener process {[}1,17{]}, \(r\) is the risk free
+  Where \(dW_t\) is a Wiener process {[}10,16{]}, \(r\) is the risk free
   rate and \(q\) is the dividend
   yield\footnote{$r$ and $q$ are assumed to be constant.} and \(t\)
   denotes the current point in time.
+  
+  \subsection{Limitations}\label{limitations}
   
   Although the Black-Scholes is very popular and the \emph{de facto}
   standard in the market there are implications to the B-S model
@@ -551,7 +482,7 @@ starts here.
   assumption that does not hold up is the deterministic (constant)
   volatility, that can more accurately be described as a stochastic
   process since we observe that small moves usually are followed by small
-  moves and large moves by large moves. {[}5,12{]}
+  moves and large moves by large moves. {[}3,11{]}
   
   Other assumptions that are critical to the B-S model and are not always
   observed in practice refer to the asset's continuity through time (no
@@ -563,8 +494,6 @@ starts here.
   can be simulated by stochastic volatility and market or volatility
   jumps.
   
-  \subsection{Limitations}\label{limitations}
-  
   \section{Stochastic Volatility
   models}\label{stochastic-volatility-models}
   
@@ -574,16 +503,11 @@ starts here.
   more realistically modeled) and volatility smile. This kind of model is
   applied highly succesfully in foreign exchange and credit markets.
   
-  \subsection{Other models (PRESENT MODELS PREVIOUSLY
-  USED)}\label{other-models-present-models-previously-used}
-  
-  Langevin? OU?
-  
-  \subsection{Cox-Ingersoll-Ross model}\label{cox-ingersoll-ross-model}
+  \subsection{Cox-Ingersoll-Ross model}\label{cir}
   
   The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
   describes the interest rate movements driven by one source of market
-  risk. The dynamics are described as follows{[}18,19{]}:
+  risk. The dynamics are described as follows{[}17,18{]}:
   \begin{align}
   \label{eq:cir}
   dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
@@ -599,7 +523,7 @@ starts here.
   account of anticipations, risk aversion, investment alternatives and
   preferences about consumption timing and allows for detailed predictions
   about how changes in a wide range of underlying variables affect the
-  term structure{[}18{]}. Furthermore, this equation constitutes one of
+  term structure{[}17{]}. Furthermore, this equation constitutes one of
   the two Heston model equations with the volatility taking the short rate
   interest place.
   
@@ -608,7 +532,7 @@ starts here.
   Heston model solves the deterministic volatility problems introducing
   the following equations, which represents the dynamics of the stock
   price and the variance processes under the risk-neutral measure
-  {[}19,20{]}:
+  {[}18,19{]}:
   \begin{align}
   \label{eq:heston}
   \begin{split}
@@ -616,12 +540,13 @@ starts here.
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{split}
   \end{align}
-  The second equation, as previously described, is the CIR model equation.
-  The first equation states the asset price process. \(\mu\) is the
-  asset's rate of return, \(dW_{t,1}\) and \(dW_{t,2}\) are two correlated
-  wiener processes with correlation coefficient of \(\rho\). Because, of
-  the model specifications and what we presentend in section \ref{corr},
-  we can rewrite the first equation as in Broadie and Kaya {[}21{]}:
+  The second equation, as described in the \ref{cir}, is the CIR model
+  equation. The first equation states the asset price process. \(\mu\) is
+  the asset's rate of return, \(dW_{t,1}\) and \(dW_{t,2}\) are two
+  correlated wiener processes with correlation coefficient of \(\rho\).
+  Because, of the model specifications and what we presentend in section
+  \ref{corr}, we can rewrite the first equation as in Broadie and Kaya
+  {[}20{]}:
   \begin{align}
   \label{eq:heston2}
   \begin{split}
@@ -629,6 +554,42 @@ starts here.
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
   \end{split}
   \end{align}
+  \subsection{Other Models}\label{other-models}
+  
+  \subsubsection{Ornstein-Uhlenbeck}\label{ornstein-uhlenbeck}
+  
+  The Ornstein-Uhlenbeck is the earliest recorded SDE. Named after Leonard
+  Ornstein and George Eugene Uhlenbeck, it is a stochastic process that
+  describes the acceleration of a pollen particle in a liquid subject to
+  bombardments by molecules {[}1{]}. As we can observe in equation
+  @ref(ou\_eq), \(x_t\) represents the one dimension velocity of the
+  particle, thus \(dx_t\) is the \emph{change} in velocity, in other
+  words, its acceleration. The \(- \theta x_t\) component slows down the
+  acceleration and is to be understood as frictional force. Besides, we
+  add a noise \(W_t\) with intensity \(\sigma\) that models the random
+  bombardment by the molecules.
+  \begin{align} \label{ou_eq}
+  &d x_t = - \theta x_t dt + \sigma d W_t \\
+  \end{align}
+  With \(\theta\) and \(\sigma\) being positive constants. Expressing in
+  terms of \(x_t\) we get:
+  \begin{align}
+  x_t = e^{-\theta t} \times \left[ x_0  + \sigma \int_{t=0}^{T} e^{\theta t} d W_s \right] \,.
+  \end{align}
+  \subsubsection{Langevin}\label{langevin}
+  
+  The Langevin equation describes a system that consists of the molecular
+  bombardment of a speck of dust on a water surface. We know that the
+  intensity of the bombardement does not depend on the state variables
+  {[}21{]}.
+  \begin{align}
+  m \frac{dv}{dt} = -\zeta v + \delta F (t) 
+  \end{align}
+  \(m\) is the mass of the particle, \(v\) it's velocity, \(-\zeta v\) is
+  the frictional force, which is proportional to the velocity, and
+  \(\delta F (t)\) is a \emph{fluctuating} force (random) to the
+  frictional force.
+  
   \section{Numerical Methods}\label{numerical-methods}
   
   \subsection{Convergence ??}\label{convergence}
@@ -642,454 +603,105 @@ starts here.
   \chapter{The Heston Model
   Implementation}\label{the-heston-model-implementation}
   
-  \section{Characteristic Function}\label{characteristic-function}
-  
-  The Heston model characteristic function is firstly presented in the
-  1993 Steven Heston's paper {[}19{]} and is described below {[}22{]}:
-  \begin{align}
-  f(S_t, V_t, t) = e^{A(T-t)+B(T-t)S_t + C(T-t)V_t + i \phi S_t}
-  \end{align}
-  If we let \(\tau = T-t\), then the explicit form of the Heston
-  characteristic function is:
-  \begin{align*}
-  f(i \phi) &= e^{A(\tau)+B(\tau)S_t + C(\tau)V_t + i \phi S_t} \\
-  A(\tau) &= r i \phi \tau + \frac{k \theta}{\sigma^2} \left[ - (\rho \sigma i \phi - k - M) \tau - 2 \ln\left(\frac{1-N e^{M \tau}}{1-N}\right) \right] \\
-  B(\tau) &= 0 \\
-  C(\tau) &= \frac{(e^{M \tau}-1)(\rho \sigma i \phi - k - M)}{\sigma^2 (1-N e^{M \tau})} \\
-  \text{Where:} & \\
-  M &= \sqrt{(\rho \sigma i \phi - k)^2 + \sigma^2 (i \phi + \phi^2)} \\
-  N &= \frac{\rho \sigma i \phi - k - M}{\rho \sigma i \phi - k + M} \\
-  \end{align*}
-  This function is the driving force behind the following formula, that
-  calculates the fair valur of a European call option at time \(t\), given
-  a strike price \(K\), that expires at time \(T\) {[}22{]}:
-  \begin{align} 
-  \label{eq:cfheston}
-  \begin{split}
-  C = & \frac{1}{2} S(t) + \frac{e^{-r(T-t)}}{\pi}\int_{0}^{\infty}{\Re \left[ \frac{K^{-i \phi} f(i \phi + 1)}{i \phi} \right] d\phi} \\
-  & -Ke^{-r(T-t)}\left( \frac{1}{2} + \frac{1}{\pi} \int_{0}^{\infty}{\Re \left[ \frac{K^{-i \phi} f(i \phi)}{i \phi} \right]}  d\phi \right)
-  \end{split}
-  \end{align}
-  \section{Euler Scheme - Full
-  Truncation}\label{euler-scheme---full-truncation}
-  
-  We present here the Euler Scheme - Full Truncation algorithm {[}21{]}
-  along with some insights on how it was implemented in the R programming
-  language {[}23{]}. The Euler discretization brings approximation paths
-  to stock prices and variance processes. If we set
-  \(t_0 = 0 < t_1 < \dots < t_M = T\) as partitions of a time interval of
-  \(M\) equal segments of lenght \(\delta t\), we have the following
-  discretization for the stock price:
-  \begin{align}
-  S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
-  \end{align}
-  \noindent
-  And for the variance process:
-  \begin{align}
-  V_{t+1} = V_t + k (\theta - V_t) + \sigma \sqrt{V_t} Z_v
-  \end{align}
-  \noindent
-  \(Z_s\) being a standard normal random variable, i.e. \(N~(0,1)\), we
-  set \(Z_t\) and \(Z_v\) as two independent standard normal random
-  variables and \(Z_s\) and \(Z_v\) having correlation \(\rho\). This
-  means we can write \(Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t\)
-  
-  The immediate observable problem in the proposed discretization scheme
-  is that \(V\) can become negative with non-zero probability making the
-  computation of \(\sqrt{V_t}\) impossible {[}24{]}. There are several
-  proposed fixes that can be used, we chose the Full-Truncation (FT) and
-  rewrite the equations as follows:
-  \begin{align}
-  S_{t+1} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
-  V_{t+1} &= V_t + k (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v
-  \end{align}
-  \noindent
-  Where we use the notation \(V_{t}^{+} = \max(V_{t}, 0)\).
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{hestoneuler <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(S, X, r, v, theta, rho, k, sigma, }\DataTypeTok{t =} \DecValTok{0}\NormalTok{, }
-                          \DataTypeTok{dt =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{tau =} \DecValTok{1}\NormalTok{, N, }\DataTypeTok{sensibility =} \DecValTok{15}\NormalTok{)\{}
-  
-      \KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-  
-      \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(tau}\OperatorTok{-}\NormalTok{t)}\OperatorTok{/}\DecValTok{1000}\NormalTok{\}}
-  
-  \NormalTok{    ST <-}\StringTok{ }\OtherTok{NULL}
-  \NormalTok{    aux <-}\StringTok{ }\OtherTok{NULL}
-  \NormalTok{    sqrt_dt <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt)}
-  
-      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
-          \CommentTok{# browser()}
-  \NormalTok{        Zv <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
-  \NormalTok{        Zt <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
-  \NormalTok{        Zs <-}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{Zv }\OperatorTok{+}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{(rho}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{Zt)}
-  
-          \CommentTok{# v[v <= 0] = 0}
-  
-  \NormalTok{        aux <-}\StringTok{ }\NormalTok{v}
-  \NormalTok{        aux[v }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-  \NormalTok{        sqrt_aux <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(aux)}
-  \NormalTok{        S <-}\StringTok{ }\NormalTok{S }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{r }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{+}\StringTok{ }\NormalTok{sqrt_aux }\OperatorTok{*}\StringTok{ }\NormalTok{Zs }\OperatorTok{*}\StringTok{ }\NormalTok{sqrt_dt)}
-  \NormalTok{        S[S }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-  
-  \NormalTok{        v <-}\StringTok{ }\NormalTok{v }\OperatorTok{+}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{*}\StringTok{ }\NormalTok{(theta }\OperatorTok{-}\StringTok{ }\NormalTok{aux) }\OperatorTok{+}\StringTok{ }
-  \StringTok{          }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }\NormalTok{sqrt_aux }\OperatorTok{*}\StringTok{ }\NormalTok{Zv }\OperatorTok{*}\StringTok{ }\NormalTok{sqrt_dt}
-  
-  \NormalTok{        ST <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(ST,S)}
-  \NormalTok{    \}}
-  
-      \KeywordTok{rm}\NormalTok{(aux, v, Zv, Zt, Zs, S)}
-  
-  \NormalTok{    ST <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(ST, }\DataTypeTok{ncol=}\NormalTok{N)}
-      \CommentTok{# matplot(graf, type = 'l')}
-      \CommentTok{# abline(h=X, lwd=2, col='red')}
-  \NormalTok{    media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
-  
-      \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ (X}\OperatorTok{-}\NormalTok{sensibility)}\OperatorTok{:}\NormalTok{(X}\OperatorTok{+}\NormalTok{sensibility))\{}
-  
-  \NormalTok{        Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] }\OperatorTok{-}\StringTok{ }\NormalTok{j}
-  \NormalTok{        Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-  \NormalTok{        media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
-  
-  \NormalTok{    \}}
-  
-  \NormalTok{    media <-}\StringTok{ }\NormalTok{media }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}
-      \CommentTok{# plot(media, ylab = "Call price", xlab = "Strike price")}
-  
-  \NormalTok{    Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] }\OperatorTok{-}\StringTok{ }\NormalTok{X}
-  \NormalTok{    Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-  \NormalTok{    call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}\OperatorTok{*}\NormalTok{Result)}
-  
-  \NormalTok{    lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'}\NormalTok{ =}\StringTok{ }\NormalTok{call, }\StringTok{'Result'}\NormalTok{ =}\StringTok{ }\NormalTok{Result, }
-                   \StringTok{'Spot'}\NormalTok{ =}\StringTok{ }\NormalTok{ST, }\StringTok{'sensib'}\NormalTok{ =}\StringTok{ }\NormalTok{media)}
-      \KeywordTok{return}\NormalTok{(lista)}
-  \NormalTok{\}}
-  \end{Highlighting}
-  \end{Shaded}
-  \section{Kahl-Jackel}\label{kahl-jackel}
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{Hestoncallkj <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(S, X, r, q, v, theta, rho, k, sigma, }
-                           \DataTypeTok{t =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dt =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{tau =} \DecValTok{1}\NormalTok{, N, }
-                           \DataTypeTok{sensibility =} \DecValTok{15}\NormalTok{)\{}
-  
-      \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(T}\OperatorTok{-}\NormalTok{t)}\OperatorTok{/}\DecValTok{1000}\NormalTok{\}}
-  
-  \NormalTok{    v <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(v,N)}
-  \NormalTok{    theta<-}\StringTok{ }\KeywordTok{rep}\NormalTok{(theta,N)}
-  \NormalTok{    graf <-}\StringTok{ }\OtherTok{NULL}
-  \NormalTok{    S <-}\StringTok{ }\KeywordTok{log}\NormalTok{(S)}
-  
-      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
-       \CommentTok{# browser()}
-  \NormalTok{    Zv <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
-  \NormalTok{    Zt <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N)}
-  \NormalTok{    Zs <-}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{Zv }\OperatorTok{+}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{rho}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{Zt}
-  
-  \NormalTok{    vt <-}\StringTok{ }\NormalTok{(v }\OperatorTok{+}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{theta }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{+}\StringTok{ }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(v) }\OperatorTok{*}\StringTok{ }\NormalTok{Zv }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt) }\OperatorTok{+}
-  \StringTok{              }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{sigma}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{*}\StringTok{ }\NormalTok{((Zv)}\OperatorTok{^}\DecValTok{2} \OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{))}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{dt)}
-  
-      \CommentTok{# print(vt)}
-  
-      \CommentTok{# if(!length(vt[vt <= 0]) == 0 & length(vt[vt <= 0]) >= 1)\{}
-      \CommentTok{#     # browser()}
-  \NormalTok{    vt[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\NormalTok{v[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{*}\StringTok{ }\NormalTok{(theta[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] }\OperatorTok{-}\StringTok{ }
-  \StringTok{                    }\KeywordTok{pmax}\NormalTok{(v[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{],}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }
-  \StringTok{                    }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{],}\DecValTok{0}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{Zv[vt }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt)}
-  \NormalTok{    v <-}\StringTok{ }\NormalTok{vt}
-  \NormalTok{    v[v}\OperatorTok{<=}\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-  
-      \CommentTok{# \}}
-  
-  \NormalTok{    S <-}\StringTok{ }\NormalTok{S }\OperatorTok{+}\StringTok{ }\NormalTok{(r }\OperatorTok{-}\StringTok{ }\NormalTok{(v}\OperatorTok{+}\NormalTok{vt)}\OperatorTok{/}\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{+}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v,}\DecValTok{0}\NormalTok{)) }\OperatorTok{*}\StringTok{ }
-  \StringTok{          }\NormalTok{Zv }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(dt) }\OperatorTok{+}
-  \StringTok{          }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(v,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{pmax}\NormalTok{(vt,}\DecValTok{0}\NormalTok{))) }\OperatorTok{*}\StringTok{ }
-  \StringTok{          }\NormalTok{(Zs }\OperatorTok{+}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{Zv) }\OperatorTok{*}\StringTok{ }
-  \StringTok{          }\KeywordTok{sqrt}\NormalTok{(dt) }\OperatorTok{+}
-  \StringTok{          }\NormalTok{((rho }\OperatorTok{*}\StringTok{ }\NormalTok{sigma }\OperatorTok{*}\StringTok{ }\NormalTok{dt)}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{((Zv)}\OperatorTok{^}\DecValTok{2} \OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
-  
-  \NormalTok{    S[S }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-  \NormalTok{    graf <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(graf,S)}
-  
-  \NormalTok{    \}}
-  
-       \CommentTok{# browser()}
-  
-  \NormalTok{    graf <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(graf, }\DataTypeTok{ncol=}\NormalTok{N)}
-  \NormalTok{    ST <-}\StringTok{ }\NormalTok{graf}
-      \CommentTok{# matplot(graf, type = 'l')}
-      \CommentTok{# abline(h=log(X), lwd=2, col='red')}
-  
-  \NormalTok{    media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
-  
-      \CommentTok{# browser()}
-  
-      \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ (X}\OperatorTok{-}\NormalTok{sensibility)}\OperatorTok{:}\NormalTok{(X}\OperatorTok{+}\NormalTok{sensibility))\{}
-  
-  \NormalTok{        Result <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(ST[}\KeywordTok{nrow}\NormalTok{(ST),]) }\OperatorTok{-}\StringTok{ }\NormalTok{j}
-  \NormalTok{        Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-  \NormalTok{        media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
-  
-  \NormalTok{    \}}
-  
-  \NormalTok{    media <-}\StringTok{ }\NormalTok{media }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}
-  
-      \CommentTok{# browser()}
-  
-  \NormalTok{    Result <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(ST[}\KeywordTok{nrow}\NormalTok{(ST),]) }\OperatorTok{-}\StringTok{ }\NormalTok{X}
-  \NormalTok{    Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-  \NormalTok{    call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}\OperatorTok{*}\NormalTok{Result)}
-  
-  \NormalTok{    lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'}\NormalTok{ =}\StringTok{ }\NormalTok{call, }\StringTok{'Result'}\NormalTok{ =}\StringTok{ }\NormalTok{Result, }
-                   \StringTok{'Spot'}\NormalTok{ =}\StringTok{ }\NormalTok{graf, }\StringTok{'sensib'}\NormalTok{ =}\StringTok{ }\NormalTok{media)}
-      \KeywordTok{return}\NormalTok{(lista)}
-  
-  \NormalTok{\}}
-  \end{Highlighting}
-  \end{Shaded}
-  \section{Exact Algorithm}\label{exact-algorithm}
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{hestonea <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(S, X, r, v, theta, rho, k, sigma, }\DataTypeTok{t =} \DecValTok{0}\NormalTok{, }
-                       \DataTypeTok{dt =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{tau =} \DecValTok{1}\NormalTok{, N, }\DataTypeTok{sensibility =} \DecValTok{15}\NormalTok{)\{}
-  
-      \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(dt))\{ dt <-}\StringTok{ }\NormalTok{(tau}\OperatorTok{-}\NormalTok{t)}\OperatorTok{/}\DecValTok{1000}\NormalTok{\}}
-  
-  \NormalTok{    ST <-}\StringTok{ }\OtherTok{NULL}
-  
-  \NormalTok{    d <-}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{*}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{theta)}\OperatorTok{/}\NormalTok{(sigma)}\OperatorTok{^}\DecValTok{2}
-  \NormalTok{    c0 <-}\StringTok{ }\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{k}\OperatorTok{*}\NormalTok{dt)))}\OperatorTok{/}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\NormalTok{k)}
-  
-      \CommentTok{# browser()}
-  
-      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(t,tau,dt))\{}
-  
-          \CommentTok{# sampling V}
-  \NormalTok{        lambda <-}\StringTok{ }\NormalTok{(}\DecValTok{4}\OperatorTok{*}\NormalTok{k}\OperatorTok{*}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{k}\OperatorTok{*}\NormalTok{dt)}\OperatorTok{*}\NormalTok{v)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{-}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{k}\OperatorTok{*}\NormalTok{dt)))}
-  \NormalTok{        vt <-}\StringTok{ }\NormalTok{c0 }\OperatorTok{*}\StringTok{ }\KeywordTok{rchisq}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ N, }\DataTypeTok{df =}\NormalTok{ d, }\DataTypeTok{ncp =}\NormalTok{ lambda)}
-  
-          \CommentTok{# Sampling int\{V\}}
-  \NormalTok{        int_v <-}\StringTok{ }\NormalTok{dt }\OperatorTok{*}\StringTok{ }\NormalTok{((}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{v }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{vt)}
-  
-          \CommentTok{# Sampling int\{v\}dw}
-  \NormalTok{        int_vdw <-}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{sigma) }\OperatorTok{*}\StringTok{ }\NormalTok{(vt }\OperatorTok{-}\StringTok{ }\NormalTok{v }\OperatorTok{-}\StringTok{ }\NormalTok{k }\OperatorTok{*}\StringTok{ }\NormalTok{theta }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{+}\StringTok{ }\NormalTok{k  }\OperatorTok{*}\StringTok{ }\NormalTok{int_v)}
-  
-          \CommentTok{# Sampling S}
-  \NormalTok{        m <-}\StringTok{ }\KeywordTok{log}\NormalTok{(S) }\OperatorTok{+}\StringTok{ }\NormalTok{(r }\OperatorTok{*}\StringTok{ }\NormalTok{dt }\OperatorTok{-}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{int_v }\OperatorTok{+}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{int_vdw)}
-  \NormalTok{        std <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{((}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{rho}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(int_v)}
-  \NormalTok{        S <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(m }\OperatorTok{+}\StringTok{ }\NormalTok{std }\OperatorTok{*}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(N))}
-  \NormalTok{        v <-}\StringTok{ }\NormalTok{vt}
-  \NormalTok{        ST <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(ST,S)}
-  \NormalTok{    \}}
-  
-  \NormalTok{    ST <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(ST, }\DataTypeTok{ncol=}\NormalTok{N)}
-      \CommentTok{# matplot(graf, type = 'l')}
-      \CommentTok{# abline(h=X, lwd=2, col='red')}
-  \NormalTok{    media <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
-  
-      \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ (X}\OperatorTok{-}\NormalTok{sensibility)}\OperatorTok{:}\NormalTok{(X}\OperatorTok{+}\NormalTok{sensibility))\{}
-  
-  \NormalTok{        Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] }\OperatorTok{-}\StringTok{ }\NormalTok{j}
-  \NormalTok{        Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-  \NormalTok{        media <-}\KeywordTok{c}\NormalTok{(media, }\KeywordTok{mean}\NormalTok{(Result))}
-  
-  \NormalTok{    \}}
-  
-  \NormalTok{    media <-}\StringTok{ }\NormalTok{media }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}
-      \CommentTok{# plot(media, ylab = "Call price", xlab = "Strike price")}
-  
-  \NormalTok{    Result <-}\StringTok{ }\NormalTok{ST[}\KeywordTok{nrow}\NormalTok{(ST),] }\OperatorTok{-}\StringTok{ }\NormalTok{X}
-  \NormalTok{    Result[Result }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\DecValTok{0}
-  \NormalTok{    call =}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{tau)}\OperatorTok{*}\NormalTok{Result)}
-  
-  \NormalTok{    lista =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'call'}\NormalTok{ =}\StringTok{ }\NormalTok{call, }\StringTok{'Result'}\NormalTok{ =}\StringTok{ }\NormalTok{Result, }
-                   \StringTok{'Spot'}\NormalTok{ =}\StringTok{ }\NormalTok{ST, }\StringTok{'sensib'}\NormalTok{ =}\StringTok{ }\NormalTok{media)}
-      \KeywordTok{return}\NormalTok{(lista)}
-  \NormalTok{\}}
-  \end{Highlighting}
-  \end{Shaded}
-  \clearpage
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{require}\NormalTok{(NMOF)}
-  \KeywordTok{setwd}\NormalTok{(}\StringTok{"../rnmethods"}\NormalTok{)}
-  \KeywordTok{source}\NormalTok{(}\StringTok{"../rnmethods/R/euler_heston.R"}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
-  \chapter{Results}\label{results}
+  \chapter{This chunk ensures that the thesisdown package
+  is}\label{this-chunk-ensures-that-the-thesisdown-package-is}
   
   \chapter{Conclusion}\label{conclusion}
   
-  If we don't want Conclusion to have a chapter number next to it, we can
-  add the \texttt{\{-\}} attribute.
-  
-  \textbf{More info}
-  
-  And here's some other random info: the first paragraph after a chapter
-  title or section head \emph{shouldn't be} indented, because indents are
-  to tell the reader that you're starting a new paragraph. Since that's
-  obvious after a chapter or section title, proper typesetting doesn't add
-  an indent there.
-  
-  \appendix
-  
   \chapter{The First Appendix}\label{the-first-appendix}
-  
-  This first appendix includes all of the R chunks of code that were
-  hidden throughout the document (using the \texttt{include\ =\ FALSE}
-  chunk tag) to help with readibility and/or setup.
-  
-  \textbf{In the main Rmd file}
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \CommentTok{# This chunk ensures that the thesisdown package is}
-  \CommentTok{# installed and loaded. This thesisdown package includes}
-  \CommentTok{# the template files for the thesis.}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(devtools))}
-    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(thesisdown))}
-  \NormalTok{  devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
-  \KeywordTok{library}\NormalTok{(thesisdown)}
-  \end{Highlighting}
-  \end{Shaded}
-  \textbf{In Chapter \ref{ref-labels}:}
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \CommentTok{# This chunk ensures that the thesisdown package is}
-  \CommentTok{# installed and loaded. This thesisdown package includes}
-  \CommentTok{# the template files for the thesis and also two functions}
-  \CommentTok{# used for labeling and referencing}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(devtools))}
-    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(dplyr))}
-      \KeywordTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(ggplot2))}
-      \KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(ggplot2))}
-      \KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(thesisdown))\{}
-    \KeywordTok{library}\NormalTok{(devtools)}
-  \NormalTok{  devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
-  \NormalTok{  \}}
-  \KeywordTok{library}\NormalTok{(thesisdown)}
-  \NormalTok{flights <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/flights.csv"}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
-  \chapter{The Second Appendix, for
-  Fun}\label{the-second-appendix-for-fun}
-  
-  \backmatter
   
   \chapter*{References}\label{references}
   \addcontentsline{toc}{chapter}{References}
   
-  \noindent
-  
-  \setlength{\parindent}{-0.20in} \setlength{\leftskip}{0.20in}
-  \setlength{\parskip}{8pt}
-  
   \hypertarget{refs}{}
-  \hypertarget{ref-black1973pricing}{}
-  {[}1{]} F. Black, M. Scholes, The pricing of options and corporate
-  liabilities, Journal of Political Economy. 81 (1973) 637--654.
-  
-  \hypertarget{ref-gard1988}{}
-  {[}2{]} T.C. Gard, Introduction to stochastic differential equations, M.
-  Dekker, 1988.
-  
   \hypertarget{ref-ubbo}{}
-  {[}3{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
+  {[}1{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
   2008.
   
   \hypertarget{ref-karatzas2012brownian}{}
-  {[}4{]} I. Karatzas, S. Shreve, Brownian motion and stochastic calculus,
+  {[}2{]} I. Karatzas, S. Shreve, Brownian motion and stochastic calculus,
   Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-helgadottir2016option}{}
-  {[}5{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
+  {[}3{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
   model, (2016).
   
   \hypertarget{ref-evans}{}
-  {[}6{]} L.C. Evans, An introduction to stochastic differential
+  {[}4{]} L.C. Evans, An introduction to stochastic differential
   equations, American Mathematical Soc., 2012.
   
   \hypertarget{ref-rosenthal}{}
-  {[}7{]} J.S. Rosenthal, A first look at rigorous probability theory,
+  {[}5{]} J.S. Rosenthal, A first look at rigorous probability theory,
   World Scientific Publishing Co Inc, 2006.
   
   \hypertarget{ref-tong2012option}{}
-  {[}8{]} Z. Tong, Option pricing with long memory stochastic volatility
+  {[}6{]} Z. Tong, Option pricing with long memory stochastic volatility
   models, PhD thesis, Université d'Ottawa/University of Ottawa, 2012.
   
   \hypertarget{ref-steele2012stochastic}{}
-  {[}9{]} J.M. Steele, Stochastic calculus and financial applications,
+  {[}7{]} J.M. Steele, Stochastic calculus and financial applications,
   Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-ito1951}{}
-  {[}10{]} K. Itō, On stochastic differential equations, American
+  {[}8{]} K. Itō, On stochastic differential equations, American
   Mathematical Soc., 1951.
   
   \hypertarget{ref-ito1962}{}
-  {[}11{]} K. Itô, The brownian motion and tensor fields on riemannian
+  {[}9{]} K. Itô, The brownian motion and tensor fields on riemannian
   manifold, Proc. Int. Congr. Math., Stockholm. 2 (1962).
   
+  \hypertarget{ref-black1973pricing}{}
+  {[}10{]} F. Black, M. Scholes, The pricing of options and corporate
+  liabilities, Journal of Political Economy. 81 (1973) 637--654.
+  
   \hypertarget{ref-yang2013valuing}{}
-  {[}12{]} Y. Yang, Valuing a european option with the heston model,
+  {[}11{]} Y. Yang, Valuing a european option with the heston model,
   (2013).
   
   \hypertarget{ref-salomao2011precificaccao}{}
-  {[}13{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
+  {[}12{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
   sobre os modelos de black scholes e garch, (2011).
   
   \hypertarget{ref-merton1973theory}{}
-  {[}14{]} R.C. Merton, Theory of rational option pricing, The Bell
+  {[}13{]} R.C. Merton, Theory of rational option pricing, The Bell
   Journal of Economics and Management Science. (1973) 141--183.
   
   \hypertarget{ref-tsay2005analysis}{}
-  {[}15{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
+  {[}14{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
   Sons, 2005.
   
   \hypertarget{ref-iacus2009simulation}{}
-  {[}16{]} S.M. Iacus, Simulation and inference for stochastic
+  {[}15{]} S.M. Iacus, Simulation and inference for stochastic
   differential equations: With r examples, Springer Science \& Business
   Media, 2009.
   
   \hypertarget{ref-nmof}{}
-  {[}17{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
+  {[}16{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
   optimization in finance, Academic Press, Waltham, MA, USA, 2011.
   \url{http://nmof.net}.
   
   \hypertarget{ref-cox1985theory}{}
-  {[}18{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
+  {[}17{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
   structure of interest rates, Econometrica: Journal of the Econometric
   Society. (1985) 385--407.
   
   \hypertarget{ref-heston1993closed}{}
-  {[}19{]} S.L. Heston, A closed-form solution for options with stochastic
+  {[}18{]} S.L. Heston, A closed-form solution for options with stochastic
   volatility with applications to bond and currency options, Review of
   Financial Studies. 6 (1993) 327--343.
   
   \hypertarget{ref-gilli_numerical_2011}{}
-  {[}20{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
+  {[}19{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
   optimization in finance, Academic Press, 2011.
   
   \hypertarget{ref-broadie2006exact}{}
-  {[}21{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
+  {[}20{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
   and other affine jump diffusion processes, Operations Research. 54
   (2006) 217--231.
   
-  \hypertarget{ref-dunn2014estimating}{}
-  {[}22{]} R. Dunn, P. Hauser, T. Seibold, H. Gong, Estimating option
-  prices with heston's stochastic volatility model, (2014).
-  
-  \hypertarget{ref-rlang}{}
-  {[}23{]} R Core Team, R: A language and environment for statistical
-  computing, R Foundation for Statistical Computing, Vienna, Austria,
-  2017. \url{https://www.R-project.org/}.
-  
-  \hypertarget{ref-andersen2007efficient}{}
-  {[}24{]} L.B. Andersen, Efficient simulation of the heston stochastic
-  volatility model, (2007).
+  \hypertarget{ref-kloeden1992}{}
+  {[}21{]} P.E. Kloeden, E. Platen, Numerical solution of stochastic
+  differential equations springer-verlag, 1992.
 
 
   % Index?

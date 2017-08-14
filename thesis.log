@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.13)  14 AUG 2017 10:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.13)  14 AUG 2017 17:35
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1258,45 +1258,35 @@ Non-PDF special ignored!
 
 ]
 Chapter 1.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.239 
-       [1
+l.186   \chapter
+                {Literature Review}\label{lt-review} [1
 
-]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
+]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.240   \chapter
-                {Literature Review}\label{lt-review} [2]
+l.186   \chapter
+                {Literature Review}\label{lt-review} [2
+
+]
 Chapter 2.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 255.
+(Font)              <10> on input line 201.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 255.
+(Font)              <7> on input line 201.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 255.
+(Font)              <5> on input line 201.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.278   \end{align}
-                    [3
-
-]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 299.
+l.224   \end{align}
+                    [3]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 245.
 
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ts1
@@ -1313,13 +1303,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.323 
-       [4] <thesis_files/figure-latex/wiener-1.pdf, id=261, 361.35pt x 252.945p
+l.269 
+       [4] <thesis_files/figure-latex/wiener-1.pdf, id=236, 361.35pt x 252.945p
 t>
 File: thesis_files/figure-latex/wiener-1.pdf Graphic file (type pdf)
 <use thesis_files/figure-latex/wiener-1.pdf>
 Package pdftex.def Info: thesis_files/figure-latex/wiener-1.pdf used on input l
-ine 330.
+ine 276.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1373,162 +1363,65 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 Chapter 3.
-[13]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 709.
+[13] [14
+
+]
+Chapter 4.
+[15] [16
+
+]
+Chapter 5.
+[17] [18
+
+]
+Chapter 6.
+[19] [20
+
+]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 681.
 
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1l
 mtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 710.
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 744
-.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 709.
 
-("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ts1
-lmtt.fd"
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[14]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[21]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[16]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[17]
-Underfull \vbox (badness 10000) detected at line 910
- []
-
-
-Underfull \vbox (badness 10000) detected at line 910
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[18]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[19]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[20
-
-]
-Chapter 4.
-[21
-
-] [22
-
-]
-Chapter 5.
-[23] [24
-
-]
-Appendix A.
-
-LaTeX Warning: Reference `ref-labels' on page 25 undefined on input line 955.
-
-[25]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[26]
-Appendix B.
-[27
-
-] [28
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[29
-
-]
-Overfull \vbox (97.57pt too high) has occurred while \output is active []
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[30]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1097.
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[31]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1097.
+[22]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 709.
 (thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1097.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1097.
-
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 709.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 709.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 3A7DD5B382C0CADA45768C3296297A28;1993.
-
-LaTeX Warning: There were undefined references.
-
+(rerunfilecheck)             Checksum: 4F30670BC232A70783DA3876BF6AF0AB;1666.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1097.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 709.
  ) 
 Here is how much of TeX's memory you used:
- 12177 strings out of 493333
- 191900 string characters out of 3124935
- 314095 words of memory out of 3000000
- 15152 multiletter control sequences out of 15000+200000
- 85638 words of font info for 142 fonts, out of 3000000 for 9000
+ 12086 strings out of 493333
+ 190514 string characters out of 3124935
+ 311937 words of memory out of 3000000
+ 15101 multiletter control sequences out of 15000+200000
+ 83839 words of font info for 131 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,22n,49p,527b,525s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips
-/lm/lm-ts1.enc}{C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fo
-nts/enc/dvips/lm/lm-ec.enc}{C:/Users/fernando.teixeira/AppData/Local/Programs/M
-iKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/fernando.teixeira/AppData/Loca
-l/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/fernando.teixe
-ira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/User
+/lm/lm-ec.enc}{C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/enc/dvips/lm/lm-mathit.enc}{C:/Users/fernando.teixeira/AppData/Local/Program
+s/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/fernando.teixeira/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/fernando.te
+ixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.enc}{C:/User
 s/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mat
 hex.enc}<C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
 e1/public/lm/lmbx12.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKT
@@ -1537,28 +1430,27 @@ al/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Users/fernando.teix
 eira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Use
 rs/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
 mi6.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/public/lm/lmmi8.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Users/fernando.teixeira/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/fernando.teixeir
-a/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr6.pfb><C:/Users/fe
-rnando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pf
-b><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/lm/lmr8.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/lm/lmri10.pfb><C:/Users/fernando.teixeira/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Users/fernando.teixeira/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmro12.pfb><C:/Users/ferna
-ndo.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb
-><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/lm/lmsy6.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/lm/lmsy8.pfb><C:/Users/fernando.teixeira/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/public/lm/lmtk10.pfb><C:/Users/fernando.teixeira/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Users/fernan
-do.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtti10.pfb
-><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (47 pages, 477284 bytes).
+e1/public/lm/lmmi7.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Users/fernando.teixeira/AppData/Local
+/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Users/fernando.teixeir
+a/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/f
+ernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr6.p
+fb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/lm/lmr7.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/lm/lmr8.pfb><C:/Users/fernando.teixeira/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/Users/fernando.teixeira/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Users/fernan
+do.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmro12.pfb>
+<C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/lm/lmsy10.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/lm/lmsy6.pfb><C:/Users/fernando.teixeira/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Users/fernando.teixeira/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Users/fernand
+o.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbol
+s/msbm10.pfb>
+Output written on thesis.pdf (38 pages, 396532 bytes).
 PDF statistics:
- 583 PDF objects out of 1000 (max. 8388607)
- 151 named destinations out of 1000 (max. 500000)
- 16622 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 503 PDF objects out of 1000 (max. 8388607)
+ 132 named destinations out of 1000 (max. 500000)
+ 16582 words of extra memory for PDF output out of 17280 (max. 10000000)
 
