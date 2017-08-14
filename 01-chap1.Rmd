@@ -15,6 +15,7 @@ The {#rmd-basics} text after the chapter declaration will allow us to link throu
 
 
 
+
 # Literature Review {#lt-review}
 
 This chapter presents the concepts of stochastic calculus, from the historic conception of how it first arose through the basic principles and applications in finance. We address with more care the classical Black-Scholes model and its limitations and the Heston model. This model is also well known, it brings the concept of stochastic volatility in it, which brings its results closer to reality.
