@@ -23,6 +23,15 @@ abstract: >
 # needed on the line after the >.
 acknowledgements: >
   I want to thank a few people.
+  Any one who considers arithmetical methods of producing random digits is, of course, in a state of sin. - John von Neumann 
+  
+  You get pseudo-order when you seek order; you only get a measure of order and control when you embrace randomness. — Nassim Nicholas Taleb
+# One person's data is another person's noise.  
+# One person's noise is another person's data.
+# So much of life, it seems to me, is determined by pure randomness.
+# Expose yourself to as much randomness as possible.
+
+  
 dedication: >
   You can have a dedication here if you wish. 
 # preface: >
@@ -99,28 +108,24 @@ The Heston model is an extension of the Black-Scholes model that tackles this vo
 This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston  model known implementations and the implementation improvement we experiment. Chapter 4 brings the results of what was introduced in the previous chapter for different model calibrations.
 
 
-#########
 
 
-#########
-
-
-[@gard1988]
-Another technique of particular relevance when the random
-effects can be considered as external to some reasonably well-understood
-deterministic system replaces input parameters in a deterministic model
-by random processes; the resulting random model characterizes the sample
-path structure of the solution process. An example which has had wide
-application in engineering consists of adding a noise term to the right side
-of a deterministic differential equation. The first such model was formu-
-lated by Langevin in 1908 to describe the velocity of a particle moving in
-a random force field. Random equations of this type can be interpreted
-as stochastic differential equations, following Ito's basic work in the early
-1940s. Solutions of such equations represent Markov diffusion processes, the
-prototype of which is the Brownian motion (or Wiener) process. The the-
-ory of stochastic differential equations set down by Ito, and independently
-established in the Soviet Union by Gihman, together with the previous
-mathematical work of Wiener and Levy on Brownian motion has provided
-the basic tools making this more ambitious approach of constructing sample
-paths feasible.
+<!-- [@gard1988] -->
+<!-- Another technique of particular relevance when the random -->
+<!-- effects can be considered as external to some reasonably well-understood -->
+<!-- deterministic system replaces input parameters in a deterministic model -->
+<!-- by random processes; the resulting random model characterizes the sample -->
+<!-- path structure of the solution process. An example which has had wide -->
+<!-- application in engineering consists of adding a noise term to the right side -->
+<!-- of a deterministic differential equation. The first such model was formu- -->
+<!-- lated by Langevin in 1908 to describe the velocity of a particle moving in -->
+<!-- a random force field. Random equations of this type can be interpreted -->
+<!-- as stochastic differential equations, following Ito's basic work in the early -->
+<!-- 1940s. Solutions of such equations represent Markov diffusion processes, the -->
+<!-- prototype of which is the Brownian motion (or Wiener) process. The the- -->
+<!-- ory of stochastic differential equations set down by Ito, and independently -->
+<!-- established in the Soviet Union by Gihman, together with the previous -->
+<!-- mathematical work of Wiener and Levy on Brownian motion has provided -->
+<!-- the basic tools making this more ambitious approach of constructing sample -->
+<!-- paths feasible. -->
 

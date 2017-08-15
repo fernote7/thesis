@@ -40,7 +40,7 @@ C = & \frac{1}{2} S(t) + \frac{e^{-r(T-t)}}{\pi}\int_{0}^{\infty}{\Re \left[ \fr
 
 ## Euler Scheme - Full Truncation
 
-We present here the Euler Scheme - Full Truncation algorithm [@broadie2006exact, dunn2014estimating, andersen2007efficient] along with some insights on how it was implemented in the R programming language [@rlang]. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of lenght $\delta t$, we have the following discretization for the stock price:
+We present here the Euler Scheme - Full Truncation algorithm [@broadie2006exact, dunn2014estimating, andersen2007efficient] along with some insights on how it was implemented in R. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of lenght $\delta t$, we have the following discretization for the stock price:
 
 \begin{align}
 S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s

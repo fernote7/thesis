@@ -234,7 +234,7 @@ There are two major different option types: the European and the American. The d
 
 
 \begin{definition}{(Implicit volatility)} 
-Given all the option's parameters in a precification model and its market price, the option's volatility is called the *implicit volatility*.
+Given all the option's parameters in a precification model and its market price, the option's volatility is called the \textit{implicit volatility}.
 \end{definition}
 
 
@@ -273,7 +273,7 @@ dS_t = \mu S_t dt + \sigma S_t dW_t
 \noindent
 for given constants $\mu \in {\rm I\!R}$ and $\sigma > 0$. Also, the assumed initial value is positive, $S_0 >0$.
 
-This process is used quite often in finance to model the dynamics of some assets becaus of its properties. It has independent multiplicative increments and is the procee used to price options in the Black-Scholes model [@iacus2009simulation]:
+This process ^[Also known as exponential brownian motion.] (Figure \ref{gbm}) is used quite often in finance to model the dynamics of some assets because of its properties. It has independent multiplicative increments and is the process used to price options in the Black-Scholes model [@iacus2009simulation]:
 
 
 \begin{align}
@@ -281,7 +281,9 @@ S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\
 \end{align}
 
 
-
+```{r gbm, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='A GBM trajectory path example \\label{gbm}'}
+source("./r_code/gbm.R")
+```
 
 
 
@@ -452,6 +454,92 @@ m \frac{dv}{dt} = -\zeta v + \delta F (t)
 \end{align}
 
 $m$ is the mass of the particle, $v$ it's velocity, $-\zeta v$ is the frictional force, which is proportional to the velocity, and $\delta F (t)$ is a *fluctuating* force (random) to the frictional force.
+
+
+
+## Numerical Methods
+
+
+Numerical methods are tools that are often applied to solve stochastic differential equations because most of these do not have explicit solution. This means that we are not able to solve these equations using symbolic computation. Although we are unable to find an analitical solution, when facing real problems, the approximation given by a numerical method is often sufficient. Alongside the analytical issue, the need to calculate the SDE's trajectory through time is the main reason why studying numerical methods is so important. An implementation of a numerical method is called a numerical algorithm.
+
+We will simulate sample paths of time discrete approximations implemented in the R programming language [@rlang] that we base on a finite discretization of a time interval $[t_0, T]$. We shall generate approximate values of the sample path for each step contained in the discretized interval [@kloeden1992].
+
+In the fixed step methods, the distance between two contiguous points is the distance $d_i = t_i - t_{i-1} = \frac{T-t_0}{N} \;\;\; \forall i \mid 1 \leq i  \leq N \in \mathbb{N}$. $N$ being the time interval partition  number.
+
+
+[@kloeden1992]
+
+The simulated sample paths can then be analysed by usual statistical methods to determine how good the approximation is and in what sense it is close to the exact solution. The state variables here are not discretized as in Kushner's Markov chain approach and the structure of the SDE as provided by the drift and diffusion coefficients is used in a natural way. 
+An advantage of considerable practical importance of this approach is
+that the computational costs such as time and memory required increase only
+polynomially with the dimension of the problem. Variance reduction methods
+allow a considerable decrease in the required sample size.
+
+
+
+### Convergence ??
+### Euler-Maruyama
+### Milstein
+### Stability
+
+[@kloeden1992]
+Most differential equations, deterministic or stochastic, cannot be solved 
+explicitly. Nevertheless we can often deduce alot of useful information, usually
+qualitative, about the behaviour of their solutions from the functional form of
+their coefficients. Of particular interest in applications is the long term 
+asymptotic behaviour and sensitivity of the solutions to small changes, for example
+measurement errors, in the initial values. From existence and uniqueness 
+theory we know that the solutions of a differential equation are continuous in their
+initial values, at least over a finite time interval. Extending this idea to an
+infinite time interval leads to the concept of stability.
+
+
+
+
+
+#######################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -650,9 +738,3 @@ $m$ is the mass of the particle, $v$ it's velocity, $-\zeta v$ is the frictional
 <!-- - Introduction to `dplyr` - <https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html> -->
 
 <!-- - `ggplot2` Documentation - <http://docs.ggplot2.org/current/> -->
-
-## Numerical Methods
-### Convergence ??
-### Euler-Maruyama
-### Milstein
-### Stability
