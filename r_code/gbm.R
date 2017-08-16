@@ -1,5 +1,5 @@
 set.seed(1)
-GBMdrift<-function(x,mu=0.1) {mu*x}
+GBMdrift<-function(x,mu=0.3) {mu*x}
 GBMvol<-function(x,sigma=0.2) {sigma*x}
 
 Tmax<-10
@@ -17,7 +17,7 @@ X[1]<-1  	#vectors in R are unit-offset
 
   
   for(i in 1:Nsim) {
-    X[i+1]<-X[i]+GBMdrift(X[i],mu=0.1)*dt+GBMvol(X[i],sigma=0.2)*dW[i]
+    X[i+1]<-X[i]+GBMdrift(X[i],mu=0.15)*dt+GBMvol(X[i],sigma=0.2)*dW[i]
   }
 
  

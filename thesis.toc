@@ -1,0 +1,31 @@
+\contentsline {chapter}{Chapter 1: Introduction}{1}{chapter.1}
+\contentsline {chapter}{Chapter 2: Literature Review}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Stochastic Calculus}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}The Stochastic differential equation - SDE}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Brownian Motion}{4}{subsection.2.1.2}
+\contentsline {subsubsection}{Correlated Brownian Motions}{5}{section*.8}
+\contentsline {subsection}{\numberline {2.1.3}It\IeC {\^o}'s Integral}{6}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}Black-Scholes Model}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Basics}{7}{subsection.2.2.1}
+\contentsline {subsubsection}{Geometric Brownian Motion}{8}{section*.9}
+\contentsline {subsection}{\numberline {2.2.2}The model}{9}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Limitations}{9}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Stochastic Volatility models}{10}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Cox-Ingersoll-Ross model}{10}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Heston Model}{10}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Other Models}{11}{subsection.2.3.3}
+\contentsline {subsubsection}{Ornstein-Uhlenbeck}{11}{section*.11}
+\contentsline {subsubsection}{Langevin}{11}{section*.12}
+\contentsline {section}{\numberline {2.4}Numerical Methods}{11}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Convergence ??}{12}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Euler-Maruyama}{12}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Milstein}{12}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Stability}{12}{subsection.2.4.4}
+\contentsline {chapter}{Chapter 3: The Heston Model Implementation}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Characteristic Function}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Euler Scheme - Full Truncation}{14}{section.3.2}
+\contentsline {section}{\numberline {3.3}Kahl-Jackel}{14}{section.3.3}
+\contentsline {section}{\numberline {3.4}Exact Algorithm}{15}{section.3.4}
+\contentsline {chapter}{Chapter 4: Results}{17}{chapter.4}
+\contentsline {chapter}{Chapter 5: Conclusion}{19}{chapter.5}
+\contentsline {chapter}{References}{21}{appendix*.13}

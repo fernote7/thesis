@@ -382,6 +382,14 @@ Most models focus on the volatility problem because transaction costs often tran
 
 Introducing stochastic volatility to models brings complexity, but enables modeling some features observed in reality that are crucial like the randomic market volatility effects, skewness (market returns are more realistically modeled) and volatility smile. This kind of model is applied highly succesfully in foreign exchange and credit markets.
 
+\begin{definition}{(Volatility Smile)} 
+Volatility smiles are implied volatility patterns that arise in pricing financial options. In particular for a given expiration, options whose strike price differs substantially from the underlying asset's price command higher prices (and thus implied volatilities) than what is suggested by standard option pricing models. These options are said to be either deep in-the-money or out-of-the-money.
+\end{definition}
+
+
+
+Stochastic volatility models use statistical methods to calculate and forecast options pricing. They are based on the assumption that the volatility of the underlying security is arbitrary. Other types of stochastic volatility models include the SABR model, the Chen model and the GARCH model. The Heston model is also a type of standard smile model. "Smile" refers to the volatility smile, a graphical representation of several options with identical expiration dates that shows increasing volatility as the options become more in-the-money or out-of-the-money. The smile model's name derives from the concave shape of the graph, which resembles a smile. 
+
 
 
 ### Cox-Ingersoll-Ross model {#cir}
@@ -402,28 +410,18 @@ Furthermore, this equation constitutes one of the two Heston model equations wit
 
 ### Heston Model
 
-Heston model solves the deterministic volatility problems introducing the following equations, which represents the dynamics of the stock price and the variance processes under the risk-neutral measure [@gilli_numerical_2011; @heston1993closed]:
+Heston model was introduced in  1993 by Steven Heston to solve the deterministic volatility problems. It was designed to analize bond and currency options and it introduced the following equations, which represent the dynamics of the stock price and the variance processes under the risk-neutral measure [@gilli_numerical_2011; @heston1993closed]:
 
 
 \begin{align}
 \label{eq:heston}
-\begin{split}
 dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
 dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
-\end{split}
 \end{align}
 
 
 
-The second equation, as described in Section \@ref(cir), is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t,1}$ and $dW_{t,2}$ are two correlated wiener processes with correlation coefficient of $\rho$. Because, of the model specifications and what we presentend in section \@ref(corr), we can rewrite the first equation as in Broadie and Kaya [@broadie2006exact]:
-
-\begin{align}
-\label{eq:heston2}
-\begin{split}
-dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
-dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
-\end{split}
-\end{align}
+The second equation, as described in Section \@ref(cir), is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t,1}$ and $dW_{t,2}$ are two correlated wiener processes with correlation coefficient of $\rho$. 
 
 
 
@@ -435,7 +433,7 @@ dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 The Ornstein-Uhlenbeck is the earliest recorded SDE. Named after Leonard Ornstein and George Eugene Uhlenbeck, it is a stochastic process that describes the acceleration of a pollen particle in a liquid subject to bombardments by molecules [@ubbo]. As we can observe in equation \@ref(ou_eq), $x_t$ represents the one dimension velocity of the particle, thus $dx_t$ is the *change* in velocity, in other words, its acceleration. The $- \theta x_t$ component slows down the acceleration and is to be understood as frictional force. Besides, we add a noise $W_t$ with intensity $\sigma$ that models the random bombardment by the molecules. 
 
 \begin{align} \label{ou_eq}
-&d x_t = - \theta x_t dt + \sigma d W_t \\
+&d x_t = - \theta x_t dt + \sigma d W_t
 \end{align}
 
 With $\theta$ and $\sigma$ being positive constants. Expressing in terms of $x_t$ we get:

@@ -23,8 +23,7 @@ abstract: >
 # needed on the line after the >.
 acknowledgements: >
   I want to thank a few people.
-  Any one who considers arithmetical methods of producing random digits is, of course, in a state of sin. - John von Neumann 
-  
+  Any one who considers arithmetical methods of producing random digits is, of course, in a state of sin. - John von Neumann \textbf{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ } 
   You get pseudo-order when you seek order; you only get a measure of order and control when you embrace randomness. — Nassim Nicholas Taleb
 # One person's data is another person's noise.  
 # One person's noise is another person's data.
@@ -34,6 +33,7 @@ acknowledgements: >
   
 dedication: >
   You can have a dedication here if you wish. 
+
 # preface: >
 #   This is an example of a thesis setup to use the reed thesis document class
 #   (for LaTeX) and the R bookdown package, in general.
@@ -42,11 +42,11 @@ bibliography: bib/thesis.bib
 # csl: csl/abnt_numerico-1.0.csl
 # csl: csl/ABNT_UFPR_2011-Mendeley.csl
 # csl: csl/apa.csl
-csl: csl/elsevier-with-titles.csl
+csl: csl/elsevier-with-titles-alphabetical.csl
 # Download your specific csl file and refer to it in the line above.
 lot: true
 lof: true
-#space_between_paragraphs: true
+# space_between_paragraphs: true
 # Delete the # at the beginning of the previous line if you'd like
 # to have a blank new line between each paragraph
 header-includes:

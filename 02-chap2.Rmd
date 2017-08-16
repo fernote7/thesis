@@ -7,7 +7,7 @@ source("/home/fteixeira/Documents/thesis/r_code/results.r")
 
 ## Characteristic Function
 
-The Heston model characteristic function is firstly presented in the 1993 Steven Heston's paper [-@heston1993closed] and is described below [@dunn2014estimating]:
+The Heston model characteristic function is firstly presented in the 1993 Steven Heston's paper [@heston1993closed] and is described below [@dunn2014estimating]:
 
 \begin{align}
 f(S_t, V_t, t) = e^{A(T-t)+B(T-t)S_t + C(T-t)V_t + i \phi S_t}
@@ -17,12 +17,12 @@ If we let $\tau = T-t$, then the explicit form of the Heston characteristic func
 
 \begin{align*}
 f(i \phi) &= e^{A(\tau)+B(\tau)S_t + C(\tau)V_t + i \phi S_t} \\
-A(\tau) &= r i \phi \tau + \frac{k \theta}{\sigma^2} \left[ - (\rho \sigma i \phi - k - M) \tau - 2 \ln\left(\frac{1-N e^{M \tau}}{1-N}\right) \right] \\
+A(\tau) &= r i \phi \tau + \frac{\kappa \theta}{\sigma^2} \left[ - (\rho \sigma i \phi - \kappa - M) \tau - 2 \ln\left(\frac{1-N e^{M \tau}}{1-N}\right) \right] \\
 B(\tau) &= 0 \\
-C(\tau) &= \frac{(e^{M \tau}-1)(\rho \sigma i \phi - k - M)}{\sigma^2 (1-N e^{M \tau})} \\
+C(\tau) &= \frac{(e^{M \tau}-1)(\rho \sigma i \phi - \kappa - M)}{\sigma^2 (1-N e^{M \tau})} \\
 \text{Where:} & \\
-M &= \sqrt{(\rho \sigma i \phi - k)^2 + \sigma^2 (i \phi + \phi^2)} \\
-N &= \frac{\rho \sigma i \phi - k - M}{\rho \sigma i \phi - k + M} \\
+M &= \sqrt{(\rho \sigma i \phi - \kappa)^2 + \sigma^2 (i \phi + \phi^2)} \\
+N &= \frac{\rho \sigma i \phi - \kappa - M}{\rho \sigma i \phi - \kappa + M} \\
 \end{align*}
 
 This function is the driving force behind the following formula, that calculates the fair valur of a European call option at time $t$, given a strike price $K$, that expires at time $T$ [@dunn2014estimating]:
@@ -40,7 +40,7 @@ C = & \frac{1}{2} S(t) + \frac{e^{-r(T-t)}}{\pi}\int_{0}^{\infty}{\Re \left[ \fr
 
 ## Euler Scheme - Full Truncation
 
-We present here the Euler Scheme - Full Truncation algorithm [@broadie2006exact, dunn2014estimating, andersen2007efficient] along with some insights on how it was implemented in R. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of lenght $\delta t$, we have the following discretization for the stock price:
+We present here the Euler Scheme - Full Truncation algorithm [@broadie2006exact, dunn2014estimating, andersen] along with some insights on how it was implemented in R. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of lenght $\delta t$, we have the following discretization for the stock price:
 
 \begin{align}
 S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
@@ -50,24 +50,24 @@ S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
 And for the variance process:
 
 \begin{align}
-V_{t+1} = V_t + k (\theta - V_t) + \sigma \sqrt{V_t} Z_v
+V_{t+1} = V_t + \kappa (\theta - V_t) + \sigma \sqrt{V_t} Z_v
 \end{align}
 
 \noindent
 $Z_s$ being a standard normal random variable, i.e. $N~(0,1)$, we set $Z_t$ and $Z_v$ as two independent standard normal random variables and $Z_s$ and $Z_v$ having correlation $\rho$. This means we can write $Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t$
 
-The immediate observable problem in the proposed discretization scheme is that $V$ can become negative with non-zero probability making the computation of $\sqrt{V_t}$ impossible [@andersen2007efficient]. There are several proposed fixes that can be used, we chose the Full-Truncation (FT) and rewrite the equations as follows:
+The immediate observable problem in the proposed discretization scheme is that $V$ can become negative with non-zero probability making the computation of $\sqrt{V_t}$ impossible [@andersen]. There are several proposed fixes that can be used, we chose the Full-Truncation (FT) and rewrite the equations as follows:
 
 
 \begin{align}
 S_{t+1} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
-V_{t+1} &= V_t + k (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v
+V_{t+1} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v
 \end{align}
 
 \noindent
 Where we use the notation $V_{t}^{+} = \max(V_{t}, 0)$. 
 
-```{r calle, eval=FALSE}
+```{r calle, eval=FALSE, echo=FALSE}
 hestoneuler <- function(S, X, r, v, theta, rho, k, sigma, t = 0, 
                         dt = NULL, tau = 1, N, sensibility = 15){
 
@@ -132,14 +132,19 @@ hestoneuler <- function(S, X, r, v, theta, rho, k, sigma, t = 0,
 
 ## Kahl-Jackel
 
+Kahl-Jackel propose a discretization method they refer to as the ``IJK'' method  [@andersen; @kahl2006fast] that coupled with the implicit Milstein scheme for the variance lands the system of equations \@ref(eq:kj1) and \@ref(eq:kj2). It is possible to verify that this discretization always results in positive paths for $V$ if $4 \kappa \theta > \sigma^2$. Unfortunately, this inequality is rarely satisfied when we plug real market data to calibrate the parameters.
 
+\begin{small}
+\begin{align}
+\label{eq:kj1}
+\ln \hat{S}(t + \Delta) &= \ln \hat{S}(t) - \frac{\Delta}{4}\left( \hat{V}(t+\Delta) + \hat{V}(t) \right) + \rho \sqrt{\hat{V}(t)}Z_v\sqrt{\Delta} \\ \nonumber
+&+ \frac{1}{2} \left( \sqrt{\hat{V}(t+\Delta)} + \sqrt{\hat{V}(t)} \right) \left( Z_S \sqrt{\Delta} - \rho Z_V \sqrt{\Delta}\right) + \frac{1}{4} \sigma \rho \Delta \left( Z_{V}^{2} - 1 \right) \\
+\label{eq:kj2}
+\hat{V}(t+\Delta) &= \frac{\hat{V}(t) + \kappa \theta \Delta + \sigma \sqrt{\hat{V}(t)}Z_V \sqrt{\Delta}+ \frac{1}{4}\sigma^2 \Delta \left(Z_V^2-1 \right)}{1+ \kappa \Delta}
+\end{align}
+\end{small}
 
-
-
-
-
-
-```{r callkj, eval=FALSE}
+```{r callkj, eval=FALSE, echo=FALSE}
 Hestoncallkj <- function(S, X, r, q, v, theta, rho, k, sigma, 
                          t = 0, dt = NULL, tau = 1, N, 
                          sensibility = 15){
@@ -227,9 +232,27 @@ Hestoncallkj <- function(S, X, r, q, v, theta, rho, k, sigma,
 
 ## Exact Algorithm 
 
+In 2006, Broadie-Kaya [@broadie2006exact] propose a method that has a faster convergence rate, $\mathcal{O} \left( s^{-1/2}  \right)$ than some of the more famous schemes, such as Euler's and Milstein's discretizations. They build their idea to generate an exact sample from the distribution of the terminal stock price based on numerous papers [@heston1993closed, @scott1996, @willard1997, @romano1997]. Because, of the Heston model specifications and what we presentend in section \@ref(corr), Broadie-Kaya rewrite the equations in \@ref(eq:heston) as follows:
+
+\begin{align}
+\label{eq:heston2}
+\begin{split}
+dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t 
+\end{split}
+\end{align}
+
+The algorithm used to generate the model consists in four steps as follows:
+ 
+\begin{itemize}
+\item [\textit{Step} 1.] Generate a sample of $V_t$ given $V_0$
+\item [\textit{Step} 2.] Generate a sample of $\int_0^t V_sds$ given $V_t$
+\item [\textit{Step} 3.] Compute $\int_0^t \sqrt{V_s}dB_s$
+\item [\textit{Step} 4.] teste
+\end{itemize}
 
 
-```{r callea, eval=FALSE}
+```{r callea, eval=FALSE, echo=FALSE}
 hestonea <- function(S, X, r, v, theta, rho, k, sigma, t = 0, 
                      dt = NULL, tau = 1, N, sensibility = 15){
 
@@ -329,7 +352,7 @@ MathJax.Hub.Config({
 
 \clearpage
 
-```{r euler_call, eval=FALSE}
+```{r euler_call, eval=FALSE, echo=FALSE}
 require(NMOF)
 setwd("../rnmethods")
 source("../rnmethods/R/euler_heston.R")
