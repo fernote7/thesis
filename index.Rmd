@@ -1,6 +1,6 @@
 ---
 author: 'Fernando O. Teixeira'
-date: "`r format(Sys.time(), 'Aug %d, %Y')`"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 division: 'Applied Mathematics'
 advisor: 'Hugo Alexander de la Cruz Cancino'
 # altadvisor: 'Your Other Advisor'
