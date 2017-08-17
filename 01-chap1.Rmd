@@ -39,7 +39,7 @@ x(0) &= x_0 \nonumber
 We now add a ``noise'' to this equation:
 
 \begin{align} \label{sde1}
-dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} + \overbrace{\underbrace{g(t, x_t)}_\text{diffusion}dW_t}^\text{stochastic} \\
+dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} + \overbrace{\underbrace{g(t, x_t)}_\text{diffusion}dW_t}^\text{random shock} \\
 x(0) &= x_0 \nonumber
 \end{align}
 
@@ -198,7 +198,7 @@ source("./r_code/box.r")
 
 
 
-\begin{theorem}[Itô's Integral Properties]
+#### Itô's Integral Properties
 
 Let $f$, $g$ $\in$ $\mathcal{V}$ and let $0 \leq t_0 < u < T$. Then
 
@@ -210,7 +210,7 @@ Let $f$, $g$ $\in$ $\mathcal{V}$ and let $0 \leq t_0 < u < T$. Then
   \item $ \mathbb {E}\left[ \int_{t_0}^{T}{f dB_t \mid \mathcal{F}_{s}} \right] = \int_{t_0}^{s}{f dB_t}, \,\,\,\,\,\,\,\,\,\,\,\,\,\, for \,\, s < T.$  (Martingale\footnote{A martingale is a stochastic process with certain characteristics. The main one is that the expected value in time $t+1$ for $X$ is the $X$ value in $t$. This means there are no winning strategies when we are dealing with martingales (unlike when we play poker, for example). A Wiener process is a martingale.})
 \end{enumerate}
 
-\end{theorem}
+
  
 
 
@@ -295,7 +295,7 @@ source("./r_code/gbm.R")
 
 ### The model
 
-The Black-Scholes model that provides analytical solution to the price of a European call at time $t$ can be described as follows [@yang2013valuing; @black1973pricing; @helgadottir2016option]:
+The Black-Scholes model provides analytical solution to the price of a European call at time $t$  and can be described as follows [@yang2013valuing; @black1973pricing; @helgadottir2016option]:
 
 \begin{align}
 C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
@@ -380,16 +380,20 @@ Most models focus on the volatility problem because transaction costs often tran
 
 ## Stochastic Volatility models
 
-Introducing stochastic volatility to models brings complexity, but enables modeling some features observed in reality that are crucial like the randomic market volatility effects, skewness (market returns are more realistically modeled) and volatility smile. This kind of model is applied highly succesfully in foreign exchange and credit markets.
+Introducing stochastic volatility to models brings complexity, but enables modeling some features observed in reality that are crucial, like the randomic market volatility effects, skewness (market returns are more realistically modeled) and volatility smile ^[The name derives from the concave shape of the graph, which resembles a smile.] (see Figure \@ref(fig:smile)). This kind of model is applied highly succesfully in foreign exchange and credit markets.
 
 \begin{definition}{(Volatility Smile)} 
 Volatility smiles are implied volatility patterns that arise in pricing financial options. In particular for a given expiration, options whose strike price differs substantially from the underlying asset's price command higher prices (and thus implied volatilities) than what is suggested by standard option pricing models. These options are said to be either deep in-the-money or out-of-the-money.
 \end{definition}
 
+Furthermore, stochastic volatility models use statistical methods as foundations to price and forecast options' behaviors and the underlying's security volatility is arbitrary. The Heston, the $3/2$ and other models, like the GARCH ^[generalized autoregressive conditional heteroscedasticity.] and SABR ^[stochastic alpha, beta, rho.], are considered standard smile models.
 
 
-Stochastic volatility models use statistical methods to calculate and forecast options pricing. They are based on the assumption that the volatility of the underlying security is arbitrary. Other types of stochastic volatility models include the SABR model, the Chen model and the GARCH model. The Heston model is also a type of standard smile model. "Smile" refers to the volatility smile, a graphical representation of several options with identical expiration dates that shows increasing volatility as the options become more in-the-money or out-of-the-money. The smile model's name derives from the concave shape of the graph, which resembles a smile. 
 
+
+```{r smile, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Volatility Smile \\label{smile}'}
+source("./r_code/smile.R")
+```
 
 
 ### Cox-Ingersoll-Ross model {#cir}
@@ -408,7 +412,7 @@ This model has been widely used to describe the dynamics of the short rate inter
 Furthermore, this equation constitutes one of the two Heston model equations with the volatility taking the short rate interest place.
 
 
-### Heston Model
+### Heston Model {#hes1}
 
 Heston model was introduced in  1993 by Steven Heston to solve the deterministic volatility problems. It was designed to analize bond and currency options and it introduced the following equations, which represent the dynamics of the stock price and the variance processes under the risk-neutral measure [@gilli_numerical_2011; @heston1993closed]:
 
@@ -430,9 +434,11 @@ The second equation, as described in Section \@ref(cir), is the CIR model equati
 #### Ornstein-Uhlenbeck
 
 
-The Ornstein-Uhlenbeck is the earliest recorded SDE. Named after Leonard Ornstein and George Eugene Uhlenbeck, it is a stochastic process that describes the acceleration of a pollen particle in a liquid subject to bombardments by molecules [@ubbo]. As we can observe in equation \@ref(ou_eq), $x_t$ represents the one dimension velocity of the particle, thus $dx_t$ is the *change* in velocity, in other words, its acceleration. The $- \theta x_t$ component slows down the acceleration and is to be understood as frictional force. Besides, we add a noise $W_t$ with intensity $\sigma$ that models the random bombardment by the molecules. 
 
-\begin{align} \label{ou_eq}
+The Ornstein-Uhlenbeck is the earliest recorded SDE. Named after Leonard Ornstein and George Eugene Uhlenbeck, it is a stochastic process that describes the acceleration of a pollen particle in a liquid subject to bombardments by molecules [@ubbo]. As we can observe in equation \@ref(eq:oueq), $x_t$ represents the one dimension velocity of the particle, thus $dx_t$ is the *change* in velocity, in other words, its acceleration. The $- \theta x_t$ component slows down the acceleration and is to be understood as frictional force. Besides, we add a noise $W_t$ with intensity $\sigma$ that models the random bombardment by the molecules. 
+
+\begin{align} 
+\label{eq:oueq}
 &d x_t = - \theta x_t dt + \sigma d W_t
 \end{align}
 
@@ -465,19 +471,82 @@ We will simulate sample paths of time discrete approximations implemented in the
 In the fixed step methods, the distance between two contiguous points is the distance $d_i = t_i - t_{i-1} = \frac{T-t_0}{N} \;\;\; \forall i \mid 1 \leq i  \leq N \in \mathbb{N}$. $N$ being the time interval partition  number.
 
 
-[@kloeden1992]
+According to Kloeden [@kloeden1992], in the stochastic realm, simulated sample paths can be statistically analysed to find how good an approximation is compared to an exact solution. Moreover, the computational costs suach as time and memory increases polynomially with the problem's dimension, which is good, and it is possible to apply variance reduction methods that allow a considerable decrease in the required sample size.
 
-The simulated sample paths can then be analysed by usual statistical methods to determine how good the approximation is and in what sense it is close to the exact solution. The state variables here are not discretized as in Kushner's Markov chain approach and the structure of the SDE as provided by the drift and diffusion coefficients is used in a natural way. 
-An advantage of considerable practical importance of this approach is
-that the computational costs such as time and memory required increase only
-polynomially with the dimension of the problem. Variance reduction methods
-allow a considerable decrease in the required sample size.
 
 
 
 ### Convergence ??
-### Euler-Maruyama
-### Milstein
+
+
+### Discretization
+
+We know that convergence is an important feature to a numerical method and studies have found not all time discrete possible approximations of an SDE converge in a useful sense to the solution process as the step size adopted tends toward zero [@clements1973well; @clark1980maximum]. Moreover, particularly for SDE's, some of the more rapidly convergent methods available for ODE's ^[Ordinary differential equations.] do not work, such as higher order Runge-Kutta methods. One of the methods that do work for ODE's and SDE's is the Euler method. Figure \@ref(fig:euler) shows an example of an implementation for the Newton's cooling law with timestep of 2 seconds compared to its analytical solution. 
+
+
+```{r euler, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Analytical x Euler solutions \\label{euler}'}
+source("./r_code/euler_comp.R")
+```
+
+
+It is clear that for ordinary differential equations the Euler method produces good enough approximations and since we not always have an analytical solution to compare to and that its computational cost is comparatively low, this method became very popular. We proceed to the SDE's. Consider the equation:
+
+\begin{align}
+dS_t &= \mu(S_t,t) dt + \sigma(S_t,t) dW_t
+\end{align}
+
+$dW_t$ is the Brownian motion, $\mu$ and $\sigma$ are functions depending on $S_t$ and $t$, over an interval $[0,T]$, and we want to discretize it as $0 = t_1 < t2 < \cdots < t_m = T$ with increments equally spaced $d_t$.
+
+Integrating it from $t$ to $dt$ we have the starting point for our (and any) discretization scheme:
+
+\begin{align}
+\label{eq:disc1}
+S_{t+dt} &= S_t + \int_{t}^{dt}{\mu(S_u,u)}du + \int_{t}^{dt}{\sigma(S_u,u)} dW_u
+\end{align}
+
+To use the Euler discretization is the equivalent of approximating integrals using the left-point rule, we then have:
+
+
+\begin{align}
+ \int_{t}^{dt}{\sigma(S_u,u)} dW_u &\approx \sigma(S_t,t) \int_{t}^{dt}dW_u\\
+&= \sigma(S_t,t) (W_{t+dt} - W_t)  \\
+&= \sigma(S_t,t) \sqrt{dt} Z
+\end{align}
+
+$W_{t+dt}-W_t$ and $\sqrt{dt}Z$ have identical distribution, $Z$ being a standard gaussian variable. The Euler discretization of equation \@ref(eq:disc1) is then:
+
+\begin{align}
+\label{eq:disc2}
+S_{t+dt} &= S_t + \mu(S_t,t)dt + \sigma(S_t,t)dW_t
+\end{align}
+
+
+
+
+
+
+#### Euler method - Heston model
+
+
+
+
+
+
+
+
+@higham2001
+@iacus2009simulation
+
+
+
+
+
+
+In mathematics and computational science, the Euler method (also called forward Euler method) is a first-order numerical procedure for solving ordinary differential equations (ODEs) with a given initial value. It is the most basic explicit method for numerical integration of ordinary differential equations and is the simplest Runge–Kutta method. The Euler method is named after Leonhard Euler, who treated it in his book Institutionum calculi integralis (published 1768–70).[1]
+
+The Euler method is a first-order method, which means that the local error (error per step) is proportional to the square of the step size, and the global error (error at a given time) is proportional to the step size. The Euler method often serves as the basis to construct more complex methods, e.g., predictor–corrector method.
+
+
 ### Stability
 
 [@kloeden1992]

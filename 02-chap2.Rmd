@@ -4,6 +4,18 @@
 source("/home/fteixeira/Documents/thesis/r_code/results.r")
 ```
 
+In section \@ref(hes1) we presented Heston's SDE system in one of its structures. Another common way [@broadie2006exact; @andersen; @kahl2006fast] to write down the system is using the property presented in \@ref(corr) as in equation \@ref(eq:heston2).   
+
+\begin{align}
+\label{eq:heston2}
+\begin{split}
+dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t 
+\end{split}
+\end{align}
+
+
+
 
 ## Characteristic Function
 
@@ -232,15 +244,7 @@ Hestoncallkj <- function(S, X, r, q, v, theta, rho, k, sigma,
 
 ## Exact Algorithm 
 
-In 2006, Broadie-Kaya [@broadie2006exact] propose a method that has a faster convergence rate, $\mathcal{O} \left( s^{-1/2}  \right)$ than some of the more famous schemes, such as Euler's and Milstein's discretizations. They build their idea to generate an exact sample from the distribution of the terminal stock price based on numerous papers [@heston1993closed, @scott1996, @willard1997, @romano1997]. Because, of the Heston model specifications and what we presentend in section \@ref(corr), Broadie-Kaya rewrite the equations in \@ref(eq:heston) as follows:
-
-\begin{align}
-\label{eq:heston2}
-\begin{split}
-dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
-dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t 
-\end{split}
-\end{align}
+In 2006, Broadie-Kaya [@broadie2006exact] propose a method that has a faster convergence rate, $\mathcal{O} \left( s^{-1/2}  \right)$ than some of the more famous schemes, such as Euler's and Milstein's discretizations. They build their idea to generate an exact sample from the distribution of the terminal stock price based on numerous papers [@heston1993closed, @scott1996, @willard1997, @romano1997]. 
 
 The algorithm used to generate the model consists in four steps as follows:
  
