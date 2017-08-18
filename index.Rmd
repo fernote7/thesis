@@ -22,7 +22,6 @@ abstract: >
 # like below, use a command like that for the abstract above.  Note that a tab is 
 # needed on the line after the >.
 acknowledgements: >
-  I want to thank a few people.
   Any one who considers arithmetical methods of producing random digits is, of course, in a state of sin. - John von Neumann \textbf{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ } 
   You get pseudo-order when you seek order; you only get a measure of order and control when you embrace randomness. — Nassim Nicholas Taleb
 # One person's data is another person's noise.  

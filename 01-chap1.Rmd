@@ -481,19 +481,19 @@ aproximações de EDEs à distribuições correspondentes. Para definir converg�
 e fraca, vamos primeiro definir os padrões de erro utilizados.
 
 
-[@iacus2009simulation]
-Simulation methods are usually based on discrete approximations of the
-continuous solution to a stochastic differential equation. The methods of approximation are classified according to their different properties. Mainly two
-criteria of optimality are used in the literature: the strong and the weak (orders
-of ) convergence.
+<!-- [@iacus2009simulation] -->
+<!-- Simulation methods are usually based on discrete approximations of the -->
+<!-- continuous solution to a stochastic differential equation. The methods of approximation are classified according to their different properties. Mainly two -->
+<!-- criteria of optimality are used in the literature: the strong and the weak (orders -->
+<!-- of ) convergence. -->
 
 
-[@higham2001]
-In the example above
-withem.mthe EM solution matches the true solution more closely as ∆tis decreased—
-convergence seems to take place. Keeping in mind thatX(τn) and Xnare random
-variables, in order to make the notion of convergence precise we must decide how to
-measure their difference. UsingE|Xn−X(τn)|
+<!-- [@higham2001] -->
+<!-- In the example above -->
+<!-- withem.mthe EM solution matches the true solution more closely as ∆tis decreased— -->
+<!-- convergence seems to take place. Keeping in mind thatX(τn) and Xnare random -->
+<!-- variables, in order to make the notion of convergence precise we must decide how to -->
+<!-- measure their difference. UsingE|Xn−X(τn)| -->
 
 
 ### Discretization
@@ -606,27 +606,27 @@ S_{t+dt} = S_t + \mu S_t dt + \sqrt{V_t dt} S_t Z_s
 ### Stability
 
 
-Iserles
+<!-- Iserles -->
 
-O estudo da estabilidade numérica surgiu quando começou-se a utilizar computadores
-para calcular aproximações de integrais, e por consequência, determinar soluções numéricas de equações diferenciais. Métodos comprovadamente convergentes geravam resultados
-com erros muito maiores do que se esperava, erros os quais não eram explicados apenas
-pela discretização do problema, enfim, este fenômeno era causado pelo acúmulo de sucessivos erros de truncamento. Duas boas referências para estabilidade numérica são [29] e
-[30].
-
-
+<!-- O estudo da estabilidade numérica surgiu quando começou-se a utilizar computadores -->
+<!-- para calcular aproximações de integrais, e por consequência, determinar soluções numéricas de equações diferenciais. Métodos comprovadamente convergentes geravam resultados -->
+<!-- com erros muito maiores do que se esperava, erros os quais não eram explicados apenas -->
+<!-- pela discretização do problema, enfim, este fenômeno era causado pelo acúmulo de sucessivos erros de truncamento. Duas boas referências para estabilidade numérica são [29] e -->
+<!-- [30]. -->
 
 
-[@kloeden1992]
-Most differential equations, deterministic or stochastic, cannot be solved 
-explicitly. Nevertheless we can often deduce alot of useful information, usually
-qualitative, about the behaviour of their solutions from the functional form of
-their coefficients. Of particular interest in applications is the long term 
-asymptotic behaviour and sensitivity of the solutions to small changes, for example
-measurement errors, in the initial values. From existence and uniqueness 
-theory we know that the solutions of a differential equation are continuous in their
-initial values, at least over a finite time interval. Extending this idea to an
-infinite time interval leads to the concept of stability.
+
+
+<!-- [@kloeden1992] -->
+<!-- Most differential equations, deterministic or stochastic, cannot be solved  -->
+<!-- explicitly. Nevertheless we can often deduce alot of useful information, usually -->
+<!-- qualitative, about the behaviour of their solutions from the functional form of -->
+<!-- their coefficients. Of particular interest in applications is the long term  -->
+<!-- asymptotic behaviour and sensitivity of the solutions to small changes, for example -->
+<!-- measurement errors, in the initial values. From existence and uniqueness  -->
+<!-- theory we know that the solutions of a differential equation are continuous in their -->
+<!-- initial values, at least over a finite time interval. Extending this idea to an -->
+<!-- infinite time interval leads to the concept of stability. -->
 
 
 
