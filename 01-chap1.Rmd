@@ -122,21 +122,6 @@ x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
 for some $f(s, x_s)$, $g(s, x_s)$ and $s \in [0,t]$.
 
 
-<!-- Let $S_{t}$ be a real-valued stochastic process that satisfies [@tong2012option; @evans; @steele2012stochastic; @ito1951; @ito1962; @rosenthal]: -->
-
-<!-- \begin{align} -->
-<!-- S_t = S_0 + \int_{0}^{t} \mu_t dt + \int_{0}^{t} \sigma_t dW_t -->
-<!-- \end{align} -->
-
-<!-- \noindent -->
-<!-- for some $\mu_t$, $\sigma_t$ and $t \in [0,T]$. This equation is often rewritten in its differential stochastic form: -->
-
-<!-- \begin{align} -->
-<!-- dS_t = \mu_t dt + \sigma_t dW_t  -->
-<!-- \end{align} -->
-
-<!-- \noindent -->
-<!-- for $0 \leq t \leq T$. -->
 
 #####################
 
@@ -148,8 +133,7 @@ Y_{\Delta t}(t) \approx \sum_{t_k < t}{g(t_k)\Delta W_k}
 \end{align}
 
 \noindent
-with the usual notions $t_k = k\Delta t$, and $\Delta W_k = W(t_{k+1})-W(t_k))$. If the limit
-exists, then the Ito integral is:
+with the usual notions $t_k = k\Delta t$, and $\Delta W_k = W(t_{k+1})-W(t_k))$. And in a more rigorous form, if the limit exists, then the Ito integral is:
 
 \begin{align}
 Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
@@ -157,11 +141,6 @@ Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
 
 
 It is essential that the *forward difference* is used rather than the backward difference, which would be **wrong**.
-
-
-
-
-#####################
 
 
 \begin{theorem}[Itô's Lemma] \label{itolemma}
@@ -174,7 +153,11 @@ dS_t = \mu_t dt + \sigma_t dW_t
 \noindent
 for $\mu_t$, $\sigma_t$ and $t \in [0,T]$. Assume $u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}$ is continuous and that $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$, $\frac{\partial^2 u}{\partial x^2}$ exist and are continuous.
 
-$$Y_t := u(S_t, t)$$
+\begin{align*}
+Y_t := u(S_t, t)
+\end{align*}
+
+
 \noindent
 Then Y has the following stochastic differential:
 
@@ -406,7 +389,7 @@ dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
 \end{align} 
 
 \noindent
-Where, $r_t$ is the short rate interest described by parameters $k$ - the speed of mean reversion, $\theta$ - the long-run mean variance and $\sigma$ - the volatility of the variance process.
+Where, $r_t$ is the short rate interest described by parameters $\kappa$ the speed of mean reversion, $\theta$  the long-run mean variance and $\sigma$ the volatility of the variance process.
 
 This model has been widely used to describe the dynamics of the short rate interest because it has some fundamental features like intuitive parametrization, nonnegativity and pricing formulas. Besides, it takes account of anticipations, risk aversion, investment alternatives and preferences about consumption timing and allows for detailed predictions about how changes in a wide range of underlying variables affect the term structure[@cox1985theory].
 Furthermore, this equation constitutes one of the two Heston model equations with the volatility taking the short rate interest place.
@@ -420,7 +403,8 @@ Heston model was introduced in  1993 by Steven Heston to solve the deterministic
 \begin{align}
 \label{eq:heston}
 dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
-dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+dV_t &=  \kappa (\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
+\label{eq:hesvar}
 \end{align}
 
 
@@ -471,17 +455,53 @@ We will simulate sample paths of time discrete approximations implemented in the
 In the fixed step methods, the distance between two contiguous points is the distance $d_i = t_i - t_{i-1} = \frac{T-t_0}{N} \;\;\; \forall i \mid 1 \leq i  \leq N \in \mathbb{N}$. $N$ being the time interval partition  number.
 
 
-According to Kloeden [@kloeden1992], in the stochastic realm, simulated sample paths can be statistically analysed to find how good an approximation is compared to an exact solution. Moreover, the computational costs suach as time and memory increases polynomially with the problem's dimension, which is good, and it is possible to apply variance reduction methods that allow a considerable decrease in the required sample size.
+According to Kloeden [-@kloeden1992], in the stochastic realm, simulated sample paths can be statistically analysed to find how good an approximation is compared to an exact solution. Moreover, the computational costs suach as time and memory increases polynomially with the problem's dimension, which is good, and it is possible to apply variance reduction methods that allow a considerable decrease in the required sample size.
 
 
 
 
-### Convergence ??
+### Convergence 
+
+
+As soon as we talk about numerical methods we are required to approach the topic of approximations and how to handle them. Methods efficiency receive the name of *convergency order*. In the SDE domain there are two main methods of convergency, that are classified according to their criteria. Firstly, we present the *strong order of convergency*. A method is said to have strong convergence $\delta$  to $Y$ if a time discretized $Y_{\delta}$ of a continous-time process $Y$, with $\delta$ being the maximum time increment of the discretization, and for any fixed time horizon $T$ holds true that [@iacus2009simulation]:
+
+\begin{align*}
+\mathcal{E} \mid Y_{\delta}(T) - Y(T) \mid \leq \mathcal{C} \delta^{\gamma}, \,\,\, \forall \delta < \delta_0
+\end{align*}
+
+with $\delta_0 > 0$ and $\mathcal{C}$ a constant not depending on $\delta$. Strong convergence addresses the problem of solutions' trajectories.
+
+
+
+
+Em específico, quando tratamos de modelos estocásticos, os dois principais tipos
+de convergência são a convergência forte, que tange aproximações das trajetórias de
+soluções de EDEs em um intervalo de tempo, e a convergência fraca, que diz respeito à
+aproximações de EDEs à distribuições correspondentes. Para definir convergência forte
+e fraca, vamos primeiro definir os padrões de erro utilizados.
+
+
+[@iacus2009simulation]
+Simulation methods are usually based on discrete approximations of the
+continuous solution to a stochastic differential equation. The methods of approximation are classified according to their different properties. Mainly two
+criteria of optimality are used in the literature: the strong and the weak (orders
+of ) convergence.
+
+
+[@higham2001]
+In the example above
+withem.mthe EM solution matches the true solution more closely as ∆tis decreased—
+convergence seems to take place. Keeping in mind thatX(τn) and Xnare random
+variables, in order to make the notion of convergence precise we must decide how to
+measure their difference. UsingE|Xn−X(τn)|
 
 
 ### Discretization
 
-We know that convergence is an important feature to a numerical method and studies have found not all time discrete possible approximations of an SDE converge in a useful sense to the solution process as the step size adopted tends toward zero [@clements1973well; @clark1980maximum]. Moreover, particularly for SDE's, some of the more rapidly convergent methods available for ODE's ^[Ordinary differential equations.] do not work, such as higher order Runge-Kutta methods. One of the methods that do work for ODE's and SDE's is the Euler method. Figure \@ref(fig:euler) shows an example of an implementation for the Newton's cooling law with timestep of 2 seconds compared to its analytical solution. 
+We know that convergence is an important feature to a numerical method and studies have found not all time discrete possible approximations of an SDE converge in a useful sense to the solution process as the step size adopted tends toward zero [@clements1973well; @clark1980maximum]. Moreover, particularly for SDEs, some of the more rapidly convergent methods available for ordinary differential equations (ODE) do not work, such as higher order Runge-Kutta methods ^[The euler method is the simplest Runge-Kutta method.]. 
+
+One of the methods that do work for ODEs and SDEs is the Euler method, named after the Swiss mathematician Leonhard Euler. Figure \@ref(fig:euler) shows an example of an implementation for the Newton's cooling law with timestep of 2 seconds compared to its analytical solution. This method (*a.k.a.* forward Euler method) is a first-order numerical procedure. It is the most basic explicit method ^[Explicit methods calculate the state of a system at a later time from the state of the system at the current time. Mathematically we have something like $Y(t+\Delta t)=F(Y(t))\,$.] for numerical integration.
+
 
 
 ```{r euler, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Analytical x Euler solutions \\label{euler}'}
@@ -489,7 +509,9 @@ source("./r_code/euler_comp.R")
 ```
 
 
-It is clear that for ordinary differential equations the Euler method produces good enough approximations and since we not always have an analytical solution to compare to and that its computational cost is comparatively low, this method became very popular. We proceed to the SDE's. Consider the equation:
+
+The method is first-order, as stated above, this means that the error in each step is a proportion of the square of the step size. Also, the global error at a given time is a function of the step size.
+We proceed to apply the Euler methos to SDEs. Consider the equation:
 
 \begin{align}
 dS_t &= \mu(S_t,t) dt + \sigma(S_t,t) dW_t
@@ -507,17 +529,68 @@ S_{t+dt} &= S_t + \int_{t}^{dt}{\mu(S_u,u)}du + \int_{t}^{dt}{\sigma(S_u,u)} dW_
 To use the Euler discretization is the equivalent of approximating integrals using the left-point rule, we then have:
 
 
-\begin{align}
- \int_{t}^{dt}{\sigma(S_u,u)} dW_u &\approx \sigma(S_t,t) \int_{t}^{dt}dW_u\\
+\begin{align*}
+ \int_{t}^{t+dt}{\mu(S_u,u)} dW_u &\approx \mu(S_t,t) \int_{t}^{t+dt}dW_u\\
+&= \mu(S_t,t) (W_{t+dt} - W_t)  \\
+ \int_{t}^{t+dt}{\sigma(S_u,u)} dW_u &\approx \sigma(S_t,t) \int_{t}^{t+dt}dW_u\\
 &= \sigma(S_t,t) (W_{t+dt} - W_t)  \\
 &= \sigma(S_t,t) \sqrt{dt} Z
-\end{align}
+\end{align*}
 
 $W_{t+dt}-W_t$ and $\sqrt{dt}Z$ have identical distribution, $Z$ being a standard gaussian variable. The Euler discretization of equation \@ref(eq:disc1) is then:
 
 \begin{align}
 \label{eq:disc2}
-S_{t+dt} &= S_t + \mu(S_t,t)dt + \sigma(S_t,t)dW_t
+S_{t+dt} &= S_t + \mu(S_t,t)dt + \sigma(S_t,t)\sqrt{dt}Z
+\end{align}
+
+
+#### Euler method - Heston model
+
+We now proceed to apply the method to our model of interest. We retake the equations \@ref(eq:heston) and \@ref(eq:hesvar). We begin showing how to discretize the latter [@higham2001; @iacus2009simulation]:
+
+\begin{align}
+\label{eq:hesvareuler}
+V_{t+dt} = V_t+ \int_{t}^{t+dt}{\kappa (\theta - V_u) du} + \int_{t}^{t+dt}{\sigma \sqrt{V_u} dB_u}
+\end{align}
+
+Which discretized turns out as:
+
+\begin{align*}
+ \int_{t}^{t+dt}{\kappa (\theta - V_u)} du &\approx \kappa (\theta - V_t) dt\\
+ \int_{t}^{t+dt}{\sigma \sqrt{V_u}} dB_t &\approx \sigma \sqrt{V_t} (W_{t+dt}-W_t)\\
+&= \sigma \sqrt{V_t dt} Z_v
+\end{align*}
+
+
+
+And leaves us with:
+
+\begin{align}
+V_{t+dt} = V_t + \kappa (\theta - V_t) dt + \sigma \sqrt{V_t dt} Z_v
+\end{align}
+
+$Z_v$ is a standard normal variable. To avoid problems with negative values in $\sqrt{V_t}$ we apply the *full truncation* scheme, which substitutes $V_t$ with $V_t^+ = max(0, V_t)$ ^[Another possible scheme (not used in this work) is the *reflection* scheme where we replace $V_t$ with $\mid V_t \mid$].
+
+For the $S_t$ SDE we proceed similarly:
+
+\begin{align}
+\label{eq:heseuler}
+S_{t+dt} = S_t+ \mu \int_{t}^{t+dt}{ S_u du} + \int_{t}^{t+dt}{\sqrt{V_u} S_u dW_u}
+\end{align}
+
+Discretizing we have:
+
+\begin{align*}
+ \int_{t}^{t+dt}{S_u} du &\approx S_t dt\\
+ \int_{t}^{t+dt}{\sqrt{V_u} S_u} dW_u &\approx \sqrt{V_t} S_t (W_{t+dt}-W_t)\\
+&= \sqrt{V_t dt} S_t Z_s
+\end{align*}
+
+$Z_s$ is a standard normal variable with correlation $\rho$ with $Z_v$. We have:
+
+\begin{align}
+S_{t+dt} = S_t + \mu S_t dt + \sqrt{V_t dt} S_t Z_s
 \end{align}
 
 
@@ -525,29 +598,24 @@ S_{t+dt} &= S_t + \mu(S_t,t)dt + \sigma(S_t,t)dW_t
 
 
 
-#### Euler method - Heston model
 
 
 
-
-
-
-
-
-@higham2001
-@iacus2009simulation
-
-
-
-
-
-
-In mathematics and computational science, the Euler method (also called forward Euler method) is a first-order numerical procedure for solving ordinary differential equations (ODEs) with a given initial value. It is the most basic explicit method for numerical integration of ordinary differential equations and is the simplest Runge–Kutta method. The Euler method is named after Leonhard Euler, who treated it in his book Institutionum calculi integralis (published 1768–70).[1]
-
-The Euler method is a first-order method, which means that the local error (error per step) is proportional to the square of the step size, and the global error (error at a given time) is proportional to the step size. The Euler method often serves as the basis to construct more complex methods, e.g., predictor–corrector method.
 
 
 ### Stability
+
+
+Iserles
+
+O estudo da estabilidade numérica surgiu quando começou-se a utilizar computadores
+para calcular aproximações de integrais, e por consequência, determinar soluções numéricas de equações diferenciais. Métodos comprovadamente convergentes geravam resultados
+com erros muito maiores do que se esperava, erros os quais não eram explicados apenas
+pela discretização do problema, enfim, este fenômeno era causado pelo acúmulo de sucessivos erros de truncamento. Duas boas referências para estabilidade numérica são [29] e
+[30].
+
+
+
 
 [@kloeden1992]
 Most differential equations, deterministic or stochastic, cannot be solved 

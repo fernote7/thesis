@@ -10,7 +10,7 @@ euler = matrix(data= c(100.00000,100.00000,
 20.14690, 20.09027, 
 20.07295, 20.04246), ncol = 2, byrow = TRUE) 
 
-plot(euler[,1], lty = 1, pch = 1, type='b', axes=F, xlab = 'time in s', ylab = 'Temperature', col='blue', cex=0.5)
+plot(euler[,1], lty = 1, pch = 1, type='b', axes=F, xlab = 'time in seconds', ylab = 'Temperature', col='blue', cex=0.5)
 lines(euler[,2], lty = 2, pch = 20, type='b', col='red', cex = 0.5)
 axis(side = 1, at = c(1,3,5,7,9,11), labels = c("0","20","40","60","80","100"))
 axis(side = 2, las = 1)
