@@ -66,7 +66,7 @@ V_{t+1} = V_t + \kappa (\theta - V_t) + \sigma \sqrt{V_t} Z_v
 \end{align}
 
 \noindent
-$Z_s$ being a standard normal random variable, i.e. $N~(0,1)$, we set $Z_t$ and $Z_v$ as two independent standard normal random variables and $Z_s$ and $Z_v$ having correlation $\rho$. This means we can write $Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t$
+$Z_s$ being a standard normal random variable, i.e. $N\sim(0,1)$, we set $Z_t$ and $Z_v$ as two independent standard normal random variables and $Z_s$ and $Z_v$ having correlation $\rho$. This means we can write $Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t$
 
 The immediate observable problem in the proposed discretization scheme is that $V$ can become negative with non-zero probability making the computation of $\sqrt{V_t}$ impossible [@andersen]. There are several proposed fixes that can be used, we chose the Full-Truncation (FT) and rewrite the equations as follows:
 
