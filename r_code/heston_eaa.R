@@ -1,10 +1,6 @@
-
 source("./r_code/parameters.R")
-
 N=1
-
 hest <- c()
-
 for(i in (X-15):(X+15)){
     hest[i - (X-16)] <- NMOF::callHestoncf(S=S, X=i, tau = tau, r=r, q=0, v0=v, vT=theta, sigma=sigma, rho=rho, k=k)
 }
@@ -34,19 +30,23 @@ hestonea <- function(S, X, r, v, theta, rho, k, sigma, t = 0, dt = NULL, tau = 1
 
 
         gamma <- function(a){sqrt(k^2 + 2 * sigma^2 * -1i*a)}
-        uu <- i
-        gamma_a <- gamma(uu)
+        
 
-        v_esp <- (Re(gamma_a) * exp(-(Re(gamma_a) - k)/2 * dt) * (1 - exp(-k * dt)))/
-                 (k * (1- exp(- Re(gamma_a) * dt))) *
+        phi <- function(a){(Re(gamma(a)) * exp(-(Re(gamma(a)) - k)/2 * dt) * (1 - exp(-k * dt)))/
+                 (k * (1- exp(- Re(gamma(a)) * dt))) *
                  exp((v+vt)/(sigma^2) * ((k * 1 + exp(-k*dt))/(1-exp(-k*dt))-
-                                        (Re(gamma_a) * (1 + exp(- Re(gamma_a) * dt)))/(1-exp(- Re(gamma_a) *dt)))) *
-                 (besselI( x = ((4 * Re(gamma_a) * sqrt(v*vt))/(sigma^2) * (exp(- Re(gamma_a) * dt/2))/
-                                    (1 - exp(- Re(gamma_a) * dt))), nu = 0.5*d - 1) /
+                                        (Re(gamma(a)) * (1 + exp(- Re(gamma(a)) * dt)))/(1-exp(- Re(gamma_a) *
+                                                                                                 dt)))) *
+                 (besselI( x = ((4 * Re(gamma(a)) * sqrt(v*vt))/(sigma^2) * (exp(- Re(gamma(a)) * dt/2))/
+                                    (1 - exp(- Re(gamma(a)) * dt))), nu = 0.5*d - 1) /
                       (besselI(x = ((4 * k * sqrt(v*vt))/(sigma^2) * (exp(-k*dt/2))/(1-exp(-k*dt))),
                                nu = 0.5*d - 1)))
+                }
+        
+          f <- function(u){sin(u*x)/u * Re(v_esp)}
+          F_x <- 1/pi * integrate(f, lower = -Inf, upper = Inf)$value
 
-
+        
 
         teste <- c()
         for(i in seq(0,10000,0.1)){

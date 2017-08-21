@@ -1,11 +1,26 @@
-\BOOKMARK [0][-]{chapter.1}{Chapter 1: altadvisor: Your Other Advisor}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Chapter 1: Introduction}{}% 1
 \BOOKMARK [0][-]{chapter.2}{Chapter 2: Literature Review}{}% 2
-\BOOKMARK [0][-]{chapter.3}{Chapter 3: The Heston Model Implementation}{}% 3
-\BOOKMARK [1][-]{section.3.1}{Characteristic Function}{chapter.3}% 4
-\BOOKMARK [1][-]{section.3.2}{Euler Scheme - Full Truncation}{chapter.3}% 5
-\BOOKMARK [1][-]{section.3.3}{Kahl-Jackel}{chapter.3}% 6
-\BOOKMARK [1][-]{section.3.4}{Exact Algorithm}{chapter.3}% 7
-\BOOKMARK [0][-]{chapter.4}{Chapter 4: This chunk ensures that the thesisdown package is}{}% 8
-\BOOKMARK [0][-]{chapter.5}{Chapter 5: Conclusion}{}% 9
-\BOOKMARK [0][-]{chapter.6}{Chapter 6: Placeholder}{}% 10
-\BOOKMARK [0][-]{chapter*.7}{References}{}% 11
+\BOOKMARK [1][-]{section.2.1}{Stochastic Calculus}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{The Stochastic differential equation - SDE}{section.2.1}% 4
+\BOOKMARK [2][-]{subsection.2.1.2}{Brownian Motion}{section.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.1.3}{It\364's Integral}{section.2.1}% 6
+\BOOKMARK [1][-]{section.2.2}{Black-Scholes Model}{chapter.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.1}{Basics}{section.2.2}% 8
+\BOOKMARK [2][-]{subsection.2.2.2}{The model}{section.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.3}{Limitations}{section.2.2}% 10
+\BOOKMARK [1][-]{section.2.3}{Stochastic Volatility models}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.3.1}{Cox-Ingersoll-Ross model}{section.2.3}% 12
+\BOOKMARK [2][-]{subsection.2.3.2}{Heston Model}{section.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.3.3}{Other Models}{section.2.3}% 14
+\BOOKMARK [1][-]{section.2.4}{Numerical Methods}{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.4.1}{Convergence}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.2}{Discretization}{section.2.4}% 17
+\BOOKMARK [2][-]{subsection.2.4.3}{Stability}{section.2.4}% 18
+\BOOKMARK [0][-]{chapter.3}{Chapter 3: The Heston Model Implementation}{}% 19
+\BOOKMARK [1][-]{section.3.1}{Characteristic Function}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.2}{Euler Scheme - Full Truncation}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.3}{Kahl-Jackel}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.4}{Exact Algorithm}{chapter.3}% 23
+\BOOKMARK [0][-]{chapter.4}{Chapter 4: Results}{}% 24
+\BOOKMARK [0][-]{chapter.5}{Chapter 5: Conclusion}{}% 25
+\BOOKMARK [0][-]{appendix*.17}{References}{}% 26

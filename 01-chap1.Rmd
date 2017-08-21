@@ -463,15 +463,24 @@ According to Kloeden [-@kloeden1992], in the stochastic realm, simulated sample 
 ### Convergence 
 
 
-As soon as we talk about numerical methods we are required to approach the topic of approximations and how to handle them. Methods efficiency receive the name of *convergency order*. In the SDE domain there are two main methods of convergency, that are classified according to their criteria. Firstly, we present the *strong order of convergency*. A method is said to have strong convergence $\delta$  to $Y$ if a time discretized $Y_{\delta}$ of a continous-time process $Y$, with $\delta$ being the maximum time increment of the discretization, and for any fixed time horizon $T$ holds true that [@iacus2009simulation]:
+As soon as we talk about numerical methods we are required to approach the topic of approximations and how to handle them. Methods efficiency receive the name of *convergence order*. In the SDE domain there are two main methods of convergency, that are classified according to their criteria. Firstly, we present the *strong order of convergence*. A method is said to have strong convergence $\delta$  to $Y$ if a time discretized $Y_{\delta}$ of a continous-time process $Y$, with $\delta$ being the maximum time increment of the discretization, and for any fixed time horizon $T$ holds true that [@iacus2009simulation]:
 
 \begin{align*}
-\mathcal{E} \mid Y_{\delta}(T) - Y(T) \mid \leq \mathcal{C} \delta^{\gamma}, \,\,\, \forall \delta < \delta_0
+\mathbb{E} \mid Y_{\delta}(T) - Y(T) \mid \leq C \delta^{\gamma}, \,\,\, \forall \delta < \delta_0
 \end{align*}
 
-with $\delta_0 > 0$ and $\mathcal{C}$ a constant not depending on $\delta$. Strong convergence addresses the problem of solutions' trajectories.
+with $\delta_0 > 0$ and $\mathcal{C}$ a constant not depending on $\delta$. Strong convergence addresses the problem of solutions' trajectories. For specific conditions, the Euler method has strong convergence order $\gamma = \frac{1}{2}$.
+Furthermore, there is the *weak order of convergence*. The weak convergence 
 
 
+
+\begin{align*}
+\mid  \mathbb{E}p(Y_n) - \mathbb{E}p(Y(\tau)) \mid \leq C \Delta t^{\gamma}
+\end{align*}
+
+
+
+For a more detailed and rigorous explanation of convergence we recommend consulting Higham [-@higham2001].
 
 
 Em específico, quando tratamos de modelos estocásticos, os dois principais tipos
