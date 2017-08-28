@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{August 27, 2017}
+\date{August 28, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -789,14 +789,46 @@ starts here.
   S_{t+dt} = S_t + \mu S_t dt + \sqrt{V_t dt} S_t Z_s
   \end{align}
   \subsection{Stability}\label{stability}
+  
+  Stability studies begin with computers and is associated with numerical
+  methods and approximations. Convergent methods were resulting in bigger
+  errors than what was expected that could not be only due to
+  discretization error. Eventually, scientists discovered that this
+  unexpected problem was caused by accumulation of successive truncation
+  errors.
   \begin{figure}
   
   {\centering \includegraphics{thesis_files/figure-latex/stab-1} 
   
   }
   
-  \caption{Checking Euler's stability whith different timesteps \label{stab}}\label{fig:stab}
+  \caption{Euler's stability whith different timesteps \label{stab}}\label{fig:stab}
   \end{figure}
+  We know that binary machines like computers are not able to represent
+  all the real numbers, but only a subset of them. Thus, solving these
+  errors is not straightforward since it's not possible to eliminate
+  \emph{all} truncation error when using a computer and dealing with
+  numerical solutions. When faced to an incorrect (not acceptable)
+  solution, we have to evaluate and distinguish between two distinct
+  situations {[}7{]}:
+  \begin{itemize}
+    \item [i] Rounding errors are considerably amplified by the algorithm. This situation is called numerical instability.
+    \item [ii] Small perturbations of data generate large changes in the solution. This is termed an ill-conditioned (or sensitive) problem.
+  \end{itemize}
+  {[}15{]} Stochastic Stability Most differential equations, deterministic
+  or stochastic, cannot be solved explicitly. Nevertheless we can often
+  deduce alot of useful information, usually qualitative, about the
+  behaviour of their solutions from the functional form of their
+  coefficients.
+  
+  Of particular interest in applications is the long term asymptotic
+  behaviour and sensitivity of the solutions to small changes, for example
+  measurement errors, in the initial values. From existence and uniqueness
+  theory we know that the solutions of a differential equation are
+  continuous in their initial values, at least over a finite time
+  interval. Extending this idea to an infinite time interval leads to the
+  concept of stability.
+  
   \chapter{The Heston Model
   Implementation}\label{the-heston-model-implementation}
   
