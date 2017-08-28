@@ -614,28 +614,65 @@ S_{t+dt} = S_t + \mu S_t dt + \sqrt{V_t dt} S_t Z_s
 
 ### Stability
 
+Stability studies begin with computers and is associated with numerical methods and approximations. Convergent methods were resulting in bigger errors than what was expected that could not be only due to discretization error. Eventually, scientists discovered that this unexpected problem was caused by accumulation of successive truncation errors.
 
-<!-- Iserles -->
+```{r stab, echo=FALSE, message=FALSE, results='asis', fig.height=5, fig.width = 5, fig.align='center', fig.cap='Euler\'s stability whith different timesteps \\label{stab}'}
+source("./r_code/stab.R")
+```
 
-<!-- O estudo da estabilidade numérica surgiu quando começou-se a utilizar computadores -->
-<!-- para calcular aproximações de integrais, e por consequência, determinar soluções numéricas de equações diferenciais. Métodos comprovadamente convergentes geravam resultados -->
-<!-- com erros muito maiores do que se esperava, erros os quais não eram explicados apenas -->
-<!-- pela discretização do problema, enfim, este fenômeno era causado pelo acúmulo de sucessivos erros de truncamento. Duas boas referências para estabilidade numérica são [29] e -->
-<!-- [30]. -->
+We know that binary machines like computers are not able to represent all the real numbers, but only a subset of them. Thus, solving these errors is not straightforward since it's not possible to eliminate *all* truncation error when using a computer and dealing with numerical solutions. When faced to an incorrect (not acceptable) solution, we have to evaluate and distinguish between two distinct situations [@gilli_numerical_2011]:
+
+\begin{itemize}
+  \item [i] Rounding errors are considerably amplified by the algorithm. This situation is called numerical instability.
+  \item [ii] Small perturbations of data generate large changes in the solution. This is termed an ill-conditioned (or sensitive) problem.
+\end{itemize}
+
+We focus on the former
+
+###
+[@gilli_numerical_2011]
+  The precision for finite difference methods depends, among other things, on
+  the number of time and space steps. These issues are known as the problem
+  of stability that is caused by an ill-conditioned linear system. We will not
+  discuss this problem in detail but simply give some intuition. We have to
+  be aware that increasing the number of space steps increases the size of the
+  linear system, and the number of time steps defines how often the linear
+  system has to be solved. Also, the parameters like volatility  and risk-free
+  rate r influence the conditioning of the linear system.
+
+  [@gilli_numerical_2011]
+  In Section 2.1, it has been shown that binary machines can represent only a
+  subset of the real numbers, introducing rounding errors that may seriously
+  affect the precision of the numerical solution. If the “quality” of a solution
+  is not acceptable, it is important to distinguish between the following two
+  situations:
+  i. Rounding errors are considerably amplified by the algorithm. This
+  situation is called numerical instability.
+  ii. Small perturbations of data generate large changes in the solution. This
+  is termed an ill-conditioned (or sensitive) problem.
+  In the following we give illustrations of numerical instability and of an
+  ill-conditioned problem.
+###
 
 
 
 
-<!-- [@kloeden1992] -->
-<!-- Most differential equations, deterministic or stochastic, cannot be solved  -->
-<!-- explicitly. Nevertheless we can often deduce alot of useful information, usually -->
-<!-- qualitative, about the behaviour of their solutions from the functional form of -->
-<!-- their coefficients. Of particular interest in applications is the long term  -->
-<!-- asymptotic behaviour and sensitivity of the solutions to small changes, for example -->
-<!-- measurement errors, in the initial values. From existence and uniqueness  -->
-<!-- theory we know that the solutions of a differential equation are continuous in their -->
-<!-- initial values, at least over a finite time interval. Extending this idea to an -->
-<!-- infinite time interval leads to the concept of stability. -->
+
+
+
+
+[@kloeden1992] Stochastic Stability
+Most differential equations, deterministic or stochastic, cannot be solved
+explicitly. Nevertheless we can often deduce alot of useful information, usually
+qualitative, about the behaviour of their solutions from the functional form of
+their coefficients. 
+
+Of particular interest in applications is the long term
+asymptotic behaviour and sensitivity of the solutions to small changes, for example measurement errors, in the initial values. From existence and uniqueness
+theory we know that the solutions of a differential equation are continuous in their initial values, at least over a finite time interval. Extending this idea to an infinite time interval leads to the concept of stability.
+
+
+
 
 
 
