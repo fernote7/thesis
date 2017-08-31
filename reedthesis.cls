@@ -299,16 +299,16 @@
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil
+    School of \@division \\
     A Thesis \\
-    Presented to \\
-    \@thedivisionof \ \@division \\
-   Getulio Vargas Foundation
+    Presented to the \\
+    Getulio Vargas Foundation \\
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil
     In Partial Fulfillment \\
     of the Requirements for the Degree \\
-    M.Sc.\ of Mathematics
+    M.Sc.\ of Applied Mathematics
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \bigskip

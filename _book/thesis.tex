@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for stochastic volatility models: \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{August 28, 2017}
+\date{agosto 31, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -209,7 +209,7 @@ starts here.
   \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}
   in the 1940s and 1950s and is used for modeling financial options and in
   another wide variety of fields {[}23{]}. In this chapter we present the
-  historical contexts in which the tools and models used arise, but our
+  historical contexts in which the tools and models are used, but our
   focus is introducing the concepts and notations that will be further
   used in our work.
   
@@ -218,7 +218,7 @@ starts here.
   
   At first, before introducing stochastic differential equation, it is
   helpful to start with ordinary differential equation. Let \(x(t) = x_t\)
-  denote the population at time \(t\) so that the change in the population
+  denote a population at time \(t\) so that the change in the population
   at time \(t\) is given by the following deterministic differential
   equation:
   \begin{align}
@@ -231,14 +231,13 @@ starts here.
   x(0) &= x_0 \nonumber
   \end{align}
   This ``noise'' \(dW_t\) is a \emph{random} Wiener process time
-  derivative (which will be clarified below) and \(X_0\) is our initial
+  derivative (which will be clarified below) and \(x_0\) is our initial
   value.
   
   The \(g(t, x_t)\) part of the SDE is often referred as a \emph{diffusion
-  process}. These processes generally have a continuous paths. Before
-  moving on, we must carefully define what the term \emph{random}, means
-  and the best way to begin doing so is to precisely define a probability
-  space:
+  process}, these usually have a continuous paths. Before moving on, we
+  must carefully define what the term \emph{random} means and the best way
+  to begin doing so is to precisely define a probability space:
   \begin{definition}{(Probability Space)} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
   \end{definition}
   \subsection{Brownian Motion}\label{brownian-motion}
@@ -255,15 +254,15 @@ starts here.
   \item
     the motion of two distinct particles appear to be independent
   \end{itemize}
-  The first quantitative works in brownian motion come from an interest in
+  The first quantitative works in Brownian motion come from an interest in
   stock price fluctuation by Bachelier in 1900. Albert Einstein also
   leaned over the subject and in 1905 derived the transition density for
   Brownian motion from molecular-kinetic theory of heat {[}14,23{]}.
   
   In 1923, the Wiener process was coined in honor of Norbert Wiener
-  mathematical proof of existence of the brownian motion and stating its
+  mathematical proof of existence of the Brownian motion and stating its
   properties.\footnote{More can be found on {[}5,8,18{]}.}
-  \begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{wiener process} if it satisfies the following properties:
+  \begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{Wiener process} if it satisfies the following properties:
   \begin{itemize}
     \item  $W_{0}=0$
     
@@ -271,7 +270,7 @@ starts here.
     
     \item If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
     
-    \item The process is continuous, meaning that there are no jumps in the process.
+    \item The process is continuous, meaning that there are no jumps in the path.
     
     \item The process is a Markov process. This means that the conditional expectation of $W_{t+1}$ given its entire history is equal to the conditional expectation of $W_{t+1}$ given today's information. This can be written as: $E[W_{t+1}|W_1, ..., W_t] = E[W_{t+1}|W_t]$.
     
@@ -289,7 +288,7 @@ starts here.
   \end{figure}
   \subsubsection{Correlated Brownian Motions}\label{corr}
   
-  Two independent brownian motions that are correlated can describe a new
+  Two independent Brownian motions that are correlated can describe a new
   process \(Z_t\). Let \(W_1\) and \(W_2\) be these two \emph{independent}
   Brownian motions and let \(-1 \leq \rho \leq 1\) be a given number. For
   \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}23{]}:
@@ -305,9 +304,10 @@ starts here.
   
   \subsection{Itô's Integral}\label{itos-integral}
   
-  Formally, the SDE presented in equation \ref{sde1} only exists because
-  we can rewrite it in the form {[}5,12,13,18,20,21{]}:
-  \begin{align} \label{sde1}
+  Formally, the SDE presented in equation \eqref{eq:sde1} only exists
+  because we can rewrite it in the form {[}5,12,13,18,20,21{]}:
+  \begin{align} 
+  \label{eq:sde1}
   x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
   \end{align}
   \noindent
@@ -422,8 +422,8 @@ starts here.
   \end{definition}
   \subsubsection{Geometric Brownian Motion}\label{gbm}
   
-  A stochastic process \(S_t\) is a geometric brownian motion\footnote{There
-    is an arithmetic brownian motion, whose equation is:
+  A stochastic process \(S_t\) is a geometric Brownian motion\footnote{There
+    is an arithmetic Brownian motion, whose equation is:
     \(dS_t = \mu dt + \sigma dB_t\). More information can be obatined
     about this process looking at {[}23{]}.} if its solution is described
   by the solution of the following stochastic differential equation
@@ -435,7 +435,7 @@ starts here.
   for given constants \(\mu \in {\rm I\!R}\) and \(\sigma > 0\). Also, the
   assumed initial value is positive, \(S_0 >0\).
   
-  This process\footnote{Also known as exponential brownian motion.}
+  This process\footnote{Also known as exponential Brownian motion.}
   (Figure \ref{gbm}) is used quite often in finance to model the dynamics
   of some assets because of its properties. It has independent
   multiplicative increments and is the process used to price options in
@@ -645,8 +645,8 @@ starts here.
   
   According to Kloeden {[}15{]}, in the stochastic realm, simulated sample
   paths can be statistically analysed to find how good an approximation is
-  compared to an exact solution. Moreover, the computational costs suach
-  as time and memory increases polynomially with the problem's dimension,
+  compared to an exact solution. Moreover, the computational costs such as
+  time and memory increases polynomially with the problem's dimension,
   which is good, and it is possible to apply variance reduction methods
   that allow a considerable decrease in the required sample size.
   
