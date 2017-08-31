@@ -37,10 +37,18 @@ vetor_25 = matrix(c(0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375,4
 
 vetor_29 = matrix(c(0,29,58,87,116,145,174,203,232,261,290,319,348,377,406,435,464,493,522,551,580,100,-62.4,104.872,-67.41816,110.0407,-72.74193,115.5242,-78.38991,121.3416,-84.38185,127.5133,-90.73871,134.0609,-97.4827,141.0072,-104.6374,148.3765,-112.2278,156.1946,-120.2805,164.4889), ncol = 2, byrow = FALSE)
 
-plot(vetor_10, type = 'l', axes=FALSE, ylim=c(min(vetor_25[,2]),max(vetor_25[,2])))
-lines(vetor_25)
 
-plot(vetor_10, type = 'l', axes=FALSE, ylim=c(min(vetor_29[,2]),max(vetor_29[,2])))
-lines(vetor_29)
-
-
+par(mfrow=c(2,1), xpd=FALSE, mar=c(2,4,2,2), oma=c(2,0,0,0))
+plot(vetor_10, type = 'l', axes=FALSE, ylim=c(min(vetor_25[,2]),max(vetor_25[,2])),
+    ylab = 'temp', xlab = 'timestep')
+lines(vetor_25, col='red', lty=2)
+box()
+axis(side = 2, las = 1, cex.axis = 0.6)
+mtext("h = 25", side = 1, line = 0.5)
+par(mar=c(4,4,0.5,2))
+plot(vetor_10, type = 'l', axes=FALSE, ylim=c(min(vetor_29[,2]),max(vetor_29[,2])),
+     xlab = 'h = 29', ylab = 'temp')
+lines(vetor_29, col='red', lty=2)
+box()
+axis(side = 2, las = 1, cex.axis = 0.6)
+axis(side = 1)
