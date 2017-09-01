@@ -251,8 +251,8 @@ The algorithm used to generate the model consists in four steps as follows:
 \begin{itemize}
 \item [\textit{Step} 1.] Generate a sample of $V_t$ given $V_0$
 \item [\textit{Step} 2.] Generate a sample of $\int_0^t V_sds$ given $V_t$, $V_0$
-\item [\textit{Step} 3.] Compute $\int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$
-\item [\textit{Step} 4.] teste
+\item [\textit{Step} 3.] Compute $\int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
+\item [\textit{Step} 4.] Generate a sample from the probability distribution of $S_t$, given $\int_0^t \sqrt{V_s}dB_s$ and $\int_0^t V_sds$
 \end{itemize}
 
 
