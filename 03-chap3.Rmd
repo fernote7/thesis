@@ -21,3 +21,8 @@ flights <- read.csv("data/flights.csv")
 
 
 # Results
+
+
+```{r param1, echo=FALSE, message=FALSE, results='asis'}
+source("./r_code/parametrization.R")
+```

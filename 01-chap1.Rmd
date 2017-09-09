@@ -38,7 +38,7 @@ x(0) &= x_0 \nonumber
 
 We now add a ``noise'' to this equation:
 
-\begin{align} \label{sde1}
+\begin{align} \label{eq:sde1}
 dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} + \overbrace{\underbrace{g(t, x_t)}_\text{diffusion}dW_t}^\text{random shock} \\
 x(0) &= x_0 \nonumber
 \end{align}
@@ -65,7 +65,7 @@ The first quantitative works in Brownian motion come from an interest in stock p
 In 1923, the Wiener process was coined in honor of Norbert Wiener mathematical proof of existence of the Brownian motion and stating its properties ^[More can be found on [@helgadottir2016option; @evans; @rosenthal].].
 
 
-\begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a \textit{Wiener process} if it satisfies the following properties:
+\begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a *Wiener process* if it satisfies the following properties:
 
 \begin{itemize}
   \item  $W_{0}=0$
@@ -102,7 +102,7 @@ Z_t = \rho W_{1,t} + \sqrt{1-\rho^2}W_{2,t}
 \end{align}
 
 \noindent
-This equation is a linear combination of independent normals at each timestep $t$, so $Z_t$ is normally distributed. It is proven that $Z$ is a Brownian motion and that $Z$ and $W_{1,t}$ are correlated [@ubbo, pp. 514].
+This equation is a linear combination of independent normals at each timestep $t$, so $Z_t$ is normally distributed. It is proven that $Z$ is a Brownian motion and that $Z$ and $W_{1,t}$ have correlation $\rho$ [@ubbo, pp. 514].
 
 
 
@@ -114,7 +114,7 @@ This equation is a linear combination of independent normals at each timestep $t
 Formally, the SDE  presented in equation \@ref(eq:sde1) only exists because we can rewrite it in the form [@tong2012option; @evans; @steele2012stochastic; @ito1951; @ito1962; @rosenthal]:
 
 \begin{align} 
-\label{eq:sde1}
+\label{eq:sde2}
 x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
 \end{align}
 
@@ -134,14 +134,14 @@ Y_{\Delta t}(t) \approx \sum_{t_k < t}{g(t_k)\Delta W_k}
 \end{align}
 
 \noindent
-with the usual notions $t_k = k\Delta t$, and $\Delta W_k = W(t_{k+1})-W(t_k))$. And in a more rigorous form, if the limit exists, then the Ito integral is:
+with the usual notions $t_k = k\Delta t$, and $\Delta W_k = W(t_{k+1})-W(t_k)$. And in a more rigorous form, if the limit exists, then the Ito integral is:
 
 \begin{align}
 Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
 \end{align}
 
 
-It is essential that the *forward difference* is used rather than the backward difference, which would be **wrong**.
+It is essential that the *forward difference* is used rather than the backward difference, which would be wrong.
 
 
 \begin{theorem}[Itô's Lemma] \label{itolemma}
@@ -174,7 +174,7 @@ Then Y has the following stochastic differential:
 where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( S_t, t \right)$ .
 \end{theorem}
 
-Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(S_t, t)$ [@tong2012option; @evans]. For practical uses you should write out a second-order Taylor expansion for the function to be analyzed and apply the     \@ref(tab:box-calc)  multiplication table [@ubbo].
+Equation \@ref(eq:ito) is the stochastic equivalent to the chain rule, also known as Itô's formula or Itô's chain rule. The proof to this theorem is based on the Taylor expansion of the function $f(S_t, t)$ [@tong2012option; @evans]. For practical use you should write out a second-order Taylor expansion for the function to be analyzed and apply the Table \@ref(tab:box-calc) multiplication table [@ubbo].
 
 ```{r box-calc, echo=FALSE, message=FALSE, results='asis'}
 source("./r_code/box.r")
@@ -212,14 +212,14 @@ The Black-Scholes (B-S) model arises from the need to price european options in 
 
 * A put option is a derivative that gives its bearer the right, but not the obligation, to sell a specific asset by a fixed price before or on a given date.
 
-The trading price of the option is called the option *premium* and the asset from which the option derives is called the *underlying asset*. This asset may be the interest rate, exchange rates, stock exchanges rates, commodities or stocks. The fixed price in contract in which the underlying asset might to be bought or sold is the *strick price*. The option expiration date is called the *maturity*. [@salomao2011precificaccao; @black1973pricing]
+The trading price of the option is called the option *premium* and the asset from which the option derives is called the *underlying asset*. This asset may be interest rates, exchange rates, stock exchanges indices, commodities or stocks. The fixed price in contract in which the underlying asset might to be bought or sold is the *strick price*. The option expiration date is called the *maturity*. [@salomao2011precificaccao; @black1973pricing]
 
-There are two major different option types: the European and the American. The difference between these two is that the bearer of the first may exercise it only at the end of its life, at its maturity while the latter can be exercised at any given time until its maturity. [@black1973pricing; @merton1973theory]
+There are two major different option types: European and American. The difference between these two is that the bearer of the first may exercise it only at the end of its life, at its maturity while the latter can be exercised at any given time until its maturity. [@black1973pricing; @merton1973theory]
 
 
-\begin{definition}{(Implicit volatility)} 
-Given all the option's parameters in a precification model and its market price, the option's volatility is called the \textit{implicit volatility}.
-\end{definition}
+<!-- \begin{definition}{(Implicit volatility)}  -->
+<!-- Given all the option's parameters in a precification model and its market price, the option's volatility is called the \textit{implicit volatility}. -->
+<!-- \end{definition} -->
 
 
 
@@ -248,7 +248,7 @@ The intrinsic value of a call is the difference between the underlying asset pri
 
 #### Geometric Brownian Motion {#gbm}
 
-A stochastic process $S_t$ is a Geometric Brownian Motion ^[There is an Arithmetic Brownian Motion: $dS_t = \mu dt + \sigma dB_t$. More information can be obatined at [@ubbo].] if it is described by the solution of the following stochastic differential equation [@ubbo; @tong2012option; @tsay2005analysis].
+A stochastic process $S_t$ is a Geometric Brownian Motion ^[There is an Arithmetic Brownian Motion: $dS_t = \mu dt + \sigma dB_t$. More information can be obtained at [@ubbo].] if it is described by the solution of the following stochastic differential equation [@ubbo; @tong2012option; @tsay2005analysis].
 
 \begin{align}
 dS_t = \mu S_t dt + \sigma S_t dW_t
@@ -257,10 +257,11 @@ dS_t = \mu S_t dt + \sigma S_t dW_t
 \noindent
 for given constants $\mu \in {\rm I\!R}$ and $\sigma > 0$. Also, the assumed initial value is positive, $S_0 >0$.
 
-This process ^[Also known as exponential Brownian motion.] (Figure \ref{gbm}) is used quite often in finance to model the dynamics of some assets because of its properties. It has independent multiplicative increments and is the process used to price options in the Black-Scholes model [@iacus2009simulation]:
+
+Figure \ref{gbm} shows the GBM ^[Also known as exponential Brownian motion.], which is quite often applied to model the dynamics of some financial assets because of its properties [@iacus2009simulation]. Equation \@ref(eq:sde3) shows the formula to generate a GBM and we provide proof of this solution in appendix \@ref(bsformula) ^[An intuitive proof can be found at [@krouglov2006intuitive].] 
 
 
-\begin{align}
+\begin{align} \label{eq:sde3}
 S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
 \end{align}
 
@@ -436,7 +437,7 @@ x_t = e^{-\theta t} \times \left[ x_0  + \sigma \int_{t=0}^{T} e^{\theta t} d W_
 
 #### Langevin
 
-The Langevin equation describes a system that consists of the molecular bombardment of a speck of dust on a water surface. We know that the intensity of the bombardement does not depend on the state variables [@kloeden1992]. 
+The Langevin equation describes a system that consists of the molecular bombardment of a speck of dust on a water surface. We know that the intensity of the bombardement does not depend on the state variables [@kloeden1992; @gard1988]. 
 
 \begin{align}
 m \frac{dv}{dt} = -\zeta v + \delta F (t) 

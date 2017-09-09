@@ -4,7 +4,7 @@
 source("/home/fteixeira/Documents/thesis/r_code/results.r")
 ```
 
-In section \@ref(hes1) we presented Heston's SDE system in one of its structures. Another common way [@broadie2006exact; @andersen; @kahl2006fast] to write down the system is using the property presented in \@ref(corr) as in equation \@ref(eq:heston2).   
+In section \@ref(hes1) we presented Heston's SDE system in one of its structures. Another common way [@broadie2006exact; @andersen; @kahl2006fast] to write down the system is using the property presented in subsection \@ref(corr) as in equation \@ref(eq:heston2).   
 
 \begin{align}
 \label{eq:heston2}

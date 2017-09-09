@@ -1,4 +1,4 @@
-\BOOKMARK [0][-]{chapter.1}{Chapter 1: altadvisor: Your Other Advisor}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Chapter 1: Introduction}{}% 1
 \BOOKMARK [0][-]{chapter.2}{Chapter 2: Literature Review}{}% 2
 \BOOKMARK [1][-]{section.2.1}{Stochastic Calculus}{chapter.2}% 3
 \BOOKMARK [2][-]{subsection.2.1.1}{The Stochastic differential equation - SDE}{section.2.1}% 4
@@ -17,7 +17,12 @@
 \BOOKMARK [2][-]{subsection.2.4.2}{Discretization}{section.2.4}% 17
 \BOOKMARK [2][-]{subsection.2.4.3}{Stability}{section.2.4}% 18
 \BOOKMARK [0][-]{chapter.3}{Chapter 3: The Heston Model Implementation}{}% 19
-\BOOKMARK [0][-]{chapter.4}{Chapter 4: This chunk ensures that the thesisdown package is}{}% 20
-\BOOKMARK [0][-]{chapter.5}{Chapter 5: Conclusion}{}% 21
-\BOOKMARK [0][-]{chapter.6}{Chapter 6: Placeholder}{}% 22
-\BOOKMARK [0][-]{chapter*.18}{References}{}% 23
+\BOOKMARK [1][-]{section.3.1}{Characteristic Function}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.2}{Euler Scheme - Full Truncation}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.3}{Kahl-Jackel}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.4}{Exact Algorithm}{chapter.3}% 23
+\BOOKMARK [0][-]{chapter.4}{Chapter 4: Results}{}% 24
+\BOOKMARK [0][-]{chapter.5}{Chapter 5: Conclusion}{}% 25
+\BOOKMARK [0][-]{appendix.A}{Appendix A: The First Appendix}{}% 26
+\BOOKMARK [1][-]{section.A.1}{Black-Scholes proof}{appendix.A}% 27
+\BOOKMARK [0][-]{appendix*.18}{References}{}% 28
