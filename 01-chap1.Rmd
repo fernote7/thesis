@@ -262,7 +262,7 @@ Figure \ref{gbm} shows the GBM ^[Also known as exponential Brownian motion.], wh
 
 
 \begin{align} \label{eq:sde3}
-S_t = S_0 \times exp{\left(\mu - \frac{\sigma^2}{2} \right) t + \sigma W_t}, \;\; t > 0
+S_t = S_0 \times exp{\left( \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma W_t \right)}, \;\; t > 0
 \end{align}
 
 
@@ -480,31 +480,9 @@ Furthermore, there is the *weak order of convergence*. The weak convergence
 \mid  \mathbb{E}p(Y_n) - \mathbb{E}p(Y(\tau)) \mid \leq C \Delta t^{\gamma}
 \end{align*}
 
+Strong and weak convergence are not mutually exclusive [@iacus2009simulation]. That means that a method with a given strong order of convergence might have a higher weak order of convergence too. This is the case for the Euler scheme, with a strong order of convergence of $1/2$ and a weak order of $1$ (under some conditions). For a more detailed and rigorous explanation of convergence we recommend consulting [@higham2001].
 
-
-For a more detailed and rigorous explanation of convergence we recommend consulting Higham [-@higham2001].
-
-
-Em específico, quando tratamos de modelos estocásticos, os dois principais tipos
-de convergência são a convergência forte, que tange aproximações das trajetórias de
-soluções de EDEs em um intervalo de tempo, e a convergência fraca, que diz respeito à
-aproximações de EDEs à distribuições correspondentes. Para definir convergência forte
-e fraca, vamos primeiro definir os padrões de erro utilizados.
-
-
-<!-- [@iacus2009simulation] -->
-<!-- Simulation methods are usually based on discrete approximations of the -->
-<!-- continuous solution to a stochastic differential equation. The methods of approximation are classified according to their different properties. Mainly two -->
-<!-- criteria of optimality are used in the literature: the strong and the weak (orders -->
-<!-- of ) convergence. -->
-
-
-<!-- [@higham2001] -->
-<!-- In the example above -->
-<!-- withem.mthe EM solution matches the true solution more closely as ∆tis decreased— -->
-<!-- convergence seems to take place. Keeping in mind thatX(τn) and Xnare random -->
-<!-- variables, in order to make the notion of convergence precise we must decide how to -->
-<!-- measure their difference. UsingE|Xn−X(τn)| -->
+It is worth noting that, altough schemes have a given convergency order, it is not unusual that they behave better than their order for some SDEs specifications.
 
 
 ### Discretization
@@ -616,32 +594,44 @@ S_{t+dt} = S_t + \mu S_t dt + \sqrt{V_t dt} S_t Z_s
 
 ### Stability
 
-Stability studies begin with computers and is associated with numerical methods and approximations. Convergent methods were resulting in bigger errors than what was expected that could not be only due to discretization error. Eventually, scientists discovered that this unexpected problem was caused by accumulation of successive truncation errors.
+Most differential equations, deterministic or stochastic, cannot be solved
+explicitly [@kloeden1992]. Hence, stability studies begin with computers and is associated with numerical methods and approximations. Convergent methods were resulting in bigger errors than what was expected that could not be only due to discretization error. Eventually, scientists discovered that this unexpected problem was caused by accumulation of successive truncation errors. Figure \@ref(stab) shows an example of instability due to an increase in size of the timestep.
 
 ```{r stab, echo=FALSE, message=FALSE, results='asis', fig.height=5, fig.width = 5, fig.align='center', fig.cap='Euler\'s stability whith different timesteps \\label{stab}'}
 source("./r_code/stab.R")
 ```
 
-We know that binary machines like computers are not able to represent all the real numbers, but only a subset of them. Thus, solving these errors is not straightforward since it's not possible to eliminate *all* truncation error when using a computer and dealing with numerical solutions. When faced to an incorrect (not acceptable) solution, we have to evaluate and distinguish between two distinct situations [@gilli_numerical_2011]:
+We know that binary machines like computers are not able to represent all the real numbers, but only a subset of them. Thus, solving these errors is not straightforward since it's not possible to eliminate *all* truncation error when using a computer and dealing with numerical solutions. When faced to an incorrect (not acceptable) solution, we have to evaluate and distinguish between two distinct situations:
 
 \begin{itemize}
   \item [i] Rounding errors are considerably amplified by the algorithm. This situation is called numerical instability.
   \item [ii] Small perturbations of data generate large changes in the solution. This is termed an ill-conditioned (or sensitive) problem.
 \end{itemize}
 
+Examples of these two classes of problem can be found in [@gilli_numerical_2011].
+
+
+Stiff equations appear very often in mathematical problems and refer to differential equations for which a numerical methods might be unstable for not small enough stepsizes. A differential equation of the form $y' = f(t,y)$, if its exact solution $y(t)$ includes a term that decays exponentially to zero as $t$ increases, but whose derivatives are greater in magnitude than the term itself. 
+
+An example of the stiff behavior is the following differential equation [@lambers]:
+
+$$y' = -100y, \,\,\,\,\,\, t > 0, \,\,\,\,\,\, y_0 = 1$$
+
+Whose exact solution is $y_t = e^{-100 t}$ and goes to zero as $t$ increases. Applying Euler's method to this equation with $h=0.1$ we stumble in the following equation
+
+$$ y_{n+1} = y_{n} - 100 h y_{n} = -9y_{n}$$
+
+which is wrong, since it yields an exponencially growing solution $y_n = (-9)^n$. On the other hand, if our timestep is smaller $h = 10^{-3}$, our solution using Euler's method becomes $y_n = (0.9)^n$. This solution leads to an accurate behavior regarding the exact solution, it rapidily decays to zero.
+
+Thereby, we claim that stability method study is an important topic, since it enables achieving solutions that are good to stiff equations without having to overly reduce our timesteps which can be very computationally costly.
+
+
+<!-- Of particular interest in applications is the long term -->
+<!-- asymptotic behaviour and sensitivity of the solutions to small changes, for example measurement errors, in the initial values. From existence and uniqueness theory we know that the solutions of a differential equation are continuous in their initial values, at least over a finite time interval. Extending this idea to an infinite time interval leads to the concept of stability. -->
 
 
 
 
-[@kloeden1992] Stochastic Stability
-Most differential equations, deterministic or stochastic, cannot be solved
-explicitly. Nevertheless we can often deduce alot of useful information, usually
-qualitative, about the behaviour of their solutions from the functional form of
-their coefficients. 
-
-Of particular interest in applications is the long term
-asymptotic behaviour and sensitivity of the solutions to small changes, for example measurement errors, in the initial values. From existence and uniqueness
-theory we know that the solutions of a differential equation are continuous in their initial values, at least over a finite time interval. Extending this idea to an infinite time interval leads to the concept of stability.
 
 
 

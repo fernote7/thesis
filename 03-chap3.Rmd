@@ -22,6 +22,14 @@ flights <- read.csv("data/flights.csv")
 
 # Results
 
+We present here the results of all the implementations that were disclosed in the previous section. We perform numerical comparisons between all the methods, setting out differences accross number of simulations and timesteps. 
+
+Heston [-@heston1993closed] gives a closed form used for comparison as the 'true' option value and enabling the results to be exposed in terms of bias ^[Defined as $\mathbb{E} \left[ \hat{\alpha} - \alpha \right]$] and RMSE (root mean square error) ^[Defined as $\sqrt{\mathbb{E}((\hat{\theta}-\theta)^2)}$]. 
+
+
+The simulaton experiments were performed on a notebook with an Intel(R) Core(TM) i7-4500U CPU @ 1.80GHz processor and 8GB of RAM running on a linux x86_64 based OS, Fedora 25. Codes were all written in R 3.4.1 "Single Candle" [@rlang].
+
+\clearpage
 
 ```{r param1, echo=FALSE, message=FALSE, results='asis'}
 source("./r_code/parametrization.R")

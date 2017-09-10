@@ -244,7 +244,18 @@ Hestoncallkj <- function(S, X, r, q, v, theta, rho, k, sigma,
 
 ## Exact Algorithm 
 
-In 2006, Broadie-Kaya [@broadie2006exact] propose a method that has a faster convergence rate, $\mathcal{O} \left( s^{-1/2}  \right)$ than some of the more famous schemes, such as Euler's and Milstein's discretizations. They build their idea to generate an exact sample from the distribution of the terminal stock price based on numerous papers [@heston1993closed, @scott1996, @willard1997, @romano1997]. 
+In 2006, Broadie-Kaya [@broadie2006exact] propose a method that has a faster convergence rate, $\mathcal{O} \left( s^{-1/2}  \right)$ than some of the more famous schemes, such as Euler's and Milstein's discretizations. They build their idea to generate an exact sample from the distribution of the terminal stock price based on numerous papers [@heston1993closed, @scott1996, @willard1997, @romano1997]. The stock price and variance are as follows:
+
+\begin{align} \label{eq:ea1}
+S_t = S_0 \, exp \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]
+\end{align}
+
+The squared volatility of the variance process is:
+
+\begin{align} \label{eq:ea2}
+V_t = V_0 + \kappa \theta t - \kappa \int_{0}^{t}{V_s ds} + \sigma \int_{0}^{t}{\sqrt{V_s dB_s}}
+\end{align}
+
 
 The algorithm used to generate the model consists in four steps as follows:
  
@@ -254,6 +265,73 @@ The algorithm used to generate the model consists in four steps as follows:
 \item [\textit{Step} 3.] Compute $\int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
 \item [\textit{Step} 4.] Generate a sample from the probability distribution of $S_t$, given $\int_0^t \sqrt{V_s}dB_s$ and $\int_0^t V_sds$
 \end{itemize}
+
+
+
+
+### Generate a sample of $V_t$ given $V_0$
+The distribution of $V_t$ given $V_0$ for $0 < t$ is a noncentral chi-squared distribution [@cox1985theory; @baldeaux]:
+
+$$V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \mathcal{X}_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)$$
+
+where $\delta = \frac{4 \theta \kappa}{\sigma^2}$ and $\mathcal{X}_{\delta}^{2}(\lambda)$ denotes a noncentral chi-squared random variable with $\delta$ degrees of freedom and $\lambda$ as its noncentrality parameter.
+
+Broadie and Kaya [-@broadie2006exact] sample generating Poisson and gamma distributions as in Johnson et al. [-@johnson1995]. We used the built-in function in R [@rlang] which uses this exact method for sampling.
+
+
+### Generate a sample of $\int_0^t V_sds$ given $V_t$, $V_0$
+
+After generating $V_t$, we follow the instructions in [-@broadie2006exact; -@johnson1995]. We use the characteristic function \@ref(eq:phi) to compute the probability density function $F(x)$.
+
+\begin{align} \label{eq:phi}
+\begin{split}
+\Phi(a) &= \mathbb{E}\left[ exp \left( ia \int_{0}^{t}{V_s ds} \mid V_0,V_t \right)  \right] \\[10pt]
+&= \frac{\gamma(a)e^{(-1/2)(\gamma(a)- \kappa) t} (1 - e^{- \kappa t})}{\kappa (1 - e^{- \gamma(a) t})} \\[10pt]
+&\times exp \left\{\frac{V_0 + V_t}{\sigma^2} \left[ \frac{\kappa (1 + e^{- \kappa t})}{1 - e^{- \kappa t}} - \frac{\gamma(a) (1 + e^{- \gamma(a) t})}{1 - e^{- \gamma(a) t}} \right] \right\} \\[10pt]
+&\times \frac{I_{0.5\delta - 1} \left[ \sqrt{V_0 V_t} \frac{4 \gamma(a) e^{-0.5 \gamma(a) t}}{\sigma^2 (1 - e^{- \gamma(a) t})} \right]}{I_{0.5\delta - 1}  \left[ \sqrt{V_0 V_t} \frac{4 \kappa e^{-0.5 \kappa t}}{\sigma^2 (1 - e^{- \kappa t})} \right]}
+\end{split}
+\end{align}
+
+where $\gamma(a) = \sqrt{\kappa^2 - 2 \sigma^2 i a}$, $\delta$ was previously defined and $I_v(x)$ is the modified Bessel function of the first kind.
+
+The probability distribution function is obtained in [@broadie2006exact; @baldeaux] by Fourier inversions using Feller [-@feller1971introduction]. We use the approach in Gil-Pelaez [-@gil1951note], equation \@ref(eq:fourier). We define $V(u,t)$ the random variable with the same distribution as the integral $\int_{u}^{t}{V_s ds}$, conditional on $V_u$ and $V_t$:
+
+\begin{align} \label{eq:fourier}
+F(x) \equiv Pr \left\{ V(u,t) \leq x \right\} = F_{X}(x)={\frac {1}{2}}-{\frac {1}{\pi }}\int _{0}^{\infty }{\frac {\operatorname {Im} [e^{-iux} phi (u)]}{u}}\,du
+\end{align}
+
+$\operatorname {Im}$ denotes the imaginary part of $e^{-iux} phi (u)$. Equation \@ref(eq:fourier) is computed numerically and we then sample it by inversion. 
+
+Furthermore, we also introduce a simpler version for this step, that computes this integral approximation, using the solution $\int_{u}^{t}{V_s ds} = \frac{1}{2} \left( V_u + V_t  \right)$
+
+
+
+### Compute $\int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
+
+From equation \@ref(eq:ea2) we are now able to compute this integral.
+
+
+\begin{align} \label{eq:ea3}
+\int_{0}^{t}{\sqrt{V_s dB_s}} = \frac{V_t - V_0 - \kappa \theta t + \kappa \int_{0}^{t}{V_s ds}}{\sigma} 
+\end{align}
+
+
+The last step of the algorithm consists of computing the conditional distribution of $log S_t$ based on the fact that the process for $V_t$ is independent from $dB_t$, and the distribution of $\int_0^t{\sqrt{V_s} dB_s}$ is normal with mean $0$ and variance $\int_0^t{V_s ds}$, given $V_t$.
+
+
+$$m(u,t) = \log S_0 + \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]$$
+
+and variance
+
+$$\sigma^2(0,t) = \left( 1 - \rho^2 \right) \int_0^t{V_s ds}$$
+
+
+We generate the $S_t$ sample using a standard normal random variable $Z$ and set:
+
+$$S_t = e^{m(0,t) + \sigma (0,t) Z}$$
+
+
+
 
 
 ```{r callea, eval=FALSE, echo=FALSE}
@@ -321,7 +399,6 @@ hestonea <- function(S, X, r, v, theta, rho, k, sigma, t = 0,
 
 
 
-<!-- Broadie Kaya -->
 
 
 
@@ -333,32 +410,3 @@ MathJax.Hub.Config({
 </script>
 
 
-<!-- ## Teste -->
-
-<!-- ```{r call, eval=FALSE} -->
-<!-- Call <- function(S,X,tau,r,q,sigma){ -->
-
-<!--   # S = spot -->
-<!--   # X = strike -->
-<!--   # tau = time to maturity -->
-<!--   # r = riskfree rate -->
-<!--   # q = dividend yield -->
-<!--   # sigma = standard deviation -->
-
-<!--   d1 = (log(S/X) + (r - q + sigma^2/2) * tau) / (sqrt(sigma^2 * tau)) -->
-<!--   d2 = d1 - sqrt(sigma^2 * tau) -->
-<!--   c0 = S * exp(-q * tau) * pnorm(d1,0,1) - -->
-<!--        X * exp(-r * tau) * pnorm(d2,0,1) -->
-
-<!--   return(c0) -->
-<!-- } -->
-<!-- ``` -->
-
-\clearpage
-
-```{r euler_call, eval=FALSE, echo=FALSE}
-require(NMOF)
-setwd("../rnmethods")
-source("../rnmethods/R/euler_heston.R")
-
-```
