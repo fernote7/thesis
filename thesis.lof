@@ -1,5 +1,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces A Wiener process trajectory path example \relax }}{5}{figure.caption.7}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces A GBM trajectory path example \relax }}{8}{figure.caption.11}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Volatility Smile \relax }}{10}{figure.caption.12}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Analytical x Euler solutions \relax }}{14}{figure.caption.15}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Euler's stability whith different timesteps \relax }}{16}{figure.caption.17}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
