@@ -50,9 +50,11 @@ C = & \frac{1}{2} S(t) + \frac{e^{-r(T-t)}}{\pi}\int_{0}^{\infty}{\Re \left[ \fr
 
 
 
-## Euler Scheme - Full Truncation
+## Euler Scheme
 
-We present here the Euler Scheme - Full Truncation algorithm [@broadie2006exact, dunn2014estimating, andersen] along with some insights on how it was implemented in R. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of lenght $\delta t$, we have the following discretization for the stock price:
+
+Given the fact that the underlying asset is temporal dependent upon the solution of the SDE's volatility, we simulate the volatility's path before the asset's. If the Black-Scholes model enabled using Ito's Lemma directly for solving $S_t$, this equation system requires numerical methods. We present here the Euler Scheme - Full Truncation algorithm (and compare to other similar schemes) [@broadie2006exact, dunn2014estimating, andersen] along with some insights on how it was implemented in R. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of lenght $\delta t$, we have the following discretization for the stock price:
+
 
 \begin{align}
 S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
@@ -62,13 +64,28 @@ S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
 And for the variance process:
 
 \begin{align}
-V_{t+1} = V_t + \kappa (\theta - V_t) + \sigma \sqrt{V_t} Z_v
+V_{t+1} = f_1(V_{t}) + \kappa (\theta - f_2(V_{t})) + \sigma \sqrt{f_3(V_{t})} Z_v 
 \end{align}
 
-\noindent
-$Z_s$ being a standard normal random variable, i.e. $N\sim(0,1)$, we set $Z_t$ and $Z_v$ as two independent standard normal random variables and $Z_s$ and $Z_v$ having correlation $\rho$. This means we can write $Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t$
 
-The immediate observable problem in the proposed discretization scheme is that $V$ can become negative with non-zero probability making the computation of $\sqrt{V_t}$ impossible [@andersen]. There are several proposed fixes that can be used, we chose the Full-Truncation (FT) and rewrite the equations as follows:
+\noindent
+$Z_s$ being a standard normal random variable, i.e. $N\sim(0,1)$, we set $Z_t$ and $Z_v$ as two independent standard normal random variables and $Z_s$ and $Z_v$ having correlation $\rho$. This means we can write $Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t$. 
+
+
+The immediate observable problem in the proposed discretization scheme is that $V$ can become negative with non-zero probability making the computation of $\sqrt{V_t}$ impossible [@andersen].  There are several proposed fixes that can be used as you can see below:
+
+
+|       Scheme       	|   $f_1(V_{t})$  |   $f_2(V_{t})$  |   $f_3(V_{t})$	|   	
+|:------------------:	|:-------------:	|:-------------:	|:-------------:	|
+|     Reflection     	| $\mid V \mid$ 	| $\mid V \mid$ 	| $\mid V \mid$ 	|   	
+| Partial Truncation 	|      $V$      	|      $V$      	|     $V^+$     	|   	
+|   Full Truncation  	|      $V$      	|     $V^+$     	|     $V^+$     	|   	
+
+
+Where $V^+ = \max(V,0)$ and $\mid V \mid$ is the absolute value of $V$.
+
+
+We chose to fix our discretization using the Full-Truncation (FT) scheme and thus, rewrite the equations as follows:
 
 
 \begin{align}
@@ -76,8 +93,7 @@ S_{t+1} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
 V_{t+1} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v
 \end{align}
 
-\noindent
-Where we use the notation $V_{t}^{+} = \max(V_{t}, 0)$. 
+
 
 ```{r calle, eval=FALSE, echo=FALSE}
 hestoneuler <- function(S, X, r, v, theta, rho, k, sigma, t = 0, 

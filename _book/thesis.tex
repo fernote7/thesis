@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for the \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{September 11, 2017}
+\date{setembro 12, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -144,18 +144,6 @@ starts here.
 %% End Preamble
 %%
 %
-
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}[section]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{proposition}{Proposition}[section]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[section]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
 \begin{document}
 
 % Everything below added by CII
@@ -188,704 +176,16 @@ starts here.
   \mainmatter % here the regular arabic numbering starts
   \pagestyle{fancyplain} % turns page numbering back on
 
-  \chapter{Introduction}\label{intro}
-  
-  The french mathematician Louis Bachelier was the trail-blazer that
-  brought Brownian motion, previously restricted to the field of botanics
-  where it was firstly observed, to the financial framework. He modeled
-  the stock prices as a Brownian motion with drift. In 1973, Black and
-  Scholes {[}3{]} designed a model based on the Geometric Brownian Motion
-  to price options.
-  
-  Options are derivatives that give their bearers the rights to buy or
-  sell a specific asset in a future date and with a predetermined price.
-  They are, by design, affected by small variations in the underlying
-  assets' components, for example, the variance.
-  
-  The Black-Scholes model was once the standard way of option pricing, but
-  was replaced by more modern models that are now prevalent. One of the
-  main drawbacks of the Black-Scholes model is the strong assumption that
-  the stock returns' volatility is constant. Thus, the implied model's
-  volatility results in a flat surface when plotted against the option's
-  strike price and maturity. Real world implied volatility varies with the
-  strike price and maturity, forming what is called the `volatility
-  smile'.
-  
-  The Heston model is an extension of the Black-Scholes model that tackles
-  this volatility issue replacing the constant volatility with a
-  stochastic process. There are many models that stochastically model
-  volatility, but the Heston has valuable characteristics such as
-  presenting an analytical solution to the option pricing and also having
-  a computationally simple implementation when compared to more
-  sophisticated competitors.
-  
-  This thesis is divided into five chapters, the first being this
-  introduction. Following, we have a literature review that mainly
-  addresses stochastic calculus, the Black-Scholes models and the Heston
-  model. Thereafter we present the different Heston model known
-  implementations and the implementation improvement we experiment.
-  Chapter 4 brings the results of what was introduced in the previous
-  chapter for different model calibrations.
+  \chapter{\texorpdfstring{altadvisor: `Your Other
+  Advisor'}{altadvisor: Your Other Advisor}}\label{altadvisor-your-other-advisor}
   
   \chapter{Literature Review}\label{lt-review}
-  
-  This chapter presents the concepts of stochastic calculus, from the
-  historic conception of how it first arose through the basic principles
-  and applications in finance. We address with more care the classical
-  Black-Scholes model and its limitations and the Heston model. This model
-  is also well known, it brings the concept of stochastic volatility in
-  it, which brings its results closer to reality.
-  
-  \section{Stochastic Calculus}\label{stochastic-calculus}
-  
-  Stochastic calculus arises from stochastic processes and allows the
-  creation of a theory of integration where both the integrand and
-  integrator terms are stochastic processes. Stochastic calculus was
-  created by the Japanese mathematician Kiyosi Itô
-  \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}
-  in the 1940s and 1950s and is used for modeling financial options and in
-  another wide variety of fields {[}36{]}. In this chapter we present the
-  historical contexts in which the tools and models are used, but our
-  focus is introducing the concepts and notations that will be further
-  used in our work.
-  
-  \subsection{The Stochastic differential equation -
-  SDE}\label{the-stochastic-differential-equation---sde}
-  
-  At first, before introducing stochastic differential equation, it is
-  helpful to start with ordinary differential equation. Let \(x(t) = x_t\)
-  denote a population at time \(t\) so that the change in the population
-  at time \(t\) is given by the following deterministic differential
-  equation:
-  \begin{align}
-  dx_t &= f(t, x_t)dt \\
-  x(0) &= x_0 \nonumber
-  \end{align}
-  We now add a ``noise'' to this equation:
-  \begin{align} \label{eq:sde1}
-  dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} + \overbrace{\underbrace{g(t, x_t)}_\text{diffusion}dW_t}^\text{random shock} \\
-  x(0) &= x_0 \nonumber
-  \end{align}
-  This ``noise'' \(dW_t\) is a \emph{random} Wiener process time
-  derivative (which will be clarified below) and \(x_0\) is our initial
-  value.
-  
-  The \(g(t, x_t)\) part of the SDE is often referred as a \emph{diffusion
-  process}, these usually have a continuous paths. Before moving on, we
-  must carefully define what the term \emph{random} means and the best way
-  to begin doing so is to precisely define a probability space:
-  \begin{definition}{(Probability Space)} A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .
-  \end{definition}
-  \subsection{Brownian Motion}\label{brownian-motion}
-  
-  The Brownian motion is the name given to the irregular motion observed
-  in the motion of pollen particles suspended in fluid resulting from
-  particle collision with atoms or molecules. It is named after Robert
-  Brown, the first to have observed the movement in 1828. He noted two
-  characteristic in the pollen movement {[}36{]}:
-  \begin{itemize}
-  \item
-    the path of a given particle is very irregular, having a tangent at no
-    point
-  \item
-    the motion of two distinct particles appear to be independent
-  \end{itemize}
-  The first quantitative works in Brownian motion come from an interest in
-  stock price fluctuation by Bachelier in 1900. Albert Einstein also
-  leaned over the subject and in 1905 derived the transition density for
-  Brownian motion from molecular-kinetic theory of heat {[}23,36{]}.
-  
-  In 1923, the Wiener process was coined in honor of Norbert Wiener
-  mathematical proof of existence of the Brownian motion and stating its
-  properties.\footnote{More can be found on {[}9,15,30{]}.}
-  \begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a *Wiener process* if it satisfies the following properties:
-  \begin{itemize}
-    \item  $W_{0}=0$
-    
-    \item The change in $W$, given by $\Delta W = W_{t+1}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
-    
-    \item If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
-    
-    \item The process is continuous, meaning that there are no jumps in the path.
-    
-    \item The process is a Markov process. This means that the conditional expectation of $W_{t+1}$ given its entire history is equal to the conditional expectation of $W_{t+1}$ given today's information. This can be written as: $E[W_{t+1}|W_1, ..., W_t] = E[W_{t+1}|W_t]$.
-    
-    \item Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. 
-  
-  \end{itemize}
-  \end{definition}
-  \begin{figure}
-  
-  {\centering \includegraphics{thesis_files/figure-latex/wiener-1} 
-  
-  }
-  
-  \caption{A Wiener process trajectory path example \label{wiener}}\label{fig:wiener}
-  \end{figure}
-  \subsubsection{Correlated Brownian Motions}\label{corr}
-  
-  Two independent Brownian motions that are correlated can describe a new
-  process \(Z_t\). Let \(W_1\) and \(W_2\) be these two \emph{independent}
-  Brownian motions and let \(-1 \leq \rho \leq 1\) be a given number. For
-  \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}36{]}:
-  \begin{align}
-  \label{eq:corr_brow}
-  Z_t = \rho W_{1,t} + \sqrt{1-\rho^2}W_{2,t}
-  \end{align}
-  \noindent
-  This equation is a linear combination of independent normals at each
-  timestep \(t\), so \(Z_t\) is normally distributed. It is proven that
-  \(Z\) is a Brownian motion and that \(Z\) and \(W_{1,t}\) have
-  correlation \(\rho\) {[}36{]}.
-  
-  \subsection{Itô's Integral}\label{itos-integral}
-  
-  Formally, the SDE presented in equation \eqref{eq:sde1} only exists
-  because we can rewrite it in the form {[}9,19,20,30,33,34{]}:
-  \begin{align} 
-  \label{eq:sde2}
-  x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
-  \end{align}
-  \noindent
-  for some \(f(s, x_s)\), \(g(s, x_s)\) and \(s \in [0,t]\).
-  
-  The Itô integral can, as the Riemann integral, be approximated by a
-  finite sum. Also, it has a definition as a certain limit. Itô's lemma
-  \ref{itolemma} plays the same role as the fundamental theorem of
-  calculus in allowing to evaluate integrals. It is the formal definition
-  and presents an extra term not encountered in the conventional calculus
-  theorem that is due to the non-smoothness characteristics of Brownian
-  motion paths. It is possible, though, to define the integral in a less
-  rigorous way:
-  \begin{align}
-  Y_{\Delta t}(t) \approx \sum_{t_k < t}{g(t_k)\Delta W_k}
-  \end{align}
-  \noindent
-  with the usual notions \(t_k = k\Delta t\), and
-  \(\Delta W_k = W(t_{k+1})-W(t_k)\). And in a more rigorous form, if the
-  limit exists, then the Ito integral is:
-  \begin{align}
-  Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
-  \end{align}
-  It is essential that the \emph{forward difference} is used rather than
-  the backward difference, which would be wrong.
-  \begin{theorem}[Itô's Lemma] \label{itolemma}
-  Assume that $S_t$ has a stochastic differential given by:
-  \begin{align}
-  dS_t = \mu_t dt + \sigma_t dW_t 
-  \end{align}
-  \noindent
-  for $\mu_t$, $\sigma_t$ and $t \in [0,T]$. Assume $u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}$ is continuous and that $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$, $\frac{\partial^2 u}{\partial x^2}$ exist and are continuous.
-  \begin{align*}
-  Y_t := u(S_t, t)
-  \end{align*}
-  
-  \noindent
-  Then Y has the following stochastic differential:
-  \begin{align} 
-  \label{eq:ito}
-  \begin{split}
-      dY_t &= \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x} dS_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 dt  \\[10pt] 
-      &= \left( \frac{\partial u}{\partial t} + \mu_t \frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\sigma_t^2 \right) dt + \sigma_t \frac{\partial u}{\partial x} dW_t
-  \end{split}
-  \end{align}
-  \noindent 
-  where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( S_t, t \right)$ .
-  \end{theorem}
-  Equation \eqref{eq:ito} is the stochastic equivalent to the chain rule,
-  also known as Itô's formula or Itô's chain rule. The proof to this
-  theorem is based on the Taylor expansion of the function \(f(S_t, t)\)
-  {[}9,34{]}. For practical use you should write out a second-order Taylor
-  expansion for the function to be analyzed and apply the Table
-  \ref{tab:box-calc} multiplication table {[}36{]}.
-  \begin{longtable}[t]{llr}
-  \caption{\label{tab:box-calc}Box calculus}\\
-  \toprule
-    & $dt$ & $dW_t$\\
-  \midrule
-  $dt$ & 0 & 0\\
-  $dW_t$ & 0 & $dt$\\
-  \bottomrule
-  \end{longtable}
-  \subsubsection{Itô's Integral
-  Properties}\label{itos-integral-properties}
-  
-  Let \(f\), \(g\) \(\in\) \(\mathcal{V}\) and let \(0 \leq t_0 < u < T\).
-  Then
-  \begin{enumerate}[label=(\roman*)]
-    \item $\int_{t_0}^{T}{f dB_t} = \int_{t_0}^{u}{f dB_t} + \int_{u}^{T}{f dB_t}$
-    \item $\int_{t_0}^{T}{(\alpha f + \beta g) dB_t} = \alpha  \int_{t_0}^{T}{f dB_t} + \int_{t_0}^{T}{ \beta g dB_t}$
-    \item $\mathbb{E}\left[ \int_{t_0}^{T}{fdB_t}\right] = 0 $
-    \item $\mathbb {E} \left[\left(\int_{0}^{t}H_{s}\,dB_{s}\right)^{2}\right]=\mathbb {E} \left[\int _{0}^{t}H_{s}^{2}\,ds\right]$ (Isometry)
-    \item $ \mathbb {E}\left[ \int_{t_0}^{T}{f dB_t \mid \mathcal{F}_{s}} \right] = \int_{t_0}^{s}{f dB_t}, \,\,\,\,\,\,\,\,\,\,\,\,\,\, for \,\, s < T.$  (Martingale\footnote{A martingale is a stochastic process with certain characteristics. The main one is that the expected value in time $t+1$ for $X$ is the $X$ value in $t$. This means there are no winning strategies when we are dealing with martingales (unlike when we play poker, for example). A Wiener process is a martingale.})
-  \end{enumerate}
-  \section{Black-Scholes Model}\label{black-scholes-model}
-  
-  \subsection{Basics}\label{basics}
-  
-  The Black-Scholes (B-S) model arises from the need to price european
-  options in the derivative markets. Derivatives are financial instruments
-  traded in the market, stock exchange or over-the-counter (OTC) market,
-  whose values depend on the values of an underlying asset. {[}3,31,38{]}
-  \begin{itemize}
-  \item
-    A call option is a derivative that gives its bearer the right, but not
-    the obligation, to purchase a specific asset by a fixed price before
-    or on a given date.
-  \item
-    A put option is a derivative that gives its bearer the right, but not
-    the obligation, to sell a specific asset by a fixed price before or on
-    a given date.
-  \end{itemize}
-  The trading price of the option is called the option \emph{premium} and
-  the asset from which the option derives is called the \emph{underlying
-  asset}. This asset may be interest rates, exchange rates, stock
-  exchanges indices, commodities or stocks. The fixed price in contract in
-  which the underlying asset might to be bought or sold is the
-  \emph{strick price}. The option expiration date is called the
-  \emph{maturity}. {[}3,31{]}
-  
-  There are two major different option types: European and American. The
-  difference between these two is that the bearer of the first may
-  exercise it only at the end of its life, at its maturity while the
-  latter can be exercised at any given time until its maturity. {[}3,27{]}
-  \begin{definition}{(Intrinsic value)} 
-  The intrinsic value of a call is the difference between the underlying asset price and the strike price. The put's intrinsic value operates the other way around, being the difference between the strike and the underling asset prices.
-  \end{definition}
-  \subsubsection{Geometric Brownian Motion}\label{gbm}
-  
-  A stochastic process \(S_t\) is a Geometric Brownian Motion\footnote{There
-    is an Arithmetic Brownian Motion: \(dS_t = \mu dt + \sigma dB_t\).
-    More information can be obtained at {[}36{]}.} if it is described by
-  the solution of the following stochastic differential equation
-  {[}34--36{]}.
-  \begin{align}
-  dS_t = \mu S_t dt + \sigma S_t dW_t
-  \end{align}
-  \noindent
-  for given constants \(\mu \in {\rm I\!R}\) and \(\sigma > 0\). Also, the
-  assumed initial value is positive, \(S_0 >0\).
-  
-  Figure \ref{gbm} shows the GBM,\footnote{Also known as exponential
-    Brownian motion.} which is quite often applied to model the dynamics
-  of some financial assets because of its properties {[}18{]}. Equation
-  \eqref{eq:sde3} shows the formula to generate a GBM and we provide proof
-  of this solution in appendix \ref{bsformula}\footnote{An intuitive proof
-    can be found at {[}25{]}.}
-  \begin{align} \label{eq:sde3}
-  S_t = S_0 \times exp{\left( \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma W_t \right)}, \;\; t > 0
-  \end{align}
-  \begin{figure}
-  
-  {\centering \includegraphics{thesis_files/figure-latex/gbm-1} 
-  
-  }
-  
-  \caption{A GBM trajectory path example \label{gbm}}\label{fig:gbm}
-  \end{figure}
-  \subsection{The model}\label{the-model}
-  
-  The Black-Scholes model provides analytical solution to the price of a
-  European call at time \(t\) and can be described as follows
-  {[}3,15,38{]}:
-  \begin{align}
-  C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
-  d_{1}&={\frac {1}{\sigma {\sqrt {T-t}}}}\left[\ln \left({\frac {S_{t}}{K}}\right)+\left(r+{\frac {\sigma ^{2}}{2}}\right)(T-t)\right]\\[10pt]
-  d_{2}&=d_{1}-\sigma {\sqrt {T-t}}
-  \end{align}
-  \noindent
-  Where:
-  \begin{itemize}
-  \tightlist
-  \item
-    \(S_{t}\) is the spot price of the underlying asset at time \(t\)
-  \item
-    \(r\) is the risk free rate (generally an annual
-    rate)\footnote{Assumed to be constant. \label{teste}}
-  \item
-    \(\sigma\) is the volatility of returns of the underlying asset
-    \footnote{See footnote 1.}
-  \item
-    \(N(\cdot )\) is the cumulative distribution function of the standard
-    Gaussian distribution
-  \item
-    \(K\) is the strike price
-  \item
-    \(T-t\) is the time to maturity
-  \end{itemize}
-  \noindent
-  Also, the stock price path is a Geometric Brownian Motion as previously
-  stated, and is under the risk-neutral measure with the following
-  dynamics {[}13,15{]}:
-  \begin{align}
-  dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
-  \end{align}
-  \noindent
-  Where \(dW_t\) is a Wiener process {[}3,13{]}, \(r\) is the risk free
-  rate and \(q\) is the dividend
-  yield\footnote{$r$ and $q$ are assumed to be constant.} and \(t\)
-  denotes the current point in time.
-  
-  \subsection{Limitations}\label{limitations}
-  
-  Although the Black-Scholes is very popular and the \emph{de facto}
-  standard in the market there are implications to the B-S model
-  assumptions that affect the results and that are unrealistic. The main
-  assumption that does not hold up is the deterministic (constant)
-  volatility, that can more accurately be described as a stochastic
-  process since we observe that small moves usually are followed by small
-  moves and large moves by large moves. {[}15,38{]}
-  
-  Other assumptions that are critical to the B-S model and are not always
-  observed in practice refer to the asset's continuity through time (no
-  jumps), being allowed to perform continuous hedge without transactions
-  costs and normal (Gaussian) returns.
-  
-  Most models focus on the volatility problem because transaction costs
-  often translate to rises in volatility and fat-tails (abnormal) returns
-  can be simulated by stochastic volatility and market or volatility
-  jumps.
-  
-  \section{Stochastic Volatility
-  models}\label{stochastic-volatility-models}
-  
-  Introducing stochastic volatility to models brings complexity, but
-  enables modeling some features observed in reality that are crucial,
-  like the randomic market volatility effects, skewness (market returns
-  are more realistically modeled) and volatility smile\footnote{The name
-    derives from the concave shape of the graph, which resembles a smile.}
-  (see Figure \ref{fig:smile}). This kind of model is applied highly
-  succesfully in foreign exchange and credit markets.
-  \begin{definition}{(Volatility Smile)} 
-  Volatility smiles are implied volatility patterns that arise in pricing financial options. In particular for a given expiration, options whose strike price differs substantially from the underlying asset's price command higher prices (and thus implied volatilities) than what is suggested by standard option pricing models. These options are said to be either deep in-the-money or out-of-the-money.
-  \end{definition}
-  Furthermore, stochastic volatility models use statistical methods as
-  foundations to price and forecast options' behaviors and the
-  underlying's security volatility is arbitrary. The Heston, the \(3/2\)
-  and other models, like the GARCH\footnote{generalized autoregressive
-    conditional heteroscedasticity.} and SABR,\footnote{stochastic alpha,
-    beta, rho.} are considered standard smile models.
-  \begin{figure}
-  
-  {\centering \includegraphics{thesis_files/figure-latex/smile-1} 
-  
-  }
-  
-  \caption{Volatility Smile \label{smile}}\label{fig:smile}
-  \end{figure}
-  \subsection{Cox-Ingersoll-Ross model}\label{cir}
-  
-  The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
-  describes the interest rate movements driven by one source of market
-  risk. The dynamics are described as follows{[}7,16{]}:
-  \begin{align}
-  \label{eq:cir}
-  dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
-  \end{align}
-  \noindent
-  Where, \(r_t\) is the short rate interest described by parameters
-  \(\kappa\) the speed of mean reversion, \(\theta\) the long-run mean
-  variance and \(\sigma\) the volatility of the variance process.
-  
-  This model has been widely used to describe the dynamics of the short
-  rate interest because it has some fundamental features like intuitive
-  parametrization, nonnegativity and pricing formulas. Besides, it takes
-  account of anticipations, risk aversion, investment alternatives and
-  preferences about consumption timing and allows for detailed predictions
-  about how changes in a wide range of underlying variables affect the
-  term structure{[}7{]}. Furthermore, this equation constitutes one of the
-  two Heston model equations with the volatility taking the short rate
-  interest place.
-  
-  \subsection{Heston Model}\label{hes1}
-  
-  Heston model was introduced in 1993 by Steven Heston to solve the
-  deterministic volatility problems. It was designed to analize bond and
-  currency options and it introduced the following equations, which
-  represent the dynamics of the stock price and the variance processes
-  under the risk-neutral measure {[}14,16{]}:
-  \begin{align}
-  \label{eq:heston}
-  dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
-  dV_t &=  \kappa (\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
-  \label{eq:hesvar}
-  \end{align}
-  The second equation, as described in Section \ref{cir}, is the CIR model
-  equation. The first equation states the asset price process. \(\mu\) is
-  the asset's rate of return, \(dW_{t,1}\) and \(dW_{t,2}\) are two
-  correlated wiener processes with correlation coefficient of \(\rho\).
-  
-  \subsection{Other Models}\label{other-models}
-  
-  \subsubsection{Ornstein-Uhlenbeck}\label{ornstein-uhlenbeck}
-  
-  The Ornstein-Uhlenbeck is the earliest recorded SDE. Named after Leonard
-  Ornstein and George Eugene Uhlenbeck, it is a stochastic process that
-  describes the acceleration of a pollen particle in a liquid subject to
-  bombardments by molecules {[}36{]}. As we can observe in equation
-  \eqref{eq:oueq}, \(x_t\) represents the one dimension velocity of the
-  particle, thus \(dx_t\) is the \emph{change} in velocity, in other
-  words, its acceleration. The \(- \theta x_t\) component slows down the
-  acceleration and is to be understood as frictional force. Besides, we
-  add a noise \(W_t\) with intensity \(\sigma\) that models the random
-  bombardment by the molecules.
-  \begin{align} 
-  \label{eq:oueq}
-  &d x_t = - \theta x_t dt + \sigma d W_t
-  \end{align}
-  With \(\theta\) and \(\sigma\) being positive constants. Expressing in
-  terms of \(x_t\) we get:
-  \begin{align}
-  x_t = e^{-\theta t} \times \left[ x_0  + \sigma \int_{t=0}^{T} e^{\theta t} d W_s \right] \,.
-  \end{align}
-  \subsubsection{Langevin}\label{langevin}
-  
-  The Langevin equation describes a system that consists of the molecular
-  bombardment of a speck of dust on a water surface. We know that the
-  intensity of the bombardement does not depend on the state variables
-  {[}11,24{]}.
-  \begin{align}
-  m \frac{dv}{dt} = -\zeta v + \delta F (t) 
-  \end{align}
-  \(m\) is the mass of the particle, \(v\) it's velocity, \(-\zeta v\) is
-  the frictional force, which is proportional to the velocity, and
-  \(\delta F (t)\) is a \emph{fluctuating} force (random) to the
-  frictional force.
-  
-  \section{Numerical Methods}\label{numerical-methods}
-  
-  Numerical methods are tools that are often applied to solve stochastic
-  differential equations because most of these do not have explicit
-  solution. This means that we are not able to solve these equations using
-  symbolic computation. Although we are unable to find an analitical
-  solution, when facing real problems, the approximation given by a
-  numerical method is often sufficient. Alongside the analytical issue,
-  the need to calculate the SDE's trajectory through time is the main
-  reason why studying numerical methods is so important. An implementation
-  of a numerical method is called a numerical algorithm.
-  
-  We will simulate sample paths of time discrete approximations
-  implemented in the R programming language {[}28{]} that we base on a
-  finite discretization of a time interval \([t_0, T]\). We shall generate
-  approximate values of the sample path for each step contained in the
-  discretized interval {[}24{]}.
-  
-  In the fixed step methods, the distance between two contiguous points is
-  the distance
-  \(d_i = t_i - t_{i-1} = \frac{T-t_0}{N} \;\;\; \forall i \mid 1 \leq i \leq N \in \mathbb{N}\).
-  \(N\) being the time interval partition number.
-  
-  According to Kloeden {[}24{]}, in the stochastic realm, simulated sample
-  paths can be statistically analysed to find how good an approximation is
-  compared to an exact solution. Moreover, the computational costs such as
-  time and memory increases polynomially with the problem's dimension,
-  which is good, and it is possible to apply variance reduction methods
-  that allow a considerable decrease in the required sample size.
-  
-  \subsection{Convergence}\label{convergence}
-  
-  As soon as we talk about numerical methods we are required to approach
-  the topic of approximations and how to handle them. Methods efficiency
-  receive the name of \emph{convergence order}. In the SDE domain there
-  are two main methods of convergency, that are classified according to
-  their criteria. Firstly, we present the \emph{strong order of
-  convergence}. A method is said to have strong convergence \(\delta\) to
-  \(Y\) if a time discretized \(Y_{\delta}\) of a continous-time process
-  \(Y\), with \(\delta\) being the maximum time increment of the
-  discretization, and for any fixed time horizon \(T\) holds true that
-  {[}18{]}:
-  \begin{align*}
-  \mathbb{E} \mid Y_{\delta}(T) - Y(T) \mid \leq C \delta^{\gamma}, \,\,\, \forall \delta < \delta_0
-  \end{align*}
-  with \(\delta_0 > 0\) and \(\mathcal{C}\) a constant not depending on
-  \(\delta\). Strong convergence addresses the problem of solutions'
-  trajectories. For specific conditions, the Euler method has strong
-  convergence order \(\gamma = \frac{1}{2}\). Furthermore, there is the
-  \emph{weak order of convergence}. The weak convergence
-  \begin{align*}
-  \mid  \mathbb{E}p(Y_n) - \mathbb{E}p(Y(\tau)) \mid \leq C \Delta t^{\gamma}
-  \end{align*}
-  Strong and weak convergence are not mutually exclusive {[}18{]}. That
-  means that a method with a given strong order of convergence might have
-  a higher weak order of convergence too. This is the case for the Euler
-  scheme, with a strong order of convergence of \(1/2\) and a weak order
-  of \(1\) (under some conditions). For a more detailed and rigorous
-  explanation of convergence we recommend consulting {[}17{]}.
-  
-  It is worth noting that, altough schemes have a given convergency order,
-  it is not unusual that they behave better than their order for some SDEs
-  specifications.
-  
-  \subsection{Discretization}\label{discretization}
-  
-  We know that convergence is an important feature to a numerical method
-  and studies have found not all time discrete possible approximations of
-  an SDE converge in a useful sense to the solution process as the step
-  size adopted tends toward zero {[}5,6{]}. Moreover, particularly for
-  SDEs, some of the more rapidly convergent methods available for ordinary
-  differential equations (ODE) do not work, such as higher order
-  Runge-Kutta methods.\footnote{The euler method is the simplest
-    Runge-Kutta method.}
-  
-  One of the methods that do work for ODEs and SDEs is the Euler method,
-  named after the Swiss mathematician Leonhard Euler. Figure
-  \ref{fig:euler} shows an example of an implementation for the Newton's
-  cooling law with timestep of 2 seconds compared to its analytical
-  solution. This method (\emph{a.k.a.} forward Euler method) is a
-  first-order numerical procedure. It is the most basic explicit
-  method\footnote{Explicit methods calculate the state of a system at a
-    later time from the state of the system at the current time.
-    Mathematically we have something like \(Y(t+\Delta t)=F(Y(t))\,\).}
-  for numerical integration.
-  \begin{figure}
-  
-  {\centering \includegraphics{thesis_files/figure-latex/euler-1} 
-  
-  }
-  
-  \caption{Analytical x Euler solutions \label{euler}}\label{fig:euler}
-  \end{figure}
-  The method is first-order, as stated above, this means that the error in
-  each step is a proportion of the square of the step size. Also, the
-  global error at a given time is a function of the step size. We proceed
-  to apply the Euler methos to SDEs. Consider the equation:
-  \begin{align}
-  dS_t &= \mu(S_t,t) dt + \sigma(S_t,t) dW_t
-  \end{align}
-  \(dW_t\) is the Brownian motion, \(\mu\) and \(\sigma\) are functions
-  depending on \(S_t\) and \(t\), over an interval \([0,T]\), and we want
-  to discretize it as \(0 = t_1 < t2 < \cdots < t_m = T\) with increments
-  equally spaced \(d_t\).
-  
-  Integrating it from \(t\) to \(dt\) we have the starting point for our
-  (and any) discretization scheme:
-  \begin{align}
-  \label{eq:disc1}
-  S_{t+dt} &= S_t + \int_{t}^{dt}{\mu(S_u,u)}du + \int_{t}^{dt}{\sigma(S_u,u)} dW_u
-  \end{align}
-  To use the Euler discretization is the equivalent of approximating
-  integrals using the left-point rule, we then have:
-  \begin{align*}
-   \int_{t}^{t+dt}{\mu(S_u,u)} dW_u &\approx \mu(S_t,t) \int_{t}^{t+dt}dW_u\\
-  &= \mu(S_t,t) (W_{t+dt} - W_t)  \\
-   \int_{t}^{t+dt}{\sigma(S_u,u)} dW_u &\approx \sigma(S_t,t) \int_{t}^{t+dt}dW_u\\
-  &= \sigma(S_t,t) (W_{t+dt} - W_t)  \\
-  &= \sigma(S_t,t) \sqrt{dt} Z
-  \end{align*}
-  \(W_{t+dt}-W_t\) and \(\sqrt{dt}Z\) have identical distribution, \(Z\)
-  being a standard gaussian variable. The Euler discretization of equation
-  \eqref{eq:disc1} is then:
-  \begin{align}
-  \label{eq:disc2}
-  S_{t+dt} &= S_t + \mu(S_t,t)dt + \sigma(S_t,t)\sqrt{dt}Z
-  \end{align}
-  \subsubsection{Euler method - Heston
-  model}\label{euler-method---heston-model}
-  
-  We now proceed to apply the method to our model of interest. We retake
-  the equations \eqref{eq:heston} and \eqref{eq:hesvar}. We begin showing how
-  to discretize the latter {[}17,18{]}:
-  \begin{align}
-  \label{eq:hesvareuler}
-  V_{t+dt} = V_t+ \int_{t}^{t+dt}{\kappa (\theta - V_u) du} + \int_{t}^{t+dt}{\sigma \sqrt{V_u} dB_u}
-  \end{align}
-  Which discretized turns out as:
-  \begin{align*}
-   \int_{t}^{t+dt}{\kappa (\theta - V_u)} du &\approx \kappa (\theta - V_t) dt\\
-   \int_{t}^{t+dt}{\sigma \sqrt{V_u}} dB_t &\approx \sigma \sqrt{V_t} (W_{t+dt}-W_t)\\
-  &= \sigma \sqrt{V_t dt} Z_v
-  \end{align*}
-  And leaves us with:
-  \begin{align}
-  V_{t+dt} = V_t + \kappa (\theta - V_t) dt + \sigma \sqrt{V_t dt} Z_v
-  \end{align}
-  \(Z_v\) is a standard normal variable. To avoid problems with negative
-  values in \(\sqrt{V_t}\) we apply the \emph{full truncation} scheme,
-  which substitutes \(V_t\) with \(V_t^+ = max(0, V_t)\).\footnote{Another
-    possible scheme (not used in this work) is the \emph{reflection}
-    scheme where we replace \(V_t\) with \(\mid V_t \mid\)}
-  
-  For the \(S_t\) SDE we proceed similarly:
-  \begin{align}
-  \label{eq:heseuler}
-  S_{t+dt} = S_t+ \mu \int_{t}^{t+dt}{ S_u du} + \int_{t}^{t+dt}{\sqrt{V_u} S_u dW_u}
-  \end{align}
-  Discretizing we have:
-  \begin{align*}
-   \int_{t}^{t+dt}{S_u} du &\approx S_t dt\\
-   \int_{t}^{t+dt}{\sqrt{V_u} S_u} dW_u &\approx \sqrt{V_t} S_t (W_{t+dt}-W_t)\\
-  &= \sqrt{V_t dt} S_t Z_s
-  \end{align*}
-  \(Z_s\) is a standard normal variable with correlation \(\rho\) with
-  \(Z_v\). We have:
-  \begin{align}
-  S_{t+dt} = S_t + \mu S_t dt + \sqrt{V_t dt} S_t Z_s
-  \end{align}
-  \subsection{Stability}\label{stability}
-  
-  Most differential equations, deterministic or stochastic, cannot be
-  solved explicitly {[}24{]}. Hence, stability studies begin with
-  computers and is associated with numerical methods and approximations.
-  Convergent methods were resulting in bigger errors than what was
-  expected that could not be only due to discretization error. Eventually,
-  scientists discovered that this unexpected problem was caused by
-  accumulation of successive truncation errors. Figure \ref{stab} shows an
-  example of instability due to an increase in size of the timestep.
-  \begin{figure}
-  
-  {\centering \includegraphics{thesis_files/figure-latex/stab-1} 
-  
-  }
-  
-  \caption{Euler's stability whith different timesteps \label{stab}}\label{fig:stab}
-  \end{figure}
-  We know that binary machines like computers are not able to represent
-  all the real numbers, but only a subset of them. Thus, solving these
-  errors is not straightforward since it's not possible to eliminate
-  \emph{all} truncation error when using a computer and dealing with
-  numerical solutions. When faced to an incorrect (not acceptable)
-  solution, we have to evaluate and distinguish between two distinct
-  situations:
-  \begin{itemize}
-    \item [i] Rounding errors are considerably amplified by the algorithm. This situation is called numerical instability.
-    \item [ii] Small perturbations of data generate large changes in the solution. This is termed an ill-conditioned (or sensitive) problem.
-  \end{itemize}
-  Examples of these two classes of problem can be found in {[}14{]}.
-  
-  Stiff equations appear very often in mathematical problems and refer to
-  differential equations for which a numerical methods might be unstable
-  for not small enough stepsizes. A differential equation of the form
-  \(y' = f(t,y)\), if its exact solution \(y(t)\) includes a term that
-  decays exponentially to zero as \(t\) increases, but whose derivatives
-  are greater in magnitude than the term itself.
-  
-  An example of the stiff behavior is the following differential equation
-  {[}26{]}:
-  
-  \[y' = -100y, \,\,\,\,\,\, t > 0, \,\,\,\,\,\, y_0 = 1\]
-  
-  Whose exact solution is \(y_t = e^{-100 t}\) and goes to zero as \(t\)
-  increases. Applying Euler's method to this equation with \(h=0.1\) we
-  stumble in the following equation
-  
-  \[ y_{n+1} = y_{n} - 100 h y_{n} = -9y_{n}\]
-  
-  which is wrong, since it yields an exponencially growing solution
-  \(y_n = (-9)^n\). On the other hand, if our timestep is smaller
-  \(h = 10^{-3}\), our solution using Euler's method becomes
-  \(y_n = (0.9)^n\). This solution leads to an accurate behavior regarding
-  the exact solution, it rapidily decays to zero.
-  
-  Thereby, we claim that stability method study is an important topic,
-  since it enables achieving solutions that are good to stiff equations
-  without having to overly reduce our timesteps which can be very
-  computationally costly.
   
   \chapter{The Heston Model
   Implementation}\label{the-heston-model-implementation}
   
   In section \ref{hes1} we presented Heston's SDE system in one of its
-  structures. Another common way {[}1,4,22{]} to write down the system is
+  structures. Another common way {[}1,3,10{]} to write down the system is
   using the property presented in subsection \ref{corr} as in equation
   \eqref{eq:heston2}.
   \begin{align}
@@ -898,7 +198,7 @@ starts here.
   \section{Characteristic Function}\label{characteristic-function}
   
   The Heston model characteristic function is firstly presented in the
-  1993 Steven Heston's paper {[}16{]} and is described below {[}8{]}:
+  1993 Steven Heston's paper {[}8{]} and is described below {[}5{]}:
   \begin{align}
   f(S_t, V_t, t) = e^{A(T-t)+B(T-t)S_t + C(T-t)V_t + i \phi S_t}
   \end{align}
@@ -915,7 +215,7 @@ starts here.
   \end{align*}
   This function is the driving force behind the following formula, that
   calculates the fair valur of a European call option at time \(t\), given
-  a strike price \(K\), that expires at time \(T\) {[}8{]}:
+  a strike price \(K\), that expires at time \(T\) {[}5{]}:
   \begin{align} 
   \label{eq:cfheston}
   \begin{split}
@@ -923,22 +223,26 @@ starts here.
   & -Ke^{-r(T-t)}\left( \frac{1}{2} + \frac{1}{\pi} \int_{0}^{\infty}{\Re \left[ \frac{K^{-i \phi} f(i \phi)}{i \phi} \right]}  d\phi \right)
   \end{split}
   \end{align}
-  \section{Euler Scheme - Full
-  Truncation}\label{euler-scheme---full-truncation}
+  \section{Euler Scheme}\label{euler-scheme}
   
-  We present here the Euler Scheme - Full Truncation algorithm {[}4{]}
-  along with some insights on how it was implemented in R. The Euler
-  discretization brings approximation paths to stock prices and variance
-  processes. If we set \(t_0 = 0 < t_1 < \dots < t_M = T\) as partitions
-  of a time interval of \(M\) equal segments of lenght \(\delta t\), we
-  have the following discretization for the stock price:
+  Given the fact that the underlying asset is temporal dependent upon the
+  solution of the SDE's volatility, we simulate the volatility's path
+  before the asset's. If the Black-Scholes model enabled using Ito's Lemma
+  directly for solving \(S_t\), this equation system requires numerical
+  methods. We present here the Euler Scheme - Full Truncation algorithm
+  (and compare to other similar schemes) {[}3{]} along with some insights
+  on how it was implemented in R. The Euler discretization brings
+  approximation paths to stock prices and variance processes. If we set
+  \(t_0 = 0 < t_1 < \dots < t_M = T\) as partitions of a time interval of
+  \(M\) equal segments of lenght \(\delta t\), we have the following
+  discretization for the stock price:
   \begin{align}
   S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
   \end{align}
   \noindent
   And for the variance process:
   \begin{align}
-  V_{t+1} = V_t + \kappa (\theta - V_t) + \sigma \sqrt{V_t} Z_v
+  V_{t+1} = V_{t,1} + \kappa (\theta - V_{t,2}) + \sigma \sqrt{V_{t,3}} Z_v \text{\footnote{teste}}
   \end{align}
   \noindent
   \(Z_s\) being a standard normal random variable, i.e. \(N\sim(0,1)\), we
@@ -949,19 +253,31 @@ starts here.
   The immediate observable problem in the proposed discretization scheme
   is that \(V\) can become negative with non-zero probability making the
   computation of \(\sqrt{V_t}\) impossible {[}1{]}. There are several
-  proposed fixes that can be used, we chose the Full-Truncation (FT) and
-  rewrite the equations as follows:
+  proposed fixes that can be used as you can see below:
+  \begin{longtable}[]{@{}cccc@{}}
+  \toprule
+  Scheme & \(V_{t,1}\) & \(V_{t,2}\) & \(V_{t,3}\)\tabularnewline
+  \midrule
+  \endhead
+  Reflection & \(\mid V \mid\) & \(\mid V \mid\) &
+  \(\mid V \mid\)\tabularnewline
+  Partial Truncation & \(V\) & \(V\) & \(V^+\)\tabularnewline
+  Full Truncation & \(V\) & \(V^+\) & \(V^+\)\tabularnewline
+  \bottomrule
+  \end{longtable}
+  Where \(V^+ = \max(V,0)\) and \(\mid V \mid\) is the absolute value of
+  \(V\).
+  
+  We chose to fix our discretization using the Full-Truncation (FT) scheme
+  and thus, rewrite the equations as follows:
   \begin{align}
   S_{t+1} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
   V_{t+1} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v
   \end{align}
-  \noindent
-  Where we use the notation \(V_{t}^{+} = \max(V_{t}, 0)\).
-  
   \section{Kahl-Jackel}\label{kahl-jackel}
   
   Kahl-Jackel propose a discretization method they refer to as the ``IJK''
-  method {[}1,22{]} that coupled with the implicit Milstein scheme for the
+  method {[}1,10{]} that coupled with the implicit Milstein scheme for the
   variance lands the system of equations \eqref{eq:kj1} and \eqref{eq:kj2}. It
   is possible to verify that this discretization always results in
   positive paths for \(V\) if \(4 \kappa \theta > \sigma^2\).
@@ -978,11 +294,11 @@ starts here.
   \end{small}
   \section{Exact Algorithm}\label{exact-algorithm}
   
-  In 2006, Broadie-Kaya {[}4{]} propose a method that has a faster
+  In 2006, Broadie-Kaya {[}3{]} propose a method that has a faster
   convergence rate, \(\mathcal{O} \left( s^{-1/2} \right)\) than some of
   the more famous schemes, such as Euler's and Milstein's discretizations.
   They build their idea to generate an exact sample from the distribution
-  of the terminal stock price based on numerous papers {[}16{]}. The stock
+  of the terminal stock price based on numerous papers {[}8{]}. The stock
   price and variance are as follows:
   \begin{align} \label{eq:ea1}
   S_t = S_0 \, exp \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]
@@ -1003,7 +319,7 @@ starts here.
   \(V_0\)}{Generate a sample of V\_t given V\_0}}\label{generate-a-sample-of-v_t-given-v_0}
   
   The distribution of \(V_t\) given \(V_0\) for \(0 < t\) is a noncentral
-  chi-squared distribution {[}2,7{]}:
+  chi-squared distribution {[}2,4{]}:
   
   \[V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \mathcal{X}_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)\]
   
@@ -1012,15 +328,15 @@ starts here.
   random variable with \(\delta\) degrees of freedom and \(\lambda\) as
   its noncentrality parameter.
   
-  Broadie and Kaya {[}4{]} sample generating Poisson and gamma
-  distributions as in Johnson et al. {[}21{]}. We used the built-in
-  function in R {[}28{]} which uses this exact method for sampling.
+  Broadie and Kaya {[}3{]} sample generating Poisson and gamma
+  distributions as in Johnson et al. {[}9{]}. We used the built-in
+  function in R {[}11{]} which uses this exact method for sampling.
   
   \subsection{\texorpdfstring{Generate a sample of \(\int_0^t V_sds\)
   given \(V_t\),
   \(V_0\)}{Generate a sample of \textbackslash{}int\_0\^{}t V\_sds given V\_t, V\_0}}\label{generate-a-sample-of-int_0t-v_sds-given-v_t-v_0}
   
-  After generating \(V_t\), we follow the instructions in {[}4,21{]}. We
+  After generating \(V_t\), we follow the instructions in {[}3,9{]}. We
   use the characteristic function \eqref{eq:phi} to compute the probability
   density function \(F(x)\).
   \begin{align} \label{eq:phi}
@@ -1035,9 +351,9 @@ starts here.
   previously defined and \(I_v(x)\) is the modified Bessel function of the
   first kind.
   
-  The probability distribution function is obtained in {[}2,4{]} by
-  Fourier inversions using Feller {[}10{]}. We use the approach in
-  Gil-Pelaez {[}12{]}, equation \eqref{eq:fourier}. We define \(V(u,t)\) the
+  The probability distribution function is obtained in {[}2,3{]} by
+  Fourier inversions using Feller {[}6{]}. We use the approach in
+  Gil-Pelaez {[}7{]}, equation \eqref{eq:fourier}. We define \(V(u,t)\) the
   random variable with the same distribution as the integral
   \(\int_{u}^{t}{V_s ds}\), conditional on \(V_u\) and \(V_t\):
   \begin{align} \label{eq:fourier}
@@ -1076,107 +392,15 @@ starts here.
   
   \[S_t = e^{m(0,t) + \sigma (0,t) Z}\]
   
-  \chapter{Results}\label{results}
+  \chapter{This chunk ensures that the thesisdown package
+  is}\label{this-chunk-ensures-that-the-thesisdown-package-is}
   
-  We present here the results of all the implementations that were
-  disclosed in the previous section. We perform numerical comparisons
-  between all the methods, setting out differences accross number of
-  simulations and timesteps.
-  
-  Heston {[}16{]} gives a closed form used for comparison as the `true'
-  option value and enabling the results to be exposed in terms of
-  bias\footnote{Defined as
-    \(\mathbb{E} \left[ \hat{\alpha} - \alpha \right]\)} and RMSE (root
-  mean square error).\footnote{Defined as
-    \(\sqrt{\mathbb{E}((\hat{\theta}-\theta)^2)}\)}
-  
-  The simulaton experiments were performed on a notebook with an Intel(R)
-  Core(TM) i7-4500U CPU @ 1.80GHz processor and 8GB of RAM running on a
-  linux x86\_64 based OS, Fedora 25. Codes were all written in R 3.4.1
-  ``Single Candle'' {[}28{]}.
-  
-  \clearpage
-  \begin{tabular}{l|r}
-  \hline
-  Variables & Values\\
-  \hline
-  dt & 0.05\\
-  \hline
-  k & 6.21\\
-  \hline
-  r & 0.03\\
-  \hline
-  rho & -0.70\\
-  \hline
-  S & 100.00\\
-  \hline
-  sigma & 0.61\\
-  \hline
-  t & 0.00\\
-  \hline
-  tau & 1.00\\
-  \hline
-  theta & 0.00\\
-  \hline
-  v & 0.01\\
-  \hline
-  X & 100.00\\
-  \hline
-  \end{tabular}
   \chapter{Conclusion}\label{conclusion}
   
-  If we don't want Conclusion to have a chapter number next to it, we can
-  add the \texttt{\{-\}} attribute.
-  
-  \textbf{More info}
-  
-  And here's some other random info: the first paragraph after a chapter
-  title or section head \emph{shouldn't be} indented, because indents are
-  to tell the reader that you're starting a new paragraph. Since that's
-  obvious after a chapter or section title, proper typesetting doesn't add
-  an indent there.
-  
-  \appendix
-  
   \chapter{Black-Scholes formula}\label{bsformula}
-  \begin{align*}
-  dS_t &= \mu S_t dt + \sigma S_t dB_t \\
-  S_T &= S_0 \times \exp \left( \left( \mu  - \frac{\sigma^2}{2} \right) T  + \sigma B_T \right)
-  \end{align*}
-  \begin{proof}
-  
-  If $S$ were deterministic, $dS_t/S_t$ would be the derivative of $\ln(S_t)$ with respect to $S$. This suggests to find an expression for the stochastic differential of $\ln(S_t)$, a function of the single random variable $S_t$.
-  
-  \begin{scriptsize}
-  \begin{align}
-  f(t,S) &= \ln(S) \\[10pt]
-  df(t,S) &= \cancelto{0}{\frac{\partial f}{\partial t}dt}  + \frac{\partial f}{\partial S} dS + \cancelto{0}{\frac{1}{2} \frac{\partial^2 f}{\partial t^2} (dt)^2} + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2  + \cancelto{0}{\frac{\partial^2 f}{\partial t \partial S} dt dS} \\[10pt]
-  d\ln(S) &= \frac{d\ln(S)}{dS} dS + \frac{1}{2} \frac{d^2\ln(S)}{dS^2}(dS)^2 \\[10pt]
-  (dS)^2 &= \int_{0}^{t}{\left(\sigma \times S \right)^2} ds = \sigma^2 S^2 dt \\[10pt]
-  d\ln(S) &= \frac{1}{S} (\mu S dt + \sigma S dB) + \frac{1}{2}\frac{-1}{S^2} \sigma^2 S^2 dt \\[10pt]
-  d\ln(S) &= \left( \mu -  \frac{1}{2} \sigma^2 \right) dt + \sigma dB \\[10pt]
-  \int_{t=0}^{T}{d\ln(S_T)} &= \int_{t=0}^{T}{\left( \mu - \frac{\sigma^2}{2} \right) dt} + \int_{t=0}^{T}{\sigma dB_t} \\[10pt]
-  \ln(S_T) - \ln(S_0) &=  \left(\mu  - \frac{\sigma^2}{2} \right)  T + \sigma B_T \\[10pt]
-  \ln \left( \frac{S_T}{S_0} \right) &= \left( \mu  - \frac{\sigma^2}{2}  \right) T + \sigma B_T \\[10pt]
-  S_T &= S_0 \times \exp \left( \left( \mu  - \frac{\sigma^2}{2} \right) T  + \sigma B_T \right) \qed
-  \end{align}
-  \end{scriptsize} 
-  \end{proof}
-  \textbf{In the main Rmd file}
-  
-  \texttt{r\ \ \#\ This\ chunk\ ensures\ that\ the\ thesisdown\ package\ is\ \ \#\ installed\ and\ loaded.\ This\ thesisdown\ package\ includes\ \ \#\ the\ template\ files\ for\ the\ thesis.\ \ if(!require(devtools))\ \ \ \ install.packages("devtools",\ repos\ =\ "http://cran.rstudio.com")\ \ if(!require(thesisdown))\ \ \ \ devtools::install\_github("ismayc/thesisdown")\ \ library(thesisdown)}
-  
-  \textbf{In Chapter \ref{ref-labels}:}
-  
-  \backmatter
   
   \chapter*{References}\label{references}
   \addcontentsline{toc}{chapter}{References}
-  
-  \noindent
-  
-  \setlength{\parindent}{-0.20in} \setlength{\leftskip}{0.20in}
-  \setlength{\parskip}{8pt}
   
   \hypertarget{refs}{}
   \hypertarget{ref-andersen}{}
@@ -1188,164 +412,62 @@ starts here.
   diffusions with applications to finance, Springer Science \& Business
   Media, 2013.
   
-  \hypertarget{ref-black1973pricing}{}
-  {[}3{]} F. Black, M. Scholes, The pricing of options and corporate
-  liabilities, Journal of Political Economy. 81 (1973) 637--654.
-  
   \hypertarget{ref-broadie2006exact}{}
-  {[}4{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
+  {[}3{]} M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility
   and other affine jump diffusion processes, Operations Research. 54
   (2006) 217--231.
   
-  \hypertarget{ref-clark1980maximum}{}
-  {[}5{]} J.M. Clark, R. Cameron, The maximum rate of convergence of
-  discrete approximations for stochastic differential equations, in:
-  Stochastic Differential Systems Filtering and Control, Springer, 1980:
-  pp. 162--171.
-  
-  \hypertarget{ref-clements1973well}{}
-  {[}6{]} D. Clements, B. Anderson, Well-behaved itô equations with
-  simulations that always misbehave, IEEE Transactions on Automatic
-  Control. 18 (1973) 676--677.
-  
   \hypertarget{ref-cox1985theory}{}
-  {[}7{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
+  {[}4{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
   structure of interest rates, Econometrica: Journal of the Econometric
   Society. (1985) 385--407.
   
   \hypertarget{ref-dunn2014estimating}{}
-  {[}8{]} R. Dunn, P. Hauser, T. Seibold, H. Gong, Estimating option
+  {[}5{]} R. Dunn, P. Hauser, T. Seibold, H. Gong, Estimating option
   prices with heston's stochastic volatility model, (2014).
   
-  \hypertarget{ref-evans}{}
-  {[}9{]} L.C. Evans, An introduction to stochastic differential
-  equations, American Mathematical Soc., 2012.
-  
   \hypertarget{ref-feller1971introduction}{}
-  {[}10{]} W. Feller, Introduction to the theory of probability and its
+  {[}6{]} W. Feller, Introduction to the theory of probability and its
   applications, vol. 2, II (2. Ed.) New York: Wiley. (1971).
   
-  \hypertarget{ref-gard1988}{}
-  {[}11{]} T.C. Gard, Introduction to stochastic differential equations,
-  M. Dekker, 1988.
-  
   \hypertarget{ref-gil1951note}{}
-  {[}12{]} J. Gil-Pelaez, Note on the inversion theorem, Biometrika. 38
+  {[}7{]} J. Gil-Pelaez, Note on the inversion theorem, Biometrika. 38
   (1951) 481--482.
   
-  \hypertarget{ref-nmof}{}
-  {[}13{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
-  optimization in finance, Academic Press, Waltham, MA, USA, 2011.
-  
-  \hypertarget{ref-gilli_numerical_2011}{}
-  {[}14{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
-  optimization in finance, Academic Press, 2011.
-  
-  \hypertarget{ref-helgadottir2016option}{}
-  {[}15{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
-  model, (2016).
-  
   \hypertarget{ref-heston1993closed}{}
-  {[}16{]} S.L. Heston, A closed-form solution for options with stochastic
+  {[}8{]} S.L. Heston, A closed-form solution for options with stochastic
   volatility with applications to bond and currency options, Review of
   Financial Studies. 6 (1993) 327--343.
   
-  \hypertarget{ref-higham2001}{}
-  {[}17{]} D.J. Higham, An algorithmic introduction to numerical
-  simulation of stochastic differential equations, SIAM Review. 43 (2001)
-  525--546.
-  
-  \hypertarget{ref-iacus2009simulation}{}
-  {[}18{]} S.M. Iacus, Simulation and inference for stochastic
-  differential equations: With r examples, Springer Science \& Business
-  Media, 2009.
-  
-  \hypertarget{ref-ito1962}{}
-  {[}19{]} K. Itô, The brownian motion and tensor fields on riemannian
-  manifold, Proc. Int. Congr. Math., Stockholm. 2 (1962).
-  
-  \hypertarget{ref-ito1951}{}
-  {[}20{]} K. Itō, On stochastic differential equations, American
-  Mathematical Soc., 1951.
-  
   \hypertarget{ref-johnson1995}{}
-  {[}21{]} N.L. Johnson, S. Kotz, N. Balakrishnan, Continuous univariate
+  {[}9{]} N.L. Johnson, S. Kotz, N. Balakrishnan, Continuous univariate
   distributions, vol. 2 of wiley series in probability and mathematical
   statistics: Applied probability and statistics, (1995).
   
   \hypertarget{ref-kahl2006fast}{}
-  {[}22{]} C. Kahl, P. Jäckel, Fast strong approximation monte carlo
+  {[}10{]} C. Kahl, P. Jäckel, Fast strong approximation monte carlo
   schemes for stochastic volatility models, Quantitative Finance. 6 (2006)
   513--536.
   
-  \hypertarget{ref-karatzas2012brownian}{}
-  {[}23{]} I. Karatzas, S. Shreve, Brownian motion and stochastic
-  calculus, Springer Science \& Business Media, 2012.
-  
-  \hypertarget{ref-kloeden1992}{}
-  {[}24{]} P.E. Kloeden, E. Platen, Numerical solution of stochastic
-  differential equations springer-verlag, 1992.
-  
-  \hypertarget{ref-krouglov2006intuitive}{}
-  {[}25{]} A. Krouglov, Intuitive proof of black-scholes formula based on
-  arbitrage and properties of lognormal distribution, arXiv Preprint
-  Physics/0612022. (2006).
-  
-  \hypertarget{ref-lambers}{}
-  {[}26{]} J.V. Lambers, A.C. Sumner, Explorations in numerical analysis,
-  University O California at Irvine. (2016).
-  
-  \hypertarget{ref-merton1973theory}{}
-  {[}27{]} R.C. Merton, Theory of rational option pricing, The Bell
-  Journal of Economics and Management Science. (1973) 141--183.
-  
   \hypertarget{ref-rlang}{}
-  {[}28{]} R Core Team, R: A language and environment for statistical
+  {[}11{]} R Core Team, R: A language and environment for statistical
   computing, R Foundation for Statistical Computing, Vienna, Austria,
   2017.
   
   \hypertarget{ref-romano1997}{}
-  {[}29{]} M. Romano, N. Touzi, Contingent claims and market completeness
+  {[}12{]} M. Romano, N. Touzi, Contingent claims and market completeness
   in a stochastic volatility model, Mathematical Finance. 7 (1997)
   399--412.
   
-  \hypertarget{ref-rosenthal}{}
-  {[}30{]} J.S. Rosenthal, A first look at rigorous probability theory,
-  World Scientific Publishing Co Inc, 2006.
-  
-  \hypertarget{ref-salomao2011precificaccao}{}
-  {[}31{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
-  sobre os modelos de black scholes e garch, (2011).
-  
   \hypertarget{ref-scott1996}{}
-  {[}32{]} L. Scott, Simulating a multi-factor term structure model over
+  {[}13{]} L. Scott, Simulating a multi-factor term structure model over
   relatively long discrete time periods, in: Proceedings of the Iafe First
   Annual Computational Finance Conference, 1996.
   
-  \hypertarget{ref-steele2012stochastic}{}
-  {[}33{]} J.M. Steele, Stochastic calculus and financial applications,
-  Springer Science \& Business Media, 2012.
-  
-  \hypertarget{ref-tong2012option}{}
-  {[}34{]} Z. Tong, Option pricing with long memory stochastic volatility
-  models, PhD thesis, Université d'Ottawa/University of Ottawa, 2012.
-  
-  \hypertarget{ref-tsay2005analysis}{}
-  {[}35{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
-  Sons, 2005.
-  
-  \hypertarget{ref-ubbo}{}
-  {[}36{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
-  2008.
-  
   \hypertarget{ref-willard1997}{}
-  {[}37{]} G.A. Willard, Calculating prices and sensitivities for
+  {[}14{]} G.A. Willard, Calculating prices and sensitivities for
   path-independent derivatives securities in multifactor models, The
   Journal of Derivatives. 5 (1997) 45--61.
-  
-  \hypertarget{ref-yang2013valuing}{}
-  {[}38{]} Y. Yang, Valuing a european option with the heston model,
-  (2013).
 
 
   % Index?
