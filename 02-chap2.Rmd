@@ -76,7 +76,7 @@ The immediate observable problem in the proposed discretization scheme is that $
 
 
 ```{r fullt, echo=FALSE, message=FALSE, results='asis'}
-source("./r_code/fullt.r")
+source("./r_code/fullt.R")
 ```  	
 
 
@@ -277,9 +277,9 @@ The algorithm used to generate the model consists in four steps as follows:
  
 \begin{itemize}
 \item [\textit{Step} 1.] Generate a sample of $V_t$ given $V_0$
-\item [\textit{Step} 2.] Generate a sample of $\int_0^t V_sds$ given $V_t$, $V_0$
-\item [\textit{Step} 3.] Compute $\int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
-\item [\textit{Step} 4.] Generate a sample from the probability distribution of $S_t$, given $\int_0^t \sqrt{V_s}dB_s$ and $\int_0^t V_sds$
+\item [\textit{Step} 2.] Generate a sample of $\displaystyle \int_0^t V_sds$ given $V_t$, $V_0$
+\item [\textit{Step} 3.] Compute $displaystyle \int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
+\item [\textit{Step} 4.] Generate a sample from the probability distribution of $S_t$, given $displaystyle \int_0^t \sqrt{V_s}dB_s$ and $displaystyle \int_0^t V_sds$
 \end{itemize}
 
 
@@ -347,6 +347,9 @@ We generate the $S_t$ sample using a standard normal random variable $Z$ and set
 $$S_t = e^{m(0,t) + \sigma (0,t) Z}$$
 
 
+### Limitations
+
+The biggest limitation this scheme presents is that the second step is computationally costly. It demands the inversion of the distribution function of  $\left( \displaystyle \int_0^t V_sds \mid V_t, \, V_0 \right)$ numerically. We must perform a root search of $F(x_i) - U = 0$ testing for different $x_i$. Notwithstanding, we do not know the closed form of $F(x_i)$ distribution and have to perform our root finding strategy inverting the characteristic function, with two modified Bessel functions inside, in a structure that is rerun until a given tolerance $\epsilon$ is reached. Mathematically: $F(x_i) - U = \epsilon$. 
 
 
 
