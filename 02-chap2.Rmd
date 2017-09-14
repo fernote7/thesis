@@ -260,7 +260,7 @@ Hestoncallkj <- function(S, X, r, q, v, theta, rho, k, sigma,
 
 ## Exact Algorithm 
 
-In 2006, Broadie-Kaya [@broadie2006exact] propose a method that has a faster convergence rate, $\mathcal{O} \left( s^{-1/2}  \right)$ than some of the more famous schemes, such as Euler's and Milstein's discretizations. They build their idea to generate an exact sample from the distribution of the terminal stock price based on numerous papers [@heston1993closed, @scott1996, @willard1997, @romano1997]. The stock price and variance are as follows:
+In 2006, Broadie-Kaya [-@broadie2006exact] propose a method that has a faster convergence rate, $\mathcal{O} \left( s^{-1/2}  \right)$ than some of the more famous schemes, such as Euler's and Milstein's discretizations. They build their idea to generate an exact sample from the distribution of the terminal stock price based on numerous papers [@heston1993closed, @scott1996, @willard1997, @romano1997]. The stock price and variance are as follows:
 
 \begin{align} \label{eq:ea1}
 S_t = S_0 \, exp \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]
@@ -308,7 +308,7 @@ After generating $V_t$, we follow the instructions in [-@broadie2006exact; -@joh
 \end{split}
 \end{align}
 
-where $\gamma(a) = \sqrt{\kappa^2 - 2 \sigma^2 i a}$, $\delta$ was previously defined and $I_v(x)$ is the modified Bessel function of the first kind.
+where $\gamma(a) = \sqrt{\kappa^2 - 2 \sigma^2 i a}$, $\delta$ was previously defined and $I_v(x)$ is the modified Bessel function of the first kind ^[\textit{See Appendix  \@ref(bessel) for more information.}].
 
 The probability distribution function is obtained in [@broadie2006exact; @baldeaux] by Fourier inversions using Feller [-@feller1971introduction]. We use the approach in Gil-Pelaez [-@gil1951note], equation \@ref(eq:fourier). We define $V(u,t)$ the random variable with the same distribution as the integral $\int_{u}^{t}{V_s ds}$, conditional on $V_u$ and $V_t$:
 

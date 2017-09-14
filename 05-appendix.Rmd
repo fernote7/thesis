@@ -7,14 +7,24 @@ If you feel it necessary to include an appendix, it goes here.
 -->
 
 
+
+
 # Black-Scholes formula {#bsformula}
 
+
+In this appendix, we start from the following Geometric Brownian Motion process:
+
+
 \begin{align*}
-dS_t &= \mu S_t dt + \sigma S_t dB_t \\
-S_T &= S_0 \times \exp \left( \left( \mu  - \frac{\sigma^2}{2} \right) T  + \sigma B_T \right)
+dS_t &= \mu S_t dt + \sigma S_t dB_t
 \end{align*}
 
 
+And we claim that the solution to this stochastic differential equation applying Itô's calculus is the following formula:
+
+\begin{align*}
+S_T &= S_0 \times \exp \left( \left( \mu  - \frac{\sigma^2}{2} \right) T  + \sigma B_T \right)
+\end{align*}
 
 
 \begin{proof}
@@ -22,21 +32,49 @@ S_T &= S_0 \times \exp \left( \left( \mu  - \frac{\sigma^2}{2} \right) T  + \sig
 If $S$ were deterministic, $dS_t/S_t$ would be the derivative of $\ln(S_t)$ with respect to $S$. This suggests to find an expression for the stochastic differential of $\ln(S_t)$, a function of the single random variable $S_t$.
 
 
-\begin{scriptsize}
-\begin{align}
+
+\begin{align*} 
 f(t,S) &= \ln(S) \\[10pt]
 df(t,S) &= \cancelto{0}{\frac{\partial f}{\partial t}dt}  + \frac{\partial f}{\partial S} dS + \cancelto{0}{\frac{1}{2} \frac{\partial^2 f}{\partial t^2} (dt)^2} + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2  + \cancelto{0}{\frac{\partial^2 f}{\partial t \partial S} dt dS} \\[10pt]
 d\ln(S) &= \frac{d\ln(S)}{dS} dS + \frac{1}{2} \frac{d^2\ln(S)}{dS^2}(dS)^2 \\[10pt]
 (dS)^2 &= \int_{0}^{t}{\left(\sigma \times S \right)^2} ds = \sigma^2 S^2 dt \\[10pt]
 d\ln(S) &= \frac{1}{S} (\mu S dt + \sigma S dB) + \frac{1}{2}\frac{-1}{S^2} \sigma^2 S^2 dt \\[10pt]
 d\ln(S) &= \left( \mu -  \frac{1}{2} \sigma^2 \right) dt + \sigma dB \\[10pt]
-\int_{t=0}^{T}{d\ln(S_T)} &= \int_{t=0}^{T}{\left( \mu - \frac{\sigma^2}{2} \right) dt} + \int_{t=0}^{T}{\sigma dB_t} \\[10pt]
+\int_{t=0}^{T}{d\ln(S_T)} &= \int_{t=0}^{T}{\left( \mu - \frac{\sigma^2}{2} \right) dt} + \int_{t=0}^{T}{\sigma dB_t} 
+\end{align*}
+\begin{align*} 
 \ln(S_T) - \ln(S_0) &=  \left(\mu  - \frac{\sigma^2}{2} \right)  T + \sigma B_T \\[10pt]
 \ln \left( \frac{S_T}{S_0} \right) &= \left( \mu  - \frac{\sigma^2}{2}  \right) T + \sigma B_T \\[10pt]
-S_T &= S_0 \times \exp \left( \left( \mu  - \frac{\sigma^2}{2} \right) T  + \sigma B_T \right) \qed
-\end{align}
-\end{scriptsize} 
+S_T &= S_0 \times \exp \left( \left( \mu  - \frac{\sigma^2}{2} \right) T  + \sigma B_T \right) 
+\end{align*}
 \end{proof}
+
+
+
+# Bessel Function {#bessel}
+
+The modified Bessel function of the first kind can be described in the shape of a contour integral (below) and is plotted for three different $\nu$ in Figure \@ref(fig:bessel).
+
+\begin{align*} 
+I_n(z)= \frac{1}{2 \pi i}\displaystyle \oint e^{(z/2)(t+1/t)}t^{-n-1}dt
+\end{align*}
+
+However, the Broadie-Kaya paper [-@broadie2006exact] presents it as a power series:
+
+\begin{align*}
+I_{\nu}(z)= \left(\frac{1}{2}z\right)^\nu \displaystyle \sum_{k=0}^{\infty}{\frac{\left(\frac{1}{4}z^2\right)^k}{\left(k!\Gamma \left(\nu+k+1\right)\right)}}
+\end{align*}
+
+With $\Gamma(x)$ is the gamma function and $\nu$ ia a complex number.
+
+
+
+```{r bessel, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Modified Bessel Functions of the First Kind \\label{bessel}'}
+source("./r_code/bessel.R")
+```  	
+
+
+
 
 **In the main Rmd file**
 

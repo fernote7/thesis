@@ -1,34 +1,3 @@
-# euler <- function(f, y0, a, b, h)
-# {
-#   
-#   t <- a
-#   y <- y0
-#   t2 <- c()
-#   y2 <- c()
-#   
-#   while (t <= b)
-#   {
-#     t2 <- c(t2,t)
-#     y2 <- c(y2, y)
-#     t <- t + h
-#     y <- y + h*f(t, y)
-#   }
-#   fim = cbind(t2,y2)
-#   return(fim)
-# }
-# 
-# newtoncooling <- function(time, temp)
-#   return(-0.07*(temp-20))
-
-
-# vetor = NULL
-# for (i in seq(10,30,1)){
-#   
-#   assign(paste0("vetor_",i) , euler(newtoncooling, 100, 0, 600, i))
-#   
-#   
-# }
-
 vetor_10 = matrix(c(0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,100,44,27.2,22.16,20.648,20.1944,20.05832,20.0175,20.00525,20.00157,20.00047,20.00014,20.00004,20.00001,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20), ncol = 2, byrow = FALSE)
 
 
@@ -40,15 +9,15 @@ vetor_29 = matrix(c(0,29,58,87,116,145,174,203,232,261,290,319,348,377,406,435,4
 
 par(mfrow=c(2,1), xpd=FALSE, mar=c(2,4,2,2), oma=c(2,0,0,0))
 plot(vetor_10, type = 'l', axes=FALSE, ylim=c(min(vetor_25[,2]),max(vetor_25[,2])),
-    ylab = 'temp', xlab = 'timestep')
-lines(vetor_25, col='red', lty=2)
+    ylab = 'temp', xlab = 'timestep', col='blue')
+lines(vetor_25, col='red', lty=2, type='b', cex=0.5)
 box()
 axis(side = 2, las = 1, cex.axis = 0.6)
 mtext("h = 25", side = 1, line = 0.5)
 par(mar=c(4,4,0.5,2))
 plot(vetor_10, type = 'l', axes=FALSE, ylim=c(min(vetor_29[,2]),max(vetor_29[,2])),
-     xlab = 'h = 29', ylab = 'temp')
-lines(vetor_29, col='red', lty=2)
+     xlab = 'h = 29', ylab = 'temp', col='blue')
+lines(vetor_29, col='red', lty=2, type='b', cex=0.5)
 box()
 axis(side = 2, las = 1, cex.axis = 0.6)
 axis(side = 1)
