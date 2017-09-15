@@ -606,7 +606,7 @@ We know that binary machines like computers are not able to represent all the re
 Examples of these two classes of problem can be found in [@gilli_numerical_2011].
 
 
-Stiff equations appear very often in mathematical problems and refer to differential equations for which a numerical methods might be unstable for not small enough stepsizes [@iserles]. A differential equation of the form $y' = f(t,y)$, if its exact solution $y(t)$ includes a term that decays exponentially to zero as $t$ increases, but whose derivatives are greater in magnitude than the term itself. In other words, if it requires a significant depression of the stepsize to avoid stability lost. This is a loose definition but, since we are dealing with numerical methods a proper mathematical definition isn't required. An example of the stiff behavior is the following differential equation [@lambers]:
+Stiff equations appear very often in mathematical problems and refer to differential equations for which a numerical methods might be unstable for not small enough stepsizes [@iserles]. A differential equation of the form $y' = f(t,y)$, if its exact solution $y(t)$ includes a term that decays exponentially to zero as $t$ increases, but whose derivatives are greater in magnitude than the term itself. In other words, if it requires a significant depression of the stepsize to avoid stability lost. This is a loose definition but, since we are dealing with numerical methods a proper mathematical definition isn't required. Tipically, these equations are of the form $e^{-ct}$, where $c$ is a large positive constant [@burden2001]. A practical example of the stiff behavior is the following differential equation [@lambers]:
 
 \begin{align*}
 y' = -100y, \,\,\,\,\,\, t > 0, \,\,\,\,\,\, y_0 = 1
@@ -626,11 +626,44 @@ Sometimes, it is interesting to rank differential equations that are more or les
 
 
 
+
+
+#### Stability Domain
+
+Let's take the equation:
+
+\begin{align}
+y' = \lambda y,  \,\,\,\,\,\, t \geq 0, \,\,\,\,\,\,\,\,\,\,\,\,\,\, y_0 = 1
+\end{align}
+
+where $\lambda \in \mathbb{C}$ or in other terms $\lambda = \lambda_r + i \lambda_i$ and whose solution is $y+t = e^{\lambda t}$. We can rewrite this equation as a system:
+
+\begin{align}
+\frac{d}{dt} \begin{bmatrix} y^1 \\ y^2 \end{bmatrix} = 
+\begin{pmatrix} 
+\lambda_r & - \lambda_i \\
+\lambda_i & - \lambda_r 
+\end{pmatrix}
+\begin{bmatrix} y^1 \\ y^2 \end{bmatrix}
+\end{align}
+
+
+The $\lim_{t \to \infty} y_t = 0$ if and only if $\mathbb{R} \lambda < 0$. The *linear stability domain* $\mathcal{D}$ is defined as the set of all numbers $\Delta \lambda \in mathbb{C}$ such that $\lim_{n \to \infty y+n = 0}$, with $\Delta > 0$ being the stepsize. Or, as stated in Kloeden [-@kloeden1992], the suitable values of the stepsize are expressed in terms of *region of absolute stability*, consisting of the complex numbers $\lambda \Delta$ for which an error in $y_0$ at $t_0$ will not grow in subsequent iterations of the method.
+
+Without entering all the details, for these we recommend [@kloeden1992; @lambers; @iserles], the euler's stability domain  is:
+
+\begin{align*}
+\mathcal{D}_{Euler} = z \in \mathbb{C} : \mid 1 + z \mid < 1
+\end{align*}
+
+which represents the interior of a complex disc of unit radius and centre $z = -1$ as can be seen in Figure \@ref(stab2), on the left. The right side of the Figure \@ref(stab2) shows the stability region called A-stability ^[Mathematically: $\mathcal{D} \subseteq \left\{ z \in \mathbb{C} : \mathbb{R} z < 0 \right\}$.]. If a method is A-stable, the stepsize $\Delta$ is only constraint by accuracy
+
+
 <!-- # ```{r stab_domain, echo = FALSE, eval=TRUE, message=FALSE, fig.height=5, fig.width = 5, fig.align='center'} -->
 <!-- # knitr::include_graphics("figure/stab_domain.pdf") -->
 <!-- # ``` -->
 
-```{r stab2, echo=FALSE, message=FALSE, results='asis', fig.height=3, fig.width = 6.5, fig.align='center', fig.cap='Stability domains \\label{stab2}'}
+```{r stab2, echo=FALSE, message=FALSE, results='asis', fig.height=2.7, fig.width = 5.85, fig.align='left', fig.cap='Stability domains \\label{stab2}'}
 source("./r_code/stab2.R")
 ```
 

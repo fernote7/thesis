@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for the \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{setembro 14, 2017}
+\date{setembro 15, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -244,7 +244,7 @@ starts here.
   created by the Japanese mathematician Kiyosi Itô
   \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}
   in the 1940s and 1950s and is used for modeling financial options and in
-  another wide variety of fields {[}37{]}. In this chapter we present the
+  another wide variety of fields {[}38{]}. In this chapter we present the
   historical contexts in which the tools and models are used, but our
   focus is introducing the concepts and notations that will be further
   used in our work.
@@ -282,7 +282,7 @@ starts here.
   in the motion of pollen particles suspended in fluid resulting from
   particle collision with atoms or molecules. It is named after Robert
   Brown, the first to have observed the movement in 1828. He noted two
-  characteristic in the pollen movement {[}37{]}:
+  characteristic in the pollen movement {[}38{]}:
   \begin{itemize}
   \item
     the path of a given particle is very irregular, having a tangent at no
@@ -293,11 +293,11 @@ starts here.
   The first quantitative works in Brownian motion come from an interest in
   stock price fluctuation by Bachelier in 1900. Albert Einstein also
   leaned over the subject and in 1905 derived the transition density for
-  Brownian motion from molecular-kinetic theory of heat {[}24,37{]}.
+  Brownian motion from molecular-kinetic theory of heat {[}25,38{]}.
   
   In 1923, the Wiener process was coined in honor of Norbert Wiener
   mathematical proof of existence of the Brownian motion and stating its
-  properties.\footnote{More can be found on {[}9,15,31{]}.}
+  properties.\footnote{More can be found on {[}10,16,32{]}.}
   \begin{definition}{(Wiener Process)} Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochastic process $W_t$ defined in this space is a *Wiener process* if it satisfies the following properties:
   \begin{itemize}
     \item  $W_{0}=0$
@@ -327,7 +327,7 @@ starts here.
   Two independent Brownian motions that are correlated can describe a new
   process \(Z_t\). Let \(W_1\) and \(W_2\) be these two \emph{independent}
   Brownian motions and let \(-1 \leq \rho \leq 1\) be a given number. For
-  \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}37{]}:
+  \(0 \leq t \leq T\) define the new process \(Z_t\) as {[}38{]}:
   \begin{align}
   \label{eq:corr_brow}
   Z_t = \rho W_{1,t} + \sqrt{1-\rho^2}W_{2,t}
@@ -336,12 +336,12 @@ starts here.
   This equation is a linear combination of independent normals at each
   timestep \(t\), so \(Z_t\) is normally distributed. It is proven that
   \(Z\) is a Brownian motion and that \(Z\) and \(W_{1,t}\) have
-  correlation \(\rho\) {[}37{]}.
+  correlation \(\rho\) {[}38{]}.
   
   \subsection{Itô's Integral}\label{itos-integral}
   
   Formally, the SDE presented in equation \eqref{eq:sde1} only exists
-  because we can rewrite it in the form {[}9,20,21,31,34,35{]}:
+  because we can rewrite it in the form {[}10,21,22,32,35,36{]}:
   \begin{align} 
   \label{eq:sde2}
   x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
@@ -395,9 +395,9 @@ starts here.
   Equation \eqref{eq:ito} is the stochastic equivalent to the chain rule,
   also known as Itô's formula or Itô's chain rule. The proof to this
   theorem is based on the Taylor expansion of the function \(f(S_t, t)\)
-  {[}9,35{]}. For practical use you should write out a second-order Taylor
-  expansion for the function to be analyzed and apply the Table
-  \ref{tab:box-calc} multiplication table {[}37{]}.
+  {[}10,36{]}. For practical use you should write out a second-order
+  Taylor expansion for the function to be analyzed and apply the Table
+  \ref{tab:box-calc} multiplication table {[}38{]}.
   \begin{longtable}[t]{llr}
   \caption{\label{tab:box-calc}Box calculus}\\
   \toprule
@@ -426,7 +426,7 @@ starts here.
   The Black-Scholes (B-S) model arises from the need to price european
   options in the derivative markets. Derivatives are financial instruments
   traded in the market, stock exchange or over-the-counter (OTC) market,
-  whose values depend on the values of an underlying asset. {[}3,32,39{]}
+  whose values depend on the values of an underlying asset. {[}3,33,40{]}
   \begin{itemize}
   \item
     A call option is a derivative that gives its bearer the right, but not
@@ -443,12 +443,12 @@ starts here.
   exchanges indices, commodities or stocks. The fixed price in contract in
   which the underlying asset might to be bought or sold is the
   \emph{strick price}. The option expiration date is called the
-  \emph{maturity}. {[}3,32{]}
+  \emph{maturity}. {[}3,33{]}
   
   There are two major different option types: European and American. The
   difference between these two is that the bearer of the first may
   exercise it only at the end of its life, at its maturity while the
-  latter can be exercised at any given time until its maturity. {[}3,28{]}
+  latter can be exercised at any given time until its maturity. {[}3,29{]}
   \begin{definition}{(Intrinsic value)} 
   The intrinsic value of a call is the difference between the underlying asset price and the strike price. The put's intrinsic value operates the other way around, being the difference between the strike and the underling asset prices.
   \end{definition}
@@ -456,9 +456,9 @@ starts here.
   
   A stochastic process \(S_t\) is a Geometric Brownian Motion\footnote{There
     is an Arithmetic Brownian Motion: \(dS_t = \mu dt + \sigma dB_t\).
-    More information can be obtained at {[}37{]}.} if it is described by
+    More information can be obtained at {[}38{]}.} if it is described by
   the solution of the following stochastic differential equation
-  {[}35--37{]}.
+  {[}36--38{]}.
   \begin{align}
   dS_t = \mu S_t dt + \sigma S_t dW_t
   \end{align}
@@ -468,10 +468,10 @@ starts here.
   
   Figure \ref{fig:gbm} shows the GBM,\footnote{Also known as exponential
     Brownian motion.} which is quite often applied to model the dynamics
-  of some financial assets because of its properties {[}18{]}. Equation
+  of some financial assets because of its properties {[}19{]}. Equation
   \eqref{eq:sde3} shows the formula to generate a GBM and we provide proof
   of this solution in appendix \ref{bsformula}\footnote{An intuitive proof
-    can be found at {[}26{]}.}
+    can be found at {[}27{]}.}
   \begin{align} \label{eq:sde3}
   S_t = S_0 \times exp{\left( \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma W_t \right)}, \;\; t > 0
   \end{align}
@@ -487,7 +487,7 @@ starts here.
   
   The Black-Scholes model provides analytical solution to the price of a
   European call at time \(t\) and can be described as follows
-  {[}3,15,39{]}:
+  {[}3,16,40{]}:
   \begin{align}
   C(S_{t},t)&=N(d_{1})S_{t}-N(d_{2})Ke^{-r(T-t)}\\[10pt]
   d_{1}&={\frac {1}{\sigma {\sqrt {T-t}}}}\left[\ln \left({\frac {S_{t}}{K}}\right)+\left(r+{\frac {\sigma ^{2}}{2}}\right)(T-t)\right]\\[10pt]
@@ -516,12 +516,12 @@ starts here.
   \noindent
   Also, the stock price path is a Geometric Brownian Motion as previously
   stated, and is under the risk-neutral measure with the following
-  dynamics {[}13,15{]}:
+  dynamics {[}14,16{]}:
   \begin{align}
   dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
   \end{align}
   \noindent
-  Where \(dW_t\) is a Wiener process {[}3,13{]}, \(r\) is the risk free
+  Where \(dW_t\) is a Wiener process {[}3,14{]}, \(r\) is the risk free
   rate and \(q\) is the dividend
   yield\footnote{$r$ and $q$ are assumed to be constant.} and \(t\)
   denotes the current point in time.
@@ -534,7 +534,7 @@ starts here.
   assumption that does not hold up is the deterministic (constant)
   volatility, that can more accurately be described as a stochastic
   process since we observe that small moves usually are followed by small
-  moves and large moves by large moves. {[}15,39{]}
+  moves and large moves by large moves. {[}16,40{]}
   
   Other assumptions that are critical to the B-S model and are not always
   observed in practice refer to the asset's continuity through time (no
@@ -577,7 +577,7 @@ starts here.
   
   The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
   describes the interest rate movements driven by one source of market
-  risk. The dynamics are described as follows{[}7,16{]}:
+  risk. The dynamics are described as follows{[}8,17{]}:
   \begin{align}
   \label{eq:cir}
   dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
@@ -593,7 +593,7 @@ starts here.
   account of anticipations, risk aversion, investment alternatives and
   preferences about consumption timing and allows for detailed predictions
   about how changes in a wide range of underlying variables affect the
-  term structure{[}7{]}. Furthermore, this equation constitutes one of the
+  term structure{[}8{]}. Furthermore, this equation constitutes one of the
   two Heston model equations with the volatility taking the short rate
   interest place.
   
@@ -603,7 +603,7 @@ starts here.
   deterministic volatility problems. It was designed to analize bond and
   currency options and it introduced the following equations, which
   represent the dynamics of the stock price and the variance processes
-  under the risk-neutral measure {[}14,16{]}:
+  under the risk-neutral measure {[}15,17{]}:
   \begin{align}
   \label{eq:heston}
   dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
@@ -622,7 +622,7 @@ starts here.
   The Ornstein-Uhlenbeck is the earliest recorded SDE. Named after Leonard
   Ornstein and George Eugene Uhlenbeck, it is a stochastic process that
   describes the acceleration of a pollen particle in a liquid subject to
-  bombardments by molecules {[}37{]}. As we can observe in equation
+  bombardments by molecules {[}38{]}. As we can observe in equation
   \eqref{eq:oueq}, \(x_t\) represents the one dimension velocity of the
   particle, thus \(dx_t\) is the \emph{change} in velocity, in other
   words, its acceleration. The \(- \theta x_t\) component slows down the
@@ -643,7 +643,7 @@ starts here.
   The Langevin equation describes a system that consists of the molecular
   bombardment of a speck of dust on a water surface. We know that the
   intensity of the bombardement does not depend on the state variables
-  {[}11,25{]}.
+  {[}12,26{]}.
   \begin{align}
   m \frac{dv}{dt} = -\zeta v + \delta F (t) 
   \end{align}
@@ -665,17 +665,17 @@ starts here.
   of a numerical method is called a numerical algorithm.
   
   We will simulate sample paths of time discrete approximations
-  implemented in the R programming language {[}29{]} that we base on a
+  implemented in the R programming language {[}30{]} that we base on a
   finite discretization of a time interval \([t_0, T]\). We shall generate
   approximate values of the sample path for each step contained in the
-  discretized interval {[}25{]}.
+  discretized interval {[}26{]}.
   
   In the fixed step methods, the distance between two contiguous points is
   the distance
   \(d_i = t_i - t_{i-1} = \frac{T-t_0}{N} \;\;\; \forall i \mid 1 \leq i \leq N \in \mathbb{N}\).
   \(N\) being the time interval partition number.
   
-  According to Kloeden {[}25{]}, in the stochastic realm, simulated sample
+  According to Kloeden {[}26{]}, in the stochastic realm, simulated sample
   paths can be statistically analysed to find how good an approximation is
   compared to an exact solution. Moreover, the computational costs such as
   time and memory increases polynomially with the problem's dimension,
@@ -693,7 +693,7 @@ starts here.
   \(Y\) if a time discretized \(Y_{\delta}\) of a continous-time process
   \(Y\), with \(\delta\) being the maximum time increment of the
   discretization, and for any fixed time horizon \(T\) holds true that
-  {[}18{]}:
+  {[}19{]}:
   \begin{align*}
   \mathbb{E} \mid Y_{\delta}(T) - Y(T) \mid \leq C \delta^{\gamma}, \,\,\, \forall \delta < \delta_0
   \end{align*}
@@ -705,12 +705,12 @@ starts here.
   \begin{align*}
   \mid  \mathbb{E}p(Y_n) - \mathbb{E}p(Y(\tau)) \mid \leq C \Delta t^{\gamma}
   \end{align*}
-  Strong and weak convergence are not mutually exclusive {[}18{]}. That
+  Strong and weak convergence are not mutually exclusive {[}19{]}. That
   means that a method with a given strong order of convergence might have
   a higher weak order of convergence too. This is the case for the Euler
   scheme, with a strong order of convergence of \(1/2\) and a weak order
   of \(1\) (under some conditions). For a more detailed and rigorous
-  explanation of convergence we recommend consulting {[}17{]}.
+  explanation of convergence we recommend consulting {[}18{]}.
   
   It is worth noting that, altough schemes have a given convergency order,
   it is not unusual that they behave better than their order for some SDEs
@@ -721,7 +721,7 @@ starts here.
   We know that convergence is an important feature to a numerical method
   and studies have found not all time discrete possible approximations of
   an SDE converge in a useful sense to the solution process as the step
-  size adopted tends toward zero {[}5,6{]}. Moreover, particularly for
+  size adopted tends toward zero {[}6,7{]}. Moreover, particularly for
   SDEs, some of the more rapidly convergent methods available for ordinary
   differential equations (ODE) do not work, such as higher order
   Runge-Kutta methods.\footnote{The euler method is the simplest
@@ -784,7 +784,7 @@ starts here.
   
   We now proceed to apply the method to our model of interest. We retake
   the equations \eqref{eq:heston} and \eqref{eq:hesvar}. We begin showing how
-  to discretize the latter {[}17,18{]}:
+  to discretize the latter {[}18,19{]}:
   \begin{align}
   \label{eq:hesvareuler}
   V_{t+dt} = V_t+ \int_{t}^{t+dt}{\kappa (\theta - V_u) du} + \int_{t}^{t+dt}{\sigma \sqrt{V_u} dB_u}
@@ -824,7 +824,7 @@ starts here.
   \subsection{Stability}\label{stability}
   
   Most differential equations, deterministic or stochastic, cannot be
-  solved explicitly {[}25{]}. Hence, stability studies begin with
+  solved explicitly {[}26{]}. Hence, stability studies begin with
   computers and is associated with numerical methods and approximations.
   Convergent methods were resulting in bigger errors than what was
   expected that could not be only due to discretization error. Eventually,
@@ -852,19 +852,20 @@ starts here.
     \item [i] Rounding errors are considerably amplified by the algorithm. This situation is called numerical instability.
     \item [ii] Small perturbations of data generate large changes in the solution. This is termed an ill-conditioned (or sensitive) problem.
   \end{itemize}
-  Examples of these two classes of problem can be found in {[}14{]}.
+  Examples of these two classes of problem can be found in {[}15{]}.
   
   Stiff equations appear very often in mathematical problems and refer to
   differential equations for which a numerical methods might be unstable
-  for not small enough stepsizes {[}19{]}. A differential equation of the
+  for not small enough stepsizes {[}20{]}. A differential equation of the
   form \(y' = f(t,y)\), if its exact solution \(y(t)\) includes a term
   that decays exponentially to zero as \(t\) increases, but whose
   derivatives are greater in magnitude than the term itself. In other
   words, if it requires a significant depression of the stepsize to avoid
   stability lost. This is a loose definition but, since we are dealing
   with numerical methods a proper mathematical definition isn't required.
-  An example of the stiff behavior is the following differential equation
-  {[}27{]}:
+  Tipically, these equations are of the form \(e^{-ct}\), where \(c\) is a
+  large positive constant {[}5{]}. A practical example of the stiff
+  behavior is the following differential equation {[}28{]}:
   \begin{align*}
   y' = -100y, \,\,\,\,\,\, t > 0, \,\,\,\,\,\, y_0 = 1
   \end{align*}
@@ -884,12 +885,51 @@ starts here.
   more or less stiff. Thus, people compute the quotient of the largest and
   the smallest eigenvalues of a linear system. They call it the equations'
   \textit{stiffness ratio} and, usually the bigger the stiffness ratio,
-  the more likely is to be stiff {[}19{]}.
+  the more likely is to be stiff {[}20{]}.
+  
+  \subsubsection{Stability Domain}\label{stability-domain}
+  
+  Let's take the equation:
+  \begin{align}
+  y' = \lambda y,  \,\,\,\,\,\, t \geq 0, \,\,\,\,\,\,\,\,\,\,\,\,\,\, y_0 = 1
+  \end{align}
+  where \(\lambda \in \mathbb{C}\) or in other terms
+  \(\lambda = \lambda_r + i \lambda_i\) and whose solution is
+  \(y+t = e^{\lambda t}\). We can rewrite this equation as a system:
+  \begin{align}
+  \frac{d}{dt} \begin{bmatrix} y^1 \\ y^2 \end{bmatrix} = 
+  \begin{pmatrix} 
+  \lambda_r & - \lambda_i \\
+  \lambda_i & - \lambda_r 
+  \end{pmatrix}
+  \begin{bmatrix} y^1 \\ y^2 \end{bmatrix}
+  \end{align}
+  The \(\lim_{t \to \infty} y_t = 0\) if and only if
+  \(\mathbb{R} \lambda < 0\). The \emph{linear stability domain}
+  \(\mathcal{D}\) is defined as the set of all numbers
+  \(\Delta \lambda \in mathbb{C}\) such that
+  \(\lim_{n \to \infty y+n = 0}\), with \(\Delta > 0\) being the stepsize.
+  Or, as stated in Kloeden {[}26{]}, the suitable values of the stepsize
+  are expressed in terms of \emph{region of absolute stability},
+  consisting of the complex numbers \(\lambda \Delta\) for which an error
+  in \(y_0\) at \(t_0\) will not grow in subsequent iterations of the
+  method.
+  
+  Without entering all the details, for these we recommend {[}20,26,28{]},
+  the euler's stability domain is:
+  \begin{align*}
+  \mathcal{D}_{Euler} = z \in \mathbb{C} : \mid 1 + z \mid < 1
+  \end{align*}
+  which represents the interior of a complex disc of unit radius and
+  centre \(z = -1\) as can be seen in Figure \ref{stab2}, on the left. The
+  right side of the Figure \ref{stab2} shows the stability region called
+  A-stability.\footnote{Mathematically:
+    \(\mathcal{D} \subseteq \left\{ z \in \mathbb{C} : \mathbb{R} z < 0 \right\}\).}
+  If a method is A-stable, the stepsize \(\Delta\) is only constraint by
+  accuracy
   \begin{figure}
   
-  {\centering \includegraphics{thesis_files/figure-latex/stab2-1} 
-  
-  }
+  \includegraphics{thesis_files/figure-latex/stab2-1} \hfill{}
   
   \caption{Stability domains \label{stab2}}\label{fig:stab2}
   \end{figure}
@@ -902,7 +942,7 @@ starts here.
   Implementation}\label{the-heston-model-implementation}
   
   In section \ref{hes1} we presented Heston's SDE system in one of its
-  structures. Another common way {[}1,4,23{]} to write down the system is
+  structures. Another common way {[}1,4,24{]} to write down the system is
   using the property presented in subsection \ref{corr} as in equation
   \eqref{eq:heston2}.
   \begin{align}
@@ -915,7 +955,7 @@ starts here.
   \section{Characteristic Function}\label{characteristic-function}
   
   The Heston model characteristic function is firstly presented in the
-  1993 Steven Heston's paper {[}16{]} and is described below {[}8{]}:
+  1993 Steven Heston's paper {[}17{]} and is described below {[}9{]}:
   \begin{align}
   f(S_t, V_t, t) = e^{A(T-t)+B(T-t)S_t + C(T-t)V_t + i \phi S_t}
   \end{align}
@@ -932,7 +972,7 @@ starts here.
   \end{align*}
   This function is the driving force behind the following formula, that
   calculates the fair valur of a European call option at time \(t\), given
-  a strike price \(K\), that expires at time \(T\) {[}8{]}:
+  a strike price \(K\), that expires at time \(T\) {[}9{]}:
   \begin{align} 
   \label{eq:cfheston}
   \begin{split}
@@ -993,7 +1033,7 @@ starts here.
   \section{Kahl-Jackel}\label{kahl-jackel}
   
   Kahl-Jackel propose a discretization method they refer to as the ``IJK''
-  method {[}1,23{]} that coupled with the implicit Milstein scheme for the
+  method {[}1,24{]} that coupled with the implicit Milstein scheme for the
   variance lands the system of equations \eqref{eq:kj1} and \eqref{eq:kj2}. It
   is possible to verify that this discretization always results in
   positive paths for \(V\) if \(4 \kappa \theta > \sigma^2\).
@@ -1014,7 +1054,7 @@ starts here.
   convergence rate, \(\mathcal{O} \left( s^{-1/2} \right)\) than some of
   the more famous schemes, such as Euler's and Milstein's discretizations.
   They build their idea to generate an exact sample from the distribution
-  of the terminal stock price based on numerous papers {[}16{]}. The stock
+  of the terminal stock price based on numerous papers {[}17{]}. The stock
   price and variance are as follows:
   \begin{align} \label{eq:ea1}
   S_t = S_0 \, exp \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]
@@ -1035,7 +1075,7 @@ starts here.
   \(V_0\)}{Generate a sample of V\_t given V\_0}}\label{generate-a-sample-of-v_t-given-v_0}
   
   The distribution of \(V_t\) given \(V_0\) for \(0 < t\) is a noncentral
-  chi-squared distribution {[}2,7{]}:
+  chi-squared distribution {[}2,8{]}:
   
   \[V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \mathcal{X}_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)\]
   
@@ -1045,14 +1085,14 @@ starts here.
   its noncentrality parameter.
   
   Broadie and Kaya {[}4{]} sample generating Poisson and gamma
-  distributions as in Johnson et al. {[}22{]}. We used the built-in
-  function in R {[}29{]} which uses this exact method for sampling.
+  distributions as in Johnson et al. {[}23{]}. We used the built-in
+  function in R {[}30{]} which uses this exact method for sampling.
   
   \subsection{\texorpdfstring{Generate a sample of \(\int_0^t V_sds\)
   given \(V_t\),
   \(V_0\)}{Generate a sample of \textbackslash{}int\_0\^{}t V\_sds given V\_t, V\_0}}\label{generate-a-sample-of-int_0t-v_sds-given-v_t-v_0}
   
-  After generating \(V_t\), we follow the instructions in {[}4,22{]}. We
+  After generating \(V_t\), we follow the instructions in {[}4,23{]}. We
   use the characteristic function \eqref{eq:phi} to compute the probability
   density function \(F(x)\).
   \begin{align} \label{eq:phi}
@@ -1068,8 +1108,8 @@ starts here.
   first kind.\footnote{\textit{See Appendix  \\ref{bessel} for more information.}}
   
   The probability distribution function is obtained in {[}2,4{]} by
-  Fourier inversions using Feller {[}10{]}. We use the approach in
-  Gil-Pelaez {[}12{]}, equation \eqref{eq:fourier}. We define \(V(u,t)\) the
+  Fourier inversions using Feller {[}11{]}. We use the approach in
+  Gil-Pelaez {[}13{]}, equation \eqref{eq:fourier}. We define \(V(u,t)\) the
   random variable with the same distribution as the integral
   \(\int_{u}^{t}{V_s ds}\), conditional on \(V_u\) and \(V_t\):
   \begin{align} \label{eq:fourier}
@@ -1128,7 +1168,7 @@ starts here.
   between all the methods, setting out differences accross number of
   simulations and timesteps.
   
-  Heston {[}16{]} gives a closed form used for comparison as the `true'
+  Heston {[}17{]} gives a closed form used for comparison as the `true'
   option value and enabling the results to be exposed in terms of
   bias\footnote{Defined as
     \(\mathbb{E} \left[ \hat{\alpha} - \alpha \right]\)} and RMSE (root
@@ -1138,7 +1178,7 @@ starts here.
   The simulaton experiments were performed on a notebook with an Intel(R)
   Core(TM) i7-4500U CPU @ 1.80GHz processor and 8GB of RAM running on a
   linux x86\_64 based OS, Fedora 25. Codes were all written in R 3.4.1
-  ``Single Candle'' {[}29{]}.
+  ``Single Candle'' {[}30{]}.
   
   \clearpage
   \begin{tabular}{l|r}
@@ -1272,158 +1312,162 @@ starts here.
   and other affine jump diffusion processes, Operations Research. 54
   (2006) 217--231.
   
+  \hypertarget{ref-burden2001}{}
+  {[}5{]} R.L. Burden, J.D. Faires, Numerical analysis. 2001, Brooks/Cole,
+  USA. (2001).
+  
   \hypertarget{ref-clark1980maximum}{}
-  {[}5{]} J.M. Clark, R. Cameron, The maximum rate of convergence of
+  {[}6{]} J.M. Clark, R. Cameron, The maximum rate of convergence of
   discrete approximations for stochastic differential equations, in:
   Stochastic Differential Systems Filtering and Control, Springer, 1980:
   pp. 162--171.
   
   \hypertarget{ref-clements1973well}{}
-  {[}6{]} D. Clements, B. Anderson, Well-behaved itô equations with
+  {[}7{]} D. Clements, B. Anderson, Well-behaved itô equations with
   simulations that always misbehave, IEEE Transactions on Automatic
   Control. 18 (1973) 676--677.
   
   \hypertarget{ref-cox1985theory}{}
-  {[}7{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
+  {[}8{]} J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term
   structure of interest rates, Econometrica: Journal of the Econometric
   Society. (1985) 385--407.
   
   \hypertarget{ref-dunn2014estimating}{}
-  {[}8{]} R. Dunn, P. Hauser, T. Seibold, H. Gong, Estimating option
+  {[}9{]} R. Dunn, P. Hauser, T. Seibold, H. Gong, Estimating option
   prices with heston's stochastic volatility model, (2014).
   
   \hypertarget{ref-evans}{}
-  {[}9{]} L.C. Evans, An introduction to stochastic differential
+  {[}10{]} L.C. Evans, An introduction to stochastic differential
   equations, American Mathematical Soc., 2012.
   
   \hypertarget{ref-feller1971introduction}{}
-  {[}10{]} W. Feller, Introduction to the theory of probability and its
+  {[}11{]} W. Feller, Introduction to the theory of probability and its
   applications, vol. 2, II (2. Ed.) New York: Wiley. (1971).
   
   \hypertarget{ref-gard1988}{}
-  {[}11{]} T.C. Gard, Introduction to stochastic differential equations,
+  {[}12{]} T.C. Gard, Introduction to stochastic differential equations,
   M. Dekker, 1988.
   
   \hypertarget{ref-gil1951note}{}
-  {[}12{]} J. Gil-Pelaez, Note on the inversion theorem, Biometrika. 38
+  {[}13{]} J. Gil-Pelaez, Note on the inversion theorem, Biometrika. 38
   (1951) 481--482.
   
   \hypertarget{ref-nmof}{}
-  {[}13{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
+  {[}14{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
   optimization in finance, Academic Press, Waltham, MA, USA, 2011.
   
   \hypertarget{ref-gilli_numerical_2011}{}
-  {[}14{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
+  {[}15{]} M. Gilli, D. Maringer, E. Schumann, Numerical methods and
   optimization in finance, Academic Press, 2011.
   
   \hypertarget{ref-helgadottir2016option}{}
-  {[}15{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
+  {[}16{]} A.D. Helgadóttir, L. Ionescu, Option pricing within the heston
   model, (2016).
   
   \hypertarget{ref-heston1993closed}{}
-  {[}16{]} S.L. Heston, A closed-form solution for options with stochastic
+  {[}17{]} S.L. Heston, A closed-form solution for options with stochastic
   volatility with applications to bond and currency options, Review of
   Financial Studies. 6 (1993) 327--343.
   
   \hypertarget{ref-higham2001}{}
-  {[}17{]} D.J. Higham, An algorithmic introduction to numerical
+  {[}18{]} D.J. Higham, An algorithmic introduction to numerical
   simulation of stochastic differential equations, SIAM Review. 43 (2001)
   525--546.
   
   \hypertarget{ref-iacus2009simulation}{}
-  {[}18{]} S.M. Iacus, Simulation and inference for stochastic
+  {[}19{]} S.M. Iacus, Simulation and inference for stochastic
   differential equations: With r examples, Springer Science \& Business
   Media, 2009.
   
   \hypertarget{ref-iserles}{}
-  {[}19{]} A. Iserles, A first course in the numerical analysis of
+  {[}20{]} A. Iserles, A first course in the numerical analysis of
   differential equations, Cambridge university press, 2009.
   
   \hypertarget{ref-ito1962}{}
-  {[}20{]} K. Itô, The brownian motion and tensor fields on riemannian
+  {[}21{]} K. Itô, The brownian motion and tensor fields on riemannian
   manifold, Proc. Int. Congr. Math., Stockholm. 2 (1962).
   
   \hypertarget{ref-ito1951}{}
-  {[}21{]} K. Itō, On stochastic differential equations, American
+  {[}22{]} K. Itō, On stochastic differential equations, American
   Mathematical Soc., 1951.
   
   \hypertarget{ref-johnson1995}{}
-  {[}22{]} N.L. Johnson, S. Kotz, N. Balakrishnan, Continuous univariate
+  {[}23{]} N.L. Johnson, S. Kotz, N. Balakrishnan, Continuous univariate
   distributions, vol. 2 of wiley series in probability and mathematical
   statistics: Applied probability and statistics, (1995).
   
   \hypertarget{ref-kahl2006fast}{}
-  {[}23{]} C. Kahl, P. Jäckel, Fast strong approximation monte carlo
+  {[}24{]} C. Kahl, P. Jäckel, Fast strong approximation monte carlo
   schemes for stochastic volatility models, Quantitative Finance. 6 (2006)
   513--536.
   
   \hypertarget{ref-karatzas2012brownian}{}
-  {[}24{]} I. Karatzas, S. Shreve, Brownian motion and stochastic
+  {[}25{]} I. Karatzas, S. Shreve, Brownian motion and stochastic
   calculus, Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-kloeden1992}{}
-  {[}25{]} P.E. Kloeden, E. Platen, Numerical solution of stochastic
+  {[}26{]} P.E. Kloeden, E. Platen, Numerical solution of stochastic
   differential equations springer-verlag, 1992.
   
   \hypertarget{ref-krouglov2006intuitive}{}
-  {[}26{]} A. Krouglov, Intuitive proof of black-scholes formula based on
+  {[}27{]} A. Krouglov, Intuitive proof of black-scholes formula based on
   arbitrage and properties of lognormal distribution, arXiv Preprint
   Physics/0612022. (2006).
   
   \hypertarget{ref-lambers}{}
-  {[}27{]} J.V. Lambers, A.C. Sumner, Explorations in numerical analysis,
+  {[}28{]} J.V. Lambers, A.C. Sumner, Explorations in numerical analysis,
   University O California at Irvine. (2016).
   
   \hypertarget{ref-merton1973theory}{}
-  {[}28{]} R.C. Merton, Theory of rational option pricing, The Bell
+  {[}29{]} R.C. Merton, Theory of rational option pricing, The Bell
   Journal of Economics and Management Science. (1973) 141--183.
   
   \hypertarget{ref-rlang}{}
-  {[}29{]} R Core Team, R: A language and environment for statistical
+  {[}30{]} R Core Team, R: A language and environment for statistical
   computing, R Foundation for Statistical Computing, Vienna, Austria,
   2017.
   
   \hypertarget{ref-romano1997}{}
-  {[}30{]} M. Romano, N. Touzi, Contingent claims and market completeness
+  {[}31{]} M. Romano, N. Touzi, Contingent claims and market completeness
   in a stochastic volatility model, Mathematical Finance. 7 (1997)
   399--412.
   
   \hypertarget{ref-rosenthal}{}
-  {[}31{]} J.S. Rosenthal, A first look at rigorous probability theory,
+  {[}32{]} J.S. Rosenthal, A first look at rigorous probability theory,
   World Scientific Publishing Co Inc, 2006.
   
   \hypertarget{ref-salomao2011precificaccao}{}
-  {[}32{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
+  {[}33{]} M. de F. Salomão, Precificação de opções financeiras: Um estudo
   sobre os modelos de black scholes e garch, (2011).
   
   \hypertarget{ref-scott1996}{}
-  {[}33{]} L. Scott, Simulating a multi-factor term structure model over
+  {[}34{]} L. Scott, Simulating a multi-factor term structure model over
   relatively long discrete time periods, in: Proceedings of the Iafe First
   Annual Computational Finance Conference, 1996.
   
   \hypertarget{ref-steele2012stochastic}{}
-  {[}34{]} J.M. Steele, Stochastic calculus and financial applications,
+  {[}35{]} J.M. Steele, Stochastic calculus and financial applications,
   Springer Science \& Business Media, 2012.
   
   \hypertarget{ref-tong2012option}{}
-  {[}35{]} Z. Tong, Option pricing with long memory stochastic volatility
+  {[}36{]} Z. Tong, Option pricing with long memory stochastic volatility
   models, PhD thesis, Université d'Ottawa/University of Ottawa, 2012.
   
   \hypertarget{ref-tsay2005analysis}{}
-  {[}36{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
+  {[}37{]} R.S. Tsay, Analysis of financial time series, John Wiley \&
   Sons, 2005.
   
   \hypertarget{ref-ubbo}{}
-  {[}37{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
+  {[}38{]} U.F. Wiersema, Brownian motion calculus, John Wiley \& Sons,
   2008.
   
   \hypertarget{ref-willard1997}{}
-  {[}38{]} G.A. Willard, Calculating prices and sensitivities for
+  {[}39{]} G.A. Willard, Calculating prices and sensitivities for
   path-independent derivatives securities in multifactor models, The
   Journal of Derivatives. 5 (1997) 45--61.
   
   \hypertarget{ref-yang2013valuing}{}
-  {[}39{]} Y. Yang, Valuing a european option with the heston model,
+  {[}40{]} Y. Yang, Valuing a european option with the heston model,
   (2013).
 
 
