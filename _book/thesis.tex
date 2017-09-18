@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for the \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{September 18, 2017}
+\date{setembro 18, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -1494,7 +1494,7 @@ Black-Scholes, European call, R
   \centering
   \begin{tabular}{lrrrr}
     \hline 
-  Simulations & Euler & Kahl & EA\_BK & EA\_mod \\ 
+  Simulations & Euler & KJ & EA BK & EA DI \\ 
     \hline 
   1,000 & 13.28 & 13.05 & 14.71 & 14.74 \\ 
     10,000 & 14.16 & 13.86 & 14.45 & 14.38 \\ 
@@ -1509,7 +1509,7 @@ Black-Scholes, European call, R
   \centering
   \begin{tabular}{lrrrr}
     \hline 
-  simulations & euler & Kahl & EA\_BK & mod\_EA \\ 
+  Simulations & Euler & KJ & EA BK & EA DI \\ 
     \hline 
   1,000 & 0.01 & 0.01 & 58.56 & 0.02 \\ 
     10,000 & 0.05 & 0.05 & 572.83 & 0.04 \\ 
@@ -1520,6 +1520,14 @@ Black-Scholes, European call, R
   \caption{Computing time (sec.)} 
   \label{timming}
   \end{table}
+  \begin{figure}
+  
+  {\centering \includegraphics{thesis_files/figure-latex/modcomp1-1} 
+  
+  }
+  
+  \caption{Comparison between models \label{modcomp1}}\label{fig:modcomp1}
+  \end{figure}
   \chapter*{Conclusion}\label{conclusion}
   \addcontentsline{toc}{chapter}{Conclusion}
   
@@ -1529,8 +1537,8 @@ Black-Scholes, European call, R
   available in any programming language, or at least a reference to where
   to find it and we couldn't.
   
-  Firstly, we provided a succint, but rigorous, literature review. Since
-  this topic is very embracing, we provided an abundant amount of
+  Firstly, we provided a succint, but rigorous, theoretical framework.
+  Since this topic is very embracing, we provided an abundant amount of
   literature not only to the core topics approached, but also to the
   marginal ones.
   
@@ -1538,17 +1546,12 @@ Black-Scholes, European call, R
   implement in R, and how we were going to do it. Four different
   algorithms are presented: the Euler solution, the Kahl-Jackel algorithm,
   and two versions of what we (and literature) call the ``exact
-  algorithm''. The first trying to bem as similar as possible to the one
+  algorithm''. The first trying to be as similar as possible to the one
   presented in Broadie-Kaya's paper and the modified version bringing an
-  approximation to the algorithm's second step (the costlier step).
+  approximation to the algorithm's second step (the costlier step) as we
+  replace the integral with a drift interpolation.
   
-  \textbf{More info}
-  
-  And here's some other random info: the first paragraph after a chapter
-  title or section head \emph{shouldn't be} indented, because indents are
-  to tell the reader that you're starting a new paragraph. Since that's
-  obvious after a chapter or section title, proper typesetting doesn't add
-  an indent there.
+  RESULTS
   
   \appendix
   
