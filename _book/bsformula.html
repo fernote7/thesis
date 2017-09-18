@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="lt-review.html">
+<link rel="prev" href="conclusion.html">
+<link rel="next" href="bessel.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -119,51 +119,25 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="intro" class="section level1 unnumbered">
-<h1>Introduction</h1>
-<!-- \includegraphics[width=3cm, height=4cm]{reed} -->
-<!-- \includegraphics[scale=1.5]{reed} -->
-<p>The french mathematician Louis Bachelier was the trail-blazer that brought Brownian motion, previously restricted to the field of botanics where it was firstly observed, to the financial framework. He modeled the stock prices as a Brownian motion with drift. In 1973, Black and Scholes <span class="citation">[3]</span> designed a model based on the Geometric Brownian Motion to price options.</p>
-<p>Options are derivatives that give their bearers the rights to buy or sell a specific asset in a future date and with a predetermined price. They are, by design, affected by small variations in the underlying assets’ components, for example, the variance.</p>
-<p>The Black-Scholes model was once the standard way of option pricing, but was replaced by more modern models that are now prevalent. One of the main drawbacks of the Black-Scholes model is the strong assumption that the stock returns’ volatility is constant. Thus, the implied model’s volatility results in a flat surface when plotted against the option’s strike price and maturity. Real world implied volatility varies with the strike price and maturity, forming what is called the ‘volatility smile’.</p>
-<p>The Heston model is an extension of the Black-Scholes model that tackles this volatility issue replacing the constant volatility with a stochastic process. There are many models that approach volatility stochastically, but the Heston has valuable characteristics such as presenting an analytical solution to the option pricing and also having a computationally simple implementation when compared to more sophisticated competitors.</p>
-<p>We aim with this thesis to better understand the Heston model, its quirkinesses, associated numerical methods and their implementations, and eventually discuss its pros and cons. For such, we will not only discuss the challenges in a vaguely way, but show code snippets of our implementations in R programming language <span class="citation">[30]</span> to help clarify possible associated difficulties. Furthermore, since we didn’t find code for the exact algorithm implementation we intend to release a CRAN package with the codes as a didactic tool.</p>
-<p>This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston model implementations. Chapter 4 brings the results of the tests we perform and finally, chapter 5 presents the conclusion and work limitations.</p>
-<!-- [@gard1988] -->
-<!-- Another technique of particular relevance when the random -->
-<!-- effects can be considered as external to some reasonably well-understood -->
-<!-- deterministic system replaces input parameters in a deterministic model -->
-<!-- by random processes; the resulting random model characterizes the sample -->
-<!-- path structure of the solution process. An example which has had wide -->
-<!-- application in engineering consists of adding a noise term to the right side -->
-<!-- of a deterministic differential equation. The first such model was formu- -->
-<!-- lated by Langevin in 1908 to describe the velocity of a particle moving in -->
-<!-- a random force field. Random equations of this type can be interpreted -->
-<!-- as stochastic differential equations, following Ito's basic work in the early -->
-<!-- 1940s. Solutions of such equations represent Markov diffusion processes, the -->
-<!-- prototype of which is the Brownian motion (or Wiener) process. The the- -->
-<!-- ory of stochastic differential equations set down by Ito, and independently -->
-<!-- established in the Soviet Union by Gihman, together with the previous -->
-<!-- mathematical work of Wiener and Levy on Brownian motion has provided -->
-<!-- the basic tools making this more ambitious approach of constructing sample -->
-<!-- paths feasible. -->
+<div id="bsformula" class="section level1">
+<h1><span class="header-section-number">A</span> Black-Scholes formula</h1>
+<p>In this appendix, we start from the following Geometric Brownian Motion process:</p>
+<span class="math display">\[\begin{align*}
+dS_t &amp;= \mu S_t dt + \sigma S_t dB_t
+\end{align*}\]</span>
+<p>And we claim that the solution to this stochastic differential equation applying Itô’s calculus is the following formula:</p>
+<span class="math display">\[\begin{align*}
+S_T &amp;= S_0 \times \exp \left( \left( \mu  - \frac{\sigma^2}{2} \right) T  + \sigma B_T \right)
+\end{align*}\]</span>
 
-<!--
-This is for including Chapter 1.  Notice that it's also good practice to name your chunk.  This will help you debug potential issues as you knit.  The chunk above is called intro and the one below is called chapter1.  Feel free to change the name of the Rmd file as you wish, but don't forget to change it here from chap1.Rmd.
--->
-<!--
-The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
--->
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="lt-review.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conclusion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bessel.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

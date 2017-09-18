@@ -1,6 +1,3 @@
-if(!require(plotrix)) install.packages("plotrix")
-
-
 par(mfrow=c(1,2), xpd=FALSE, mar=c(2,4,2,2), oma=c(2,0,0,0))
 z=10
 plot(z, asp = 1, xlim = c(-2.5, 0), ylim = c(-1.5,1.5), axes = FALSE, ylab = "", xlab = "")

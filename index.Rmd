@@ -22,16 +22,16 @@ abstract: >
 # like below, use a command like that for the abstract above.  Note that a tab is 
 # needed on the line after the >.
 acknowledgements: >
-  Any one who considers arithmetical methods of producing random digits is, of course, in a state of sin. - John von Neumann \textbf{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ } 
+ \textbf{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ } 
   You get pseudo-order when you seek order; you only get a measure of order and control when you embrace randomness. — Nassim Nicholas Taleb
 # One person's data is another person's noise.  
 # One person's noise is another person's data.
 # So much of life, it seems to me, is determined by pure randomness.
 # Expose yourself to as much randomness as possible.
-
+#   Any one who considers arithmetical methods of producing random digits is, of course, in a state of sin. - John von Neumann
   
-dedication: >
-  You can have a dedication here if you wish. 
+# dedication: >
+#   You can have a dedication here if you wish. 
 
 # preface: >
 #   This is an example of a thesis setup to use the reed thesis document class
@@ -41,7 +41,8 @@ bibliography: bib/thesis.bib
 # csl: csl/abnt_numerico-1.0.csl
 # csl: csl/ABNT_UFPR_2011-Mendeley.csl
 # csl: csl/apa.csl
-csl: csl/elsevier-with-titles-alphabetical.csl
+# csl: csl/elsevier-with-titles-alphabetical.csl
+csl: csl/elsevier.csl
 # Download your specific csl file and refer to it in the line above.
 lot: true
 lof: true
@@ -55,6 +56,8 @@ header-includes:
 - \usepackage{cancel}
 - \graphicspath{ {figure/} }
 - \usepackage{enumitem}
+- \usepackage{caption}
+- \usepackage{graphicx}
 ---
 
 <!--
@@ -69,7 +72,9 @@ If you'd like to include a comment that won't be produced in your resulting file
 If you receive a duplicate label error after knitting, make sure to delete the index.Rmd file and then knit again.
 -->
 
-```{r include_packages, include = FALSE}
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
+
+```{r include_packages0, include = FALSE}
 # This chunk ensures that the thesisdown package is
 # installed and loaded. This thesisdown package includes
 # the template files for the thesis.
@@ -89,7 +94,7 @@ and 00-abstract.Rmd since they are handled in the YAML above differently for the
 on chapters.
 -->
 
-# Introduction {#intro}
+# Introduction {- #intro}
 
 <!-- \includegraphics[width=3cm, height=4cm]{reed} -->
 <!-- \includegraphics[scale=1.5]{reed} -->
@@ -101,10 +106,12 @@ Options are derivatives that give their bearers the rights to buy or sell a spec
 
 The Black-Scholes model was once the standard way of option pricing, but was replaced by more modern models that are now prevalent. One of the main drawbacks of the Black-Scholes model is the strong assumption that the stock returns' volatility is constant. Thus, the implied model's volatility results in a flat surface when plotted against the option's strike price and maturity. Real world implied volatility varies with the strike price and maturity, forming what is called the 'volatility smile'.
 
-The Heston model is an extension of the Black-Scholes model that tackles this volatility issue replacing the constant volatility with a stochastic process. There are many models that stochastically model volatility, but the Heston has valuable characteristics such as presenting an analytical solution to the option pricing and also having a computationally simple implementation when compared to more sophisticated competitors.
+The Heston model is an extension of the Black-Scholes model that tackles this volatility issue replacing the constant volatility with a stochastic process. There are many models that approach volatility stochastically, but the Heston has valuable characteristics such as presenting an analytical solution to the option pricing and also having a computationally simple implementation when compared to more sophisticated competitors.
+
+We aim with this thesis to better understand the Heston model, its quirkinesses, associated numerical methods and their implementations, and eventually discuss its pros and cons. For such, we will not only discuss the challenges in a vaguely way, but show code snippets of our implementations in R programming language [@rlang] to help clarify possible associated difficulties. Furthermore, since we didn't find code for the exact algorithm implementation we intend to release a CRAN package with the codes as a didactic tool.
 
 
-This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston  model known implementations and the implementation improvement we experiment. Chapter 4 brings the results of what was introduced in the previous chapter for different model calibrations.
+This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston  model implementations. Chapter 4 brings the results of the tests we perform and finally, chapter 5 presents the conclusion and work limitations.
 
 
 

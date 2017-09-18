@@ -16,7 +16,6 @@ if(!require(thesisdown)){
   devtools::install_github("ismayc/thesisdown")
   }
 library(thesisdown)
-flights <- read.csv("data/flights.csv")
 ```
 
 
@@ -29,8 +28,27 @@ Heston [-@heston1993closed] gives a closed form used for comparison as the 'true
 
 The simulaton experiments were performed on a notebook with an Intel(R) Core(TM) i7-4500U CPU @ 1.80GHz processor and 8GB of RAM running on a linux x86_64 based OS, Fedora 25. Codes were all written in R 3.4.1 "Single Candle" [@rlang].
 
-\clearpage
+First of all, we chose a parametrization based on what we saw in other works, made some adjustments, like reducing the options' time to maturity due to the slower nature of R language and compared initial the results with the true option price given by the function *callHestoncf* belonging to the package NMOF [@nmofpack]. Parameters can be seen in Table below.
+
+
+
 
 ```{r param1, echo=FALSE, message=FALSE, results='asis'}
 source("./r_code/parametrization.R")
+```
+
+
+\clearpage
+
+To perform our simulations, we fixed a seed and saved the results in Table \@ref(res). Since the value given by the *callHestoncf* function with the parameters in Table \@ref(param) is 14.176, the method that best approached the "true" value was the modified (drift interpolated) exact algorithm with $100,000$ simulations. Altough the Euler scheme gives the same result (14.16) as the modified EA with $10,000$ simulations, it moves away from the closed form value when we run $100,000$ simulations.
+
+
+```{r results1, echo=FALSE, message=FALSE, results='asis'}
+source("./r_code/results.R")
+```
+
+
+
+```{r timmings1, echo=FALSE, message=FALSE, results='asis'}
+source("./r_code/timmings.R")
 ```

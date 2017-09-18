@@ -1,14 +1,14 @@
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces A Wiener process trajectory path example \relax }}{5}{figure.caption.7}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces A GBM trajectory path example \relax }}{9}{figure.caption.11}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Volatility Smile \relax }}{11}{figure.caption.12}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Analytical x Euler solutions \relax }}{14}{figure.caption.15}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Euler's stability whith different timesteps \relax }}{17}{figure.caption.17}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Stability domains \relax }}{19}{figure.caption.19}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces A Wiener process trajectory path example \relax }}{5}{figure.caption.7}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces A GBM trajectory path example \relax }}{9}{figure.caption.12}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Volatility Smile \relax }}{11}{figure.caption.13}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Analytical x Euler solutions \relax }}{14}{figure.caption.16}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Graphical representation of Euler\IeC {\textquoteright }s formula\relax }}{15}{figure.caption.17}
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Euler's stability whith different timesteps \relax }}{17}{figure.caption.19}
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Stability domains \relax }}{19}{figure.caption.21}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Modified Bessel Functions of the First Kind \relax }}{33}{figure.caption.20}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Modified Bessel Functions of the First Kind \relax }}{35}{figure.caption.26}
+\addvspace {10\p@ }

@@ -37,7 +37,7 @@ M &= \sqrt{(\rho \sigma i \phi - \kappa)^2 + \sigma^2 (i \phi + \phi^2)} \\
 N &= \frac{\rho \sigma i \phi - \kappa - M}{\rho \sigma i \phi - \kappa + M} \\
 \end{align*}
 
-This function is the driving force behind the following formula, that calculates the fair valur of a European call option at time $t$, given a strike price $K$, that expires at time $T$ [@dunn2014estimating]:
+This function is the driving force behind the following formula, that calculates the fair value of a European call option at time $t$, given a strike price $K$, that expires at time $T$ [@dunn2014estimating]:
 
 \begin{align} 
 \label{eq:cfheston}
@@ -53,7 +53,7 @@ C = & \frac{1}{2} S(t) + \frac{e^{-r(T-t)}}{\pi}\int_{0}^{\infty}{\Re \left[ \fr
 ## Euler Scheme
 
 
-Given the fact that the underlying asset is temporal dependent upon the solution of the SDE's volatility, we simulate the volatility's path before the asset's. If the Black-Scholes model enabled using Ito's Lemma directly for solving $S_t$, this equation system requires numerical methods. We present here the Euler Scheme - Full Truncation algorithm (and compare to other similar schemes) [@broadie2006exact, dunn2014estimating, andersen] along with some insights on how it was implemented in R. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of lenght $\delta t$, we have the following discretization for the stock price:
+Given the fact that the underlying asset is temporal dependent upon the solution of the SDE's volatility, we simulate the volatility's path before the asset's. If the Black-Scholes model enabled using Ito's Lemma directly for solving $S_t$, this equation system requires numerical methods. We present here the Euler Scheme - Full Truncation algorithm (and compare to other similar schemes) [@broadie2006exact, dunn2014estimating, andersen] along with some insights on how it was implemented in R. The Euler discretization brings approximation paths to stock prices and variance processes. If we set $t_0 = 0 < t_1 < \dots < t_M = T$ as partitions of a time interval of $M$ equal segments of length $\delta t$, we have the following discretization for the stock price:
 
 
 \begin{align}
@@ -87,80 +87,43 @@ We chose to fix our discretization using the Full-Truncation (FT) scheme and thu
 
 
 \begin{align}
+\label{eq:st1}
 S_{t+1} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
-V_{t+1} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v
+\label{eq:vt1}
+V_{t+1} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v 
 \end{align}
 
 
+Our R implementation follows the euler's scheme with hardly any modifications. It draws two Gaussian random variables ($Z_v$ and $Z_t$) using the function *rnorm* to create $Z_s$ with correlation $\rho$ with $Z_v$.
 
-
-
-```{r calle, eval=FALSE, echo=FALSE}
-hestoneuler <- function(S, X, r, v, theta, rho, k, sigma, t = 0, 
-                        dt = NULL, tau = 1, N, sensibility = 15){
-
-    set.seed(1)
-
-    if(is.null(dt)){ dt <- (tau-t)/1000}
-
-    ST <- NULL
-    aux <- NULL
-    sqrt_dt <- sqrt(dt)
-
-    for(i in seq(t,tau,dt)){
-        # browser()
-        Zv <- rnorm(N)
-        Zt <- rnorm(N)
-        Zs <- rho * Zv + (sqrt(1 - (rho^2)) * Zt)
-
-        # v[v <= 0] = 0
-
-        aux <- v
-        aux[v < 0] <- 0
-        sqrt_aux <- sqrt(aux)
-        S <- S * (1 + r * dt + sqrt_aux * Zs * sqrt_dt)
-        S[S <= 0] = 0
-
-        v <- v + k * dt * (theta - aux) + 
-          sigma * sqrt_aux * Zv * sqrt_dt
-
-
-        ST <- rbind(ST,S)
-    }
-
-    rm(aux, v, Zv, Zt, Zs, S)
-
-    ST <- as.matrix(ST, ncol=N)
-    # matplot(graf, type = 'l')
-    # abline(h=X, lwd=2, col='red')
-    media <- c()
-
-    for (j in (X-sensibility):(X+sensibility)){
-
-        Result <- ST[nrow(ST),] - j
-        Result[Result <= 0] <- 0
-        media <-c(media, mean(Result))
-
-    }
-
-    media <- media * exp(-r*tau)
-    # plot(media, ylab = "Call price", xlab = "Strike price")
-
-
-    Result <- ST[nrow(ST),] - X
-    Result[Result <= 0] = 0
-    call = mean(exp(-r*tau)*Result)
-
-    lista = list('call' = call, 'Result' = Result, 
-                 'Spot' = ST, 'sensib' = media)
-    return(lista)
-}
+```{r rnorm, eval=FALSE}
+  Zv <- stats::rnorm(N)
+  Zt <- stats::rnorm(N)
+  Zs <- rho * Zv + (sqrt(1 - (rho^2)) * Zt)
 ```
+
+And use it to compute $S$ and $V$ as in the code snippet bellow. The two modifications we apply are previously computing the square roots of the stepsize *dt* and the *aux* variable as to improve speed. The *aux* variable is an help variable created to impose positivity to $V$ as we are operating the full-truncation euler scheme.
+
+```{r s_v, eval=FALSE, tidy=FALSE}
+  S <- S * (1 + r * dt + sqrt_aux * Zs * sqrt_dt)
+  v <- v + k * dt * (theta - aux) + 
+                     sigma * sqrt_aux * Zv * sqrt_dt
+```
+
+We could have used the *pmax* function in R, but this function is slow, therefore we opted to create the *aux* variable and impose positive values using the following R syntax:
+
+```{r aux, eval=FALSE}
+  aux <- v
+  aux[v < 0] <- 0
+```
+
+Depending on the reader's R fluency, other parts of the scheme might present a challenge, and that is why a version of the function is fully presented in appendix \@ref(eulerapp).
+
 
 
 ## Kahl-Jackel
 
-Kahl-Jackel propose a discretization method they refer to as the ``IJK'' method  [@andersen; @kahl2006fast] that coupled with the implicit Milstein scheme for the variance lands the system of equations \@ref(eq:kj1) and \@ref(eq:kj2). It is possible to verify that this discretization always results in positive paths for $V$ if $4 \kappa \theta > \sigma^2$. Unfortunately, this inequality is rarely satisfied when we plug real market data to calibrate the parameters.
+Kahl-Jackel propose a discretization method they refer to as the ``IJK'' method  [@andersen; @kahl2006fast] that coupled with the implicit Milstein scheme for the variance lands the system of equations \@ref(eq:kj1) and \@ref(eq:kj2). It is possible to verify that this discretization always results in positive paths for $V$ if $4 \kappa \theta > \sigma^2$. Unfortunately, this inequality is rarely satisfied when we plug real market data to calibrate the parameters. This means we must have a defined strategy for when the inequality doesn't hold. We use the scheme proposed in Andersen [-@andersen], where a truncation similar to the Euler's is applied. Whenever our volatility $V_t$ drops below zero we use \@ref(eq:vt1), and implement $\hat{V}(t+\Delta)^{+}$ and $\hat{V}(t)^{+}$ instead of $\hat{V}(t+\Delta)$ and $\hat{V}(t)$ of equation \@ref(eq:kj1). The code guidance to this method can be found in appendix \@ref(kjimp).
 
 \begin{small}
 \begin{align}
@@ -172,89 +135,7 @@ Kahl-Jackel propose a discretization method they refer to as the ``IJK'' method 
 \end{align}
 \end{small}
 
-```{r callkj, eval=FALSE, echo=FALSE}
-Hestoncallkj <- function(S, X, r, q, v, theta, rho, k, sigma, 
-                         t = 0, dt = NULL, tau = 1, N, 
-                         sensibility = 15){
 
-    if(is.null(dt)){ dt <- (T-t)/1000}
-
-    v <- rep(v,N)
-    theta<- rep(theta,N)
-    graf <- NULL
-    S <- log(S)
-
-
-    for(i in seq(t,tau,dt)){
-     # browser()
-    Zv <- rnorm(N)
-    Zt <- rnorm(N)
-    Zs <- rho * Zv + sqrt(1 - rho^2) * Zt
-
-
-    vt <- (v + k * theta * dt + sigma * sqrt(v) * Zv * sqrt(dt) +
-              (1/4) * sigma^2 * dt * ((Zv)^2 - 1))/(1 + k * dt)
-
-    # print(vt)
-
-    # if(!length(vt[vt <= 0]) == 0 & length(vt[vt <= 0]) >= 1){
-    #     # browser()
-    vt[vt <= 0] <- v[vt <= 0] + k * dt * (theta[vt <= 0] - 
-                    pmax(v[vt <= 0],0)) + sigma * 
-                    sqrt(pmax(v[vt <= 0],0)) * Zv[vt <= 0] * sqrt(dt)
-    v <- vt
-    v[v<=0] <- 0
-
-    # }
-
-    S <- S + (r - (v+vt)/4) * dt + rho * sqrt(pmax(v,0)) * 
-          Zv * sqrt(dt) +
-          (1/2) * (sqrt(pmax(v,0)) + sqrt(pmax(vt,0))) * 
-          (Zs + rho * Zv) * 
-          sqrt(dt) +
-          ((rho * sigma * dt)/2) * ((Zv)^2 - 1)
-
-    S[S <= 0] = 0
-    graf <- rbind(graf,S)
-
-
-    }
-
-     # browser()
-
-    graf <- as.matrix(graf, ncol=N)
-    ST <- graf
-    # matplot(graf, type = 'l')
-    # abline(h=log(X), lwd=2, col='red')
-
-    media <- c()
-
-    # browser()
-
-    for (j in (X-sensibility):(X+sensibility)){
-
-        Result <- exp(ST[nrow(ST),]) - j
-        Result[Result <= 0] <- 0
-        media <-c(media, mean(Result))
-
-    }
-
-    media <- media * exp(-r*tau)
-
-
-    # browser()
-
-
-    Result <- exp(ST[nrow(ST),]) - X
-    Result[Result <= 0] = 0
-    call = mean(exp(-r*tau)*Result)
-
-    lista = list('call' = call, 'Result' = Result, 
-                 'Spot' = graf, 'sensib' = media)
-    return(lista)
-
-}
-```
 
 
 
@@ -286,13 +167,24 @@ The algorithm used to generate the model consists in four steps as follows:
 
 
 ### Generate a sample of $V_t$ given $V_0$
-The distribution of $V_t$ given $V_0$ for $0 < t$ is a noncentral chi-squared distribution [@cox1985theory; @baldeaux]:
+The distribution of $V_t$ given $V_0$ for $0 < t$ is a non-central chi-squared distribution [@cox1985theory; @baldeaux]:
 
 $$V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \mathcal{X}_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)$$
 
-where $\delta = \frac{4 \theta \kappa}{\sigma^2}$ and $\mathcal{X}_{\delta}^{2}(\lambda)$ denotes a noncentral chi-squared random variable with $\delta$ degrees of freedom and $\lambda$ as its noncentrality parameter.
+where $\delta = \frac{4 \theta \kappa}{\sigma^2}$ and $\mathcal{X}_{\delta}^{2}(\lambda)$ denotes a non-central chi-squared random variable with $\delta$ degrees of freedom and $\lambda$ as its non-centrality parameter.
 
-Broadie and Kaya [-@broadie2006exact] sample generating Poisson and gamma distributions as in Johnson et al. [-@johnson1995]. We used the built-in function in R [@rlang] which uses this exact method for sampling.
+Broadie and Kaya [-@broadie2006exact] sample generating Poisson and gamma distributions as in Johnson et al. [-@johnson1995]. We used the built-in function in R *rchisq*, which uses this exact method for sampling, see chunk below.
+
+```{r vtgivenv0, eval=FALSE}
+  d1 <- (4 * k * theta)/(sigma)^2
+  c0 <- (sigma^2 * (1 - exp(-k*tau)))/(4*k)
+  dt <- (tau-t)
+
+  # sampling V
+  lambda <- (4*k*exp(-k*dt)*v)/(sigma^2 * (1-exp(-k*dt)))
+  vt <- c0 * stats::rchisq(n = 1, df = d1, ncp = lambda)
+```
+  
 
 
 ### Generate a sample of $\int_0^t V_sds$ given $V_t$, $V_0$
@@ -308,7 +200,31 @@ After generating $V_t$, we follow the instructions in [-@broadie2006exact; -@joh
 \end{split}
 \end{align}
 
-where $\gamma(a) = \sqrt{\kappa^2 - 2 \sigma^2 i a}$, $\delta$ was previously defined and $I_v(x)$ is the modified Bessel function of the first kind ^[\textit{See Appendix  \@ref(bessel) for more information.}].
+where $\gamma(a) = \sqrt{\kappa^2 - 2 \sigma^2 i a}$, $\delta$ was previously defined and $I_v(x)$ is the modified Bessel function of the first kind ^[\textit{See Appendix  \@ref(bessel) for more information.}]. There are no mysteries implementing the characteristic function as you can observe in the chunk below. Although R has a built-in Bessel function, it only accounts for real numbers. Thus, we were obliged to use the Bessel package [@besselpkg] that accounts for complex numbers. Once again, we pre compute some of the operations that are repeated through the function as to reduce computational time. This is specially important for this method since it involves operations of high complexity.
+
+\footnotesize
+```{r phi, eval=FALSE}
+  phi_heston <- function(a, v0, v_t, d){
+  
+  gamma_a <- sqrt(k^2 - 2 * sigma^2 * 1i*a)
+  gammadt <- gamma_a * (tau-t)
+  sqrtv0vt <- sqrt(v0*v_t)
+  delta <- -k * (tau-t)
+  
+  part1 <- (gamma_a * exp(-(gamma_a - k)/2 * (tau-t)) * (1 - exp(delta)))/
+           (k * (1- exp(- gammadt)))
+  part2 <- exp((v0+v_t)/(sigma^2) * ( (k * (1 + exp(delta)))/(1-exp(delta)) -
+           (gamma_a * (1 + exp(- gammadt)))/(1-exp(- gammadt))))
+  part3 <- Bessel::BesselI(z = ((4 * gamma_a * sqrtv0vt)/(sigma^2) *
+                           exp(- gammadt/2)/
+                           (1 - exp(- gammadt))), nu = 0.5*d - 1) /
+           Bessel::BesselI(z = ((4 * k * sqrtv0vt)/(sigma^2) * 
+                           (exp(delta/2))/ (1-exp(delta))), nu = 0.5*d - 1)
+  return (part1 * part2 * part3)
+}
+```
+\normalsize
+
 
 The probability distribution function is obtained in [@broadie2006exact; @baldeaux] by Fourier inversions using Feller [-@feller1971introduction]. We use the approach in Gil-Pelaez [-@gil1951note], equation \@ref(eq:fourier). We define $V(u,t)$ the random variable with the same distribution as the integral $\int_{u}^{t}{V_s ds}$, conditional on $V_u$ and $V_t$:
 
@@ -316,23 +232,72 @@ The probability distribution function is obtained in [@broadie2006exact; @baldea
 F(x) \equiv Pr \left\{ V(u,t) \leq x \right\} = F_{X}(x)={\frac {1}{2}}-{\frac {1}{\pi }}\int _{0}^{\infty }{\frac {\operatorname {Im} [e^{-iux} phi (u)]}{u}}\,du
 \end{align}
 
-$\operatorname {Im}$ denotes the imaginary part of $e^{-iux} phi (u)$. Equation \@ref(eq:fourier) is computed numerically and we then sample it by inversion. 
+$\operatorname {Im}$ denotes the imaginary part of $e^{-iux} phi (u)$. Equation \@ref(eq:fourier) is computed numerically and we then sample it by inversion. The integral function of the volatility is composed by five other functions inside of it. Since it acts only as a wrapper to theses functions we are going to omit it below, but the complete code can be found in appendix \@ref(eabk).The first represents our integrand. The following function takes our integrand and actually performs the integration, returning the value. For speed purposes, we limited the integral upper bound to 1000 and increased the tolerance to $10^{-3}$. After these calculations we have now the function's cumulative function.
 
-Furthermore, we also introduce a simpler version for this step, that computes this integral approximation, using the solution $\int_{u}^{t}{V_s ds} = \frac{1}{2} \left( V_u + V_t  \right)$
+\footnotesize
+```{r vintegral1, eval=FALSE}    
+  integrand <- function(x, phi = cf){
+    
+    f2 <- function(u){
+      Im(phi(u) * exp(-1i * u * x)) /u
+    }
+    return(f2)
+  }
+  
+  ## integrate to "cdf"
+  F_x <- function (x) {
+    y <- 0.5 - 1/pi * stats::integrate(integrand(x),  lower= 0, upper= 1000,
+                                rel.tol = 0.001, stop.on.error = FALSE)$value
+    return(y)
+  }
+  
+  
+  ## endsign
+  endsign <- function(f, sign = 1) {
+    b <- sign
+    while (sign * f(b) < 0) b <- 10 * b
+    return(b)
+  }
+```
 
+After computing the integral, we need to set the inversion function to place. To do that we generate the *endsign* function above. It is a simple function that is used to guarantee that when we call *uniroot*, the function to find roots built-in in R, our bounds have different signs. We set our lower and upper bounds as $- \infty$ and $\infty$, respectively and define and auxiliary function *subcdf* that will perform the inversion subtracting an uniform from it.
+
+```{r inversion, eval=FALSE}      
+  ## inversion
+  low_bound = -Inf
+  upp_bound = Inf
+  invcdf <- function(u) {
+    subcdf <- function(t) F_x(t) - u
+    if (low_bound == -Inf)
+      low_bound <- endsign(subcdf, -1)
+    if (upp_bound == Inf)
+      upp_bound <- endsign(subcdf)
+    return(uniroot(subcdf, lower=low_bound, upper=upp_bound, 
+                   tol = 0.001220703)$root)
+  }
+  U <- stats::runif(n)
+  sapply(U, invcdf)
+
+```
+\normalsize
+
+
+Furthermore, we also introduce (not in the same simulations, obviously) a simpler version for this step, that computes this integral approximation, using the solution $\int_{u}^{t}{V_s ds} = \frac{1}{2} \left( V_u + V_t  \right)$. This solution is called *drift interpolation* [@van2010efficient] and its implementation is out of the box but we provide it anyway:
+
+```{r vintegral2, eval=FALSE}      
+    int_v <- dt * ((1/2) * v + (1/2) * vt)
+```
 
 
 ### Compute $\int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
 
-From equation \@ref(eq:ea2) we are now able to compute this integral.
-
+From equation \@ref(eq:ea2) we are now able to compute this integral:
 
 \begin{align} \label{eq:ea3}
 \int_{0}^{t}{\sqrt{V_s dB_s}} = \frac{V_t - V_0 - \kappa \theta t + \kappa \int_{0}^{t}{V_s ds}}{\sigma} 
 \end{align}
 
-
-The last step of the algorithm consists of computing the conditional distribution of $log S_t$ based on the fact that the process for $V_t$ is independent from $dB_t$, and the distribution of $\int_0^t{\sqrt{V_s} dB_s}$ is normal with mean $0$ and variance $\int_0^t{V_s ds}$, given $V_t$.
+The last step of the algorithm consists of computing the conditional distribution of $log S_t$ based on the fact that the process for $V_t$ is independent from $dB_t$, and the distribution of $\displaystyle \int_0^t{\sqrt{V_s} dB_s}$ is normal with mean $0$ and variance $\displaystyle \int_0^t{V_s ds}$, given $V_t$.
 
 
 $$m(u,t) = \log S_0 + \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]$$
@@ -346,71 +311,14 @@ We generate the $S_t$ sample using a standard normal random variable $Z$ and set
 
 $$S_t = e^{m(0,t) + \sigma (0,t) Z}$$
 
+In R code, we have the following:
 
-### Limitations
-
-The biggest limitation this scheme presents is that the second step is computationally costly. It demands the inversion of the distribution function of  $\left( \displaystyle \int_0^t V_sds \mid V_t, \, V_0 \right)$ numerically. We must perform a root search of $F(x_i) - U = 0$ testing for different $x_i$. Notwithstanding, we do not know the closed form of $F(x_i)$ distribution and have to perform our root finding strategy inverting the characteristic function, with two modified Bessel functions inside, in a structure that is rerun until a given tolerance $\epsilon$ is reached. Mathematically: $F(x_i) - U = \epsilon$. 
-
-
-
-```{r callea, eval=FALSE, echo=FALSE}
-hestonea <- function(S, X, r, v, theta, rho, k, sigma, t = 0, 
-                     dt = NULL, tau = 1, N, sensibility = 15){
-
-    if(is.null(dt)){ dt <- (tau-t)/1000}
-
-    ST <- NULL
-
-    d <- (4 * k * theta)/(sigma)^2
-    c0 <- (sigma^2 * (1 - exp(-k*dt)))/(4*k)
-
-    # browser()
-
-    for(i in seq(t,tau,dt)){
-
-        # sampling V
-        lambda <- (4*k*exp(-k*dt)*v)/(sigma^2 * (1-exp(-k*dt)))
-        vt <- c0 * rchisq(n = N, df = d, ncp = lambda)
-
-        # Sampling int{V}
-        int_v <- dt * ((1/2) * v + (1/2) * vt)
-
-        # Sampling int{v}dw
-        int_vdw <- (1/sigma) * (vt - v - k * theta * dt + k  * int_v)
-
-        # Sampling S
-        m <- log(S) + (r * dt - (1/2) * int_v + rho * int_vdw)
-        std <- sqrt((1 - rho^2)) * sqrt(int_v)
-        S <- exp(m + std * rnorm(N))
-        v <- vt
-        ST <- rbind(ST,S)
-    }
-
-    ST <- as.matrix(ST, ncol=N)
-    # matplot(graf, type = 'l')
-    # abline(h=X, lwd=2, col='red')
-    media <- c()
-
-    for (j in (X-sensibility):(X+sensibility)){
-
-        Result <- ST[nrow(ST),] - j
-        Result[Result <= 0] <- 0
-        media <-c(media, mean(Result))
-
-    }
-
-    media <- media * exp(-r*tau)
-    # plot(media, ylab = "Call price", xlab = "Strike price")
-
-
-    Result <- ST[nrow(ST),] - X
-    Result[Result <= 0] = 0
-    call = mean(exp(-r*tau)*Result)
-
-    lista = list('call' = call, 'Result' = Result, 
-                 'Spot' = ST, 'sensib' = media)
-    return(lista)
-}
+```{r intvdw, eval=FALSE}    
+  int_vdw <- (1/sigma) * (vt - v - k * theta * dt + k  * int_v)
+  
+  m <- log(S) + (r * (tau - t) - (1/2) * int_v + rho * int_vdw)
+  std <- sqrt((1 - rho^2)) * sqrt(int_v)
+  S <- exp(m + std * stats::rnorm(1))
 ```
 
 
@@ -418,14 +326,26 @@ hestonea <- function(S, X, r, v, theta, rho, k, sigma, t = 0,
 
 
 
+### Limitations
+
+The biggest limitation this scheme presents is that the second step is computationally costly. It demands the inversion of the distribution function of  $\left( \displaystyle \int_0^t V_sds \mid V_t, \, V_0 \right)$ numerically. We must perform a root search of $F(x_i) - U = 0$ testing for different $x_i$. Notwithstanding, we do not know the cummulative form of $F(x_i)$ distribution and have to perform our root finding strategy starting from the characteristic function, which contains two modified Bessel functions inside, in a structure that is rerun until a given tolerance $\epsilon$ is reached. Mathematically: $F(x_i) - U = \epsilon$. 
 
 
 
-<!-- Required to number equations in HTML files -->
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
-});
-</script>
+
+
+
+
+
+
+
+
+
+<!-- <!-- Required to number equations in HTML files --> -->
+<!-- <script type="text/x-mathjax-config"> -->
+<!-- MathJax.Hub.Config({ -->
+<!--   TeX: { equationNumbers: { autoNumber: "AMS" } } -->
+<!-- }); -->
+<!-- </script> -->
 
 

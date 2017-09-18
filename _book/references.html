@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
   <meta name="description" content="">
-  <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="" />
   <meta property="og:type" content="book" />
@@ -25,13 +25,14 @@
 <meta name="author" content="Fernando O. Teixeira">
 
 
+<meta name="date" content="2017-09-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="B-the-second-appendix-for-fun.html">
+<link rel="prev" href="bessel.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,43 +49,6 @@
 
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 </head>
 
@@ -98,32 +62,46 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"></a></li>
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="2-lt-review.html"><a href="2-lt-review.html"><i class="fa fa-check"></i><b>2</b> Literature Review</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-lt-review.html"><a href="2-lt-review.html#stochastic-calculus"><i class="fa fa-check"></i><b>2.1</b> Stochastic Calculus</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-lt-review.html"><a href="2-lt-review.html#brownian-motion"><i class="fa fa-check"></i><b>2.1.1</b> Brownian Motion</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-lt-review.html"><a href="2-lt-review.html#todo"><i class="fa fa-check"></i><b>2.1.2</b> TODO</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-lt-review.html"><a href="2-lt-review.html#itos-lemma"><i class="fa fa-check"></i><b>2.1.3</b> Itô’s Lemma</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="lt-review.html"><a href="lt-review.html"><i class="fa fa-check"></i><b>1</b> Literature Review</a><ul>
+<li class="chapter" data-level="1.1" data-path="lt-review.html"><a href="lt-review.html#stochastic-calculus"><i class="fa fa-check"></i><b>1.1</b> Stochastic Calculus</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="lt-review.html"><a href="lt-review.html#the-stochastic-differential-equation---sde"><i class="fa fa-check"></i><b>1.1.1</b> The Stochastic differential equation - SDE</a></li>
+<li class="chapter" data-level="1.1.2" data-path="lt-review.html"><a href="lt-review.html#brownian-motion"><i class="fa fa-check"></i><b>1.1.2</b> Brownian Motion</a></li>
+<li class="chapter" data-level="1.1.3" data-path="lt-review.html"><a href="lt-review.html#itos-integral"><i class="fa fa-check"></i><b>1.1.3</b> Itô’s Integral</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-lt-review.html"><a href="2-lt-review.html#black-scholes-model"><i class="fa fa-check"></i><b>2.2</b> Black-Scholes Model</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="2-lt-review.html"><a href="2-lt-review.html#the-model"><i class="fa fa-check"></i><b>2.2.1</b> The model</a></li>
+<li class="chapter" data-level="1.2" data-path="lt-review.html"><a href="lt-review.html#black-scholes-model"><i class="fa fa-check"></i><b>1.2</b> Black-Scholes Model</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="lt-review.html"><a href="lt-review.html#basics"><i class="fa fa-check"></i><b>1.2.1</b> Basics</a></li>
+<li class="chapter" data-level="1.2.2" data-path="lt-review.html"><a href="lt-review.html#the-model"><i class="fa fa-check"></i><b>1.2.2</b> The model</a></li>
+<li class="chapter" data-level="1.2.3" data-path="lt-review.html"><a href="lt-review.html#limitations"><i class="fa fa-check"></i><b>1.2.3</b> Limitations</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="2-lt-review.html"><a href="2-lt-review.html#stochastic-volatility-models"><i class="fa fa-check"></i><b>2.3</b> Stochastic Volatility models</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="2-lt-review.html"><a href="2-lt-review.html#heston-model"><i class="fa fa-check"></i><b>2.3.1</b> Heston Model</a></li>
-<li class="chapter" data-level="2.3.2" data-path="2-lt-review.html"><a href="2-lt-review.html#other-models"><i class="fa fa-check"></i><b>2.3.2</b> Other models</a></li>
+<li class="chapter" data-level="1.3" data-path="lt-review.html"><a href="lt-review.html#stochastic-volatility-models"><i class="fa fa-check"></i><b>1.3</b> Stochastic Volatility models</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="lt-review.html"><a href="lt-review.html#cir"><i class="fa fa-check"></i><b>1.3.1</b> Cox-Ingersoll-Ross model</a></li>
+<li class="chapter" data-level="1.3.2" data-path="lt-review.html"><a href="lt-review.html#hes1"><i class="fa fa-check"></i><b>1.3.2</b> Heston Model</a></li>
+<li class="chapter" data-level="1.3.3" data-path="lt-review.html"><a href="lt-review.html#other-models"><i class="fa fa-check"></i><b>1.3.3</b> Other Models</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="lt-review.html"><a href="lt-review.html#numerical-methods"><i class="fa fa-check"></i><b>1.4</b> Numerical Methods</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="lt-review.html"><a href="lt-review.html#convergence"><i class="fa fa-check"></i><b>1.4.1</b> Convergence</a></li>
+<li class="chapter" data-level="1.4.2" data-path="lt-review.html"><a href="lt-review.html#discretization"><i class="fa fa-check"></i><b>1.4.2</b> Discretization</a></li>
+<li class="chapter" data-level="1.4.3" data-path="lt-review.html"><a href="lt-review.html#stability"><i class="fa fa-check"></i><b>1.4.3</b> Stability</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-models.html"><a href="3-models.html"><i class="fa fa-check"></i><b>3</b> Models</a></li>
-<li class="chapter" data-level="4" data-path="4-results.html"><a href="4-results.html"><i class="fa fa-check"></i><b>4</b> Results</a></li>
-<li class="chapter" data-level="5" data-path="5-conclusion.html"><a href="5-conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion</a></li>
+<li class="chapter" data-level="2" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html"><i class="fa fa-check"></i><b>2</b> The Heston Model Implementation</a><ul>
+<li class="chapter" data-level="2.1" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html#characteristic-function"><i class="fa fa-check"></i><b>2.1</b> Characteristic Function</a></li>
+<li class="chapter" data-level="2.2" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html#euler-scheme"><i class="fa fa-check"></i><b>2.2</b> Euler Scheme</a></li>
+<li class="chapter" data-level="2.3" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html#kahl-jackel"><i class="fa fa-check"></i><b>2.3</b> Kahl-Jackel</a></li>
+<li class="chapter" data-level="2.4" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html#exact-algorithm"><i class="fa fa-check"></i><b>2.4</b> Exact Algorithm</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html#generate-a-sample-of-v_t-given-v_0"><i class="fa fa-check"></i><b>2.4.1</b> Generate a sample of <span class="math inline">\(V_t\)</span> given <span class="math inline">\(V_0\)</span></a></li>
+<li class="chapter" data-level="2.4.2" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html#generate-a-sample-of-int_0t-v_sds-given-v_t-v_0"><i class="fa fa-check"></i><b>2.4.2</b> Generate a sample of <span class="math inline">\(\int_0^t V_sds\)</span> given <span class="math inline">\(V_t\)</span>, <span class="math inline">\(V_0\)</span></a></li>
+<li class="chapter" data-level="2.4.3" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html#compute-int_0t-sqrtv_sdb_s-given-v_t-v_0-and-int_0t-v_sds"><i class="fa fa-check"></i><b>2.4.3</b> Compute <span class="math inline">\(\int_0^t \sqrt{V_s}dB_s\)</span> given <span class="math inline">\(V_t\)</span>, <span class="math inline">\(V_0\)</span> and <span class="math inline">\(\int_0^t V_sds\)</span></a></li>
+<li class="chapter" data-level="2.4.4" data-path="the-heston-model-implementation.html"><a href="the-heston-model-implementation.html#limitations-1"><i class="fa fa-check"></i><b>2.4.4</b> Limitations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a></li>
+<li class="chapter" data-level="4" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>4</b> Conclusion</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="A-the-first-appendix.html"><a href="A-the-first-appendix.html"><i class="fa fa-check"></i><b>A</b> The First Appendix</a></li>
-<li class="chapter" data-level="B" data-path="B-the-second-appendix-for-fun.html"><a href="B-the-second-appendix-for-fun.html"><i class="fa fa-check"></i><b>B</b> The Second Appendix, for Fun</a></li>
+<li class="chapter" data-level="A" data-path="bsformula.html"><a href="bsformula.html"><i class="fa fa-check"></i><b>A</b> Black-Scholes formula</a></li>
+<li class="chapter" data-level="B" data-path="bessel.html"><a href="bessel.html"><i class="fa fa-check"></i><b>B</b> Bessel Function</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
 
       </nav>
@@ -146,7 +124,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <!--
 To remove the indentation of the first entry.
 -->
-<p></p>
+
 <!--
 To create a hanging indent and spacing between entries.  These three lines may need to be removed for styles that don't require the hanging indent.
 -->
@@ -157,49 +135,152 @@ This is just for testing with more citations for the bibliography at the end.  A
 
 <div id="refs" class="references">
 <div>
-<p>[1] U.F. Wiersema, Brownian motion calculus, John Wiley &amp; Sons, 2008.</p>
+<p>[1] L.B. Andersen, Efficient simulation of the heston stochastic volatility model, (2007).</p>
 </div>
 <div>
-<p>[2] I. Karatzas, S. Shreve, Brownian motion and stochastic calculus, Springer Science &amp; Business Media, 2012.</p>
+<p>[2] J. Baldeaux, E. Platen, Functionals of multidimensional diffusions with applications to finance, Springer Science &amp; Business Media, 2013.</p>
 </div>
 <div>
-<p>[3] A.D. Helgadóttir, L. Ionescu, Option pricing within the heston model, (2016).</p>
+<p>[3] F. Black, M. Scholes, The pricing of options and corporate liabilities, Journal of Political Economy. 81 (1973) 637–654.</p>
 </div>
 <div>
-<p>[4] Z. Tong, Option pricing with long memory stochastic volatility models, PhD thesis, Université d’Ottawa/University of Ottawa, 2012.</p>
+<p>[4] M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility and other affine jump diffusion processes, Operations Research. 54 (2006) 217–231.</p>
 </div>
 <div>
-<p>[5] L.C. Evans, An introduction to stochastic differential equations, American Mathematical Soc., 2012.</p>
+<p>[5] R.L. Burden, J.D. Faires, Numerical analysis. 2001, Brooks/Cole, USA. (2001).</p>
 </div>
 <div>
-<p>[6] J.M. Steele, Stochastic calculus and financial applications, Springer Science &amp; Business Media, 2012.</p>
+<p>[6] J.M. Clark, R. Cameron, The maximum rate of convergence of discrete approximations for stochastic differential equations, in: Stochastic Differential Systems Filtering and Control, Springer, 1980: pp. 162–171.</p>
 </div>
 <div>
-<p>[7] Y. Yang, Valuing a european option with the heston model, (2013).</p>
+<p>[7] D. Clements, B. Anderson, Well-behaved itô equations with simulations that always misbehave, IEEE Transactions on Automatic Control. 18 (1973) 676–677.</p>
 </div>
 <div>
-<p>[8] M. de F. Salomão, Precificação de opções financeiras: Um estudo sobre os modelos de black scholes e garch, (2011).</p>
+<p>[8] J.C. Cox, J.E. Ingersoll Jr, S.A. Ross, A theory of the term structure of interest rates, Econometrica: Journal of the Econometric Society. (1985) 385–407.</p>
 </div>
 <div>
-<p>[9] F. Black, M. Scholes, The pricing of options and corporate liabilities, Journal of Political Economy. 81 (1973) 637–654.</p>
+<p>[9] R. Dunn, P. Hauser, T. Seibold, H. Gong, Estimating option prices with heston’s stochastic volatility model, (2014).</p>
 </div>
 <div>
-<p>[10] R.C. Merton, Theory of rational option pricing, The Bell Journal of Economics and Management Science. (1973) 141–183.</p>
+<p>[10] L.C. Evans, An introduction to stochastic differential equations, American Mathematical Soc., 2012.</p>
 </div>
 <div>
-<p>[11] M. Gilli, D. Maringer, E. Schumann, Numerical methods and optimization in finance, Academic Press, Waltham, MA, USA, 2011. <a href="http://nmof.net" class="uri">http://nmof.net</a>.</p>
+<p>[11] W. Feller, Introduction to the theory of probability and its applications, vol. 2, II (2. Ed.) New York: Wiley. (1971).</p>
 </div>
 <div>
-<p>[12] M. Broadie, Ö. Kaya, Exact simulation of stochastic volatility and other affine jump diffusion processes, Operations Research. 54 (2006) 217–231.</p>
+<p>[12] T.C. Gard, Introduction to stochastic differential equations, M. Dekker, 1988.</p>
+</div>
+<div>
+<p>[13] J. Gil-Pelaez, Note on the inversion theorem, Biometrika. 38 (1951) 481–482.</p>
+</div>
+<div>
+<p>[14] M. Gilli, D. Maringer, E. Schumann, Numerical methods and optimization in finance, Academic Press, Waltham, MA, USA, 2011.</p>
+</div>
+<div>
+<p>[15] M. Gilli, D. Maringer, E. Schumann, Numerical methods and optimization in finance, Academic Press, 2011.</p>
+</div>
+<div>
+<p>[16] A.D. Helgadóttir, L. Ionescu, Option pricing within the heston model, (2016).</p>
+</div>
+<div>
+<p>[17] S.L. Heston, A closed-form solution for options with stochastic volatility with applications to bond and currency options, Review of Financial Studies. 6 (1993) 327–343.</p>
+</div>
+<div>
+<p>[18] D.J. Higham, An algorithmic introduction to numerical simulation of stochastic differential equations, SIAM Review. 43 (2001) 525–546.</p>
+</div>
+<div>
+<p>[19] S.M. Iacus, Simulation and inference for stochastic differential equations: With r examples, Springer Science &amp; Business Media, 2009.</p>
+</div>
+<div>
+<p>[20] A. Iserles, A first course in the numerical analysis of differential equations, Cambridge university press, 2009.</p>
+</div>
+<div>
+<p>[21] K. Itô, The brownian motion and tensor fields on riemannian manifold, Proc. Int. Congr. Math., Stockholm. 2 (1962).</p>
+</div>
+<div>
+<p>[22] K. Itō, On stochastic differential equations, American Mathematical Soc., 1951.</p>
+</div>
+<div>
+<p>[23] N.L. Johnson, S. Kotz, N. Balakrishnan, Continuous univariate distributions, vol. 2 of wiley series in probability and mathematical statistics: Applied probability and statistics, (1995).</p>
+</div>
+<div>
+<p>[24] C. Kahl, P. Jäckel, Fast strong approximation monte carlo schemes for stochastic volatility models, Quantitative Finance. 6 (2006) 513–536.</p>
+</div>
+<div>
+<p>[25] I. Karatzas, S. Shreve, Brownian motion and stochastic calculus, Springer Science &amp; Business Media, 2012.</p>
+</div>
+<div>
+<p>[26] P.E. Kloeden, E. Platen, Numerical solution of stochastic differential equations springer-verlag, 1992.</p>
+</div>
+<div>
+<p>[27] A. Krouglov, Intuitive proof of black-scholes formula based on arbitrage and properties of lognormal distribution, arXiv Preprint Physics/0612022. (2006).</p>
+</div>
+<div>
+<p>[28] J.V. Lambers, A.C. Sumner, Explorations in numerical analysis, University O California at Irvine. (2016).</p>
+</div>
+<div>
+<p>[29] R.C. Merton, Theory of rational option pricing, The Bell Journal of Economics and Management Science. (1973) 141–183.</p>
+</div>
+<div>
+<p>[30] R Core Team, R: A language and environment for statistical computing, R Foundation for Statistical Computing, Vienna, Austria, 2017.</p>
+</div>
+<div>
+<p>[31] M. Romano, N. Touzi, Contingent claims and market completeness in a stochastic volatility model, Mathematical Finance. 7 (1997) 399–412.</p>
+</div>
+<div>
+<p>[32] J.S. Rosenthal, A first look at rigorous probability theory, World Scientific Publishing Co Inc, 2006.</p>
+</div>
+<div>
+<p>[33] M. de F. Salomão, Precificação de opções financeiras: Um estudo sobre os modelos de black scholes e garch, (2011).</p>
+</div>
+<div>
+<p>[34] L. Scott, Simulating a multi-factor term structure model over relatively long discrete time periods, in: Proceedings of the Iafe First Annual Computational Finance Conference, 1996.</p>
+</div>
+<div>
+<p>[35] J.M. Steele, Stochastic calculus and financial applications, Springer Science &amp; Business Media, 2012.</p>
+</div>
+<div>
+<p>[36] Z. Tong, Option pricing with long memory stochastic volatility models, PhD thesis, Université d’Ottawa/University of Ottawa, 2012.</p>
+</div>
+<div>
+<p>[37] R.S. Tsay, Analysis of financial time series, John Wiley &amp; Sons, 2005.</p>
+</div>
+<div>
+<p>[38] U.F. Wiersema, Brownian motion calculus, John Wiley &amp; Sons, 2008.</p>
+</div>
+<div>
+<p>[39] G.A. Willard, Calculating prices and sensitivities for path-independent derivatives securities in multifactor models, The Journal of Derivatives. 5 (1997) 45–61.</p>
+</div>
+<div>
+<p>[40] Y. Yang, Valuing a european option with the heston model, (2013).</p>
 </div>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="B-the-second-appendix-for-fun.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bessel.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -234,7 +315,7 @@ gitbook.start({
 },
 "download": [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word"]],
 "toc": {
-"collapse": "section"
+"collapse": "subsection"
 }
 });
 });
@@ -245,7 +326,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

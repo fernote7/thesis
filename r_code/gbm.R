@@ -1,8 +1,5 @@
 set.seed(1)
 
-if(!require(Sim.DiffProc)) install.packages("Sim.DiffProc")
-
-
 X=Sim.DiffProc::GBM(N = 1000, M = 1, t0 = 0, T = 1)
 
   matplot(X, axes = FALSE,
