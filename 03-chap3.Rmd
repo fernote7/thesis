@@ -40,7 +40,6 @@ source("./r_code/parametrization.R")
 
 As we said above, these parameter weren't chosen at random, we took them from Table 2 of the Broadie-Kaya [@broadie2006exact] paper, with two minor modifications performed. We reduced the time to maturity from 5 to 1 year and we reduced the $\sigma$ from 1 to 0.2 following the "rule" they acknowledge in their paper that $\frac{2 \kappa \theta}{\sigma} \leq 1$. The setup where the this inequality isn't followed produces bigger biases, especially in Euler's and Kahl-Jackel's discretizations.  In this situations, the EA often outperforms the Euler and KJ solutions in terms os RMSE.
 
-\clearpage
 
 To perform our simulations, we first fixed a seed and saved the results in Table \@ref(res). Since the value given by the *callHestoncf* function with the parameters in Table \@ref(param) is 14.176, the method that best approached the "true" value was the modified (drift interpolated) exact algorithm with $100,000$ simulations. Altough the Euler scheme gives the same result (14.16) as the modified EA with $10,000$ simulations, it moves away from the closed form value when we run $100,000$ simulations. 
 ```{r modcomp1, echo=FALSE, eval=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 20 steps. \\label{modcomp1}'}

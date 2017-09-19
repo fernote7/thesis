@@ -33,12 +33,12 @@
 \contentsline {subsection}{\numberline {3.4.3}Compute \(\DOTSI \intop \ilimits@ _0^t \sqrt {V_s}dB_s\) given \(V_t\), \(V_0\) and \(\DOTSI \intop \ilimits@ _0^t V_sds\)}{27}{subsection.3.4.3}
 \contentsline {subsection}{\numberline {3.4.4}Limitations}{28}{subsection.3.4.4}
 \contentsline {chapter}{Chapter 4: Results}{29}{chapter.4}
-\contentsline {chapter}{Chapter 5: Conclusion}{35}{chapter.5}
-\contentsline {chapter}{Appendix A: Black-Scholes formula}{37}{appendix.A}
-\contentsline {chapter}{Appendix B: Bessel Function}{39}{appendix.B}
-\contentsline {chapter}{Appendix C: Implementations}{41}{appendix.C}
-\contentsline {section}{\numberline {C.1}Euler's}{41}{section.C.1}
-\contentsline {section}{\numberline {C.2}Kahl-Jackel Implementation}{42}{section.C.2}
-\contentsline {section}{\numberline {C.3}Exact Algorithm}{42}{section.C.3}
-\contentsline {section}{\numberline {C.4}Results with 20 steps}{45}{section.C.4}
-\contentsline {chapter}{References}{48}{appendix*.28}
+\contentsline {chapter}{Chapter 5: Conclusion}{33}{chapter.5}
+\contentsline {chapter}{Appendix A: Black-Scholes formula}{35}{appendix.A}
+\contentsline {chapter}{Appendix B: Bessel Function}{37}{appendix.B}
+\contentsline {chapter}{Appendix C: Implementations}{39}{appendix.C}
+\contentsline {section}{\numberline {C.1}Euler's}{39}{section.C.1}
+\contentsline {section}{\numberline {C.2}Kahl-Jackel Implementation}{40}{section.C.2}
+\contentsline {section}{\numberline {C.3}Exact Algorithm}{40}{section.C.3}
+\contentsline {section}{\numberline {C.4}Results with 20 steps}{43}{section.C.4}
+\contentsline {chapter}{References}{46}{appendix*.28}

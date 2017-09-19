@@ -260,7 +260,11 @@ $\operatorname {Im}$ denotes the imaginary part of $e^{-iux} phi (u)$. Equation 
   }
 ```
 
+\normalsize
+
 After computing the integral, we need to set the inversion function to place. To do that we generate the *endsign* function above. It is a simple function that is used to guarantee that when we call *uniroot*, the function to find roots built-in in R, our bounds have different signs. We set our lower and upper bounds as $- \infty$ and $\infty$, respectively and define and auxiliary function *subcdf* that will perform the inversion subtracting an uniform from it.
+
+\footnotesize
 
 ```{r inversion, eval=FALSE}      
   ## inversion

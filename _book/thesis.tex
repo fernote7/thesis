@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{Numerical methods for the \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{setembro 19, 2017}
+\date{September 19, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -1339,6 +1339,8 @@ Black-Scholes, European call, R
   \NormalTok{  \}}
   \end{Highlighting}
   \end{Shaded}
+  \normalsize
+  
   After computing the integral, we need to set the inversion function to
   place. To do that we generate the \emph{endsign} function above. It is a
   simple function that is used to guarantee that when we call
@@ -1347,6 +1349,8 @@ Black-Scholes, European call, R
   and \(\infty\), respectively and define and auxiliary function
   \emph{subcdf} that will perform the inversion subtracting an uniform
   from it.
+  
+  \footnotesize
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{  ## inversion}
@@ -1487,8 +1491,6 @@ Black-Scholes, European call, R
   inequality isn't followed produces bigger biases, especially in Euler's
   and Kahl-Jackel's discretizations. In this situations, the EA often
   outperforms the Euler and KJ solutions in terms os RMSE.
-  
-  \clearpage
   
   To perform our simulations, we first fixed a seed and saved the results
   in Table \ref{res}. Since the value given by the \emph{callHestoncf}
