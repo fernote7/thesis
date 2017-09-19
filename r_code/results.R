@@ -45,7 +45,7 @@ addtorow$pos <- list()
 addtorow$pos[[2]] <- c(nrow(result1))
 addtorow$pos[[1]] <- c(-1, 0)
 addtorow$command <- c("\\hline \n",
-                      paste0('\\hline \n', '\\multicolumn{5}{l}{\\scriptsize{Note: Simulations were performed with 100 timesteps, except the EA BK}} \n'))
+                      paste0('\\hline \n', '\\multicolumn{5}{l}{\\scriptsize{Note: Simulations performed with 20 steps, except the EA BK}} \n'))
 names(result1) <- c("Simulations", "Euler", "KJ", "EA-BK", "EA-DI")
 print(xtable::xtable(result1, caption = "Results", label = "res"), 
       add.to.row = addtorow, include.rownames = FALSE,

@@ -47,6 +47,9 @@ To perform our simulations, we fixed a seed and saved the results in Table \@ref
 source("./r_code/results.R")
 ```
 
+Results are observable in Figure \@ref(fig:modcomp1) also. The plot gives a good sense of possible biases associated with each method. To verify if in fact these methods present bias, we performed ten thousand simulations of ten thousand paths to the Euler, Kahl-Jackel (KJ) and drift interpolated exact algorithm (EA-DI). Clearly, from Figure \@ref(modcomp1), all three implementations produce bias (true option value is the black vertical line).
+
+
 
 
 ```{r timmings1, echo=FALSE, message=FALSE, results='asis'}
@@ -54,9 +57,18 @@ source("./r_code/timmings.R")
 ```
 
 
-Results are observable in Figure \@ref(fig:modcomp1) also. The plot gives a good sense that the Kahl-Jackel has an enormous bias associated with it. In fact, we ran the model ten thousand times, each time ten thousand simulations with different variables set ups and the bias was constantly so big that we discarded the model to subsequent analysis.
 
 
 ```{r modcomp1, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Comparison between models \\label{modcomp1}'}
 source("./r_code/mod_comp1.R")
+```
+
+
+```{r results10k, echo=FALSE, message=FALSE, results='asis', fig.asp = 1.2, fig.width = 5, fig.align='center', fig.cap='Comparison between models \\label{modcomp1}'}
+source("./r_code/results10k005.R")
+```
+
+
+```{r bias, echo=FALSE, message=FALSE, results='asis'}
+source("./r_code/bias.R")
 ```
