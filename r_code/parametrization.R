@@ -17,7 +17,7 @@ addtorow$command <- c("\\hline \n",
                       paste0('\\hline \n'))
 print(xtable::xtable(ab, caption = "Model Parameters", label = "param"), 
       add.to.row = addtorow, include.rownames = FALSE,
-      hline.after = NULL, size="\\fontsize{11pt}{13pt}\\selectfont")
+      hline.after = NULL, size="\\fontsize{9pt}{11pt}\\selectfont")
 
 
 # , size="\\fontsize{14pt}{14pt}\\selectfont"

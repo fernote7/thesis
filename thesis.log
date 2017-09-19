@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.13)  19 SEP 2017 10:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.13)  19 SEP 2017 18:34
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1046,43 +1046,53 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@toks=\toks33
 \enit@inbox=\box36
 \enitdp@description=\count132
-) (thesis.aux
+)
+\c@theorem=\count133
+\c@lemma=\count134
+\c@definition=\count135
+\c@corollary=\count136
+\c@proposition=\count137
+\c@example=\count138
+(thesis.aux
 
-LaTeX Warning: Label `res' multiply defined.
+LaTeX Warning: Label `gbm' multiply defined.
+
+
+LaTeX Warning: Label `bessel' multiply defined.
 
 )
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 159.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 172.
+LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 172.
+LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 172.
+LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 172.
+LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 172.
+LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 172.
+LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 172.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 172.
 
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t
 s1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 159.
+LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 172.
+LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 172.
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1l
 mr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \microtypecontext on input line 159.
+LaTeX Info: Redefining \microtypecontext on input line 172.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -1101,16 +1111,16 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\context\base
 \supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count133
+\scratchcounter=\count139
 \scratchdimen=\dimen154
 \scratchbox=\box37
-\nofMPsegments=\count134
-\nofMParguments=\count135
+\nofMPsegments=\count140
+\nofMParguments=\count141
 \everyMPshowfont=\toks34
-\MPscratchCnt=\count136
+\MPscratchCnt=\count142
 \MPscratchDim=\dimen155
-\MPnumerator=\count137
-\makeMPintoPDFobject=\count138
+\MPnumerator=\count143
+\makeMPintoPDFobject=\count144
 \everyMPtoPDFconversion=\toks35
 )
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdi
@@ -1129,7 +1139,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box38
-Package hyperref Info: Link coloring OFF on input line 159.
+Package hyperref Info: Link coloring OFF on input line 172.
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperr
 ef\nameref.sty"
@@ -1139,39 +1149,39 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 diek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count139
+\c@section@level=\count145
 )
-LaTeX Info: Redefining \ref on input line 159.
-LaTeX Info: Redefining \pageref on input line 159.
-LaTeX Info: Redefining \nameref on input line 159.
+LaTeX Info: Redefining \ref on input line 172.
+LaTeX Info: Redefining \pageref on input line 172.
+LaTeX Info: Redefining \nameref on input line 172.
 (thesis.out) (thesis.out)
 \@outlinefile=\write4
 \openout4 = `thesis.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 163.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 176.
 
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ot1
 lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 163.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 176.
 
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\oml
 lmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 163
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 176
 .
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\oms
 lmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 163
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 176
 .
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omx
@@ -1179,18 +1189,18 @@ lmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 163.
+(Font)              <12> on input line 176.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 163.
+(Font)              <8> on input line 176.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 163.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 163.
+(Font)              <6> on input line 176.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 176.
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\u
 lasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 163.
+LaTeX Font Info:    Try loading font information for U+msa on input line 176.
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfon
 ts\umsa.fd"
@@ -1200,7 +1210,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ype\mt-msa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 163.
+LaTeX Font Info:    Try loading font information for U+msb on input line 176.
 
 ("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfon
 ts\umsb.fd"
@@ -1220,312 +1230,312 @@ Non-PDF special ignored!
 ] [3] [4
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
 
  []
 
@@ -1535,20 +1545,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [1
 
 
-] [2] (thesis.toc)
+] [2] (thesis.toc [3
+
+
+])
 \tf@toc=\write5
 \openout5 = `thesis.toc'.
 
-[3
-
-
-] [4
-
-] (thesis.lot)
+[4] (thesis.lot)
 \tf@lot=\write6
 \openout6 = `thesis.lot'.
 
-[5] [6
+[5
+
+] [6
 
 ] (thesis.lof)
 \tf@lof=\write7
@@ -1557,7 +1567,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [7] [8
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 180--194
+Underfull \hbox (badness 10000) in paragraph at lines 193--207
 
  []
 
@@ -1570,91 +1580,403 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.202   \chapter
-                {This chunk ensures that the thesisdown package [1
+l.263   \chapter
+                {Theoretical Framework}\label{lt-review} [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.202   \chapter
-                {This chunk ensures that the thesisdown package [2
+l.263   \chapter
+                {Theoretical Framework}\label{lt-review} [2
 
 ]
 Chapter 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 278.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 278.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 278.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.205   \chapter
-                {The Heston Model [3]pdfTeX warning (ext4): destination with th
-e same identifier (name{page.4}) has been already used, duplicate ignored
+l.301   \end{align}
+                    [3]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 331.
+
+
+("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ts1
+lmr.fd"
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.205   \chapter
-                {The Heston Model [4
+l.362 
+       [4] <thesis_files/figure-latex/wiener-1.pdf, id=321, 361.35pt x 252.945p
+t>
+File: thesis_files/figure-latex/wiener-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/wiener-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/wiener-1.pdf used on input l
+ine 369.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5 <./thesis_files/figure-latex/wiener-1.pdf>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7] <thesis_files/figure-latex/gbm-1.pdf, id=377, 361.35pt x 252.945pt>
+File: thesis_files/figure-latex/gbm-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/gbm-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/gbm-1.pdf used on input line
+ 553.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9 <./thesis_files/figure-latex/gbm-1.pdf>] <thesis_files/figure-latex/smile-1.
+pdf, id=416, 361.35pt x 252.945pt>
+File: thesis_files/figure-latex/smile-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/smile-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/smile-1.pdf used on input li
+ne 654.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+
+Underfull \vbox (badness 1694) has occurred while \output is active []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11 <./thesis_files/figure-latex/smile-1.pdf>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13] <thesis_files/figure-latex/euler-1.pdf, id=458, 361.35pt x 252.945pt>
+File: thesis_files/figure-latex/euler-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/euler-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/euler-1.pdf used on input li
+ne 826.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[14 <./thesis_files/figure-latex/euler-1.pdf>] <figure/euler_screen.png, id=474
+, 831.105pt x 474.77374pt>
+File: figure/euler_screen.png Graphic file (type png)
+<use figure/euler_screen.png>
+Package pdftex.def Info: figure/euler_screen.png used on input line 869.
+(pdftex.def)             Requested size: 284.52756pt x 162.53658pt.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[15 <./figure/euler_screen.png>] <thesis_files/figure-latex/stab-1.pdf, id=488,
+ 361.35pt x 361.35pt>
+File: thesis_files/figure-latex/stab-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/stab-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/stab-1.pdf used on input lin
+e 935.
+(pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[16]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[17 <./thesis_files/figure-latex/stab-1.pdf>] <thesis_files/figure-latex/stab2-
+1.pdf, id=512, 422.57875pt x 194.7275pt>
+File: thesis_files/figure-latex/stab2-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/stab2-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/stab2-1.pdf used on input li
+ne 1029.
+(pdftex.def)             Requested size: 422.57771pt x 194.727pt.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[18]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[19 <./thesis_files/figure-latex/stab2-1.pdf>] [20
 
 ]
 Chapter 3.
-[5] [6
+[21]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[22]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 1136
+.
+
+("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1l
+mtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1137.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 1184.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[23]
+Overfull \hbox (28.51996pt too wide) in paragraph at lines 1213--1214
+[]\T1/lmr/m/n/12 (-20) Generate a sam-ple from the prob-a-bil-ity dis-tri-bu-ti
+on of $\OML/lmm/m/it/12 S[]$\T1/lmr/m/n/12 (-20) , given $\OML/lmm/m/it/12 disp
+laystyle [][] []dB[]$
+ []
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 1216.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[24]
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1273.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[25]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[26]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[27]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[28]
 Chapter 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 218.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 218.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 218.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 236.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11> on input line 236.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.69997> on input line 236.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 236.
-
-LaTeX Font Warning: Font shape `U/lasy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 236.
-
-[7] <thesis_files/figure-latex/modcomp1-1.pdf, id=162, 361.35pt x 252.945pt>
-File: thesis_files/figure-latex/modcomp1-1.pdf Graphic file (type pdf)
-<use thesis_files/figure-latex/modcomp1-1.pdf>
-Package pdftex.def Info: thesis_files/figure-latex/modcomp1-1.pdf used on input
- line 309.
-(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
-<thesis_files/figure-latex/results10k-1.pdf, id=163, 361.35pt x 433.62pt>
-File: thesis_files/figure-latex/results10k-1.pdf Graphic file (type pdf)
-<use thesis_files/figure-latex/results10k-1.pdf>
-Package pdftex.def Info: thesis_files/figure-latex/results10k-1.pdf used on inp
-ut line 317.
-(pdftex.def)             Requested size: 361.34912pt x 433.61894pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[8
+(Font)              <9> on input line 1460.
+[29
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9 <./thesis_files/figure-latex/modcomp1-1.pdf>] <thesis_files/figure-latex/res
-ults10k001-1.pdf, id=180, 361.35pt x 433.62pt>
+[30] <thesis_files/figure-latex/modcomp11-1.pdf, id=618, 361.35pt x 252.945pt>
+File: thesis_files/figure-latex/modcomp11-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/modcomp11-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/modcomp11-1.pdf used on inpu
+t line 1522.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+<thesis_files/figure-latex/results10k001-1.pdf, id=622, 361.35pt x 433.62pt>
 File: thesis_files/figure-latex/results10k001-1.pdf Graphic file (type pdf)
 <use thesis_files/figure-latex/results10k001-1.pdf>
 Package pdftex.def Info: thesis_files/figure-latex/results10k001-1.pdf used on 
-input line 341.
+input line 1538.
+(pdftex.def)             Requested size: 361.34912pt x 433.61894pt.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[31
+
+ <./thesis_files/figure-latex/modcomp11-1.pdf>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[32 <./thesis_files/figure-latex/results10k001-1.pdf>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[33] [34
+
+]
+Chapter 5.
+
+Underfull \hbox (badness 3375) in paragraph at lines 1611--1620
+[]\T1/lmr/m/n/12 (+20) We tested the im-ple-men-ta-tions and pre-sented our re-
+sults in Chap-ter
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[35]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[36]
+Appendix A.
+[37
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[38]
+Appendix B.
+<thesis_files/figure-latex/bessel-1.pdf, id=671, 361.35pt x 252.945pt>
+File: thesis_files/figure-latex/bessel-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/bessel-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/bessel-1.pdf used on input l
+ine 1682.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+[39
+
+ <./thesis_files/figure-latex/bessel-1.pdf>] [40
+
+]
+Appendix C.
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1695.
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 172
+1.
+
+("C:\Users\fernando.teixeira\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ts1
+lmtt.fd"
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Underfull \vbox (badness 7925) has occurred while \output is active []
+
+[41]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[42]
+Underfull \vbox (badness 10000) detected at line 1881
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1881
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[43] <thesis_files/figure-latex/results10k-1.pdf, id=699, 361.35pt x 433.62pt>
+File: thesis_files/figure-latex/results10k-1.pdf Graphic file (type pdf)
+<use thesis_files/figure-latex/results10k-1.pdf>
+Package pdftex.def Info: thesis_files/figure-latex/results10k-1.pdf used on inp
+ut line 1885.
 (pdftex.def)             Requested size: 361.34912pt x 433.61894pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1665,71 +1987,93 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10 <./thesis_files/figure-latex/results10k-1.pdf>]
+[44]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11 <./thesis_files/figure-latex/results10k001-1.pdf>] [12
-
-] [13] [14
+[45 <./thesis_files/figure-latex/results10k-1.pdf>] [46
 
 ]
-Chapter 5.
-[15] [16
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2067.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[47
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 371.
-[17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 371.
+Overfull \vbox (688.07pt too high) has occurred while \output is active []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[48]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2067.
 (thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 371.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 371.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2067.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2067.
+
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: C56CCE8D2A7EDE5310764AE5A4F6CCA0;469.
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.5pt have occurred.
-
+(rerunfilecheck)             Checksum: A80AF1D6B9A71231859D368BB0CA162D;2644.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 371.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2067.
  ) 
 Here is how much of TeX's memory you used:
- 11802 strings out of 493333
- 186774 string characters out of 3124935
- 306398 words of memory out of 3000000
- 14981 multiletter control sequences out of 15000+200000
- 75277 words of font info for 102 fonts, out of 3000000 for 9000
+ 12505 strings out of 493333
+ 197539 string characters out of 3124935
+ 337132 words of memory out of 3000000
+ 15316 multiletter control sequences out of 15000+200000
+ 108522 words of font info for 194 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,45p,254b,397s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,22n,49p,541b,541s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips
-/lm/lm-mathit.enc}{C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9
-/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/fernando.teixeira/AppData/Local/Program
-s/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/fernando.teixeira/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/fernando.te
-ixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/U
-sers/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/
-lmbx12.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/lm/lmex10.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Users/fernando.teixeira/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Users/fernando.t
-eixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/U
-sers/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/
-lmr12.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/lm/lmr7.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKT
-eX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/fernando.teixeira/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Users/fernando.teixei
-ra/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmro12.pfb><C:/Users
-/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy
-10.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type
-1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (31 pages, 237238 bytes).
+/lm/lm-ts1.enc}{C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/enc/dvips/lm/lm-rm.enc}{C:/Users/fernando.teixeira/AppData/Local/Programs/M
+iKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/fernando.teixeira/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/fernando.teixe
+ira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/User
+s/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mat
+hex.enc}<C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/latxfont/line10.pfb><C:/Users/fernando.teixeira/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Users/fernando.teixe
+ira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/User
+s/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmm
+i10.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/lm/lmmi12.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/lm/lmmi6.pfb><C:/Users/fernando.teixeira/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi7.pfb><C:/Users/fernando.teixei
+ra/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Users/
+fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr10
+.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/lm/lmr12.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/lm/lmr6.pfb><C:/Users/fernando.teixeira/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><C:/Users/fernando.teixeira/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/fernand
+o.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr9.pfb><C:
+/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
+m/lmri10.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/lm/lmri12.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/lm/lmro12.pfb><C:/Users/fernando.teixeira/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/fernando
+.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb><C:
+/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
+m/lmsy8.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/lm/lmtk10.pfb><C:/Users/fernando.teixeira/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Users/fernando.teixeira/AppData
+/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Users/fernando.
+teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtti10.pfb><C
+:/Users/fernando.teixeira/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (62 pages, 750466 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
- 53 named destinations out of 1000 (max. 500000)
- 12360 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 916 PDF objects out of 1000 (max. 8388607)
+ 247 named destinations out of 1000 (max. 500000)
+ 22880 words of extra memory for PDF output out of 24883 (max. 10000000)
 

@@ -1,12 +1,15 @@
-# Conclusion {-}
+# Conclusion {#conclusao}
 
 As we revisit what was presented through this thesis, we highlight that we were unable find codes of the heston's exact algorithm in any shape or form. That means we searched if the algorithm implementation was available in any programming language, or at least a reference to where to find it and we couldn't. 
 
-Firstly, we provided a succint, but rigorous, theoretical framework. Since this topic is very embracing, we provided an abundant amount of literature not only to the core topics approached, but also to the marginal ones. 
+Firstly, we provided a succint, but rigorous, theoretical framework. Since this topic is very embracing, we provided an abundant amount of literature not only to the core topics approached, but also to the marginal ones. The first topic introduced in our review of literature is the stochastic calculus subject. Following the basics, we present the Black-Scholes model since this is the basic model from which the stochastic volatility ones derive from. We show how the BS formula is computed, and its limitations. The next logical step are the stochastic volatility models since they directly attack and solve the biggest BS model limitation: fixed volatility. We present the CIR before the Heston model as the first concocts the latter. Lastly, approach the challenges brought by the adoption of numerical methods, to better understand if a method is theoretically good, how to perform a discretization, and why a supposedly good discretization scheme can fail, nevertheless.
 
-Thereafter, we thoroughly introduced the algorithms we were going to implement in R,  and how we were going to do it. Four different algorithms are presented: the Euler solution, the Kahl-Jackel algorithm, and two versions of what we (and literature) call the "exact algorithm". The first trying to be as similar as possible to the one presented in Broadie-Kaya's paper and the modified version bringing an approximation to the algorithm's second step (the costlier step) as we replace the integral with a drift interpolation.
+Thereafter, we thoroughly introduced the algorithms we were going to implement in R,  and how we were going to do it. Four different algorithms were presented: the Euler scheme, the Kahl-Jackel algorithm, and two versions of the "exact algorithm". The first trying to be as similar as possible to the one presented in Broadie-Kaya's paper and the modified version bringing an approximation to the algorithm's second step (the costlier step) as we replace the integral with a drift interpolation.
 
-RESULTS
+We tested the implementations and presented our results in Chapter \@ref(#resultados). We used a specification provided in Broadie-Kaya's paper [@broadie2006exact], Table 2 with two slight changes. We reduced the time to maturity from 5 to 1 year and we reduced the $\sigma$ from 1 to 0.2 following the rules he acknowledges and previously cited. We verified that, in fact, the EA algorithm does not present bias, but because of the nature of the algorithm and of the implementation in R, we doubt it can be used practically without finding a way around the algorithm's second step.
+
+As we performed the EA's implementation we faced some challenges we weren't able to resolve yet. We couldn't parallelize the root inversion, which was a big bottleneck for the algorithm that we will solve. Also, we only created methods for the European *call* and for four different schemes. We intend to widen the scope to embrace the *put* computation and introduce the binomial tree approach along with the method of moments and maximum likelihood. 
+Finally, the package with all its functions is available at this \href{<https://github.com/fernote7/rnmethods>}{\textbf{link}} and in the near future on \href{<https://cran.r-project.org/>}{\textbf{CRAN}}.
 
 
 

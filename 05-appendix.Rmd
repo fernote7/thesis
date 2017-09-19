@@ -271,8 +271,24 @@ hestonea_mod <- function(S, X, r, v, theta, rho, k, sigma, t = 0, tau = 1){
 ```
 
 
+## Results with 20 steps {#resultsapp}
 
 
+
+
+```{r results10k, echo=FALSE, message=FALSE, results='asis', fig.asp = 1.2, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 20 steps. \\label{results10k}'}
+source("./r_code/results10k005.R")
+```
+
+
+```{r timmings1, echo=FALSE, message=FALSE, results='asis', eval=FALSE}
+source("./r_code/timmings.R")
+```
+
+
+```{r modcomp2, echo=FALSE, eval = FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 100 steps. \\label{modcomp2}'}
+source("./r_code/mod_comp2.R")
+```
 
 
 \normalsize

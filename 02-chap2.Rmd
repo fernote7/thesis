@@ -1,4 +1,4 @@
-# The Heston Model Implementation
+# The Heston Model Implementation {#implement}
 
 ```{r results, echo=FALSE, message=FALSE, results='asis', eval=FALSE}
 source("/home/fteixeira/Documents/thesis/r_code/results.r")
@@ -341,7 +341,7 @@ The biggest limitation this scheme presents is that the second step is computati
 
 
 
-<!-- <!-- Required to number equations in HTML files --> -->
+<!-- <!-- Required to number equations in HTML files --> 
 <!-- <script type="text/x-mathjax-config"> -->
 <!-- MathJax.Hub.Config({ -->
 <!--   TeX: { equationNumbers: { autoNumber: "AMS" } } -->

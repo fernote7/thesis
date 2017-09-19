@@ -19,16 +19,16 @@ library(thesisdown)
 ```
 
 
-# Results
+# Results {#resultados}
 
-We present here the results of all the implementations that were disclosed in the previous section. We perform numerical comparisons between all the methods, setting out differences accross number of simulations and timesteps. 
+We present here the results of all the implementations that were disclosed in the previous section. We perform numerical comparisons between all the methods, setting out differences accross number of simulations and timesteps. These simulations were performed as a way to validate our implementations, and thus do not have the intent to exhaust all kinds of possibilities or provide sharp comparisons.
 
-Heston [-@heston1993closed] gives a closed form used for comparison as the 'true' option value and enabling the results to be exposed in terms of bias ^[Defined as $\mathbb{E} \left[ \hat{\alpha} - \alpha \right]$] and RMSE (root mean square error) ^[Defined as $\sqrt{\mathbb{E}((\hat{\theta}-\theta)^2)}$]. 
+Heston [-@heston1993closed] gives a closed form used as benchmark and as the 'true' option value and enabling the results to be exposed in terms of bias ^[Defined as $\mathbb{E} \left[ \hat{\alpha} - \alpha \right]$] and RMSE (root mean square error) ^[Defined as $\sqrt{\mathbb{E}((\hat{\theta}-\theta)^2)}$]. 
 
 
 The simulaton experiments were performed on a notebook with an Intel(R) Core(TM) i7-4500U CPU @ 1.80GHz processor and 8GB of RAM running on a linux x86_64 based OS, Fedora 25. Codes were all written in R an run on version 3.4.1 "Single Candle" [@rlang].
 
-First of all, we chose a parametrization based on what we saw in other works, made some adjustments, like reducing the options' time to maturity due to the slower nature of R language and compared initial the results with the true option price given by the function *callHestoncf* belonging to the package NMOF [@nmofpack]. Parameters can be seen in Table below.
+First of all, we chose a parametrizations based on what we saw in other works, made some adjustments, like reducing the options' time to maturity due to the slower nature of R language and compared initial the results with the true option price given by the function *callHestoncf* belonging to the package NMOF [@nmofpack]. Parameters can be seen in Table \@ref(param) below.
 
 
 
@@ -38,46 +38,42 @@ source("./r_code/parametrization.R")
 ```
 
 
+As we said above, these parameter weren't chosen at random, we took them from Table 2 of the Broadie-Kaya [@broadie2006exact] paper, with two minor modifications performed. We reduced the time to maturity from 5 to 1 year and we reduced the $\sigma$ from 1 to 0.2 following the "rule" they acknowledge in their paper that $\frac{2 \kappa \theta}{\sigma} \leq 1$. The setup where the this inequality isn't followed produces bigger biases, especially in Euler's and Kahl-Jackel's discretizations.  In this situations, the EA often outperforms the Euler and KJ solutions in terms os RMSE.
+
 \clearpage
 
-To perform our simulations, we fixed a seed and saved the results in Table \@ref(res). Since the value given by the *callHestoncf* function with the parameters in Table \@ref(param) is 14.176, the method that best approached the "true" value was the modified (drift interpolated) exact algorithm with $100,000$ simulations. Altough the Euler scheme gives the same result (14.16) as the modified EA with $10,000$ simulations, it moves away from the closed form value when we run $100,000$ simulations. 
-
+To perform our simulations, we first fixed a seed and saved the results in Table \@ref(res). Since the value given by the *callHestoncf* function with the parameters in Table \@ref(param) is 14.176, the method that best approached the "true" value was the modified (drift interpolated) exact algorithm with $100,000$ simulations. Altough the Euler scheme gives the same result (14.16) as the modified EA with $10,000$ simulations, it moves away from the closed form value when we run $100,000$ simulations. 
+```{r modcomp1, echo=FALSE, eval=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 20 steps. \\label{modcomp1}'}
+source("./r_code/mod_comp1.R")
+```
 
 ```{r results1, echo=FALSE, message=FALSE, results='asis'}
 source("./r_code/results.R")
 ```
 
-Results are observable in Figure \@ref(fig:modcomp1) also. The plot gives a good sense of possible biases associated with each method. To verify if in fact these methods present bias, we performed ten thousand simulations of ten thousand paths to the Euler, Kahl-Jackel (KJ) and drift interpolated exact algorithm (EA-DI) with 20 steps ($dt = 0.05$) . Clearly, from Figure \@ref(modcomp1), all three implementations produce bias (true option value is the black vertical line). Since this setup isn't ideal, we increased the steps to 100 ($dt = 0.01$) to see if our methods would converge. The methods histogram can be viewed in Figure \@ref(results10k001). 
+Results are observable in Figure \@ref(fig:modcomp11) also. The plot gives a good sense of possible biases associated with each method. It also show that the methods tend to converge quickly to the real result when the number of steps is increased.
 
 
 
-
-```{r timmings1, echo=FALSE, message=FALSE, results='asis'}
-source("./r_code/timmings.R")
-```
-
-
-
-
-```{r modcomp1, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 20 steps. \\label{modcomp1}'}
+```{r modcomp11, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 20 steps. \\label{modcomp1}'}
 source("./r_code/mod_comp1.R")
 ```
 
+To verify if in fact these methods present bias, we performed ten thousand simulations of ten thousand paths to the Euler, Kahl-Jackel (KJ) and drift interpolated exact algorithm (EA-DI) with 20 steps ($dt = 0.05$) first. We present these results in appendix \@ref(resultsapp) because we present the more precise simulations we made, with 100 steps in Figure \@ref(fig:results10k001). Results seem to show a little bias, thus we present in Table \@ref(res2) how precise models are.
 
-```{r results10k, echo=FALSE, message=FALSE, results='asis', fig.asp = 1.2, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 20 steps. \\label{results10k}'}
-source("./r_code/results10k005.R")
-```
-
-
-```{r bias, echo=FALSE, message=FALSE, results='asis'}
-source("./r_code/bias.R")
-```
-
-
-```{r modcomp2, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 20 steps. \\label{modcomp2}'}
-source("./r_code/mod_comp2.R")
-```
 
 ```{r results10k001, echo=FALSE, message=FALSE, results='asis', fig.asp = 1.2, fig.width = 5, fig.align='center', fig.cap='Comparison between models, 100 steps. \\label{results10k001}'}
 source("./r_code/results10k001.R")
 ```
+
+
+The exact algorithm performs much slowlier than the other three we only performed 1000 simulations of one thousand paths each. That is why its RMSE is comparably bigger than the other three implementations. We are aware that, by construction the Broadie-Kaya version of the algorithm has no bias, but we tested the bias of our implementation (even though we didn't put it in the Table \@ref(res2)) and the reason is twofold: again, we wanted to check if we correctly implemented the algorithm as a whole, but more importantly we wanted to check the outcomes of the adaptations we made (in terms of truncation, relative error and others) were playing into our model. The computed, even with far less simulations was far smaller than the other three methods, with only $-0.02$. We understand that this result confirms that our adaptations did not change the nature of the model and with a greater number of simulations the bias would be zero as it should. We observe bias level in the three classical numerical models, the KJ model undervaluing in the same order (0.09) as the other two overvalue the option. In terms of standard deviation the models seem to be equivalent, with the KJ model presenting a slightly bigger standard deviation than the other two (0.24 against 0.21 and 0.22). According to the tests performed, we are confident that our models were implemented correctly.  
+
+
+
+```{r res2, echo=FALSE, message=FALSE, results='asis'}
+source("./r_code/bias2.R")
+```
+
+
+

@@ -55,3 +55,4 @@ xtable::align(tabela) <- 'lrrrr'
 print(tabela, 
       add.to.row = addtorow, include.rownames = TRUE,
       hline.after = NULL)
+ 

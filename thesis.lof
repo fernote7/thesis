@@ -1,8 +1,19 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces A Wiener process trajectory path example \relax }}{5}{figure.caption.6}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces A GBM trajectory path example \relax }}{9}{figure.caption.11}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Volatility Smile \relax }}{11}{figure.caption.12}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Analytical x Euler solutions \relax }}{14}{figure.caption.15}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Graphical representation of Euler\IeC {\textquoteright }s formula\relax }}{15}{figure.caption.16}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Euler's stability whith different timesteps \relax }}{17}{figure.caption.18}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Stability domains \relax }}{19}{figure.caption.20}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Comparison between models 20 steps \relax }}{9}{figure.caption.9}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Comparison between models 20 steps \relax }}{10}{figure.caption.10}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Comparison between models 100 steps \relax }}{11}{figure.caption.12}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Comparison between models, 20 steps. \relax }}{31}{figure.caption.23}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Comparison between models, 100 steps. \relax }}{32}{figure.caption.24}
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Modified Bessel Functions of the First Kind \relax }}{39}{figure.caption.26}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {C.1}{\ignorespaces Comparison between models, 20 steps. \relax }}{45}{figure.caption.27}
