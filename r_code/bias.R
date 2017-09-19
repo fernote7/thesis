@@ -1,16 +1,16 @@
-load("~/Documents/thesis/r_code/dados/resulteadi10k.Rda")
+load("./r_code/dados/resulteadi10k.Rda")
 resulteadi <-result
-load("~/Documents/thesis/r_code/dados/resulteuler10k.Rda")
+load("./r_code/dados/resulteuler10k.Rda")
 resulteuler <-result
-load("~/Documents/thesis/r_code/dados/resultkj10k.Rda")
+load("./r_code/dados/resultkj10k.Rda")
 resultkj <-result
 rm(result)
 
-load("~/Documents/thesis/r_code/dados/timmingeadi10k.Rda")
+load("./r_code/dados/timmingeadi10k.Rda")
 timmingeadi <-timming
-load("~/Documents/thesis/r_code/dados/timmingeuler10k.Rda")
+load("./r_code/dados/timmingeuler10k.Rda")
 timmingeuler <-timming
-load("~/Documents/thesis/r_code/dados/timmingkj10k.Rda")
+load("./r_code/dados/timmingkj10k.Rda")
 timmingkj <-timming
 rm(timming)
 
@@ -34,8 +34,9 @@ t3 <- sum(timmingeadi)
 t4 <- 0 
 
 DF <- data.frame(euler = c(b1, sqrt(var1), rmse1, t1), 
-                 kj = c(b2, sqrt(var2), rmse2, t2), 
-                 eadi = c(b3,sqrt(var3),rmse3, t3), eabk = c(0,sqrt(0), 0, 0))
+                 kj = c(b2, sqrt(var2), rmse2, t2),
+                 eabk = c(0,sqrt(0), 0, 0),
+                 eadi = c(b3,sqrt(var3),rmse3, t3))
 
 row.names(DF) <- c("bias", "sd", "RMSE", "time")
 

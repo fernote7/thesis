@@ -1,8 +1,8 @@
-load("~/Documents/thesis/r_code/dados/resulteadi10k.Rda")
+load("./r_code/dados/resulteadi001.Rda")
 resulteadi <-result
-load("~/Documents/thesis/r_code/dados/resulteuler10k.Rda")
+load("./r_code/dados/resulteuler10k001.Rda")
 resulteuler <-result
-load("~/Documents/thesis/r_code/dados/resultkj10k.Rda")
+load("./r_code/dados/resultkj001.Rda")
 resultkj <-result
 rm(result)
  
