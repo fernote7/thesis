@@ -38,11 +38,11 @@ acknowledgements: >
 #   (for LaTeX) and the R bookdown package, in general.
 bibliography: bib/thesis.bib
 # Download your specific bibliography database file and refer to it in the line above.
-# csl: csl/abnt_numerico-1.0.csl
+csl: csl/abnt_numerico-1.0.csl
 # csl: csl/ABNT_UFPR_2011-Mendeley.csl
 # csl: csl/apa.csl
 # csl: csl/elsevier-with-titles-alphabetical.csl
-csl: csl/elsevier.csl
+# csl: csl/elsevier.csl
 # Download your specific csl file and refer to it in the line above.
 lot: true
 lof: true

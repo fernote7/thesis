@@ -41,4 +41,4 @@
 \contentsline {section}{\numberline {C.2}Kahl-Jackel Implementation}{40}{section.C.2}
 \contentsline {section}{\numberline {C.3}Exact Algorithm}{40}{section.C.3}
 \contentsline {section}{\numberline {C.4}Results with 20 steps}{43}{section.C.4}
-\contentsline {chapter}{References}{46}{appendix*.28}
+\contentsline {chapter}{References}{45}{appendix*.28}
