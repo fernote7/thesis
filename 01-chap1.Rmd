@@ -40,7 +40,7 @@ Stochastic calculus arises from stochastic processes and allows the creation of 
 ### Stochastic differential equation - SDE
 
 
-At first, before introducing stochastic differential equation, it is helpful to start with ordinary differential equation. Let $x(t) = x_t$ denote a population at time $t$ so that the change in the population at time $t$ is given by the following deterministic differential equation:
+At first, before introducing stochastic differential equation, it is helpful to start with ordinary differential equation. Let $x_t$ denote an asset at time $t$ so that the change in the asset at time $t$ is given by the following deterministic differential equation:
 
 \begin{align}
 dx_t &= f(t, x_t)dt \\
@@ -54,9 +54,9 @@ dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} +
 x(0) &= x_0 \nonumber
 \end{align}
 
-This ``noise''  $dW_t$ is a *random* Wiener process time derivative (which will be clarified below) and $x_0$ is our initial value. 
+This ``noise''  $dW_t$ is a *random* Wiener process (which will be clarified below) and $x_0$ is our initial value. 
 
-The $g(t, x_t)$ part of the SDE is often referred as a *diffusion process*, these usually have a continuous paths. Before moving on, we must carefully define what the term *random* means and the best way to begin doing so is to precisely define a probability space:
+The $g(t, x_t)$ part of the SDE is often referred as *diffusion coefficient*, these usually have a continuous paths. Before moving on, we must carefully define what the term *random* means and the best way to begin doing so is to precisely define a probability space:
 
 ```{definition, name="Probability Space"}
 A triple ($\Omega$, $\mathcal {U}$, $\mathcal {P}$) is called a \textit{probability space} provided $\Omega$ is any set, $\mathcal {U}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\mathcal {P}$ is a probability measure on $\mathcal {U}$ .

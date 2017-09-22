@@ -169,9 +169,9 @@ The algorithm used to generate the model consists in four steps as follows:
 ### Generate a sample of $V_t$ given $V_0$
 The distribution of $V_t$ given $V_0$ for $0 < t$ is a non-central chi-squared distribution [@cox1985theory; @baldeaux]:
 
-$$V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \mathcal{X}_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)$$
+$$V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \chi_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)$$
 
-where $\delta = \frac{4 \theta \kappa}{\sigma^2}$ and $\mathcal{X}_{\delta}^{2}(\lambda)$ denotes a non-central chi-squared random variable with $\delta$ degrees of freedom and $\lambda$ as its non-centrality parameter.
+where $\delta = \frac{4 \theta \kappa}{\sigma^2}$ and $\chi_{\delta}^{2}(\lambda)$ denotes a non-central chi-squared random variable with $\delta$ degrees of freedom and $\lambda$ as its non-centrality parameter.
 
 Broadie and Kaya [-@broadie2006exact] sample generating Poisson and gamma distributions as in Johnson et al. [-@johnson1995]. We used the built-in function in R *rchisq*, which uses this exact method for sampling, see chunk below.
 

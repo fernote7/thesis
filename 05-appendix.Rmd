@@ -75,9 +75,9 @@ source("./r_code/bessel.R")
 
 
 
-# Implementations
+# Implementations {#imps}
 
-## Euler's {#eulerapp}
+## Euler Scheme {#eulerapp}
 
 \small
 ```{r calle, eval=FALSE, echo=TRUE, size="scriptsize"}

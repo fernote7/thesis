@@ -130,7 +130,7 @@ order and control when you embrace randomness. --- Nassim Nicholas Taleb
 
 \Abstract{
 In this thesis we revisit some of the numerical methods for solving the
-Heston model's European call. Specifically, we approach Euler's, the
+Heston model's European call. Specifically, we approach the Euler, the
 Kahl-Jackel an two versions of the exact algorithm schemes. To perform
 this task, firstly we present a literature review which brings
 stochastic calculus, the Black-Scholes (BS) model and its limitations,
@@ -139,8 +139,8 @@ BS model, and the peculiarities of the numerical methods - convergence,
 discretization and stability. Since it is impossible to have a deep
 approach to all these topics, we provide recommendations when we
 acknowledge that the reader might need more specifics. We introduce the
-methods previously cited providing all our implementations in R
-language. Also, we deliver an R package with these functions and others.
+methods aforementioned providing all our implementations in R language.
+Also, we deliver an R package with these functions and others.
 \newline \newline \textbf{Keywords:} Heston, Stochastic, Volatility,
 Black-Scholes, European call, R
 }
@@ -191,7 +191,7 @@ Black-Scholes, European call, R
       \listoffigures
       \begin{abstract}
       In this thesis we revisit some of the numerical methods for solving the
-      Heston model's European call. Specifically, we approach Euler's, the
+      Heston model's European call. Specifically, we approach the Euler, the
       Kahl-Jackel an two versions of the exact algorithm schemes. To perform
       this task, firstly we present a literature review which brings
       stochastic calculus, the Black-Scholes (BS) model and its limitations,
@@ -200,8 +200,8 @@ Black-Scholes, European call, R
       discretization and stability. Since it is impossible to have a deep
       approach to all these topics, we provide recommendations when we
       acknowledge that the reader might need more specifics. We introduce the
-      methods previously cited providing all our implementations in R
-      language. Also, we deliver an R package with these functions and others.
+      methods aforementioned providing all our implementations in R language.
+      Also, we deliver an R package with these functions and others.
       \newline \newline \textbf{Keywords:} Heston, Stochastic, Volatility,
       Black-Scholes, European call, R
     \end{abstract}
@@ -282,14 +282,13 @@ Black-Scholes, European call, R
   focus is introducing the concepts and notations that will be further
   used in our work.
   
-  \subsection{The Stochastic differential equation -
-  SDE}\label{the-stochastic-differential-equation---sde}
+  \subsection{Stochastic differential equation -
+  SDE}\label{stochastic-differential-equation---sde}
   
   At first, before introducing stochastic differential equation, it is
-  helpful to start with ordinary differential equation. Let \(x(t) = x_t\)
-  denote a population at time \(t\) so that the change in the population
-  at time \(t\) is given by the following deterministic differential
-  equation:
+  helpful to start with ordinary differential equation. Let \(x_t\) denote
+  an asset at time \(t\) so that the change in the asset at time \(t\) is
+  given by the following deterministic differential equation:
   \begin{align}
   dx_t &= f(t, x_t)dt \\
   x(0) &= x_0 \nonumber
@@ -299,14 +298,13 @@ Black-Scholes, European call, R
   dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} + \overbrace{\underbrace{g(t, x_t)}_\text{diffusion}dW_t}^\text{random shock} \\
   x(0) &= x_0 \nonumber
   \end{align}
-  This ``noise'' \(dW_t\) is a \emph{random} Wiener process time
-  derivative (which will be clarified below) and \(x_0\) is our initial
-  value.
+  This ``noise'' \(dW_t\) is a \emph{random} Wiener process (which will be
+  clarified below) and \(x_0\) is our initial value.
   
-  The \(g(t, x_t)\) part of the SDE is often referred as a \emph{diffusion
-  process}, these usually have a continuous paths. Before moving on, we
-  must carefully define what the term \emph{random} means and the best way
-  to begin doing so is to precisely define a probability space:
+  The \(g(t, x_t)\) part of the SDE is often referred as \emph{diffusion
+  coefficient}, these usually have a continuous paths. Before moving on,
+  we must carefully define what the term \emph{random} means and the best
+  way to begin doing so is to precisely define a probability space:
   
   \BeginKnitrBlock{definition}[Probability Space]
   
@@ -352,7 +350,7 @@ Black-Scholes, European call, R
   \begin{itemize}
     \item  $W_{0}=0$
     
-    \item The change in $W$, given by $\Delta W = W_{t+1}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
+    \item The change in $W$, given by $\Delta W = W_{t+\Delta t}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
     
     \item If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
     
@@ -390,8 +388,8 @@ Black-Scholes, European call, R
   
   \subsection{Itô's Integral}\label{itos-integral}
   
-  Formally, the SDE presented in equation \eqref{eq:sde1} only exists
-  because we can rewrite it in the form {[}6--11{]}:
+  Formally, the SDE presented in equation \eqref{eq:sde1} is interpreted as
+  {[}6--11{]}:
   \begin{align} 
   \label{eq:sde2}
   x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
@@ -1107,16 +1105,20 @@ Black-Scholes, European call, R
   is that \(V\) can become negative with non-zero probability making the
   computation of \(\sqrt{V_t}\) impossible {[}32{]}. There are several
   proposed fixes that can be used as you can see below:
-  \begin{longtable}[t]{lccc}
-  \caption{\label{tab:fullt}Truncation schemes}\\
-  \toprule
-  Scheme & $f_1(V_{t})$ & $f_2(V_{t})$ & $f_3(V_{t})$\\
-  \midrule
-  Reflection & $\mid V \mid$ & $\mid V \mid$ & $\mid V \mid$\\
-  Partial Truncation & $V$ & $V$ & $V^+$\\
-  Full Truncation & $V$ & $V^+$ & $V^+$\\
-  \bottomrule
-  \end{longtable}
+  \begin{table}[ht]
+  \centering
+  \begin{tabular}{cccc}
+    \hline 
+  Scheme & $f_1(V_{t})$ & $f_2(V_{t})$ & $f_3(V_{t})$ \\ 
+    \hline 
+  Reflection & $\mid V \mid$ & $\mid V \mid$ & $\mid V \mid$ \\ 
+    Partial Truncation & $V$ & $V$ & $V^+$ \\ 
+    Full Truncation & $V$ & $V^+$ & $V^+$ \\ 
+     \hline 
+  \end{tabular}
+  \caption{Truncation schemes} 
+  \label{box}
+  \end{table}
   Where \(V^+ = \max(V,0)\) and \(\mid V \mid\) is the absolute value of
   \(V\).
   
@@ -1218,12 +1220,12 @@ Black-Scholes, European call, R
   The distribution of \(V_t\) given \(V_0\) for \(0 < t\) is a non-central
   chi-squared distribution {[}19,38{]}:
   
-  \[V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \mathcal{X}_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)\]
+  \[V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \chi_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)\]
   
   where \(\delta = \frac{4 \theta \kappa}{\sigma^2}\) and
-  \(\mathcal{X}_{\delta}^{2}(\lambda)\) denotes a non-central chi-squared
-  random variable with \(\delta\) degrees of freedom and \(\lambda\) as
-  its non-centrality parameter.
+  \(\chi_{\delta}^{2}(\lambda)\) denotes a non-central chi-squared random
+  variable with \(\delta\) degrees of freedom and \(\lambda\) as its
+  non-centrality parameter.
   
   Broadie and Kaya {[}31{]} sample generating Poisson and gamma
   distributions as in Johnson et al. {[}39{]}. We used the built-in
@@ -1628,8 +1630,9 @@ Black-Scholes, European call, R
   \emph{put} computation and introduce the binomial tree approach along
   with the method of moments and maximum likelihood. Finally, the package
   with all its functions is available at this
-  \href{<https://github.com/fernote7/rnmethods>}{\textbf{link}} and in the
-  near future on \href{<https://cran.r-project.org/>}{\textbf{CRAN}}.
+  \href{<https://github.com/fernote7/rnmethods>}{\textbf{link}}\footnote{\url{https://github.com/fernote7/rnmethods}}
+  and in the near future on
+  \href{<https://cran.r-project.org/>}{\textbf{CRAN}}.
   
   \appendix
   
@@ -1687,9 +1690,9 @@ Black-Scholes, European call, R
   
   \caption{Modified Bessel Functions of the First Kind \label{bessel}}\label{fig:bessel}
   \end{figure}
-  \chapter{Implementations}\label{implementations}
+  \chapter{Implementations}\label{imps}
   
-  \section{Euler's}\label{eulerapp}
+  \section{Euler Scheme}\label{eulerapp}
   
   \small
   \begin{Shaded}
@@ -1902,7 +1905,7 @@ Black-Scholes, European call, R
   \addcontentsline{toc}{chapter}{References}
   
   \setlength{\parindent}{-0.0in} \setlength{\leftskip}{0.00in}
-  \setlength{\parskip}{6pt}
+  \setlength{\parskip}{8pt}
   
   \hypertarget{refs}{}
   \hypertarget{ref-black1973pricing}{}

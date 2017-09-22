@@ -305,7 +305,6 @@
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil
-    Submitted \\
     In Partial Fulfillment of the \\
     Requirements for the Degree \\
      of M.Sc.\ of Applied Mathematics \\
