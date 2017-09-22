@@ -5,12 +5,12 @@ division: 'Applied Mathematics'
 advisor: 'Hugo Alexander de la Cruz Cancino'
 # altadvisor: 'Your Other Advisor'
 department: 'Mathematics'
-title: '\textbf{\Huge{Numerical methods for the \\[20pt] Heston model}}'
+title: '\textbf{\Huge{On the Numerical simulation of the \\[20pt] Heston model}}'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
   thesisdown::thesis_pdf: default
-#  thesisdown::thesis_gitbook: default
+  thesisdown::thesis_gitbook: default
 #  thesisdown::thesis_word: default
 #  thesisdown::thesis_epub: default
 # If you are creating a PDF you'll need to write your preliminary content here or

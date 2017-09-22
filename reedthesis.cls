@@ -300,15 +300,16 @@
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil
     School of \@division \\
-    A Thesis \\
-    Presented to the \\
-    Getulio Vargas Foundation \\
+     A Thesis \\
+     Submitted \\
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil
-    In Partial Fulfillment \\
-    of the Requirements for the Degree \\
-    M.Sc.\ of Applied Mathematics
+    Submitted \\
+    In Partial Fulfillment of the \\
+    Requirements for the Degree \\
+     of M.Sc.\ of Applied Mathematics \\
+     at the FGV
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \bigskip

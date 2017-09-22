@@ -35,7 +35,7 @@ If $S$ were deterministic, $dS_t/S_t$ would be the derivative of $\ln(S_t)$ with
 
 \begin{align*} 
 f(t,S) &= \ln(S) \\[10pt]
-df(t,S) &= \cancelto{0}{\frac{\partial f}{\partial t}dt}  + \frac{\partial f}{\partial S} dS + \cancelto{0}{\frac{1}{2} \frac{\partial^2 f}{\partial t^2} (dt)^2} + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2  + \cancelto{0}{\frac{\partial^2 f}{\partial t \partial S} dt dS} \\[10pt]
+df(t,S) &= \frac{\partial f}{\partial S} dS + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2 \\[10pt]
 d\ln(S) &= \frac{d\ln(S)}{dS} dS + \frac{1}{2} \frac{d^2\ln(S)}{dS^2}(dS)^2 \\[10pt]
 (dS)^2 &= \int_{0}^{t}{\left(\sigma \times S \right)^2} ds = \sigma^2 S^2 dt \\[10pt]
 d\ln(S) &= \frac{1}{S} (\mu S dt + \sigma S dB) + \frac{1}{2}\frac{-1}{S^2} \sigma^2 S^2 dt \\[10pt]
@@ -293,6 +293,8 @@ source("./r_code/mod_comp2.R")
 
 \normalsize
 
+
+\clearpage
 
 <!-- **In the main Rmd file** -->
 

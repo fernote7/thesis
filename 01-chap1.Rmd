@@ -37,7 +37,7 @@ This chapter presents the concepts of stochastic calculus, from the historic con
 Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus was created by the Japanese mathematician Kiyosi Itô \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.} in the 1940s and 1950s and is used for modeling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models are used, but our focus is introducing the concepts and notations that will be further used in our work.
 
 
-### The Stochastic differential equation - SDE
+### Stochastic differential equation - SDE
 
 
 At first, before introducing stochastic differential equation, it is helpful to start with ordinary differential equation. Let $x(t) = x_t$ denote a population at time $t$ so that the change in the population at time $t$ is given by the following deterministic differential equation:
@@ -83,7 +83,7 @@ Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochast
 \begin{itemize}
   \item  $W_{0}=0$
   
-  \item The change in $W$, given by $\Delta W = W_{t+1}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
+  \item The change in $W$, given by $\Delta W = W_{t+\Delta t}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
   
   \item If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
   
@@ -123,7 +123,7 @@ This equation is a linear combination of independent normals at each timestep $t
 ### Itô's Integral
 
 
-Formally, the SDE  presented in equation \@ref(eq:sde1) only exists because we can rewrite it in the form [@tong2012option; @evans; @steele2012stochastic; @ito1951; @ito1962; @rosenthal]:
+Formally, the SDE  presented in equation \@ref(eq:sde1) is interpreted as [@tong2012option; @evans; @steele2012stochastic; @ito1951; @ito1962; @rosenthal]:
 
 \begin{align} 
 \label{eq:sde2}

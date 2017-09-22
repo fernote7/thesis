@@ -25,13 +25,13 @@
       <!-- Capitulo de livro e conference papers -->
         <if type="chapter paper-conference" match="any">
           <text variable="citation-number" prefix="[" suffix="]  "/>
-          <names variable="author" prefix="" suffix=" " text-case="uppercase">
+          <names variable="author" prefix="" suffix=" " text-case="capitalize-first">
             <name et-al-min="3" et-al-use-first="2" delimiter=", " name-as-sort-order="all" sort-separator=", " form="long" initialize-with="."/>
           </names>
           <text variable="title" prefix="" suffix=". "/>
           <group delimiter="" prefix="" suffix="">
             <text value="In:" prefix="" suffix=" "/>
-            <names variable="editor" prefix="" suffix=" (Ed.); " text-case="uppercase">
+            <names variable="editor" prefix="" suffix=" (Ed.); " text-case="capitalize-first">
               <name et-al-min="3" et-al-use-first="2" delimiter=", " form="long" initialize-with=""/>
             </names>
             <text variable="container-title" prefix="" suffix=". " font-weight=""/>
@@ -51,7 +51,7 @@
         <!-- Artigos -->
         <else-if type="article-journal">
           <text variable="citation-number" prefix="[" suffix="]   "/>
-          <names variable="author" prefix="" suffix=" " text-case="uppercase">
+          <names variable="author" prefix="" suffix=" " text-case="capitalize-first">
             <name et-al-min="3" et-al-use-first="2" delimiter="; " name-as-sort-order="all" sort-separator=", " form="long" initialize-with="."/>
           </names>
           <text variable="title" prefix="" suffix=". "/>
@@ -70,7 +70,7 @@
         <!-- Livros -->
         <else-if type="bill book graphic legal_case motion_picture report song" match="any">
           <text variable="citation-number" prefix="[" suffix="]   "/>
-          <names variable="author" prefix="" suffix=" " text-case="uppercase">
+          <names variable="author" prefix="" suffix=" " text-case="capitalize-first">
             <name et-al-min="3" et-al-use-first="2"  delimiter="; " name-as-sort-order="all" sort-separator=", " form="long" initialize-with="."/>
           </names>
           <text variable="title" prefix="" suffix=". " font-weight=""/>
@@ -91,7 +91,7 @@
         <!-- Conference papers -->
         <else-if type="paper-conference">
           <text variable="citation-number" prefix="[" suffix="]  "/>
-          <names variable="author" prefix="" suffix=" " text-case="uppercase">
+          <names variable="author" prefix="" suffix=" " text-case="capitalize-first">
             <name et-al-min="3" et-al-use-first="2" and="symbol" delimiter=", " name-as-sort-order="all" sort-separator=", " form="long" initialize-with="."/>
           </names>
           <text variable="title" prefix="" suffix=". " font-weight=""/>
