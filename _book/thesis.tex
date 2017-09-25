@@ -1474,14 +1474,14 @@ Black-Scholes, European call, R
   Variables & Values \\ 
     \hline 
   dt & 0.05 \\ 
-    k & 2.00 \\ 
+    $\kappa$ & 2.00 \\ 
     r & 0.05 \\ 
-    rho & -0.30 \\ 
+    $\rho$ & -0.30 \\ 
     S & 100.00 \\ 
-    sigma & 0.20 \\ 
+    $\sigma$ & 0.20 \\ 
     t & 0.00 \\ 
-    tau & 1.00 \\ 
-    theta & 0.09 \\ 
+    $\tau$ & 1.00 \\ 
+    $\theta$ & 0.09 \\ 
     v & 0.09 \\ 
     X & 100.00 \\ 
      \hline 
@@ -1664,7 +1664,7 @@ Black-Scholes, European call, R
   f(t,S) &= \ln(S) \\[10pt]
   df(t,S) &= \frac{\partial f}{\partial S} dS + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (dS)^2 \\[10pt]
   d\ln(S) &= \frac{d\ln(S)}{dS} dS + \frac{1}{2} \frac{d^2\ln(S)}{dS^2}(dS)^2 \\[10pt]
-  (dS)^2 &= \int_{0}^{t}{\left(\sigma \times S \right)^2} ds = \sigma^2 S^2 dt \\[10pt]
+  (dS)^2 &= \sigma^2 S^2 dt \\[10pt]
   d\ln(S) &= \frac{1}{S} (\mu S dt + \sigma S dB) + \frac{1}{2}\frac{-1}{S^2} \sigma^2 S^2 dt \\[10pt]
   d\ln(S) &= \left( \mu -  \frac{1}{2} \sigma^2 \right) dt + \sigma dB \\[10pt]
   \int_{t=0}^{T}{d\ln(S_T)} &= \int_{t=0}^{T}{\left( \mu - \frac{\sigma^2}{2} \right) dt} + \int_{t=0}^{T}{\sigma dB_t} 

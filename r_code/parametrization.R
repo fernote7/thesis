@@ -3,7 +3,8 @@ options("scipen"=100, "digits"=2, xtable.comment = FALSE)
 a <- mget(c("dt","k","r","rho","S","sigma","t","tau","theta","v","X"))
 # print(a)
 aa <- data.frame(Variables = names(a), Values = unlist(a), row.names = NULL)
-# print(knitr::kable(aa))
+aa$Variables <- c("dt","$\\kappa$","r","$\\rho$","S","$\\sigma$",
+                  "t","$\\tau$","$\\theta$","v","X")
 ab <- xtable::xtable(aa)
 # cat(ab[1:18],"\\footnotesize{teste}", ab[19:20])
 
@@ -16,7 +17,8 @@ addtorow$pos[[1]] <- c(-1, 0)
 addtorow$command <- c("\\hline \n",
                       paste0('\\hline \n'))
 print(xtable::xtable(ab, caption = "Model Parameters", label = "param"), 
-      add.to.row = addtorow, include.rownames = FALSE,
+      add.to.row = addtorow, include.rownames = FALSE, 
+      sanitize.text.function=function(x){x}, 
       hline.after = NULL, size="\\fontsize{9pt}{11pt}\\selectfont")
 
 
