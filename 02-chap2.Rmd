@@ -57,14 +57,14 @@ Given the fact that the underlying asset is temporal dependent upon the solution
 
 
 \begin{align}
-S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
+S_{t\Delta} = S_t + rS_t + \sqrt{V_t} S_t Z_s
 \end{align}
 
 \noindent
 And for the variance process:
 
 \begin{align}
-V_{t+1} = f_1(V_{t}) + \kappa (\theta - f_2(V_{t})) + \sigma \sqrt{f_3(V_{t})} Z_v 
+V_{t\Delta} = f_1(V_{t}) + \kappa (\theta - f_2(V_{t})) + \sigma \sqrt{f_3(V_{t})} Z_v 
 \end{align}
 
 
@@ -88,9 +88,9 @@ We chose to fix our discretization using the Full-Truncation (FT) scheme and thu
 
 \begin{align}
 \label{eq:st1}
-S_{t+1} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
+S_{t\Delta} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
 \label{eq:vt1}
-V_{t+1} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v 
+V_{t\Delta} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v 
 \end{align}
 
 
@@ -159,8 +159,8 @@ The algorithm used to generate the model consists in four steps as follows:
 \begin{itemize}
 \item [\textit{Step} 1.] Generate a sample of $V_t$ given $V_0$
 \item [\textit{Step} 2.] Generate a sample of $\displaystyle \int_0^t V_sds$ given $V_t$, $V_0$
-\item [\textit{Step} 3.] Compute $displaystyle \int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
-\item [\textit{Step} 4.] Generate a sample from the probability distribution of $S_t$, given $displaystyle \int_0^t \sqrt{V_s}dB_s$ and $displaystyle \int_0^t V_sds$
+\item [\textit{Step} 3.] Compute $\displaystyle \int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
+\item [\textit{Step} 4.] Generate a sample from the probability distribution of $S_t$, given $\displaystyle \int_0^t \sqrt{V_s}dB_s$ and $\displaystyle \int_0^t V_sds$
 \end{itemize}
 
 

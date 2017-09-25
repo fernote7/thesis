@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{On the Numerical simulation of the \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{September 24, 2017}
+\date{September 25, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -115,6 +115,10 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \Acknowledgements{
+I would first like express my sincere appreciaton to my advisor Hugo de
+la Cruz for his help. Also, professor Yuri guidance, steering me to the
+correct path and help when I had questions. Finally, I would like to
+thank my family and friends who supported me through this path.
 \textbf{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ }
 You get pseudo-order when you seek order; you only get a measure of
 order and control when you embrace randomness. --- Nassim Nicholas Taleb
@@ -177,6 +181,10 @@ Black-Scholes, European call, R
   \frontmatter % this stuff will be roman-numbered
   \pagestyle{empty} % this removes page numbers from the frontmatter
       \begin{acknowledgements}
+      I would first like express my sincere appreciaton to my advisor Hugo de
+      la Cruz for his help. Also, professor Yuri guidance, steering me to the
+      correct path and help when I had questions. Finally, I would like to
+      thank my family and friends who supported me through this path.
       \textbf{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ }
       You get pseudo-order when you seek order; you only get a measure of
       order and control when you embrace randomness. --- Nassim Nicholas Taleb
@@ -218,14 +226,17 @@ Black-Scholes, European call, R
   The french mathematician Louis Bachelier was the trail-blazer that
   brought Brownian motion, previously restricted to the field of botanics
   where it was firstly observed, to the financial framework. He modeled
-  the stock prices as a Brownian motion with drift. In 1973, Black and
-  Scholes {[}1{]} designed a model based on the Geometric Brownian Motion
-  to price options.
+  the stock prices as a Brownian motion with drift. IN the 1950's Paul
+  Samuelson and others modeled the expected discounted payoff of European
+  options, but with no standard discount factor or growth rate. In 1973,
+  Black and Scholes {[}1{]} designed a model based on the Geometric
+  Brownian Motion to price options that became the \emph{de facto}
+  standard modeling strategy.
   
   Options are derivatives that give their bearers the rights to buy or
   sell a specific asset in a future date and with a predetermined price.
-  They are, by design, affected by small variations in the underlying
-  assets' components, for example, the variance.
+  They are, by design, affected by variations in the underlying assets'
+  components, for example, the variance.
   
   The Black-Scholes model was once the standard way of option pricing, but
   was replaced by more modern models that are now prevalent. One of the
@@ -263,7 +274,7 @@ Black-Scholes, European call, R
   addresses stochastic calculus, the Black-Scholes models and the Heston
   model. Thereafter we present the different Heston model implementations.
   Chapter 4 brings the results of the tests we perform and finally,
-  chapter 5 presents the conclusion and work limitations.
+  chapter 5 presents the conclusion.
   
   \chapter{Theoretical Framework}\label{lt-review}
   
@@ -301,13 +312,13 @@ Black-Scholes, European call, R
   dx_t &= \overbrace{\underbrace{f(t, x_t)}_\text{drift}dt}^\text{deterministic} + \overbrace{\underbrace{g(t, x_t)}_\text{diffusion}dW_t}^\text{random shock} \\
   x(0) &= x_0 \nonumber
   \end{align}
-  This ``noise'' \(dW_t\) is a \emph{random} Wiener process (which will be
+  This ``noise'' \(W_t\) is a \emph{random} Wiener process (which will be
   clarified below) and \(x_0\) is our initial value.
   
   The \(g(t, x_t)\) part of the SDE is often referred as \emph{diffusion
-  coefficient}, these usually have a continuous paths. Before moving on,
-  we must carefully define what the term \emph{random} means and the best
-  way to begin doing so is to precisely define a probability space:
+  coefficient}. Before moving on, we must carefully define what the term
+  \emph{random} means and the best way to begin doing so is to precisely
+  define a probability space:
   
   \BeginKnitrBlock{definition}[Probability Space]
   
@@ -353,18 +364,22 @@ Black-Scholes, European call, R
   \begin{itemize}
     \item  $W_{0}=0$
     
-    \item The change in $W$, given by $\Delta W = W_{t+\Delta t}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
+    \item The change in $W$, given by $\Delta W = W_{t+\Delta}-W_{t}$, is normally distributed with mean zero and standard deviation $\sqrt{\Delta t}$, meaning that $\Delta W = \epsilon\sqrt{\Delta t}$, where $\epsilon$ is $N(0,1)$.
     
     \item If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
     
-    \item The process is continuous, meaning that there are no jumps in the path.
-    
-    \item The process is Markovian. This means that the conditional expectation of $W_{t+1}$ given its entire history is equal to the conditional expectation of $W_{t+1}$ given today's information. This can be written as: $E[W_{t+1}|W_1, ..., W_t] = E[W_{t+1}|W_t]$.
-    
-    \item Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. 
+    \item The process is continuous, meaning that there are no jumps in the path almost surely.
   
   \end{itemize}
   \EndKnitrBlock{definition}
+  
+  Furthermore, if a process is a Wiener process, we shall have the
+  following results by construction:
+  \begin{itemize}  
+    \item The process is Markovian. This means that the conditional expectation of $W_{t+\Delta t}$ given its entire history is equal to the conditional expectation of $W_{t+\Delta t}$ given today's information. This can be written as: $E[W_{t+\Delta t}|W_1, ..., W_t] = E[W_{t+\Delta t}|W_t]$.
+    
+    \item Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. 
+  \end{itemize}
   \begin{figure}
   
   {\centering \includegraphics{thesis_files/figure-latex/wiener-1} 
@@ -483,10 +498,10 @@ Black-Scholes, European call, R
   Then
   \begin{enumerate}[label=(\roman*)]
     \item $\displaystyle \int_{t_0}^{T}{f dB_t} = \int_{t_0}^{u}{f dB_t} + \int_{u}^{T}{f dB_t}$
-    \item $\displaystyle \int_{t_0}^{T}{(\alpha f + \beta g) dB_t} = \alpha  \int_{t_0}^{T}{f dB_t} + \int_{t_0}^{T}{ \beta g dB_t}$
+    \item $\displaystyle \int_{t_0}^{T}{(\alpha f + \beta g) dB_t} = \alpha  \int_{t_0}^{T}{f dB_t} + \beta  \int_{t_0}^{T}{g dB_t}$
     \item $\displaystyle \mathbb{E}\left[ \int_{t_0}^{T}{fdB_t}\right] = 0 $
     \item $\displaystyle \mathbb {E} \left[\left(\int_{0}^{t}H_{s}\,dB_{s}\right)^{2}\right]=\mathbb {E} \left[\int _{0}^{t}H_{s}^{2}\,ds\right]$ (Isometry)
-    \item $ \displaystyle \mathbb {E}\left[ \int_{t_0}^{T}{f dB_t \mid \mathcal{F}_{s}} \right] = \int_{t_0}^{s}{f dB_t}, \,\,\,\,\,\,\,\,\,\,\,\,\,\, for \,\, s < T.$  (Martingale\footnote{A martingale is a stochastic process with certain characteristics. The main one is that the expected value in time $t+1$ for $X$ is the $X$ value in $t$. This means there are no winning strategies when we are dealing with martingales (unlike when we play poker, for example). A Wiener process is a martingale.})
+    \item $ \displaystyle \mathbb {E}\left[ \int_{t_0}^{T}{f dB_t \mid \mathcal{F}_{s}} \right] = \int_{t_0}^{s}{f dB_t}, \,\,\,\,\,\,\,\,\,\,\,\,\,\, for \,\, s < T.$  (Martingale\footnote{A martingale is a stochastic process with certain characteristics. The main one is that the expected value in time $t+\Delta t$ for $X$ is the $X$ value in $t$. This means there are no winning strategies when we are dealing with martingales (unlike when we play poker, for example). A Wiener process is a martingale.})
   \end{enumerate}
   \section{Black-Scholes Model}\label{black-scholes-model}
   
@@ -533,7 +548,7 @@ Black-Scholes, European call, R
   
   A stochastic process \(S_t\) is a Geometric Brownian Motion\footnote{There
     is an Arithmetic Brownian Motion: \(dS_t = \mu dt + \sigma dB_t\).
-    More information can be obtained at {[}3{]}.} if it is described by
+    More information can be obtained in {[}3{]}.} if it is described by
   the solution of the following stochastic differential equation
   {[}3,8,15{]}.
   \begin{align}
@@ -598,8 +613,8 @@ Black-Scholes, European call, R
   dS_{t} = (r-q)S_td_t+\sigma S_t dW_t
   \end{align}
   \noindent
-  Where \(dW_t\) is a Wiener process {[}1,18{]}, \(r\) is the risk free
-  rate and \(q\) is the dividend
+  Here \(W_t\) is a Wiener process {[}1,18{]}, \(r\) is the risk free rate
+  and \(q\) is the dividend
   yield\footnote{$r$ and $q$ are assumed to be constant.} and \(t\)
   denotes the current point in time.
   
@@ -652,7 +667,7 @@ Black-Scholes, European call, R
   underlying's security volatility is arbitrary. The Heston, the \(3/2\)
   and other models, like the GARCH\footnote{generalized autoregressive
     conditional heteroscedasticity.} and SABR,\footnote{stochastic alpha,
-    beta, rho.} are considered standard smile models.
+    beta, rho. {[}19{]}} are considered standard smile models.
   \begin{figure}
   
   {\centering \includegraphics{thesis_files/figure-latex/smile-1} 
@@ -665,7 +680,7 @@ Black-Scholes, European call, R
   
   The Cox-Ingersoll-Ross (CIR) model is a well-known short-rate model that
   describes the interest rate movements driven by one source of market
-  risk. The dynamics are described as follows{[}19,20{]}:
+  risk. The dynamics are described as follows {[}20,21{]}:
   \begin{align}
   \label{eq:cir}
   dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
@@ -681,7 +696,7 @@ Black-Scholes, European call, R
   account of anticipations, risk aversion, investment alternatives and
   preferences about consumption timing and allows for detailed predictions
   about how changes in a wide range of underlying variables affect the
-  term structure{[}19{]}. Furthermore, this equation constitutes one of
+  term structure{[}20{]}. Furthermore, this equation constitutes one of
   the two Heston model equations with the volatility taking the short rate
   interest place.
   
@@ -691,7 +706,7 @@ Black-Scholes, European call, R
   deterministic volatility problems. It was designed to analize bond and
   currency options and it introduced the following equations, which
   represent the dynamics of the stock price and the variance processes
-  under the risk-neutral measure {[}20,21{]}:
+  under the risk-neutral measure {[}21,22{]}:
   \begin{align}
   \label{eq:heston}
   dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
@@ -702,43 +717,6 @@ Black-Scholes, European call, R
   equation. The first equation states the asset price process. \(\mu\) is
   the asset's rate of return, \(dW_{t,1}\) and \(dW_{t,2}\) are two
   correlated wiener processes with correlation coefficient of \(\rho\).
-  
-  \subsection{Other Models}\label{other-models}
-  
-  \subsubsection{Ornstein-Uhlenbeck}\label{ornstein-uhlenbeck}
-  
-  The Ornstein-Uhlenbeck is the earliest recorded SDE. Named after Leonard
-  Ornstein and George Eugene Uhlenbeck, it is a stochastic process that
-  describes the acceleration of a pollen particle in a liquid subject to
-  bombardments by molecules {[}3{]}. As we can observe in equation
-  \eqref{eq:oueq}, \(x_t\) represents the one dimension velocity of the
-  particle, thus \(dx_t\) is the \emph{change} in velocity, in other
-  words, its acceleration. The \(- \theta x_t\) component slows down the
-  acceleration and is to be understood as frictional force. Besides, we
-  add a noise \(W_t\) with intensity \(\sigma\) that models the random
-  bombardment by the molecules.
-  \begin{align} 
-  \label{eq:oueq}
-  &d x_t = - \theta x_t dt + \sigma d W_t
-  \end{align}
-  With \(\theta\) and \(\sigma\) being positive constants. Expressing in
-  terms of \(x_t\) we get:
-  \begin{align}
-  x_t = e^{-\theta t} \times \left[ x_0  + \sigma \int_{t=0}^{T} e^{\theta t} d W_s \right] \,.
-  \end{align}
-  \subsubsection{Langevin}\label{langevin}
-  
-  The Langevin equation describes a system that consists of the molecular
-  bombardment of a speck of dust on a water surface. We know that the
-  intensity of the bombardement does not depend on the state variables
-  {[}22,23{]}.
-  \begin{align}
-  m \frac{dv}{dt} = -\zeta v + \delta F (t) 
-  \end{align}
-  \(m\) is the mass of the particle, \(v\) it's velocity, \(-\zeta v\) is
-  the frictional force, which is proportional to the velocity, and
-  \(\delta F (t)\) is a \emph{fluctuating} force (random) to the
-  frictional force.
   
   \section{Numerical Methods}\label{numerical-methods}
   
@@ -756,14 +734,13 @@ Black-Scholes, European call, R
   implemented in the R programming language {[}2{]} that we base on a
   finite discretization of a time interval \([t_0, T]\). We shall generate
   approximate values of the sample path for each step contained in the
-  discretized interval {[}22{]}.
+  discretized interval {[}23{]}.
   
   In the fixed step methods, the distance between two contiguous points is
-  the distance
-  \(d_i = t_i - t_{i-1} = \frac{T-t_0}{N} \;\;\; \forall i \mid 1 \leq i \leq N \in \mathbb{N}\).
+  \(d_i = t_i - t_{i-1} = \frac{T-t_0}{N} \;\;\; i \leq N \in \mathbb{N}\).
   \(N\) being the time interval partition number.
   
-  According to Kloeden {[}22{]}, in the stochastic realm, simulated sample
+  According to Kloeden {[}23{]}, in the stochastic realm, simulated sample
   paths can be statistically analysed to find how good an approximation is
   compared to an exact solution. Moreover, the computational costs such as
   time and memory increases polynomially with the problem's dimension,
@@ -775,7 +752,7 @@ Black-Scholes, European call, R
   As soon as we talk about numerical methods we are required to approach
   the topic of approximations and how to handle them. Methods efficiency
   receive the name of \emph{convergence order}. In the SDE domain there
-  are two main methods of convergency, that are classified according to
+  are two main methods of convergence, that are classified according to
   their criteria. Firstly, we present the \emph{strong order of
   convergence}. A method is said to have strong convergence \(\delta\) to
   \(Y\) if a time discretized \(Y_{\delta}\) of a continous-time process
@@ -789,7 +766,7 @@ Black-Scholes, European call, R
   \(\delta\). Strong convergence addresses the problem of solutions'
   trajectories. For specific conditions, the Euler method has strong
   convergence order \(\gamma = \frac{1}{2}\). Furthermore, there is the
-  \emph{weak order of convergence}. The weak convergence
+  \emph{weak order of convergence}:
   \begin{align*}
   \mid  \mathbb{E}p(Y_n) - \mathbb{E}p(Y(\tau)) \mid \leq C \Delta t^{\gamma}
   \end{align*}
@@ -800,7 +777,7 @@ Black-Scholes, European call, R
   of \(1\) (under some conditions). For a more detailed and rigorous
   explanation of convergence we recommend consulting {[}24{]}.
   
-  It is worth noting that, altough schemes have a given convergency order,
+  It is worth noting that, altough schemes have a given convergence order,
   it is not unusual that they behave better than their order for some SDEs
   specifications.
   
@@ -843,30 +820,30 @@ Black-Scholes, European call, R
   \(dW_t\) is the Brownian motion, \(\mu\) and \(\sigma\) are functions
   depending on \(S_t\) and \(t\), over an interval \([0,T]\), and we want
   to discretize it as \(0 = t_1 < t2 < \cdots < t_m = T\) with increments
-  equally spaced \(d_t\).
+  equally spaced \(\Delta t\).
   
-  Integrating it from \(t\) to \(dt\) we have the starting point for our
-  (and any) discretization scheme:
+  Integrating it from \(t\) to \(\Delta t\) we have the starting point for
+  our (and any) discretization scheme:
   \begin{align}
   \label{eq:disc1}
-  S_{t+dt} &= S_t + \int_{t}^{dt}{\mu(S_u,u)}du + \int_{t}^{dt}{\sigma(S_u,u)} dW_u
+  S_{t+\Delta t} &= S_t + \int_{t}^{\Delta t}{\mu(S_u,u)}du + \int_{t}^{\Delta t}{\sigma(S_u,u)} dW_u
   \end{align}
   To use the Euler discretization is the equivalent of approximating
   integrals using the left-point rule as in Figure
   \ref{graph_euler}\footnote{See Kiusalaas {[}27{]}}, we then have:
   \begin{align*}
-   \int_{t}^{t+dt}{\mu(S_u,u)} dW_u &\approx \mu(S_t,t) \int_{t}^{t+dt}dW_u\\
-  &= \mu(S_t,t) (W_{t+dt} - W_t)  \\
-   \int_{t}^{t+dt}{\sigma(S_u,u)} dW_u &\approx \sigma(S_t,t) \int_{t}^{t+dt}dW_u\\
-  &= \sigma(S_t,t) (W_{t+dt} - W_t)  \\
-  &= \sigma(S_t,t) \sqrt{dt} Z
+   \int_{t}^{t+\Delta t}{\mu(S_u,u)} dW_u &\approx \mu(S_t,t) \int_{t}^{t+\Delta t}dW_u\\
+  &= \mu(S_t,t) (W_{t+\Delta t} - W_t)  \\
+   \int_{t}^{t+\Delta t}{\sigma(S_u,u)} dW_u &\approx \sigma(S_t,t) \int_{t}^{t+\Delta t}dW_u 
+  = \sigma(S_t,t) (W_{t+\Delta t} - W_t)  \\
+  &= \sigma(S_t,t) \sqrt{\Delta t} Z
   \end{align*}
-  \(W_{t+dt}-W_t\) and \(\sqrt{dt}Z\) have identical distribution, \(Z\)
-  being a standard gaussian variable. The Euler discretization of equation
-  \eqref{eq:disc1} is then:
+  \(W_{t+\Delta t}-W_t\) and \(\sqrt{\Delta t}Z\) have identical
+  distribution, \(Z\) being a standard Gaussian variable. The Euler
+  discretization of equation \eqref{eq:disc1} is then:
   \begin{align}
   \label{eq:disc2}
-  S_{t+dt} &= S_t + \mu(S_t,t)dt + \sigma(S_t,t)\sqrt{dt}Z
+  S_{t+\Delta t} &= S_t + \mu(S_t,t)\Delta t + \sigma(S_t,t)\sqrt{\Delta t}Z
   \end{align}
   \begin{figure}
   \begin{center}
@@ -883,17 +860,17 @@ Black-Scholes, European call, R
   to discretize the latter {[}16,24{]}:
   \begin{align}
   \label{eq:hesvareuler}
-  V_{t+dt} = V_t+ \int_{t}^{t+dt}{\kappa (\theta - V_u) du} + \int_{t}^{t+dt}{\sigma \sqrt{V_u} dB_u}
+  V_{t+\Delta t} = V_t+ \int_{t}^{t+\Delta t}{\kappa (\theta - V_u) du} + \int_{t}^{t+\Delta t}{\sigma \sqrt{V_u} dB_u}
   \end{align}
   Which discretized turns out as:
   \begin{align*}
-   \int_{t}^{t+dt}{\kappa (\theta - V_u)} du &\approx \kappa (\theta - V_t) dt\\
-   \int_{t}^{t+dt}{\sigma \sqrt{V_u}} dB_t &\approx \sigma \sqrt{V_t} (W_{t+dt}-W_t)\\
-  &= \sigma \sqrt{V_t dt} Z_v
+   \int_{t}^{t+\Delta t}{\kappa (\theta - V_u)} du &\approx \kappa (\theta - V_t) \Delta t\\
+   \int_{t}^{t+\Delta t}{\sigma \sqrt{V_u}} dB_t &\approx \sigma \sqrt{V_t} (W_{t+\Delta t}-W_t)
+  = \sigma \sqrt{V_t \Delta t} Z_v
   \end{align*}
   And leaves us with:
   \begin{align}
-  V_{t+dt} = V_t + \kappa (\theta - V_t) dt + \sigma \sqrt{V_t dt} Z_v
+  V_{t+\Delta t} = V_t + \kappa (\theta - V_t) \Delta t + \sigma \sqrt{V_t \Delta t} Z_v
   \end{align}
   \(Z_v\) is a standard normal variable. To avoid problems with negative
   values in \(\sqrt{V_t}\) we apply the \emph{full truncation} scheme,
@@ -904,23 +881,23 @@ Black-Scholes, European call, R
   For the \(S_t\) SDE we proceed similarly:
   \begin{align}
   \label{eq:heseuler}
-  S_{t+dt} = S_t+ \mu \int_{t}^{t+dt}{ S_u du} + \int_{t}^{t+dt}{\sqrt{V_u} S_u dW_u}
+  S_{t+\Delta t} = S_t+ \mu \int_{t}^{t+\Delta t}{ S_u du} + \int_{t}^{t+\Delta t}{\sqrt{V_u} S_u dW_u}
   \end{align}
   Discretizing we have:
   \begin{align*}
-   \int_{t}^{t+dt}{S_u} du &\approx S_t dt\\
-   \int_{t}^{t+dt}{\sqrt{V_u} S_u} dW_u &\approx \sqrt{V_t} S_t (W_{t+dt}-W_t)\\
-  &= \sqrt{V_t dt} S_t Z_s
+   \int_{t}^{t+\Delta t}{S_u} du &\approx S_t \Delta t\\
+   \int_{t}^{t+\Delta t}{\sqrt{V_u} S_u} dW_u &\approx \sqrt{V_t} S_t (W_{t+\Delta t}-W_t)\\
+  &= \sqrt{V_t \Delta t} S_t Z_s
   \end{align*}
   \(Z_s\) is a standard normal variable with correlation \(\rho\) with
   \(Z_v\). We have:
   \begin{align}
-  S_{t+dt} = S_t + \mu S_t dt + \sqrt{V_t dt} S_t Z_s
+  S_{t+\Delta t} = S_t + \mu S_t \Delta t + \sqrt{V_t \Delta t} S_t Z_s
   \end{align}
   \subsection{Stability}\label{stability}
   
   Most differential equations, deterministic or stochastic, cannot be
-  solved explicitly {[}22{]}. Hence, stability studies begin with
+  solved explicitly {[}23{]}. Hence, stability studies begin with
   computers and is associated with numerical methods and approximations.
   Convergent methods were resulting in bigger errors than what was
   expected that could not be only due to discretization error. Eventually,
@@ -953,7 +930,7 @@ Black-Scholes, European call, R
     \item [i] Rounding errors are considerably amplified by the algorithm. This situation is called numerical instability.
     \item [ii] Small perturbations of data generate large changes in the solution. This is termed an ill-conditioned (or sensitive) problem.
   \end{itemize}
-  Examples of these two classes of problem can be found in {[}21{]}.
+  Examples of these two classes of problem can be found in {[}22{]}.
   
   Stiff equations appear very often in mathematical problems and refer to
   differential equations for which a numerical methods might be unstable
@@ -1010,13 +987,13 @@ Black-Scholes, European call, R
   \(\mathcal{D}\) is defined as the set of all numbers
   \(\Delta \lambda \in mathbb{C}\) such that
   \(\lim_{n \to \infty y+n = 0}\), with \(\Delta > 0\) being the stepsize.
-  Or, as stated in Kloeden {[}22{]}, the suitable values of the stepsize
+  Or, as stated in Kloeden {[}23{]}, the suitable values of the stepsize
   are expressed in terms of \emph{region of absolute stability},
   consisting of the complex numbers \(\lambda \Delta\) for which an error
   in \(y_0\) at \(t_0\) will not grow in subsequent iterations of the
   method.
   
-  Without entering all the details, for these we recommend {[}22,28,30{]},
+  Without entering all the details, for these we recommend {[}23,28,30{]},
   the euler's stability domain is:
   \begin{align*}
   \mathcal{D}_{Euler} = z \in \mathbb{C} : \mid 1 + z \mid < 1
@@ -1055,7 +1032,7 @@ Black-Scholes, European call, R
   \section{Characteristic Function}\label{characteristic-function}
   
   The Heston model characteristic function is firstly presented in the
-  1993 Steven Heston's paper {[}20{]} and is described below {[}34{]}:
+  1993 Steven Heston's paper {[}21{]} and is described below {[}34{]}:
   \begin{align}
   f(S_t, V_t, t) = e^{A(T-t)+B(T-t)S_t + C(T-t)V_t + i \phi S_t}
   \end{align}
@@ -1094,12 +1071,12 @@ Black-Scholes, European call, R
   \(M\) equal segments of length \(\delta t\), we have the following
   discretization for the stock price:
   \begin{align}
-  S_{t+1} = S_t + rS_t + \sqrt{V_t} S_t Z_s
+  S_{t\Delta} = S_t + rS_t + \sqrt{V_t} S_t Z_s
   \end{align}
   \noindent
   And for the variance process:
   \begin{align}
-  V_{t+1} = f_1(V_{t}) + \kappa (\theta - f_2(V_{t})) + \sigma \sqrt{f_3(V_{t})} Z_v 
+  V_{t\Delta} = f_1(V_{t}) + \kappa (\theta - f_2(V_{t})) + \sigma \sqrt{f_3(V_{t})} Z_v 
   \end{align}
   \noindent
   \(Z_s\) being a standard normal random variable, i.e. \(N\sim(0,1)\), we
@@ -1132,9 +1109,9 @@ Black-Scholes, European call, R
   and thus, rewrite the equations as follows:
   \begin{align}
   \label{eq:st1}
-  S_{t+1} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
+  S_{t\Delta} &= S_t + rS_t + \sqrt{V_{t}^{+}} S_t Z_s \\
   \label{eq:vt1}
-  V_{t+1} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v 
+  V_{t\Delta} &= V_t + \kappa (\theta - V_{t}^{+}) + \sigma \sqrt{V_{t}^{+}} Z_v 
   \end{align}
   Our R implementation follows the euler's scheme with hardly any
   modifications. It draws two Gaussian random variables (\(Z_v\) and
@@ -1203,7 +1180,7 @@ Black-Scholes, European call, R
   convergence rate, \(\mathcal{O} \left( s^{-1/2} \right)\) than some of
   the more famous schemes, such as Euler's and Milstein's discretizations.
   They build their idea to generate an exact sample from the distribution
-  of the terminal stock price based on numerous papers {[}20{]}. The stock
+  of the terminal stock price based on numerous papers {[}21{]}. The stock
   price and variance are as follows:
   \begin{align} \label{eq:ea1}
   S_t = S_0 \, exp \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]
@@ -1217,14 +1194,14 @@ Black-Scholes, European call, R
   \begin{itemize}
   \item [\textit{Step} 1.] Generate a sample of $V_t$ given $V_0$
   \item [\textit{Step} 2.] Generate a sample of $\displaystyle \int_0^t V_sds$ given $V_t$, $V_0$
-  \item [\textit{Step} 3.] Compute $displaystyle \int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
-  \item [\textit{Step} 4.] Generate a sample from the probability distribution of $S_t$, given $displaystyle \int_0^t \sqrt{V_s}dB_s$ and $displaystyle \int_0^t V_sds$
+  \item [\textit{Step} 3.] Compute $\displaystyle \int_0^t \sqrt{V_s}dB_s$ given $V_t$, $V_0$ and $\int_0^t V_sds$
+  \item [\textit{Step} 4.] Generate a sample from the probability distribution of $S_t$, given $\displaystyle \int_0^t \sqrt{V_s}dB_s$ and $\displaystyle \int_0^t V_sds$
   \end{itemize}
   \subsection{\texorpdfstring{Generate a sample of \(V_t\) given
   \(V_0\)}{Generate a sample of V\_t given V\_0}}\label{generate-a-sample-of-v_t-given-v_0}
   
   The distribution of \(V_t\) given \(V_0\) for \(0 < t\) is a non-central
-  chi-squared distribution {[}19,38{]}:
+  chi-squared distribution {[}20,38{]}:
   
   \[V_t = \frac{\sigma^2 (1-e^{- \kappa t})}{4 \kappa} \chi_{\delta}^{2} \left( \frac{4 \kappa e^{- \kappa t}}{\sigma^2 (1- e^{- \kappa t})} \times V_0\right)\]
   
@@ -1448,7 +1425,7 @@ Black-Scholes, European call, R
   validate our implementations, and thus do not have the intent to exhaust
   all kinds of possibilities or provide sharp comparisons.
   
-  Heston {[}20{]} gives a closed form used as benchmark and as the `true'
+  Heston {[}21{]} gives a closed form used as benchmark and as the `true'
   option value and enabling the results to be exposed in terms of
   bias\footnote{Defined as
     \(\mathbb{E} \left[ \hat{\alpha} - \alpha \right]\)} and RMSE (root
@@ -1985,27 +1962,27 @@ Black-Scholes, European call, R
   {[}18{]} Gilli, M.; Maringer, D.; et al. Numerical methods and
   optimization in finance. Waltham, MA, USA: 2011.
   
+  \hypertarget{ref-hagan2014arbitrage}{}
+  {[}19{]} Hagan, P.S.; Kumar, D.; et al. Arbitrage-free sabr. Wilmott, v.
+  2014, n. 69, p. 60--75, 2014.
+  
   \hypertarget{ref-cox1985theory}{}
-  {[}19{]} Cox, J.C.; Ingersoll Jr, J.E.; et al. A theory of the term
+  {[}20{]} Cox, J.C.; Ingersoll Jr, J.E.; et al. A theory of the term
   structure of interest rates. Econometrica: Journal of the Econometric
   Society, p. 385--407, 1985.
   
   \hypertarget{ref-heston1993closed}{}
-  {[}20{]} Heston, S.L. A closed-form solution for options with stochastic
+  {[}21{]} Heston, S.L. A closed-form solution for options with stochastic
   volatility with applications to bond and currency options. Review of
   financial studies, v. 6, n. 2, p. 327--343, 1993.
   
   \hypertarget{ref-gilli_numerical_2011}{}
-  {[}21{]} Gilli, M.; Maringer, D.; et al. Numerical methods and
+  {[}22{]} Gilli, M.; Maringer, D.; et al. Numerical methods and
   optimization in finance. 2011.
   
   \hypertarget{ref-kloeden1992}{}
-  {[}22{]} Kloeden, P.E.; Platen, E. Numerical solution of stochastic
+  {[}23{]} Kloeden, P.E.; Platen, E. Numerical solution of stochastic
   differential equations springer-verlag. 1992.
-  
-  \hypertarget{ref-gard1988}{}
-  {[}23{]} Gard, T.C. Introduction to stochastic differential equations.
-  1988.
   
   \hypertarget{ref-higham2001}{}
   {[}24{]} Higham, D.J. An algorithmic introduction to numerical

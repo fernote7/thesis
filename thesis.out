@@ -11,27 +11,26 @@
 \BOOKMARK [1][-]{section.2.3}{Stochastic Volatility models}{chapter.2}% 11
 \BOOKMARK [2][-]{subsection.2.3.1}{Cox-Ingersoll-Ross model}{section.2.3}% 12
 \BOOKMARK [2][-]{subsection.2.3.2}{Heston Model}{section.2.3}% 13
-\BOOKMARK [2][-]{subsection.2.3.3}{Other Models}{section.2.3}% 14
-\BOOKMARK [1][-]{section.2.4}{Numerical Methods}{chapter.2}% 15
-\BOOKMARK [2][-]{subsection.2.4.1}{Convergence}{section.2.4}% 16
-\BOOKMARK [2][-]{subsection.2.4.2}{Discretization}{section.2.4}% 17
-\BOOKMARK [2][-]{subsection.2.4.3}{Stability}{section.2.4}% 18
-\BOOKMARK [0][-]{chapter.3}{Chapter 3: The Heston Model Implementation}{}% 19
-\BOOKMARK [1][-]{section.3.1}{Characteristic Function}{chapter.3}% 20
-\BOOKMARK [1][-]{section.3.2}{Euler Scheme}{chapter.3}% 21
-\BOOKMARK [1][-]{section.3.3}{Kahl-Jackel}{chapter.3}% 22
-\BOOKMARK [1][-]{section.3.4}{Exact Algorithm}{chapter.3}% 23
-\BOOKMARK [2][-]{subsection.3.4.1}{Generate a sample of V\137t given V\1370}{section.3.4}% 24
-\BOOKMARK [2][-]{subsection.3.4.2}{Generate a sample of \134int\1370\136t V\137sds given V\137t, V\1370}{section.3.4}% 25
-\BOOKMARK [2][-]{subsection.3.4.3}{Compute \134int\1370\136t \134sqrt\173V\137s\175dB\137s given V\137t, V\1370 and \134int\1370\136t V\137sds}{section.3.4}% 26
-\BOOKMARK [2][-]{subsection.3.4.4}{Limitations}{section.3.4}% 27
-\BOOKMARK [0][-]{chapter.4}{Chapter 4: Results}{}% 28
-\BOOKMARK [0][-]{chapter.5}{Chapter 5: Conclusion}{}% 29
-\BOOKMARK [0][-]{appendix.A}{Appendix A: Black-Scholes formula}{}% 30
-\BOOKMARK [0][-]{appendix.B}{Appendix B: Bessel Function}{}% 31
-\BOOKMARK [0][-]{appendix.C}{Appendix C: Implementations}{}% 32
-\BOOKMARK [1][-]{section.C.1}{Euler Scheme}{appendix.C}% 33
-\BOOKMARK [1][-]{section.C.2}{Kahl-Jackel Implementation}{appendix.C}% 34
-\BOOKMARK [1][-]{section.C.3}{Exact Algorithm}{appendix.C}% 35
-\BOOKMARK [1][-]{section.C.4}{Results with 20 steps}{appendix.C}% 36
-\BOOKMARK [0][-]{appendix*.29}{References}{}% 37
+\BOOKMARK [1][-]{section.2.4}{Numerical Methods}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.4.1}{Convergence}{section.2.4}% 15
+\BOOKMARK [2][-]{subsection.2.4.2}{Discretization}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.3}{Stability}{section.2.4}% 17
+\BOOKMARK [0][-]{chapter.3}{Chapter 3: The Heston Model Implementation}{}% 18
+\BOOKMARK [1][-]{section.3.1}{Characteristic Function}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.2}{Euler Scheme}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.3}{Kahl-Jackel}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.4}{Exact Algorithm}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.4.1}{Generate a sample of V\137t given V\1370}{section.3.4}% 23
+\BOOKMARK [2][-]{subsection.3.4.2}{Generate a sample of \134int\1370\136t V\137sds given V\137t, V\1370}{section.3.4}% 24
+\BOOKMARK [2][-]{subsection.3.4.3}{Compute \134int\1370\136t \134sqrt\173V\137s\175dB\137s given V\137t, V\1370 and \134int\1370\136t V\137sds}{section.3.4}% 25
+\BOOKMARK [2][-]{subsection.3.4.4}{Limitations}{section.3.4}% 26
+\BOOKMARK [0][-]{chapter.4}{Chapter 4: Results}{}% 27
+\BOOKMARK [0][-]{chapter.5}{Chapter 5: Conclusion}{}% 28
+\BOOKMARK [0][-]{appendix.A}{Appendix A: Black-Scholes formula}{}% 29
+\BOOKMARK [0][-]{appendix.B}{Appendix B: Bessel Function}{}% 30
+\BOOKMARK [0][-]{appendix.C}{Appendix C: Implementations}{}% 31
+\BOOKMARK [1][-]{section.C.1}{Euler Scheme}{appendix.C}% 32
+\BOOKMARK [1][-]{section.C.2}{Kahl-Jackel Implementation}{appendix.C}% 33
+\BOOKMARK [1][-]{section.C.3}{Exact Algorithm}{appendix.C}% 34
+\BOOKMARK [1][-]{section.C.4}{Results with 20 steps}{appendix.C}% 35
+\BOOKMARK [0][-]{appendix*.27}{References}{}% 36

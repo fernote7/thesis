@@ -1,6 +1,6 @@
 ---
 author: 'Fernando O. Teixeira'
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+date: "September 25, 2017"
 division: 'Applied Mathematics'
 advisor: 'Hugo Alexander de la Cruz Cancino'
 # altadvisor: 'Your Other Advisor'
@@ -22,6 +22,7 @@ abstract: >
 # like below, use a command like that for the abstract above.  Note that a tab is 
 # needed on the line after the >.
 acknowledgements: > 
+  I would first like express my sincere appreciaton to my advisor Hugo de la Cruz for his help. Also, professor Yuri guidance, steering me to the correct path and help when I had questions. Finally, I would like to thank my family and friends who supported me through this path. 
   \textbf{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ } 
   You get pseudo-order when you seek order; you only get a measure of order and control when you embrace randomness. — Nassim Nicholas Taleb
 # One person's data is another person's noise.  
@@ -100,9 +101,9 @@ on chapters.
 <!-- \includegraphics[scale=1.5]{reed} -->
 
 
-The french mathematician Louis Bachelier was the trail-blazer that brought Brownian motion, previously restricted to the field of botanics where it was firstly observed, to the financial framework. He modeled the stock prices as a Brownian motion with drift. In 1973, Black and Scholes [@black1973pricing] designed a model based on the Geometric Brownian Motion to price options.
+The french mathematician Louis Bachelier was the trail-blazer that brought Brownian motion, previously restricted to the field of botanics where it was firstly observed, to the financial framework. He modeled the stock prices as a Brownian motion with drift. IN the 1950's Paul Samuelson and others modeled the expected discounted payoff of European options, but with no standard discount factor or growth rate. In 1973, Black and Scholes [@black1973pricing] designed a model based on the Geometric Brownian Motion to price options that became the *de facto* standard modeling strategy.
 
-Options are derivatives that give their bearers the rights to buy or sell a specific asset in a future date and with a predetermined price. They are, by design, affected by small variations in the underlying assets' components, for example, the variance. 
+Options are derivatives that give their bearers the rights to buy or sell a specific asset in a future date and with a predetermined price. They are, by design, affected by variations in the underlying assets' components, for example, the variance. 
 
 The Black-Scholes model was once the standard way of option pricing, but was replaced by more modern models that are now prevalent. One of the main drawbacks of the Black-Scholes model is the strong assumption that the stock returns' volatility is constant. Thus, the implied model's volatility results in a flat surface when plotted against the option's strike price and maturity. Real world implied volatility varies with the strike price and maturity, forming what is called the 'volatility smile'.
 
@@ -111,7 +112,7 @@ The Heston model is an extension of the Black-Scholes model that tackles this vo
 We aim with this thesis to better understand the Heston model, its quirkinesses, associated numerical methods and their implementations, and eventually discuss its pros and cons. For such, we will not only discuss the challenges in a vaguely way, but show code snippets of our implementations in R programming language [@rlang] to help clarify possible associated difficulties. Furthermore, since we didn't find code for the exact algorithm implementation we intend to release a CRAN package with the codes as a didactic tool.
 
 
-This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston  model implementations. Chapter 4 brings the results of the tests we perform and finally, chapter 5 presents the conclusion and work limitations.
+This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston  model implementations. Chapter 4 brings the results of the tests we perform and finally, chapter 5 presents the conclusion.
 
 
 
