@@ -133,18 +133,17 @@ order and control when you embrace randomness. --- Nassim Nicholas Taleb
 }
 
 \Abstract{
-In this thesis we revisit some of the numerical methods for solving the
-Heston model's European call. Specifically, we approach the Euler, the
+In this thesis we revisit numerical methods for the simulation of the
+Heston model's European call. Specifically, we study the Euler, the
 Kahl-Jackel an two versions of the exact algorithm schemes. To perform
 this task, firstly we present a literature review which brings
 stochastic calculus, the Black-Scholes (BS) model and its limitations,
 the stochastic volatility methods and why they resolve the issues of the
 BS model, and the peculiarities of the numerical methods - convergence,
-discretization and stability. Since it is impossible to have a deep
-approach to all these topics, we provide recommendations when we
-acknowledge that the reader might need more specifics. We introduce the
-methods aforementioned providing all our implementations in R language.
-Also, we deliver an R package with these functions and others.
+discretization and stability. We provide recommendations when we
+acknowledge that the reader might need more specifics and might need to
+dive deeper into a given topic. We introduce the methods aforementioned
+providing all our implementations in R language within a package.
 \newline \newline \textbf{Keywords:} Heston, Stochastic, Volatility,
 Black-Scholes, European call, R
 }
@@ -198,18 +197,17 @@ Black-Scholes, European call, R
   
       \listoffigures
       \begin{abstract}
-      In this thesis we revisit some of the numerical methods for solving the
-      Heston model's European call. Specifically, we approach the Euler, the
+      In this thesis we revisit numerical methods for the simulation of the
+      Heston model's European call. Specifically, we study the Euler, the
       Kahl-Jackel an two versions of the exact algorithm schemes. To perform
       this task, firstly we present a literature review which brings
       stochastic calculus, the Black-Scholes (BS) model and its limitations,
       the stochastic volatility methods and why they resolve the issues of the
       BS model, and the peculiarities of the numerical methods - convergence,
-      discretization and stability. Since it is impossible to have a deep
-      approach to all these topics, we provide recommendations when we
-      acknowledge that the reader might need more specifics. We introduce the
-      methods aforementioned providing all our implementations in R language.
-      Also, we deliver an R package with these functions and others.
+      discretization and stability. We provide recommendations when we
+      acknowledge that the reader might need more specifics and might need to
+      dive deeper into a given topic. We introduce the methods aforementioned
+      providing all our implementations in R language within a package.
       \newline \newline \textbf{Keywords:} Heston, Stochastic, Volatility,
       Black-Scholes, European call, R
     \end{abstract}
@@ -227,11 +225,12 @@ Black-Scholes, European call, R
   brought Brownian motion, previously restricted to the field of botanics
   where it was firstly observed, to the financial framework. He modeled
   the stock prices as a Brownian motion with drift. IN the 1950's Paul
-  Samuelson and others modeled the expected discounted payoff of European
-  options, but with no standard discount factor or growth rate. In 1973,
-  Black and Scholes {[}1{]} designed a model based on the Geometric
-  Brownian Motion to price options that became the \emph{de facto}
-  standard modeling strategy.
+  Samuelson created a model based on the Geometric Brownian Motion to
+  price options. He and others computed paths and the expected discounted
+  payoff of European options, but with no standard discount factor or
+  growth rate. In 1973, Black and Scholes {[}1{]} designed a way to
+  effectively calculate a European option price that became the \emph{de
+  facto} standard modeling strategy.
   
   Options are derivatives that give their bearers the rights to buy or
   sell a specific asset in a future date and with a predetermined price.
@@ -239,7 +238,7 @@ Black-Scholes, European call, R
   components, for example, the variance.
   
   The Black-Scholes model was once the standard way of option pricing, but
-  was replaced by more modern models that are now prevalent. One of the
+  was replaced by more recent models that are now prevalent. One of the
   main drawbacks of the Black-Scholes model is the strong assumption that
   the stock returns' volatility is constant. Thus, the implied model's
   volatility results in a flat surface when plotted against the option's
@@ -283,7 +282,7 @@ Black-Scholes, European call, R
   and applications in finance. We address with more care the classical
   Black-Scholes model and its limitations and the Heston model. This model
   is also well known, it brings the concept of stochastic volatility in
-  it, which brings its results closer to reality.
+  it, which presents results closer to reality.
   
   \section{Stochastic Calculus}\label{stochastic-calculus}
   
@@ -368,7 +367,7 @@ Black-Scholes, European call, R
     
     \item If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
     
-    \item The process is continuous, meaning that there are no jumps in the path almost surely.
+    \item The process is continuous, meaning that there are no jumps in the path, almost surely.
   
   \end{itemize}
   \EndKnitrBlock{definition}
@@ -376,9 +375,9 @@ Black-Scholes, European call, R
   Furthermore, if a process is a Wiener process, we shall have the
   following results by construction:
   \begin{itemize}  
-    \item The process is Markovian. This means that the conditional expectation of $W_{t+\Delta t}$ given its entire history is equal to the conditional expectation of $W_{t+\Delta t}$ given today's information. This can be written as: $E[W_{t+\Delta t}|W_1, ..., W_t] = E[W_{t+\Delta t}|W_t]$.
+    \item The process is Markovian. This means that the conditional expectation of $W_{t+\Delta t}$ given its entire history is equal to the conditional expectation of $W_{t+\Delta t}$ given today's information. This can be written as: $E[W_{t+\Delta t}|W_t]$.
     
-    \item Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. 
+    \item Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, they are not differentiable. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. 
   \end{itemize}
   \begin{figure}
   

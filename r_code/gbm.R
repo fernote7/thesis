@@ -1,6 +1,6 @@
 set.seed(1)
 
-X=Sim.DiffProc::GBM(N = 1000, M = 4, t0 = 0, T = 1)
+X=Sim.DiffProc::GBM(N = 1000, M = 100, t0 = 0, T = 1)
 
   matplot(X, axes = FALSE,
            type = "l", col = rgb(.1,.1,.1,.6),

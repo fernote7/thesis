@@ -26,7 +26,7 @@ The {#rmd-basics} text after the chapter declaration will allow us to link throu
 
 # Theoretical Framework {#lt-review}
 
-This chapter presents the concepts of stochastic calculus, from the historic conception of how it first arose through the basic principles and applications in finance. We address with more care the classical Black-Scholes model and its limitations and the Heston model. This model is also well known, it brings the concept of stochastic volatility in it, which brings its results closer to reality.
+This chapter presents the concepts of stochastic calculus, from the historic conception of how it first arose through the basic principles and applications in finance. We address with more care the classical Black-Scholes model and its limitations and the Heston model. This model is also well known, it brings the concept of stochastic volatility in it, which presents results closer to reality.
 
 
 [//]: is a generalization of the Riemann-Stieltjes integral 
@@ -87,7 +87,7 @@ Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochast
   
   \item If the increment $\Delta t_1$ does not overlap with the time increment $\Delta t_2$, then $\Delta W_1$ and $\Delta W_2$ are independent.
   
-  \item The process is continuous, meaning that there are no jumps in the path almost surely.
+  \item The process is continuous, meaning that there are no jumps in the path, almost surely.
 
 \end{itemize}
 ```
@@ -98,9 +98,9 @@ Given a probability space ($\Omega$, $\mathcal {U}$, $\mathcal {P}$), a stochast
 Furthermore, if a process is a Wiener process, we shall have the following results by construction:
 
 \begin{itemize}  
-  \item The process is Markovian. This means that the conditional expectation of $W_{t+\Delta t}$ given its entire history is equal to the conditional expectation of $W_{t+\Delta t}$ given today's information. This can be written as: $E[W_{t+\Delta t}|W_1, ..., W_t] = E[W_{t+\Delta t}|W_t]$.
+  \item The process is Markovian. This means that the conditional expectation of $W_{t+\Delta t}$ given its entire history is equal to the conditional expectation of $W_{t+\Delta t}$ given today's information. This can be written as: $E[W_{t+\Delta t}|W_t]$.
   
-  \item Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, this means that they are not differentiable and go towards infinity as $n$ increases. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. 
+  \item Consider the time interval $[0,t]$ with $n$ equally spaced intervals given by $t_i = \frac{it}{n}$. Then the paths of the Brownian motion have unbounded variation, they are not differentiable. The quadratic variation is given by $\sum_{i=1}^{n}{(Z_{t_i}-Z_{t_{i-1}})^2} \rightarrow t$, meaning that when $n$ increases it stays constant at $t$. 
 \end{itemize}
 
 <!-- \ref{wiener} -->
