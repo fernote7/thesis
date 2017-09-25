@@ -123,15 +123,15 @@ Depending on the reader's R fluency, other parts of the scheme might present a c
 
 ## Kahl-Jackel
 
-Kahl-Jackel propose a discretization method they refer to as the ``IJK'' method  [@andersen; @kahl2006fast] that coupled with the implicit Milstein scheme for the variance lands the system of equations \@ref(eq:kj1) and \@ref(eq:kj2). It is possible to verify that this discretization always results in positive paths for $V$ if $4 \kappa \theta > \sigma^2$. Unfortunately, this inequality is rarely satisfied when we plug real market data to calibrate the parameters. This means we must have a defined strategy for when the inequality doesn't hold. We use the scheme proposed in Andersen [-@andersen], where a truncation similar to the Euler's is applied. Whenever our volatility $V_t$ drops below zero we use \@ref(eq:vt1), and implement $\hat{V}(t+\Delta)^{+}$ and $\hat{V}(t)^{+}$ instead of $\hat{V}(t+\Delta)$ and $\hat{V}(t)$ of equation \@ref(eq:kj1). The code guidance to this method can be found in appendix \@ref(kjimp).
+Kahl-Jackel propose a discretization method they refer to as the ``IJK'' method  [@andersen; @kahl2006fast] that coupled with the implicit Milstein scheme for the variance lands the system of equations \@ref(eq:kj1) and \@ref(eq:kj2). It is possible to verify that this discretization always results in positive paths for $V$ if $4 \kappa \theta > \sigma^2$. Unfortunately, this inequality is rarely satisfied when we plug real market data to calibrate the parameters. This means we must have a defined strategy for when the inequality doesn't hold. We use the scheme proposed in Andersen [-@andersen], where a truncation similar to the Euler's is applied. Whenever our volatility $V_t$ drops below zero we use \@ref(eq:vt1), and implement $V_{t+\Delta}^{+}$ and $V_t^{+}$ instead of $V_{t+\Delta}$ and $V_t$ of equation \@ref(eq:kj1). The code guidance to this method can be found in appendix \@ref(kjimp).
 
 \begin{small}
 \begin{align}
 \label{eq:kj1}
-\ln \hat{S}(t + \Delta) &= \ln \hat{S}(t) - \frac{\Delta}{4}\left( \hat{V}(t+\Delta) + \hat{V}(t) \right) + \rho \sqrt{\hat{V}(t)}Z_v\sqrt{\Delta} \\ \nonumber
-&+ \frac{1}{2} \left( \sqrt{\hat{V}(t+\Delta)} + \sqrt{\hat{V}(t)} \right) \left( Z_S \sqrt{\Delta} - \rho Z_V \sqrt{\Delta}\right) + \frac{1}{4} \sigma \rho \Delta \left( Z_{V}^{2} - 1 \right) \\
+\ln S_{t + \Delta} &= \ln S_t - \frac{\Delta}{4}\left( V_{t+\Delta} + V_t \right) + \rho \sqrt{V_t} Z_V\sqrt{\Delta} \\ \nonumber
+&+ \frac{1}{2} \left( \sqrt{V_{t+\Delta}} + \sqrt{V_t} \right) \left( Z_S \sqrt{\Delta} - \rho Z_V \sqrt{\Delta}\right) + \frac{1}{4} \sigma \rho \Delta \left( Z_{V}^{2} - 1 \right) \\
 \label{eq:kj2}
-\hat{V}(t+\Delta) &= \frac{\hat{V}(t) + \kappa \theta \Delta + \sigma \sqrt{\hat{V}(t)}Z_V \sqrt{\Delta}+ \frac{1}{4}\sigma^2 \Delta \left(Z_V^2-1 \right)}{1+ \kappa \Delta}
+V_{t+\Delta} &= \frac{V_t + \kappa \theta \Delta + \sigma \sqrt{V_t} Z_V \sqrt{\Delta}+ \frac{1}{4}\sigma^2 \Delta \left(Z_V^2-1 \right)}{1+ \kappa \Delta}
 \end{align}
 \end{small}
 

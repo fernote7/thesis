@@ -140,17 +140,17 @@ x_t &= x_0 + \int_{0}^{t}{f(s, x_s)ds} + \int_{0}^{t}{g(s, x_s)dW_s}
 
 
 \noindent
-for some $f(s, x_s)$, $g(s, x_s)$ and $s \in [0,t]$.
+for some $f$, $g$ and $s \in [0,t]$.
 
 
 
 #####################
 
 
-The Itô integral can, as the Riemann integral, be approximated by a finite sum \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}. Also, it has a definition as a certain limit. Itô's lemma \@ref(lem:itolemma) plays the same role as the fundamental theorem of calculus in allowing to evaluate integrals. It is the formal definition and presents an extra term not encountered in the conventional calculus theorem that is due to the non-smoothness characteristics of Brownian motion paths. It is possible, though, to define the integral in a less rigorous way: 
+The Itô integral can, as the Riemann integral, be approximated by a finite sum \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}. Also, it has a definition as a certain limit. Itô's lemma \@ref(lem:itolemma) plays the same role as the fundamental theorem of calculus in allowing to evaluate integrals. It presents an extra term not encountered in the conventional calculus theorem that is due to the non-smoothness characteristics of Brownian motion paths. It is possible, though, to define the integral as the summation below: 
 
 \begin{align}
-Y_{\Delta t}(t) \approx \sum_{t_k < t}{g(t_k)\Delta W_k}
+Y_{\Delta t}(t) = \sum_{t_k < t}{g(t_k)\Delta W_k}
 \end{align}
 
 \noindent
@@ -173,7 +173,7 @@ dS_t = \mu_t dt + \sigma_t dW_t
 \end{align}
 
 \noindent
-for $\mu_t$, $\sigma_t$ and $t \in [0,T]$. Assume $u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}$ is continuous and that $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$, $\frac{\partial^2 u}{\partial x^2}$ exist and are continuous.
+for $\mu_t$, $\sigma_t$ and $t \in [0,T]$ and that $\mathbb{C}^{2,1} \left( \mathbb{R} \times \left[0, T \right]\right)$. Assume $u: \mathbb{R} \times [0, T] \rightarrow \mathbb{R}$ is continuous and that $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$, $\frac{\partial^2 u}{\partial x^2}$ exist and are continuous.
 
 \begin{align*}
 Y_t := u(S_t, t)
@@ -192,7 +192,7 @@ Then Y has the following stochastic differential:
 \end{align}
 
 \noindent 
-where the argument of $u$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( S_t, t \right)$ .
+where the argument of $\frac{\partial u}{\partial t}$, $\frac{\partial u}{\partial x}$ and $\frac{\partial^2 u}{\partial x^2}$ above is $\left( S_t, t \right)$ .
 ```
 
 
@@ -245,27 +245,6 @@ There are two major different option types: European and American. The differenc
 <!-- \end{definition} -->
 
 
-```{definition, name="Intrinsic value"}
-The intrinsic value of a call is the difference between the underlying asset price and the strike price. The put's intrinsic value operates the other way around, being the difference between the strike and the underling asset prices.
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #### Geometric Brownian Motion {#gbm}
 
@@ -292,9 +271,6 @@ source("./r_code/gbm.R")
 ```
 
 
-
-
-### The model
 
 The Black-Scholes model provides analytical solution to the price of a European call at time $t$  and can be described as follows [@yang2013valuing; @black1973pricing; @helgadottir2016option]:
 
@@ -339,7 +315,7 @@ Although the Black-Scholes is very popular and the *de facto* standard in the ma
 
 Other assumptions that are critical to the B-S model and are not always observed in practice refer to the asset's continuity through time (no jumps), being allowed to perform continuous hedge without transactions costs and normal (Gaussian) returns.
 
-Most models focus on the volatility problem because transaction costs often translate to rises in volatility and fat-tails (abnormal) returns can be simulated by stochastic volatility and market or volatility jumps.
+Most models focus on the volatility problem because transaction costs often implies rises in volatility and that fat-tails (abnormal) returns can be simulated by stochastic volatility and market or volatility jumps.
 
 <!-- Out of all the parameters that the call price depends on in the Black Scholes -->
 <!-- model, the volatility is the only one that is unobservable, but we can let the -->
@@ -387,7 +363,7 @@ Introducing stochastic volatility to models brings complexity, but enables model
 Volatility smiles are implied volatility patterns that arise in pricing financial options. In particular for a given expiration, options whose strike price differs substantially from the underlying asset's price command higher prices (and thus implied volatilities) than what is suggested by standard option pricing models. These options are said to be either deep in-the-money or out-of-the-money.
 ```
 
-Furthermore, stochastic volatility models use statistical methods as foundations to price and forecast options' behaviors and the underlying's security volatility is arbitrary. The Heston, the $3/2$ and other models, like the GARCH ^[generalized autoregressive conditional heteroscedasticity.] and SABR ^[stochastic alpha, beta, rho. [@hagan2014arbitrage]], are considered standard smile models.
+Furthermore, stochastic volatility models use statistical methods as foundations to price and forecast options' behaviors and the underlying's security volatility is arbitrary. The Heston, the $3/2$ and other models, like the GARCH ^[generalized autoregressive conditional heteroscedasticity. [@engle1982autoregressive, @bollerslev1986generalized]] and SABR ^[stochastic alpha, beta, rho. [@hagan2014arbitrage]], are considered standard smile models.
 
 
 
@@ -407,7 +383,7 @@ dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
 \end{align} 
 
 \noindent
-Where, $r_t$ is the short rate interest described by parameters $\kappa$ the speed of mean reversion, $\theta$  the long-run mean variance and $\sigma$ the volatility of the variance process.
+Where, $r_t$ is the short rate interest described by parameters $\kappa$ the speed of mean reversion, $\theta$  the long-run mean and $\sigma$ the volatility process.
 
 This model has been widely used to describe the dynamics of the short rate interest because it has some fundamental features like intuitive parametrization, nonnegativity and pricing formulas. Besides, it takes account of anticipations, risk aversion, investment alternatives and preferences about consumption timing and allows for detailed predictions about how changes in a wide range of underlying variables affect the term structure[@cox1985theory].
 Furthermore, this equation constitutes one of the two Heston model equations with the volatility taking the short rate interest place.
@@ -420,14 +396,14 @@ Heston model was introduced in  1993 by Steven Heston to solve the deterministic
 
 \begin{align}
 \label{eq:heston}
-dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW^*_t \\
+dS_t &= \mu S_t dt + \sqrt{V_t} S_t dW_t \\
 dV_t &=  \kappa (\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 \label{eq:hesvar}
 \end{align}
 
 
 
-The second equation, as described in Section \@ref(cir), is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t,1}$ and $dW_{t,2}$ are two correlated wiener processes with correlation coefficient of $\rho$. 
+The second equation, as described in Section \@ref(cir), is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t}$ and $dB_{t}$ are two correlated wiener processes with correlation coefficient of $\rho$. 
 
 
 
@@ -484,10 +460,10 @@ According to Kloeden [-@kloeden1992], in the stochastic realm, simulated sample 
 As soon as we talk about numerical methods we are required to approach the topic of approximations and how to handle them. Methods efficiency receive the name of *convergence order*. In the SDE domain there are two main methods of convergence, that are classified according to their criteria. Firstly, we present the *strong order of convergence*. A method is said to have strong convergence $\delta$  to $Y$ if a time discretized $Y_{\delta}$ of a continous-time process $Y$, with $\delta$ being the maximum time increment of the discretization, and for any fixed time horizon $T$ holds true that [@iacus2009simulation]:
 
 \begin{align*}
-\mathbb{E} \mid Y_{\delta}(T) - Y(T) \mid \leq C \delta^{\gamma}, \,\,\, \forall \delta < \delta_0
+\mathbb{E} \mid Y_{\delta}(T) - Y(T) \mid \leq \mathbb{C} \delta^{\gamma}, \,\,\, \forall \delta < \delta_0
 \end{align*}
 
-with $\delta_0 > 0$ and $\mathcal{C}$ a constant not depending on $\delta$. Strong convergence addresses the problem of solutions' trajectories. For specific conditions, the Euler method has strong convergence order $\gamma = \frac{1}{2}$.
+with $\delta_0 > 0$ and $\mathbb{C}$ a constant not depending on $\delta$. Strong convergence addresses the problem of solutions' trajectories. For specific conditions, the Euler method has strong convergence order $\gamma = \frac{1}{2}$.
 Furthermore, there is the *weak order of convergence*:
 
 
@@ -680,7 +656,7 @@ where $\lambda \in \mathbb{C}$ or in other terms $\lambda = \lambda_r + i \lambd
 \end{align}
 
 
-The $\lim_{t \to \infty} y_t = 0$ if and only if $\mathbb{R} \lambda < 0$. The *linear stability domain* $\mathcal{D}$ is defined as the set of all numbers $\Delta \lambda \in mathbb{C}$ such that $\lim_{n \to \infty y+n = 0}$, with $\Delta > 0$ being the stepsize. Or, as stated in Kloeden [-@kloeden1992], the suitable values of the stepsize are expressed in terms of *region of absolute stability*, consisting of the complex numbers $\lambda \Delta$ for which an error in $y_0$ at $t_0$ will not grow in subsequent iterations of the method.
+The $\lim_{t \to \infty} y_t = 0$ if and only if $\mathbb{R} \left[\lambda \right] < 0$. The *linear stability domain* $\mathcal{D}$ is defined as the set of all numbers $\Delta \lambda \in \mathbb{C}$ such that $\lim_{n \to \infty} y_n = 0$, with $\Delta > 0$ being the stepsize. Or, as stated in Kloeden [-@kloeden1992], the suitable values of the stepsize are expressed in terms of *region of absolute stability*, consisting of the complex numbers $\lambda \Delta$ for which an error in $y_0$ at $t_0$ will not grow in subsequent iterations of the method.
 
 Without entering all the details, for these we recommend [@kloeden1992; @lambers; @iserles], the euler's stability domain  is:
 
