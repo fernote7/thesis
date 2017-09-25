@@ -57,14 +57,14 @@ Given the fact that the underlying asset is temporal dependent upon the solution
 
 
 \begin{align}
-S_{t\Delta} = S_t + rS_t + \sqrt{V_t} S_t Z_s
+S_{t + \Delta t} = S_t + rS_t + \sqrt{V_t} S_t Z_s
 \end{align}
 
 \noindent
 And for the variance process:
 
 \begin{align}
-V_{t\Delta} = f_1(V_{t}) + \kappa (\theta - f_2(V_{t})) + \sigma \sqrt{f_3(V_{t})} Z_v 
+V_{t + \Delta t} = f_1(V_{t}) + \kappa (\theta - f_2(V_{t})) + \sigma \sqrt{f_3(V_{t})} Z_v 
 \end{align}
 
 
