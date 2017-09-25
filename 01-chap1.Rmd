@@ -34,7 +34,7 @@ This chapter presents the concepts of stochastic calculus, from the historic con
 
 ## Stochastic Calculus
 
-Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus was created by the Japanese mathematician Kiyosi Itô \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.} in the 1940s and 1950s and is used for modeling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models are used, but our focus is introducing the concepts and notations that will be further used in our work.
+Stochastic calculus arises from stochastic processes and allows the creation of a theory of integration where both the integrand and integrator terms are stochastic processes. Stochastic calculus was created by the Japanese mathematician Kiyosi Itô in the 1940s and 1950s and is used for modeling financial options and in another wide variety of fields [@ubbo]. In this chapter we present the historical contexts in which the tools and models are used, but our focus is introducing the concepts and notations that will be further used in our work.
 
 
 ### Stochastic differential equation - SDE
@@ -139,7 +139,7 @@ for some $f(s, x_s)$, $g(s, x_s)$ and $s \in [0,t]$.
 #####################
 
 
-The Itô integral can, as the Riemann integral, be approximated by a finite sum. Also, it has a definition as a certain limit. Itô's lemma \@ref(lem:itolemma) plays the same role as the fundamental theorem of calculus in allowing to evaluate integrals. It is the formal definition and presents an extra term not encountered in the conventional calculus theorem that is due to the non-smoothness characteristics of Brownian motion paths. It is possible, though, to define the integral in a less rigorous way: 
+The Itô integral can, as the Riemann integral, be approximated by a finite sum \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}. Also, it has a definition as a certain limit. Itô's lemma \@ref(lem:itolemma) plays the same role as the fundamental theorem of calculus in allowing to evaluate integrals. It is the formal definition and presents an extra term not encountered in the conventional calculus theorem that is due to the non-smoothness characteristics of Brownian motion paths. It is possible, though, to define the integral in a less rigorous way: 
 
 \begin{align}
 Y_{\Delta t}(t) \approx \sum_{t_k < t}{g(t_k)\Delta W_k}
@@ -153,7 +153,7 @@ Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
 \end{align}
 
 
-It is essential that the *forward difference* is used rather than the backward difference, which would be wrong.
+It is essential that the *forward difference*, that is $W(t_{k+1})-W(t_k)$ is used rather than the backward difference $W(t_{k})-W(t_{k-1})$, which would be wrong.
 
 
 ```{lemma, name = "Itô's Lemma", label="itolemma"}

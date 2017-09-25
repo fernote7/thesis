@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{On the Numerical simulation of the \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{September 22, 2017}
+\date{September 24, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -238,11 +238,16 @@ Black-Scholes, European call, R
   
   The Heston model is an extension of the Black-Scholes model that tackles
   this volatility issue replacing the constant volatility with a
-  stochastic process. There are many models that approach volatility
-  stochastically, but the Heston has valuable characteristics such as
-  presenting an analytical solution to the option pricing and also having
-  a computationally simple implementation when compared to more
-  sophisticated competitors.
+  stochastic process. This model was presented by Heston in 1993 and
+  approaches the problem introducing an efficient closed form solution to
+  compute vanilla options, which makes this model easy to be transferred
+  to real life pricing. Its implementations is simple when compared to its
+  more sophisticated competitors and calibrating Heston's model, where
+  pricing several times the same asset is required so that parameters
+  reproducing market prices can be obtained, are easy and can be done in a
+  short amount of time. Furthermore, this model presents a dynamic for the
+  underlying asset which takes into account asymmetry and kurtosis, two
+  often observed statistical moments.
   
   We aim with this thesis to better understand the Heston model, its
   quirkinesses, associated numerical methods and their implementations,
@@ -274,13 +279,11 @@ Black-Scholes, European call, R
   Stochastic calculus arises from stochastic processes and allows the
   creation of a theory of integration where both the integrand and
   integrator terms are stochastic processes. Stochastic calculus was
-  created by the Japanese mathematician Kiyosi Itô
-  \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}
-  in the 1940s and 1950s and is used for modeling financial options and in
-  another wide variety of fields {[}3{]}. In this chapter we present the
-  historical contexts in which the tools and models are used, but our
-  focus is introducing the concepts and notations that will be further
-  used in our work.
+  created by the Japanese mathematician Kiyosi Itô in the 1940s and 1950s
+  and is used for modeling financial options and in another wide variety
+  of fields {[}3{]}. In this chapter we present the historical contexts in
+  which the tools and models are used, but our focus is introducing the
+  concepts and notations that will be further used in our work.
   
   \subsection{Stochastic differential equation -
   SDE}\label{stochastic-differential-equation---sde}
@@ -398,7 +401,9 @@ Black-Scholes, European call, R
   for some \(f(s, x_s)\), \(g(s, x_s)\) and \(s \in [0,t]\).
   
   The Itô integral can, as the Riemann integral, be approximated by a
-  finite sum. Also, it has a definition as a certain limit. Itô's lemma
+  finite sum
+  \footnote{There is another important stochastic integral, called the \textit{Stratonovich Integral} that unlike the Itô's integral, respects the conventional calculus chain rule. Also, the integral is evaluated at the interval's midpoint, instead of its left extreme. A Stratonovich integral can be expressed as an Itô integral and vice versa.}.
+  Also, it has a definition as a certain limit. Itô's lemma
   \ref{lem:itolemma} plays the same role as the fundamental theorem of
   calculus in allowing to evaluate integrals. It is the formal definition
   and presents an extra term not encountered in the conventional calculus
@@ -415,8 +420,9 @@ Black-Scholes, European call, R
   \begin{align}
   Y(t)  = \lim\limits_{\Delta t \to 0} Y_{\Delta t}(t)
   \end{align}
-  It is essential that the \emph{forward difference} is used rather than
-  the backward difference, which would be wrong.
+  It is essential that the \emph{forward difference}, that is
+  \(W(t_{k+1})-W(t_k)\) is used rather than the backward difference
+  \(W(t_{k})-W(t_{k-1})\), which would be wrong.
   
   \BeginKnitrBlock{lemma}[Itô's Lemma]
   
@@ -1508,11 +1514,12 @@ Black-Scholes, European call, R
     \hline 
   Simulations & Euler & KJ & EA-BK & EA-DI \\ 
     \hline 
-  1,000 & 13.28 & 13.05 & 14.71 & 14.74 \\ 
-    10,000 & 14.16 & 13.86 & 14.45 & 14.38 \\ 
-    100,000 & 14.11 & 13.83 & 14.21 & 14.16 \\ 
+  1,000 & 15.00 & 14.57 & 14.71 & 14.51 \\ 
+    10,000 & 14.27 & 13.86 & 14.45 & 14.32 \\ 
+    100,000 & 14.19 & 14.15 & 14.21 & 14.21 \\ 
      \hline 
-  \multicolumn{5}{l}{\scriptsize{Note: Simulations performed with 20 steps, except the EA BK}} 
+  \multicolumn{5}{l}{\scriptsize{Notes: Simulations performed with 100 steps, except the EA-BK}} \\ 
+   \multicolumn{5}{l}{\hspace{0.8cm} \scriptsize{True option price is 14.176}} 
   \end{tabular}
   \caption{Option Value} 
   \label{res}
@@ -1527,7 +1534,7 @@ Black-Scholes, European call, R
   
   }
   
-  \caption{Comparison between models, 20 steps. \label{modcomp1}}\label{fig:modcomp11}
+  \caption{Comparison between models, 100 steps. \label{modcomp1}}\label{fig:modcomp11}
   \end{figure}
   To verify if in fact these methods present bias, we performed ten
   thousand simulations of ten thousand paths to the Euler, Kahl-Jackel
@@ -1536,7 +1543,7 @@ Black-Scholes, European call, R
   \ref{resultsapp} because we present the more precise simulations we
   made, with 100 steps in Figure \ref{fig:results10k001}. Results seem to
   show a little bias, thus we present in Table \ref{res2} how precise
-  models are.
+  models are. The red line presents the option's true value.
   \begin{figure}
   
   {\centering \includegraphics{thesis_files/figure-latex/results10k001-1} 

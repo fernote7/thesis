@@ -1,8 +1,8 @@
 cfhest = c(14.176)
-euler = c(13.2758, 14.16424, 14.11025)
-kj = c(13.05, 13.86, 13.83)
+euler = c(15.00167, 14.26577, 14.19202)
+kj = c(14.56955, 13.86159, 14.14824)
 ea_bk = c(14.71165, 14.44851,14.20904)
-ea_mod = c(14.74, 14.38, 14.16)
+ea_mod = c(14.5106, 14.31572, 14.21126)
 options("scipen"=100, "digits"=4, xtable.comment = FALSE)
 result1 <- data.frame("Simulations" = c("1,000", "10,000", "100,000"),
                       "Euler" = euler, "Kahl" = kj, "EA_BK" = ea_bk, 
