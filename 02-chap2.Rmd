@@ -9,7 +9,7 @@ In section \@ref(hes1) we presented Heston's SDE system in one of its structures
 \begin{align}
 \label{eq:heston2}
 \begin{split}
-dS_t &= \mu S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+dS_t &= r S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
 dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t 
 \end{split}
 \end{align}
@@ -57,7 +57,7 @@ Given the fact that the underlying asset is temporal dependent upon the solution
 
 
 \begin{align}
-S_{t + \Delta t} = S_t + rS_t + \sqrt{V_t} S_t Z_s
+S_{t + \Delta t} = S_t + rS_t dt + \sqrt{V_t} S_t Z_s
 \end{align}
 
 \noindent
@@ -69,7 +69,7 @@ V_{t + \Delta t} = f_1(V_{t}) + \kappa (\theta - f_2(V_{t})) + \sigma \sqrt{f_3(
 
 
 \noindent
-$Z_s$ being a standard normal random variable, i.e. $N\sim(0,1)$, we set $Z_t$ and $Z_v$ as two independent standard normal random variables and $Z_s$ and $Z_v$ having correlation $\rho$. This means we can write $Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t$. 
+$Z_s$ being a standard normal random variable, i.e. $N\sim(0,1)$, we set $Z_t$ and $Z_v$ as two independent standard normal random variables and $Z_s$ and $Z_v$ having correlation $\rho$. This means we can write $Z_s = \rho Z_v + \sqrt{1-\rho^2} Z_t$. $r$ is the risk free interest rate.
 
 
 The immediate observable problem in the proposed discretization scheme is that $V$ can become negative with non-zero probability making the computation of $\sqrt{V_t}$ impossible [@andersen].  There are several proposed fixes that can be used as you can see below:
@@ -144,7 +144,7 @@ V_{t+\Delta} &= \frac{V_t + \kappa \theta \Delta + \sigma \sqrt{V_t} Z_V \sqrt{\
 In 2006, Broadie-Kaya [-@broadie2006exact] propose a method that has a faster convergence rate, $\mathcal{O} \left( s^{-1/2}  \right)$ than some of the more famous schemes, such as Euler's and Milstein's discretizations. They build their idea to generate an exact sample from the distribution of the terminal stock price based on numerous papers [@heston1993closed, @scott1996, @willard1997, @romano1997]. The stock price and variance are as follows:
 
 \begin{align} \label{eq:ea1}
-S_t = S_0 \, exp \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]
+S_t = S_0 \, exp \left[ r t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]
 \end{align}
 
 The squared volatility of the variance process is:
@@ -298,13 +298,13 @@ Furthermore, we also introduce (not in the same simulations, obviously) a simple
 From equation \@ref(eq:ea2) we are now able to compute this integral:
 
 \begin{align} \label{eq:ea3}
-\int_{0}^{t}{\sqrt{V_s dB_s}} = \frac{V_t - V_0 - \kappa \theta t + \kappa \int_{0}^{t}{V_s ds}}{\sigma} 
+\int_{0}^{t}{\sqrt{V_s} dB_s} = \frac{V_t - V_0 - \kappa \theta t + \kappa \int_{0}^{t}{V_s ds}}{\sigma} 
 \end{align}
 
 The last step of the algorithm consists of computing the conditional distribution of $log S_t$ based on the fact that the process for $V_t$ is independent from $dB_t$, and the distribution of $\displaystyle \int_0^t{\sqrt{V_s} dB_s}$ is normal with mean $0$ and variance $\displaystyle \int_0^t{V_s ds}$, given $V_t$.
 
 
-$$m(u,t) = \log S_0 + \left[ \mu t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s d B_s}} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]$$
+$$m(u,t) = \log S_0 + \left[ r t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^{t}{\sqrt{V_s} d B_s} + \sqrt{1 - \rho^2} \int_{0}^{t}{\sqrt{V_s} dW_s}\right]$$
 
 and variance
 

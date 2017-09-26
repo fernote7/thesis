@@ -1,6 +1,6 @@
 ---
 author: 'Fernando O. Teixeira'
-date: "September 25, 2017"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 division: 'Applied Mathematics'
 advisor: 'Hugo Alexander de la Cruz Cancino'
 # altadvisor: 'Your Other Advisor'
@@ -22,7 +22,7 @@ abstract: >
 # like below, use a command like that for the abstract above.  Note that a tab is 
 # needed on the line after the >.
 acknowledgements: > 
-  I would first like express my sincere appreciaton to my advisor Hugo de la Cruz for his help. Also, professor Yuri guidance, steering me to the correct path and help when I had questions. Finally, I would like to thank my family and friends who supported me through this path. 
+  I would first like express my sincere appreciaton to my advisor Hugo de la Cruz for his assistance and support. Also, professor Yuri's guidance steering me to the correct path and helping when I had questions. Finally, I would like to thank my family and friends who supported me through this path. 
   \textbf{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ } 
   You get pseudo-order when you seek order; you only get a measure of order and control when you embrace randomness. — Nassim Nicholas Taleb
 # One person's data is another person's noise.  

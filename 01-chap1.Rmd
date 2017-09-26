@@ -266,7 +266,7 @@ S_t = S_0 \times exp{\left( \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma W
 \end{align}
 
 
-```{r gbm, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='A GBM trajectory path example \\label{gbm}'}
+```{r gbm, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='GBM trajectories path example \\label{gbm}'}
 source("./r_code/gbm.R")
 ```
 
@@ -379,7 +379,7 @@ source("./r_code/smile.R")
  
 \begin{align}
 \label{eq:cir}
-dr_t &= k(\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
+dr_t &= \kappa (\theta - r_t)dt + \sigma \sqrt{r_t} dB_t
 \end{align} 
 
 \noindent
@@ -403,7 +403,7 @@ dV_t &=  \kappa (\theta - V_t)dt + \sigma \sqrt{V_t} dB_t
 
 
 
-The second equation, as described in Section \@ref(cir), is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t}$ and $dB_{t}$ are two correlated wiener processes with correlation coefficient of $\rho$. 
+The second equation, as described in Section \@ref(cir), is the CIR model equation. The first equation states the asset price process. $\mu$ is the asset's rate of return,  $dW_{t}$ and $dB_{t}$ are two correlated wiener processes with correlation coefficient of $\rho$. The parameters $\kappa$, $\theta$ and $\sigma$ represent the speed of mean reversion, the long run mean variance and the volatility of the variance (vol of vol), respectively. These parameters are analogous to the ones in the CIR model.
 
 
 
@@ -450,148 +450,6 @@ In the fixed step methods, the distance between two contiguous points is $d_i = 
 
 
 According to Kloeden [-@kloeden1992], in the stochastic realm, simulated sample paths can be statistically analysed to find how good an approximation is compared to an exact solution. Moreover, the computational costs such as time and memory increases polynomially with the problem's dimension, which is good, and it is possible to apply variance reduction methods that allow a considerable decrease in the required sample size.
-
-
-
-
-### Convergence 
-
-
-As soon as we talk about numerical methods we are required to approach the topic of approximations and how to handle them. Methods efficiency receive the name of *convergence order*. In the SDE domain there are two main methods of convergence, that are classified according to their criteria. Firstly, we present the *strong order of convergence*. A method is said to have strong convergence $\delta$  to $Y$ if a time discretized $Y_{\delta}$ of a continous-time process $Y$, with $\delta$ being the maximum time increment of the discretization, and for any fixed time horizon $T$ holds true that [@iacus2009simulation]:
-
-\begin{align*}
-\mathbb{E} \mid Y_{\delta}(T) - Y(T) \mid \leq \mathbb{C} \delta^{\gamma}, \,\,\, \forall \delta < \delta_0
-\end{align*}
-
-with $\delta_0 > 0$ and $\mathbb{C}$ a constant not depending on $\delta$. Strong convergence addresses the problem of solutions' trajectories. For specific conditions, the Euler method has strong convergence order $\gamma = \frac{1}{2}$.
-Furthermore, there is the *weak order of convergence*:
-
-
-
-\begin{align*}
-\mid  \mathbb{E}p(Y_n) - \mathbb{E}p(Y(\tau)) \mid \leq C \Delta t^{\gamma}
-\end{align*}
-
-Strong and weak convergence are not mutually exclusive [@iacus2009simulation]. That means that a method with a given strong order of convergence might have a higher weak order of convergence too. This is the case for the Euler scheme, with a strong order of convergence of $1/2$ and a weak order of $1$ (under some conditions). For a more detailed and rigorous explanation of convergence we recommend consulting [@higham2001].
-
-It is worth noting that, altough schemes have a given convergence order, it is not unusual that they behave better than their order for some SDEs specifications.
-
-
-### Discretization
-
-We know that convergence is an important feature to a numerical method and studies have found not all time discrete possible approximations of an SDE converge in a useful sense to the solution process as the step size adopted tends toward zero [@clements1973well; @clark1980maximum]. Moreover, particularly for SDEs, some of the more rapidly convergent methods available for ordinary differential equations (ODE) do not work, such as higher order Runge-Kutta methods ^[The euler method is the simplest Runge-Kutta method.]. 
-
-One of the methods that do work for ODEs and SDEs is the Euler method, named after the Swiss mathematician Leonhard Euler. Figure \@ref(fig:euler) shows an example of an implementation for the Newton's cooling law with timestep of 2 seconds compared to its analytical solution. This method (*a.k.a.* forward Euler method) is a first-order numerical procedure. It is the most basic explicit method ^[Explicit methods calculate the state of a system at a later time from the state of the system at the current time. Mathematically we have something like $Y(t+\Delta t)=F(Y(t))\,$.] for numerical integration.
-
-
-
-```{r euler, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Analytical x Euler solutions \\label{euler}'}
-source("./r_code/euler_comp.R")
-```
-
-
-
-The method is first-order, as stated above, this means that the error in each step is a proportion of the square of the step size. Also, the global error at a given time is a function of the step size.
-We proceed to apply the Euler method to SDEs. Consider the equation:
-
-\begin{align}
-dS_t &= \mu(S_t,t) dt + \sigma(S_t,t) dW_t
-\end{align}
-
-$dW_t$ is the Brownian motion, $\mu$ and $\sigma$ are functions depending on $S_t$ and $t$, over an interval $[0,T]$, and we want to discretize it as $0 = t_1 < t2 < \cdots < t_m = T$ with increments equally spaced $\Delta t$.
-
-Integrating it from $t$ to $\Delta t$ we have the starting point for our (and any) discretization scheme:
-
-\begin{align}
-\label{eq:disc1}
-S_{t+\Delta t} &= S_t + \int_{t}^{\Delta t}{\mu(S_u,u)}du + \int_{t}^{\Delta t}{\sigma(S_u,u)} dW_u
-\end{align}
-
-To use the Euler discretization is the equivalent of approximating integrals using the left-point rule as in Figure \ref{graph_euler}^[See Kiusalaas [-@kiusalaas2013numerical]], we then have:
-
-
-\begin{align*}
- \int_{t}^{t+\Delta t}{\mu(S_u,u)} dW_u &\approx \mu(S_t,t) \int_{t}^{t+\Delta t}dW_u\\
-&= \mu(S_t,t) (W_{t+\Delta t} - W_t)  \\
- \int_{t}^{t+\Delta t}{\sigma(S_u,u)} dW_u &\approx \sigma(S_t,t) \int_{t}^{t+\Delta t}dW_u 
-= \sigma(S_t,t) (W_{t+\Delta t} - W_t)  \\
-&= \sigma(S_t,t) \sqrt{\Delta t} Z
-\end{align*}
-
-$W_{t+\Delta t}-W_t$ and $\sqrt{\Delta t}Z$ have identical distribution, $Z$ being a standard Gaussian variable. The Euler discretization of equation \@ref(eq:disc1) is then:
-
-\begin{align}
-\label{eq:disc2}
-S_{t+\Delta t} &= S_t + \mu(S_t,t)\Delta t + \sigma(S_t,t)\sqrt{\Delta t}Z
-\end{align}
-
-\begin{figure}
-\begin{center}
-    \includegraphics[width=100mm]{figure/euler_screen.png}
-    \caption{Graphical representation of Euler’s formula}\label{graph_euler}
-    \caption*{\scriptsize{Source: Numerical methods in Engineering with Python 3.}}
-\end{center}
-\end{figure}
-
-
-
-
-
-#### Euler method - Heston model
-
-We now proceed to apply the method to our model of interest. We retake the equations \@ref(eq:heston) and \@ref(eq:hesvar). We begin showing how to discretize the latter [@higham2001; @iacus2009simulation]:
-
-\begin{align}
-\label{eq:hesvareuler}
-V_{t+\Delta t} = V_t+ \int_{t}^{t+\Delta t}{\kappa (\theta - V_u) du} + \int_{t}^{t+\Delta t}{\sigma \sqrt{V_u} dB_u}
-\end{align}
-
-Which discretized turns out as:
-
-\begin{align*}
- \int_{t}^{t+\Delta t}{\kappa (\theta - V_u)} du &\approx \kappa (\theta - V_t) \Delta t\\
- \int_{t}^{t+\Delta t}{\sigma \sqrt{V_u}} dB_t &\approx \sigma \sqrt{V_t} (W_{t+\Delta t}-W_t)
-= \sigma \sqrt{V_t \Delta t} Z_v
-\end{align*}
-
-
-
-And leaves us with:
-
-\begin{align}
-V_{t+\Delta t} = V_t + \kappa (\theta - V_t) \Delta t + \sigma \sqrt{V_t \Delta t} Z_v
-\end{align}
-
-$Z_v$ is a standard normal variable. To avoid problems with negative values in $\sqrt{V_t}$ we apply the *full truncation* scheme, which substitutes $V_t$ with $V_t^+ = max(0, V_t)$ ^[Another possible scheme (not used in this work) is the *reflection* scheme where we replace $V_t$ with $\mid V_t \mid$].
-
-For the $S_t$ SDE we proceed similarly:
-
-\begin{align}
-\label{eq:heseuler}
-S_{t+\Delta t} = S_t+ \mu \int_{t}^{t+\Delta t}{ S_u du} + \int_{t}^{t+\Delta t}{\sqrt{V_u} S_u dW_u}
-\end{align}
-
-Discretizing we have:
-
-\begin{align*}
- \int_{t}^{t+\Delta t}{S_u} du &\approx S_t \Delta t\\
- \int_{t}^{t+\Delta t}{\sqrt{V_u} S_u} dW_u &\approx \sqrt{V_t} S_t (W_{t+\Delta t}-W_t)\\
-&= \sqrt{V_t \Delta t} S_t Z_s
-\end{align*}
-
-$Z_s$ is a standard normal variable with correlation $\rho$ with $Z_v$. We have:
-
-\begin{align}
-S_{t+\Delta t} = S_t + \mu S_t \Delta t + \sqrt{V_t \Delta t} S_t Z_s
-\end{align}
-
-
-
-
-
-
-
-
 
 
 
@@ -967,3 +825,147 @@ Thereby, we claim that stability method study is an important topic, since it en
 <!-- - Introduction to `dplyr` - <https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html> -->
 
 <!-- - `ggplot2` Documentation - <http://docs.ggplot2.org/current/> -->
+
+
+
+### Convergence 
+
+
+As soon as we talk about numerical methods we are required to approach the topic of approximations and how to handle them. Methods efficiency receive the name of *convergence order*. In the SDE domain there are two main methods of convergence, that are classified according to their criteria. Firstly, we present the *strong order of convergence*. A method is said to have strong convergence $\delta$  to $Y$ if a time discretized $Y_{\delta}$ of a continous-time process $Y$, with $\delta$ being the maximum time increment of the discretization, and for any fixed time horizon $T$ holds true that [@iacus2009simulation]:
+
+\begin{align*}
+\mathbb{E} \mid Y_{\delta}(T) - Y(T) \mid \leq C \delta^{\gamma}, \,\,\, \forall \delta < \delta_0,
+\end{align*}
+
+with $\delta_0 > 0$ and $C$ a constant not depending on $\delta$. Strong convergence addresses the problem of solutions' trajectories. For specific conditions, the Euler method has strong convergence order $\gamma = \frac{1}{2}$.
+Furthermore, there is the *weak order of convergence*:
+
+
+
+\begin{align*}
+\mid  \mathbb{E}p(Y(T)) - \mathbb{E}p(Y_\delta(\tau)) \mid \leq C \delta t^{\gamma}, \,\,\, \forall \delta < \delta_0,
+\end{align*}
+
+Strong and weak convergence are not mutually exclusive [@iacus2009simulation]. That means that a method with a given strong order of convergence might have a higher weak order of convergence too. This is the case for the Euler scheme, with a strong order of convergence of $1/2$ and a weak order of $1$ (under some conditions). $p$ is a continuous differentiable  function of polynomial growth. For a more detailed and rigorous explanation of convergence we recommend consulting [@higham2001].
+
+It is worth noting that, altough schemes have a given convergence order, it is not unusual that they behave better than their order for some SDEs specifications.
+
+
+### Discretization
+
+We know that convergence is an important feature to a numerical method and studies have found not all time discrete possible approximations of an SDE converge in a useful sense to the solution process as the step size adopted tends toward zero [@clements1973well; @clark1980maximum]. Moreover, particularly for SDEs, some of the more rapidly convergent methods available for ordinary differential equations (ODE) do not work, such as higher order Runge-Kutta methods ^[The euler method is the simplest Runge-Kutta method.]. 
+
+One of the methods that do work for ODEs and SDEs is the Euler method, named after the Swiss mathematician Leonhard Euler. Figure \@ref(fig:euler) shows an example of an implementation for the Newton's cooling law with timestep of 2 seconds compared to its analytical solution. This method (*a.k.a.* forward Euler method) is a first-order numerical procedure. It is the most basic explicit method ^[Explicit methods calculate the state of a system at a later time from the state of the system at the current time. Mathematically we have something like $Y(t+\Delta t)=F(Y(t))\,$.] for numerical integration.
+
+
+
+```{r euler, echo=FALSE, message=FALSE, results='asis', fig.asp = 0.7, fig.width = 5, fig.align='center', fig.cap='Analytical x Euler solutions \\label{euler}'}
+source("./r_code/euler_comp.R")
+```
+
+
+
+The method is first-order, as stated above, this means that the error in each step is a proportion of the square of the step size. Also, the global error at a given time is a function of the step size.
+We proceed to apply the Euler method to SDEs. Consider the equation:
+
+\begin{align}
+dS_t &= \mu(S_t,t) dt + \sigma(S_t,t) dW_t
+\end{align}
+
+$dW_t$ is the Brownian motion, $\mu$ and $\sigma$ are functions depending on $S_t$ and $t$, over an interval $[0,T]$, and we want to discretize it as $0 = t_1 < t2 < \cdots < t_m = T$ with increments equally spaced $\Delta t$.
+
+Integrating it from $t$ to $\Delta t$ we have the starting point for our (and any) discretization scheme:
+
+\begin{align}
+\label{eq:disc1}
+S_{t+\Delta t} &= S_t + \int_{t}^{\Delta t}{\mu(S_u,u)}du + \int_{t}^{\Delta t}{\sigma(S_u,u)} dW_u
+\end{align}
+
+To use the Euler discretization is the equivalent of approximating integrals using the left-point rule as in Figure \ref{graph_euler}^[See Kiusalaas [-@kiusalaas2013numerical]], we then have:
+
+
+\begin{align*}
+ \int_{t}^{t+\Delta t}{\mu(S_u,u)} dW_u &\approx \mu(S_t,t) \int_{t}^{t+\Delta t}dW_u\\
+&= \mu(S_t,t) (W_{t+\Delta t} - W_t)  \\
+ \int_{t}^{t+\Delta t}{\sigma(S_u,u)} dW_u &\approx \sigma(S_t,t) \int_{t}^{t+\Delta t}dW_u 
+= \sigma(S_t,t) (W_{t+\Delta t} - W_t)  \\
+&= \sigma(S_t,t) \sqrt{\Delta t} Z
+\end{align*}
+
+$W_{t+\Delta t}-W_t$ and $\sqrt{\Delta t}Z$ have identical distribution, $Z$ being a standard Gaussian variable. The Euler discretization of equation \@ref(eq:disc1) is then:
+
+\begin{align}
+\label{eq:disc2}
+S_{t+\Delta t} &= S_t + \mu(S_t,t)\Delta t + \sigma(S_t,t)\sqrt{\Delta t}Z
+\end{align}
+
+\begin{figure}
+\begin{center}
+    \includegraphics[width=100mm]{figure/euler_screen.png}
+    \caption{Graphical representation of Euler’s formula}\label{graph_euler}
+    \caption*{\scriptsize{Source: Numerical methods in Engineering with Python 3.}}
+\end{center}
+\end{figure}
+
+
+
+
+
+#### Euler method - Heston model
+
+We now proceed to apply the method to our model of interest. We retake the equations \@ref(eq:heston) and \@ref(eq:hesvar). We begin showing how to discretize the latter [@higham2001; @iacus2009simulation]:
+
+\begin{align}
+\label{eq:hesvareuler}
+V_{t+\Delta t} = V_t+ \int_{t}^{t+\Delta t}{\kappa (\theta - V_u) du} + \int_{t}^{t+\Delta t}{\sigma \sqrt{V_u} dB_u}
+\end{align}
+
+Which discretized turns out as:
+
+\begin{align*}
+ \int_{t}^{t+\Delta t}{\kappa (\theta - V_u)} du &\approx \kappa (\theta - V_t) \Delta t\\
+ \int_{t}^{t+\Delta t}{\sigma \sqrt{V_u}} dB_t &\approx \sigma \sqrt{V_t} (W_{t+\Delta t}-W_t)
+= \sigma \sqrt{V_t \Delta t} Z_v
+\end{align*}
+
+
+
+And leaves us with:
+
+\begin{align}
+V_{t+\Delta t} = V_t + \kappa (\theta - V_t) \Delta t + \sigma \sqrt{V_t \Delta t} Z_v
+\end{align}
+
+$Z_v$ is a standard normal variable. To avoid problems with negative values in $\sqrt{V_t}$ we apply the *full truncation* scheme, which substitutes $V_t$ with $V_t^+ = max(0, V_t)$ ^[Another possible scheme (not used in this work) is the *reflection* scheme where we replace $V_t$ with $\mid V_t \mid$].
+
+For the $S_t$ SDE we proceed similarly:
+
+\begin{align}
+\label{eq:heseuler}
+S_{t+\Delta t} = S_t+ \mu \int_{t}^{t+\Delta t}{ S_u du} + \int_{t}^{t+\Delta t}{\sqrt{V_u} S_u dW_u}
+\end{align}
+
+Discretizing we have:
+
+\begin{align*}
+ \int_{t}^{t+\Delta t}{S_u} du &\approx S_t \Delta t\\
+ \int_{t}^{t+\Delta t}{\sqrt{V_u} S_u} dW_u &\approx \sqrt{V_t} S_t (W_{t+\Delta t}-W_t)\\
+&= \sqrt{V_t \Delta t} S_t Z_s
+\end{align*}
+
+$Z_s$ is a standard normal variable with correlation $\rho$ with $Z_v$. We have:
+
+\begin{align}
+S_{t+\Delta t} = S_t + \mu S_t \Delta t + \sqrt{V_t \Delta t} S_t Z_s
+\end{align}
+
+
+
+
+
+
+
+
+
+
+

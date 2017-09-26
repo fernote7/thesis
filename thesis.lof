@@ -1,13 +1,20 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces A Wiener process trajectory path example \relax }}{5}{figure.caption.6}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces A GBM trajectory path example \relax }}{8}{figure.caption.11}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces GBM trajectories path example \relax }}{8}{figure.caption.11}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Volatility Smile \relax }}{10}{figure.caption.12}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Analytical x Euler solutions \relax }}{13}{figure.caption.13}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Graphical representation of Euler\IeC {\textquoteright }s formula\relax }}{14}{figure.caption.14}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Euler's stability whith different timesteps \relax }}{16}{figure.caption.16}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Stability domains \relax }}{18}{figure.caption.18}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Euler's stability whith different timesteps \relax }}{13}{figure.caption.13}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Stability domains \relax }}{15}{figure.caption.15}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Analytical x Euler solutions \relax }}{16}{figure.caption.16}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Graphical representation of Euler\IeC {\textquoteright }s formula\relax }}{17}{figure.caption.17}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Comparison between models, 100 steps. \relax }}{28}{figure.caption.22}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Comparison between models, 100 steps. \relax }}{29}{figure.caption.23}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Modified Bessel Functions of the First Kind \relax }}{35}{figure.caption.25}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {C.1}{\ignorespaces Comparison between models, 20 steps. \relax }}{41}{figure.caption.26}
 \addvspace {10\p@ }
