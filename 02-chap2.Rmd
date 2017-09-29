@@ -9,7 +9,7 @@ In section \@ref(hes1) we presented Heston's SDE system in one of its structures
 \begin{align}
 \label{eq:heston2}
 \begin{split}
-dS_t &= r S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+dS_t &= r S_t dt + \rho \sqrt{V_t} S_t dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
 dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t 
 \end{split}
 \end{align}
@@ -150,7 +150,7 @@ S_t = S_0 \, exp \left[ r t - \frac{1}{2} \int_{0}^{t}{V_s ds} + \rho  \int_{0}^
 The squared volatility of the variance process is:
 
 \begin{align} \label{eq:ea2}
-V_t = V_0 + \kappa \theta t - \kappa \int_{0}^{t}{V_s ds} + \sigma \int_{0}^{t}{\sqrt{V_s dB_s}}
+V_t = V_0 + \kappa \theta t - \kappa \int_{0}^{t}{V_s ds} + \sigma \int_{0}^{t}{\sqrt{V_s} dB_s}
 \end{align}
 
 

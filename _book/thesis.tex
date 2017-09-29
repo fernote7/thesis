@@ -73,7 +73,7 @@
 \title{\textbf{\Huge{On the Numerical simulation of the \\[20pt] Heston model}}}
 \author{Fernando O. Teixeira}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{September 25, 2017}
+\date{setembro 29, 2017}
 \division{Applied Mathematics}
 \advisor{Hugo Alexander de la Cruz Cancino}
 %If you have two advisors for some reason, you can use the following
@@ -757,14 +757,7 @@ Black-Scholes, European call, R
   around it until convergence. The bottom plot, presents a small increase
   in the step \(h = 29\), and this small increment is enough results in
   numbers completely off target.
-  \begin{figure}
   
-  {\centering \includegraphics{thesis_files/figure-latex/stab-1} 
-  
-  }
-  
-  \caption{Euler's stability whith different timesteps \label{stab}}\label{fig:stab}
-  \end{figure}
   We know that binary machines like computers are not able to represent
   all the real numbers, but only a subset of them. Thus, solving these
   errors is not straightforward since it's not possible to eliminate
@@ -777,7 +770,14 @@ Black-Scholes, European call, R
     \item [ii] Small perturbations of data generate large changes in the solution. This is termed an ill-conditioned (or sensitive) problem.
   \end{itemize}
   Examples of these two classes of problem can be found in {[}24{]}.
+  \begin{figure}
   
+  {\centering \includegraphics{thesis_files/figure-latex/stab-1} 
+  
+  }
+  
+  \caption{Euler's stability whith different timesteps \label{stab}}\label{fig:stab}
+  \end{figure}
   Stiff equations appear very often in mathematical problems and refer to
   differential equations for which a numerical methods might be unstable
   for not small enough stepsizes {[}26{]}. A differential equation of the
@@ -1019,7 +1019,7 @@ Black-Scholes, European call, R
   \begin{align}
   \label{eq:heston2}
   \begin{split}
-  dS_t &= r S_t dt + \rho \sqrt{V_t} dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
+  dS_t &= r S_t dt + \rho \sqrt{V_t} S_t dB_t + \sqrt{1 - \rho^2} \sqrt{V_t} S_t dW_t \\
   dV_t &= k(\theta - V_t)dt + \sigma \sqrt{V_t} dB_t 
   \end{split}
   \end{align}
@@ -1181,7 +1181,7 @@ Black-Scholes, European call, R
   \end{align}
   The squared volatility of the variance process is:
   \begin{align} \label{eq:ea2}
-  V_t = V_0 + \kappa \theta t - \kappa \int_{0}^{t}{V_s ds} + \sigma \int_{0}^{t}{\sqrt{V_s dB_s}}
+  V_t = V_0 + \kappa \theta t - \kappa \int_{0}^{t}{V_s ds} + \sigma \int_{0}^{t}{\sqrt{V_s} dB_s}
   \end{align}
   The algorithm used to generate the model consists in four steps as
   follows:

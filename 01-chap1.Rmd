@@ -458,9 +458,6 @@ According to Kloeden [-@kloeden1992], in the stochastic realm, simulated sample 
 Most differential equations, deterministic or stochastic, cannot be solved
 explicitly [@kloeden1992]. Hence, stability studies begin with computers and is associated with numerical methods and approximations. Convergent methods were resulting in bigger errors than what was expected that could not be only due to discretization error. Eventually, scientists discovered that this unexpected problem was caused by accumulation of successive truncation errors. Figure \@ref(fig:stab) retakes the cooling example previously approached to show instability due to an increase in size of the timestep and extending to $600$ seconds. The top plot, with a step of $25$ still converges to the real solution, but we already observe an odd behaviour since the numerical method doesn't follow the analytical solution, but instead revolver around it until convergence. The bottom plot, presents a small increase in the step $h = 29$, and this small increment is enough results in numbers completely off target.
 
-```{r stab, echo=FALSE, message=FALSE, results='asis', fig.height=5, fig.width = 5, fig.align='center', fig.cap='Euler\'s stability whith different timesteps \\label{stab}'}
-source("./r_code/stab.R")
-```
 
 We know that binary machines like computers are not able to represent all the real numbers, but only a subset of them. Thus, solving these errors is not straightforward since it's not possible to eliminate *all* truncation error when using a computer and dealing with numerical solutions. When faced to an incorrect (not acceptable) solution, we have to evaluate and distinguish between two distinct situations:
 
@@ -470,6 +467,12 @@ We know that binary machines like computers are not able to represent all the re
 \end{itemize}
 
 Examples of these two classes of problem can be found in [@gilli_numerical_2011].
+
+```{r stab, echo=FALSE, message=FALSE, results='asis', fig.height=5, fig.width = 5, fig.align='center', fig.cap='Euler\'s stability whith different timesteps \\label{stab}'}
+source("./r_code/stab.R")
+```
+
+
 
 
 Stiff equations appear very often in mathematical problems and refer to differential equations for which a numerical methods might be unstable for not small enough stepsizes [@iserles]. A differential equation of the form $y' = f(t,y)$, if its exact solution $y(t)$ includes a term that decays exponentially to zero as $t$ increases, but whose derivatives are greater in magnitude than the term itself. In other words, if it requires a significant depression of the stepsize to avoid stability lost. This is a loose definition but, since we are dealing with numerical methods a proper mathematical definition isn't required. Tipically, these equations are of the form $e^{-ct}$, where $c$ is a large positive constant [@burden2001]. A practical example of the stiff behavior is the following differential equation [@lambers]:

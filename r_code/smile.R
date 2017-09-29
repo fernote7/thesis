@@ -2,7 +2,7 @@ x = c(100, 81, 64, 49, 36, 25, 16,  9,  4,  1,
       0,  1,  4,  9, 16, 25, 36, 49, 64, 81, 100)
 cex = 0.4
 
-plot(x, type='l', axes=FALSE, xlim = c(-3,28), ylim = c(-90,170), xlab = "Spot Price",
+plot(x, type='l', axes=FALSE, xlim = c(-3,28), ylim = c(-90,170), xlab = "Strike Price",
      ylab = "Implied Volatility")
 segments(x0=11,y0=-100,x1=11,y1=0,lty=2, col = 'red')
 mtext("At-the-money Calls", side = 1, col = 'red', cex = 0.6, lwd=10, at=11)
