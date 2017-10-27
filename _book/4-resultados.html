@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="2-lt-review.html">
+<link rel="prev" href="3-implement.html">
+<link rel="next" href="5-conclusao.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -162,34 +162,48 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<!-- \includegraphics[width=3cm, height=4cm]{reed} -->
-<!-- \includegraphics[scale=1.5]{reed} -->
-<p>The french mathematician Louis Bachelier was the trail-blazer that brought Brownian motion, previously restricted to the field of botanics where it was firstly observed, to the financial framework. He modeled the stock prices as a Brownian motion with drift. IN the 1950’s Paul Samuelson created a model based on the Geometric Brownian Motion to price options. He and others computed paths and the expected discounted payoff of European options, but with no standard discount factor or growth rate. In 1973, Black and Scholes <span class="citation">[1]</span> designed a way to effectively calculate a European option price that became the <em>de facto</em> standard modeling strategy.</p>
-<p>Options are derivatives that give their bearers the rights to buy or sell a specific asset in a future date and with a predetermined price. They are, by design, affected by variations in the underlying assets’ components, for example, the variance.</p>
-<p>The Black-Scholes model was once the standard way of option pricing, but was replaced by more recent models that are now prevalent. One of the main drawbacks of the Black-Scholes model is the strong assumption that the stock returns’ volatility is constant. Thus, the implied model’s volatility results in a flat surface when plotted against the option’s strike price and maturity. Real world implied volatility varies with the strike price and maturity, forming what is called the ‘volatility smile’.</p>
-<p>The Heston model is an extension of the Black-Scholes model that tackles this volatility issue replacing the constant volatility with a stochastic process. This model was presented by Heston in 1993 and approaches the problem introducing an efficient closed form solution to compute vanilla options, which makes this model easy to be transferred to real life pricing. Its implementations is simple when compared to its more sophisticated competitors and calibrating Heston’s model, where pricing several times the same asset is required so that parameters reproducing market prices can be obtained, are easy and can be done in a short amount of time. Furthermore, this model presents a dynamic for the underlying asset which takes into account asymmetry and kurtosis, two often observed statistical moments.</p>
-<p>We aim with this thesis to better understand the Heston model, its quirkinesses, associated numerical methods and their implementations, and eventually discuss its pros and cons. For such, we will not only discuss the challenges in a vaguely way, but show code snippets of our implementations in R programming language <span class="citation">[2]</span> to help clarify possible associated difficulties and approach numerical results. More specifically, we find that the exact algorithm, produces bias in practical examples, although the theoretical framework says it shouldn’t. Our test produce an estimator with a bias of <span class="math inline">\(0.02\)</span>, considerably smaller than the ones tested with other models (<span class="math inline">\(0.09\)</span>), since we performed considerably less simulations.</p>
-<p>Furthermore, since we didn’t find code for the exact algorithm implementation we intend to release a CRAN package with the codes as a didactic tool.</p>
-<p>This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston model implementations. Chapter 4 brings the results of the tests we perform and finally, chapter 5 presents the conclusion.</p>
+<div id="resultados" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Results</h1>
+<p>We present here the results of all the implementations that were disclosed in the previous section. We perform numerical comparisons between all the methods, setting out differences accross number of simulations and timesteps. These simulations were performed as a way to validate our implementations, and thus do not have the intent to exhaust all kinds of possibilities or provide sharp comparisons.</p>
+<p>Heston <span class="citation">[24]</span> gives a closed form used as benchmark and as the ‘true’ option value and enabling the results to be exposed in terms of bias<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a> and RMSE (root mean square error).<a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a></p>
+<p>The simulaton experiments were performed on a notebook with an Intel(R) Core(TM) i7-4500U CPU @ 1.80GHz processor and 8GB of RAM running on a linux x86_64 based OS, Fedora 25. Codes were all written in R an run on version 3.4.1 “Single Candle” <span class="citation">[2]</span>.</p>
+<p>First of all, we chose a parametrizations based on what we saw in other works, made some adjustments, like reducing the options’ time to maturity due to the slower nature of R language and compared initial the results with the true option price given by the function <em>callHestoncf</em> belonging to the package NMOF <span class="citation">[44]</span>. Parameters can be seen in Table <a href="#param"><strong>??</strong></a> below.</p>
 
-<!--
-This is for including Chapter 1.  Notice that it's also good practice to name your chunk.  This will help you debug potential issues as you knit.  The chunk above is called intro and the one below is called chapter1.  Feel free to change the name of the Rmd file as you wish, but don't forget to change it here from chap1.Rmd.
--->
-<!--
-The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
--->
+<p>As we said above, these parameter weren’t chosen at random, we took them from Table 2 of the Broadie-Kaya <span class="citation">[31]</span> paper, with two minor modifications performed. We reduced the time to maturity from 5 to 1 year and we reduced the <span class="math inline">\(\sigma\)</span> from 1 to 0.2 following the “rule” they acknowledge in their paper that <span class="math inline">\(\frac{2 \kappa \theta}{\sigma} \leq 1\)</span>. The setup where the this inequality isn’t followed produces bigger biases, especially in Euler’s and Kahl-Jackel’s discretizations. In this situations, the EA often outperforms the Euler and KJ solutions in terms os RMSE.</p>
+<p>To perform our simulations, we first fixed a seed and saved the results in Table <a href="#res"><strong>??</strong></a>. Since the value given by the <em>callHestoncf</em> function with the parameters in Table <a href="#param"><strong>??</strong></a> is 14.176, the method that best approached the “true” value was the modified (drift interpolated) exact algorithm with <span class="math inline">\(100,000\)</span> simulations. Altough the Euler scheme gives the same result (14.16) as the modified EA with <span class="math inline">\(10,000\)</span> simulations, it moves away from the closed form value when we run <span class="math inline">\(100,000\)</span> simulations.</p>
+
+<p>Results are observable in Figure <a href="4-resultados.html#fig:modcomp11">4.1</a> also. The plot gives a good sense of possible biases associated with each method. It also show that the methods tend to converge quickly to the real result when the number of steps is increased.</p>
+<div class="figure" style="text-align: center"><span id="fig:modcomp11"></span>
+<img src="thesis_files/figure-html/modcomp11-1.png" alt="Comparison between models, 100 steps. \label{modcomp1}" width="480" />
+<p class="caption">
+Figure 4.1: Comparison between models, 100 steps. 
+</p>
+</div>
+<p>To verify if in fact these methods present bias, we performed ten thousand simulations of ten thousand paths to the Euler, Kahl-Jackel (KJ) and drift interpolated exact algorithm (EA-DI) with 20 steps (<span class="math inline">\(dt = 0.05\)</span>) first. We present these results in appendix <a href="C-imps.html#resultsapp">C.4</a> because we present the more precise simulations we made, with 100 steps in Figure <a href="4-resultados.html#fig:results10k001">4.2</a>. Results seem to show a little bias, thus we present in Table <a href="#res2"><strong>??</strong></a> how precise models are. The red line presents the option’s true value.</p>
+<div class="figure" style="text-align: center"><span id="fig:results10k001"></span>
+<img src="thesis_files/figure-html/results10k001-1.png" alt="Comparison between models, 100 steps. \label{results10k001}" width="480" />
+<p class="caption">
+Figure 4.2: Comparison between models, 100 steps. 
+</p>
+</div>
+<p>The exact algorithm performs much slowlier than the other three we only performed 1000 simulations of one thousand paths each. That is why its RMSE is comparably bigger than the other three implementations. We are aware that, by construction the Broadie-Kaya version of the algorithm has no bias, but we tested the bias of our implementation (even though we didn’t put it in the Table <a href="#res2"><strong>??</strong></a>) and the reason is twofold: again, we wanted to check if we correctly implemented the algorithm as a whole, but more importantly we wanted to check the outcomes of the adaptations we made (in terms of truncation, relative error and others) were playing into our model. The computed, even with far less simulations was far smaller than the other three methods, with only <span class="math inline">\(-0.02\)</span>. We understand that this result confirms that our adaptations did not change the nature of the model and with a greater number of simulations the bias would be zero as it should. We observe bias level in the three classical numerical models, the KJ model undervaluing in the same order (0.09) as the other two overvalue the option. In terms of standard deviation the models seem to be equivalent, with the KJ model presenting a slightly bigger standard deviation than the other two (0.24 against 0.21 and 0.22). According to the tests performed, we are confident that our models were implemented correctly.</p>
+
+
+</div>
+<div class="footnotes">
+<hr />
+<ol start="13">
+<li id="fn13"><p>Defined as <span class="math inline">\(\mathbb{E} \left[ \hat{\alpha} - \alpha \right]\)</span><a href="4-resultados.html#fnref13">↩</a></p></li>
+<li id="fn14"><p>Defined as <span class="math inline">\(\sqrt{\mathbb{E}((\hat{\theta}-\theta)^2)}\)</span><a href="4-resultados.html#fnref14">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="2-lt-review.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3-implement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-conclusao.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

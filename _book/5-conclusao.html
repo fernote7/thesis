@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="2-lt-review.html">
+<link rel="prev" href="4-resultados.html">
+<link rel="next" href="A-bsformula.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -162,34 +162,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<!-- \includegraphics[width=3cm, height=4cm]{reed} -->
-<!-- \includegraphics[scale=1.5]{reed} -->
-<p>The french mathematician Louis Bachelier was the trail-blazer that brought Brownian motion, previously restricted to the field of botanics where it was firstly observed, to the financial framework. He modeled the stock prices as a Brownian motion with drift. IN the 1950’s Paul Samuelson created a model based on the Geometric Brownian Motion to price options. He and others computed paths and the expected discounted payoff of European options, but with no standard discount factor or growth rate. In 1973, Black and Scholes <span class="citation">[1]</span> designed a way to effectively calculate a European option price that became the <em>de facto</em> standard modeling strategy.</p>
-<p>Options are derivatives that give their bearers the rights to buy or sell a specific asset in a future date and with a predetermined price. They are, by design, affected by variations in the underlying assets’ components, for example, the variance.</p>
-<p>The Black-Scholes model was once the standard way of option pricing, but was replaced by more recent models that are now prevalent. One of the main drawbacks of the Black-Scholes model is the strong assumption that the stock returns’ volatility is constant. Thus, the implied model’s volatility results in a flat surface when plotted against the option’s strike price and maturity. Real world implied volatility varies with the strike price and maturity, forming what is called the ‘volatility smile’.</p>
-<p>The Heston model is an extension of the Black-Scholes model that tackles this volatility issue replacing the constant volatility with a stochastic process. This model was presented by Heston in 1993 and approaches the problem introducing an efficient closed form solution to compute vanilla options, which makes this model easy to be transferred to real life pricing. Its implementations is simple when compared to its more sophisticated competitors and calibrating Heston’s model, where pricing several times the same asset is required so that parameters reproducing market prices can be obtained, are easy and can be done in a short amount of time. Furthermore, this model presents a dynamic for the underlying asset which takes into account asymmetry and kurtosis, two often observed statistical moments.</p>
-<p>We aim with this thesis to better understand the Heston model, its quirkinesses, associated numerical methods and their implementations, and eventually discuss its pros and cons. For such, we will not only discuss the challenges in a vaguely way, but show code snippets of our implementations in R programming language <span class="citation">[2]</span> to help clarify possible associated difficulties and approach numerical results. More specifically, we find that the exact algorithm, produces bias in practical examples, although the theoretical framework says it shouldn’t. Our test produce an estimator with a bias of <span class="math inline">\(0.02\)</span>, considerably smaller than the ones tested with other models (<span class="math inline">\(0.09\)</span>), since we performed considerably less simulations.</p>
-<p>Furthermore, since we didn’t find code for the exact algorithm implementation we intend to release a CRAN package with the codes as a didactic tool.</p>
-<p>This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston model implementations. Chapter 4 brings the results of the tests we perform and finally, chapter 5 presents the conclusion.</p>
+<div id="conclusao" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Conclusion</h1>
+<p>As we revisit what was presented through this thesis, we highlight that we were unable find codes of the heston’s exact algorithm in any shape or form. That means we searched if the algorithm implementation was available in any programming language, or at least a reference to where to find it and we couldn’t.</p>
+<p>Firstly, we provided a succint, but rigorous, theoretical framework. Since this topic is very embracing, we provided an abundant amount of literature not only to the core topics approached, but also to the marginal ones. The first topic introduced in our review of literature is the stochastic calculus subject. Following the basics, we present the Black-Scholes model since this is the basic model from which the stochastic volatility ones derive from. We show how the BS formula is computed, and its limitations. The next logical step are the stochastic volatility models since they directly attack and solve the biggest BS model limitation: fixed volatility. We present the CIR before the Heston model as the first concocts the latter. Lastly, approach the challenges brought by the adoption of numerical methods, to better understand if a method is theoretically good, how to perform a discretization, and why a supposedly good discretization scheme can fail, nevertheless.</p>
+<p>Thereafter, we thoroughly introduced the algorithms we were going to implement in R, and how we were going to do it. Four different algorithms were presented: the Euler scheme, the Kahl-Jackel algorithm, and two versions of the “exact algorithm”. The first trying to be as similar as possible to the one presented in Broadie-Kaya’s paper and the modified version bringing an approximation to the algorithm’s second step (the costlier step) as we replace the integral with a drift interpolation.</p>
+<p>We tested the implementations and presented our results in Chapter <a href="4-resultados.html#resultados">4</a>. We used a specification provided in Broadie-Kaya’s paper <span class="citation">[31]</span>, Table 2 with two slight changes. We reduced the time to maturity from 5 to 1 year and we reduced the <span class="math inline">\(\sigma\)</span> from 1 to 0.2 following the rules he acknowledges and previously cited. We verified that, in fact, the EA algorithm does not present bias, but because of the nature of the algorithm and of the implementation in R, we doubt it can be used practically without finding a way around the algorithm’s second step.</p>
+<p>As we performed the EA’s implementation we faced some challenges we weren’t able to resolve yet. We couldn’t parallelize the root inversion, which was a big bottleneck for the algorithm that we will solve. Also, we only created methods for the European <em>call</em> and for four different schemes. We intend to widen the scope to embrace the <em>put</em> computation and introduce the binomial tree approach along with the method of moments and maximum likelihood. Finally, the package with all its functions is available at this <a href="#fn15" class="footnoteRef" id="fnref15"><sup>15</sup></a> and in the near future on .</p>
 
-<!--
-This is for including Chapter 1.  Notice that it's also good practice to name your chunk.  This will help you debug potential issues as you knit.  The chunk above is called intro and the one below is called chapter1.  Feel free to change the name of the Rmd file as you wish, but don't forget to change it here from chap1.Rmd.
+</div>
+
+
+
+If you feel it necessary to include an appendix, it goes here.
 -->
-<!--
-The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
--->
+</div>
+<div class="footnotes">
+<hr />
+<ol start="15">
+<li id="fn15"><p><a href="https://github.com/fernote7/rnmethods" class="uri">https://github.com/fernote7/rnmethods</a><a href="5-conclusao.html#fnref15">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="2-lt-review.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="4-resultados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="A-bsformula.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

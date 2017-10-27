@@ -109,30 +109,13 @@ The Black-Scholes model was once the standard way of option pricing, but was rep
 
 The Heston model is an extension of the Black-Scholes model that tackles this volatility issue replacing the constant volatility with a stochastic process. This model was presented by Heston in 1993 and approaches the problem introducing an efficient closed form solution to compute vanilla options, which makes this model easy to be transferred to real life pricing. Its implementations is simple when compared to its more sophisticated competitors and calibrating Heston's model, where pricing several times the same asset is required so that parameters reproducing market prices can be obtained, are easy and can be done in a short amount of time. Furthermore, this model presents a dynamic for the underlying asset which takes into account asymmetry and kurtosis, two often observed statistical moments.
 
-We aim with this thesis to better understand the Heston model, its quirkinesses, associated numerical methods and their implementations, and eventually discuss its pros and cons. For such, we will not only discuss the challenges in a vaguely way, but show code snippets of our implementations in R programming language [@rlang] to help clarify possible associated difficulties. Furthermore, since we didn't find code for the exact algorithm implementation we intend to release a CRAN package with the codes as a didactic tool.
+We aim with this thesis to better understand the Heston model, its quirkinesses, associated numerical methods and their implementations, and eventually discuss its pros and cons. For such, we will not only discuss the challenges in a vaguely way, but show code snippets of our implementations in R programming language [@rlang] to help clarify possible associated difficulties and approach numerical results. More specifically, we find that the exact algorithm, produces bias in practical examples, although the theoretical framework says it shouldn't. Our test produce an estimator with a bias of $0.02$, considerably smaller than the ones tested with other models ($0.09$), since we performed considerably less simulations.
+
+
+Furthermore, since we didn't find code for the exact algorithm implementation we intend to release a CRAN package with the codes as a didactic tool.
 
 
 This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston  model implementations. Chapter 4 brings the results of the tests we perform and finally, chapter 5 presents the conclusion.
 
 
-
-
-<!-- [@gard1988] -->
-<!-- Another technique of particular relevance when the random -->
-<!-- effects can be considered as external to some reasonably well-understood -->
-<!-- deterministic system replaces input parameters in a deterministic model -->
-<!-- by random processes; the resulting random model characterizes the sample -->
-<!-- path structure of the solution process. An example which has had wide -->
-<!-- application in engineering consists of adding a noise term to the right side -->
-<!-- of a deterministic differential equation. The first such model was formu- -->
-<!-- lated by Langevin in 1908 to describe the velocity of a particle moving in -->
-<!-- a random force field. Random equations of this type can be interpreted -->
-<!-- as stochastic differential equations, following Ito's basic work in the early -->
-<!-- 1940s. Solutions of such equations represent Markov diffusion processes, the -->
-<!-- prototype of which is the Brownian motion (or Wiener) process. The the- -->
-<!-- ory of stochastic differential equations set down by Ito, and independently -->
-<!-- established in the Soviet Union by Gihman, together with the previous -->
-<!-- mathematical work of Wiener and Levy on Brownian motion has provided -->
-<!-- the basic tools making this more ambitious approach of constructing sample -->
-<!-- paths feasible. -->
 

@@ -11,30 +11,28 @@
 \contentsline {subsubsection}{Geometric Brownian Motion}{8}{section*.10}
 \contentsline {subsection}{\numberline {2.2.2}Limitations}{9}{subsection.2.2.2}
 \contentsline {section}{\numberline {2.3}Stochastic Volatility models}{10}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Cox-Ingersoll-Ross model}{11}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.1}Cox-Ingersoll-Ross model}{10}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Heston Model}{11}{subsection.2.3.2}
 \contentsline {section}{\numberline {2.4}Numerical Methods}{11}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Stability}{12}{subsection.2.4.1}
-\contentsline {subsubsection}{Stability Domain}{14}{section*.14}
-\contentsline {subsection}{\numberline {2.4.2}Convergence}{15}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Discretization}{16}{subsection.2.4.3}
-\contentsline {subsubsection}{Euler method - Heston model}{17}{section*.18}
-\contentsline {chapter}{Chapter 3: The Heston Model Implementation}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Characteristic Function}{19}{section.3.1}
-\contentsline {section}{\numberline {3.2}Euler Scheme}{20}{section.3.2}
-\contentsline {section}{\numberline {3.3}Kahl-Jackel}{21}{section.3.3}
-\contentsline {section}{\numberline {3.4}Exact Algorithm}{22}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Generate a sample of \(V_t\) given \(V_0\)}{22}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Generate a sample of \(\DOTSI \intop \ilimits@ _0^t V_sds\) given \(V_t\), \(V_0\)}{23}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Compute \(\DOTSI \intop \ilimits@ _0^t \sqrt {V_s}dB_s\) given \(V_t\), \(V_0\) and \(\DOTSI \intop \ilimits@ _0^t V_sds\)}{25}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Limitations}{26}{subsection.3.4.4}
-\contentsline {chapter}{Chapter 4: Results}{27}{chapter.4}
-\contentsline {chapter}{Chapter 5: Conclusion}{31}{chapter.5}
-\contentsline {chapter}{Appendix A: Black-Scholes formula}{33}{appendix.A}
-\contentsline {chapter}{Appendix B: Bessel Function}{35}{appendix.B}
-\contentsline {chapter}{Appendix C: Implementations}{37}{appendix.C}
-\contentsline {section}{\numberline {C.1}Euler Scheme}{37}{section.C.1}
-\contentsline {section}{\numberline {C.2}Kahl-Jackel Implementation}{38}{section.C.2}
-\contentsline {section}{\numberline {C.3}Exact Algorithm}{38}{section.C.3}
-\contentsline {section}{\numberline {C.4}Results with 20 steps}{41}{section.C.4}
-\contentsline {chapter}{References}{43}{appendix*.27}
+\contentsline {subsection}{\numberline {2.4.1}Convergence}{12}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Discretization}{12}{subsection.2.4.2}
+\contentsline {subsubsection}{Euler method - Heston model}{14}{section*.15}
+\contentsline {chapter}{Chapter 3: The Heston Model Implementation}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Characteristic Function}{17}{section.3.1}
+\contentsline {section}{\numberline {3.2}Euler Scheme}{18}{section.3.2}
+\contentsline {section}{\numberline {3.3}Kahl-Jackel}{19}{section.3.3}
+\contentsline {section}{\numberline {3.4}Exact Algorithm}{20}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Generate a sample of \(V_t\) given \(V_0\)}{20}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Generate a sample of \(\DOTSI \intop \ilimits@ _0^t V_sds\) given \(V_t\), \(V_0\)}{21}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Compute \(\DOTSI \intop \ilimits@ _0^t \sqrt {V_s}dB_s\) given \(V_t\), \(V_0\) and \(\DOTSI \intop \ilimits@ _0^t V_sds\)}{23}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Limitations}{24}{subsection.3.4.4}
+\contentsline {chapter}{Chapter 4: Results}{25}{chapter.4}
+\contentsline {chapter}{Chapter 5: Conclusion}{29}{chapter.5}
+\contentsline {chapter}{Appendix A: Black-Scholes formula}{31}{appendix.A}
+\contentsline {chapter}{Appendix B: Bessel Function}{33}{appendix.B}
+\contentsline {chapter}{Appendix C: Implementations}{35}{appendix.C}
+\contentsline {section}{\numberline {C.1}Euler Scheme}{35}{section.C.1}
+\contentsline {section}{\numberline {C.2}Kahl-Jackel Implementation}{36}{section.C.2}
+\contentsline {section}{\numberline {C.3}Exact Algorithm}{36}{section.C.3}
+\contentsline {section}{\numberline {C.4}Results with 20 steps}{39}{section.C.4}
+\contentsline {chapter}{References}{41}{appendix*.24}

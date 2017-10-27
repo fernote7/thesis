@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="C-imps.html">
 
-<link rel="next" href="2-lt-review.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -162,34 +162,183 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<!-- \includegraphics[width=3cm, height=4cm]{reed} -->
-<!-- \includegraphics[scale=1.5]{reed} -->
-<p>The french mathematician Louis Bachelier was the trail-blazer that brought Brownian motion, previously restricted to the field of botanics where it was firstly observed, to the financial framework. He modeled the stock prices as a Brownian motion with drift. IN the 1950’s Paul Samuelson created a model based on the Geometric Brownian Motion to price options. He and others computed paths and the expected discounted payoff of European options, but with no standard discount factor or growth rate. In 1973, Black and Scholes <span class="citation">[1]</span> designed a way to effectively calculate a European option price that became the <em>de facto</em> standard modeling strategy.</p>
-<p>Options are derivatives that give their bearers the rights to buy or sell a specific asset in a future date and with a predetermined price. They are, by design, affected by variations in the underlying assets’ components, for example, the variance.</p>
-<p>The Black-Scholes model was once the standard way of option pricing, but was replaced by more recent models that are now prevalent. One of the main drawbacks of the Black-Scholes model is the strong assumption that the stock returns’ volatility is constant. Thus, the implied model’s volatility results in a flat surface when plotted against the option’s strike price and maturity. Real world implied volatility varies with the strike price and maturity, forming what is called the ‘volatility smile’.</p>
-<p>The Heston model is an extension of the Black-Scholes model that tackles this volatility issue replacing the constant volatility with a stochastic process. This model was presented by Heston in 1993 and approaches the problem introducing an efficient closed form solution to compute vanilla options, which makes this model easy to be transferred to real life pricing. Its implementations is simple when compared to its more sophisticated competitors and calibrating Heston’s model, where pricing several times the same asset is required so that parameters reproducing market prices can be obtained, are easy and can be done in a short amount of time. Furthermore, this model presents a dynamic for the underlying asset which takes into account asymmetry and kurtosis, two often observed statistical moments.</p>
-<p>We aim with this thesis to better understand the Heston model, its quirkinesses, associated numerical methods and their implementations, and eventually discuss its pros and cons. For such, we will not only discuss the challenges in a vaguely way, but show code snippets of our implementations in R programming language <span class="citation">[2]</span> to help clarify possible associated difficulties and approach numerical results. More specifically, we find that the exact algorithm, produces bias in practical examples, although the theoretical framework says it shouldn’t. Our test produce an estimator with a bias of <span class="math inline">\(0.02\)</span>, considerably smaller than the ones tested with other models (<span class="math inline">\(0.09\)</span>), since we performed considerably less simulations.</p>
-<p>Furthermore, since we didn’t find code for the exact algorithm implementation we intend to release a CRAN package with the codes as a didactic tool.</p>
-<p>This thesis is divided into five chapters, the first being this introduction. Following, we have a literature review that mainly addresses stochastic calculus, the Black-Scholes models and the Heston model. Thereafter we present the different Heston model implementations. Chapter 4 brings the results of the tests we perform and finally, chapter 5 presents the conclusion.</p>
+<div id="references" class="section level1">
+<h1><span class="header-section-number">D</span> References</h1>
+<p> </p>
+<!--
+To remove the indentation of the first entry.
+-->
+<!-- \noindent -->
+<!--
+To create a hanging indent and spacing between entries.  These three lines may need to be removed for styles that don't require the hanging indent.
+-->
+<p>  </p>
+<!--
+This is just for testing with more citations for the bibliography at the end.  Add other entries into the list here if you'd like them to appear in the bibliography even if they weren't explicitly cited in the document.
+-->
 
-<!--
-This is for including Chapter 1.  Notice that it's also good practice to name your chunk.  This will help you debug potential issues as you knit.  The chunk above is called intro and the one below is called chapter1.  Feel free to change the name of the Rmd file as you wish, but don't forget to change it here from chap1.Rmd.
--->
-<!--
-The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
--->
+<div id="refs" class="references">
+<div>
+<p>[1] Black, F.; Scholes, M. The pricing of options and corporate liabilities. Journal of political economy, v. 81, n. 3, p. 637–654, 1973.</p>
 </div>
+<div>
+<p>[2] R Core Team. R: A language and environment for statistical computing. Vienna, Austria: 2017.</p>
+</div>
+<div>
+<p>[3] Wiersema, U.F. Brownian motion calculus. 2008.</p>
+</div>
+<div>
+<p>[4] Brown, R. XXVII. a brief account of microscopical observations made in the months of june, july and august 1827, on the particles contained in the pollen of plants; and on the general existence of active molecules in organic and inorganic bodies. Philosophical Magazine Series 2, v. 4, n. 21, p. 161–173, 1828.</p>
+</div>
+<div>
+<p>[5] Karatzas, I.; Shreve, S. Brownian motion and stochastic calculus. 2012.</p>
+</div>
+<div>
+<p>[6] Helgadóttir, A.D.; Ionescu, L. Option pricing within the heston model. 2016.</p>
+</div>
+<div>
+<p>[7] Evans, L.C. An introduction to stochastic differential equations. 2012.</p>
+</div>
+<div>
+<p>[8] Rosenthal, J.S. A first look at rigorous probability theory. 2006.</p>
+</div>
+<div>
+<p>[9] Tong, Z. Option pricing with long memory stochastic volatility models. 2012.</p>
+</div>
+<div>
+<p>[10] Steele, J.M. Stochastic calculus and financial applications. 2012.</p>
+</div>
+<div>
+<p>[11] Itō, K. On stochastic differential equations. 1951.</p>
+</div>
+<div>
+<p>[12] Itô, K. The brownian motion and tensor fields on riemannian manifold. Proc. Int. Congr. Math., Stockholm, v. 2, 1962.</p>
+</div>
+<div>
+<p>[13] Yang, Y. Valuing a european option with the heston model. 2013.</p>
+</div>
+<div>
+<p>[14] Salomão, M. de F. Precificação de opções financeiras: Um estudo sobre os modelos de black scholes e garch. 2011.</p>
+</div>
+<div>
+<p>[15] Merton, R.C. Theory of rational option pricing. The Bell Journal of economics and management science, p. 141–183, 1973.</p>
+</div>
+<div>
+<p>[16] Tsay, R.S. Analysis of financial time series. 2005.</p>
+</div>
+<div>
+<p>[17] Iacus, S.M. Simulation and inference for stochastic differential equations: With r examples. 2009.</p>
+</div>
+<div>
+<p>[18] Krouglov, A. Intuitive proof of black-scholes formula based on arbitrage and properties of lognormal distribution. arXiv preprint physics/0612022, 2006.</p>
+</div>
+<div>
+<p>[19] Gilli, M.; Maringer, D.; et al. Numerical methods and optimization in finance. Waltham, MA, USA: 2011.</p>
+</div>
+<div>
+<p>[20] Engle, R.F. Autoregressive conditional heteroscedasticity with estimates of the variance of united kingdom inflation. Econometrica: Journal of the Econometric Society, p. 987–1007, 1982.</p>
+</div>
+<div>
+<p>[21] Bollerslev, T. Generalized autoregressive conditional heteroskedasticity. Journal of econometrics, v. 31, n. 3, p. 307–327, 1986.</p>
+</div>
+<div>
+<p>[22] Hagan, P.S.; Kumar, D.; et al. Arbitrage-free sabr. Wilmott, v. 2014, n. 69, p. 60–75, 2014.</p>
+</div>
+<div>
+<p>[23] Cox, J.C.; Ingersoll Jr, J.E.; et al. A theory of the term structure of interest rates. Econometrica: Journal of the Econometric Society, p. 385–407, 1985.</p>
+</div>
+<div>
+<p>[24] Heston, S.L. A closed-form solution for options with stochastic volatility with applications to bond and currency options. Review of financial studies, v. 6, n. 2, p. 327–343, 1993.</p>
+</div>
+<div>
+<p>[25] Gilli, M.; Maringer, D.; et al. Numerical methods and optimization in finance. 2011.</p>
+</div>
+<div>
+<p>[26] Kloeden, P.E.; Platen, E. Numerical solution of stochastic differential equations springer-verlag. 1992.</p>
+</div>
+<div>
+<p>[27] Higham, D.J. An algorithmic introduction to numerical simulation of stochastic differential equations. SIAM review, v. 43, n. 3, p. 525–546, 2001.</p>
+</div>
+<div>
+<p>[28] Clements, D.; Anderson, B. Well-behaved itô equations with simulations that always misbehave. IEEE Transactions on Automatic Control, v. 18, n. 6, p. 676–677, 1973.</p>
+</div>
+<div>
+<p>[29] Clark, J.M., Cameron, R. The maximum rate of convergence of discrete approximations for stochastic differential equations. In: Stochastic differential systems filtering and control. 1980, p. 162–171.</p>
+</div>
+<div>
+<p>[30] Kiusalaas, J. Numerical methods in engineering with python 3. 2013.</p>
+</div>
+<div>
+<p>[31] Broadie, M.; Kaya, Ö. Exact simulation of stochastic volatility and other affine jump diffusion processes. Operations research, v. 54, n. 2, p. 217–231, 2006.</p>
+</div>
+<div>
+<p>[32] Andersen, L.B. Efficient simulation of the heston stochastic volatility model. 2007.</p>
+</div>
+<div>
+<p>[33] Kahl, C.; Jäckel, P. Fast strong approximation monte carlo schemes for stochastic volatility models. Quantitative Finance, v. 6, n. 6, p. 513–536, 2006.</p>
+</div>
+<div>
+<p>[34] Dunn, R.; Hauser, P.; et al. Estimating option prices with heston’s stochastic volatility model. 2014.</p>
+</div>
+<div>
+<p>[35] Scott, L. Simulating a multi-factor term structure model over relatively long discrete time periods. In: Proceedings of the iafe first annual computational finance conference. 1996, </p>
+</div>
+<div>
+<p>[36] Willard, G.A. Calculating prices and sensitivities for path-independent derivatives securities in multifactor models. The Journal of Derivatives, v. 5, n. 1, p. 45–61, 1997.</p>
+</div>
+<div>
+<p>[37] Romano, M.; Touzi, N. Contingent claims and market completeness in a stochastic volatility model. Mathematical Finance, v. 7, n. 4, p. 399–412, 1997.</p>
+</div>
+<div>
+<p>[38] Baldeaux, J.; Platen, E. Functionals of multidimensional diffusions with applications to finance. 2013.</p>
+</div>
+<div>
+<p>[39] Johnson, N.L.; Kotz, S.; et al. Continuous univariate distributions, vol. 2 of wiley series in probability and mathematical statistics: Applied probability and statistics. 1995.</p>
+</div>
+<div>
+<p>[40] Maechler, M. Bessel: Bessel – bessel functions computations and approximations. 2013.</p>
+</div>
+<div>
+<p>[41] Feller, W. Introduction to the theory of probability and its applications, vol. 2. II (2. Ed.) New York: Wiley, 1971.</p>
+</div>
+<div>
+<p>[42] Gil-Pelaez, J. Note on the inversion theorem. Biometrika, v. 38, n. 3-4, p. 481–482, 1951.</p>
+</div>
+<div>
+<p>[43] Van Haastrecht, A.; Pelsser, A. Efficient, almost exact simulation of the heston stochastic volatility model. International Journal of Theoretical and Applied Finance, v. 13, n. 01, p. 1–43, 2010.</p>
+</div>
+<div>
+<p>[44] Schumann, E. Numerical methods and optimization in finance (nmof) manual. package version 0.40-0). 2011–2016.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
+<a href="C-imps.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="2-lt-review.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

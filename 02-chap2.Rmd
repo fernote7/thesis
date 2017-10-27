@@ -189,7 +189,7 @@ Broadie and Kaya [-@broadie2006exact] sample generating Poisson and gamma distri
 
 ### Generate a sample of $\int_0^t V_sds$ given $V_t$, $V_0$
 
-After generating $V_t$, we follow the instructions in [-@broadie2006exact; -@johnson1995]. We use the characteristic function \@ref(eq:phi) to compute the probability density function $F(x)$.
+After generating $V_t$, we proceed to the algorithm's next step following [-@broadie2006exact; -@johnson1995]. We use the characteristic function \@ref(eq:phi) to compute the probability density function $F(x)$.
 
 \begin{align} \label{eq:phi}
 \begin{split}
